@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>6 Estruturas de Repetição: Loopings</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./02_basicR.html" rel="" target="">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./06_loopings.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">
+<li>
+    <a class="dropdown-item" href="./10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">
+<li>
+    <a class="dropdown-item" href="./listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">
+<li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">
+<li>
+    <a class="dropdown-item" href="./modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">
+<li>
+    <a class="dropdown-item" href="./avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#estrutura-while" id="toc-estrutura-while" class="nav-link active" data-scroll-target="#estrutura-while">6.0.1 Estrutura <code>while</code></a></li>
+  <li><a href="#next" id="toc-next" class="nav-link" data-scroll-target="#next">6.0.1.2 <code>Next</code></a></li>
+  <li><a href="#exerc%C3%ADcio" id="toc-exercício" class="nav-link" data-scroll-target="#exerc%C3%ADcio">6.0.2 Exercício</a></li>
+  <li><a href="#estrutura-for" id="toc-estrutura-for" class="nav-link" data-scroll-target="#estrutura-for">6.0.3 Estrutura <code>for</code></a></li>
+  <li><a href="#fam%C3%ADlia-apply" id="toc-família-apply" class="nav-link" data-scroll-target="#fam%C3%ADlia-apply">6.0.4 Família apply</a></li>
+  <li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios">6.1 Exercícios</a></li>
+  <li>
+<a href="#paraleliza%C3%A7%C3%A3o" id="toc-paralelização" class="nav-link" data-scroll-target="#paraleliza%C3%A7%C3%A3o">6.2 Paralelização</a>
+  <ul class="collapse">
+<li><a href="#por-que-paralelizar-um-c%C3%B3digo" id="toc-por-que-paralelizar-um-código" class="nav-link" data-scroll-target="#por-que-paralelizar-um-c%C3%B3digo">6.2.1 Por que Paralelizar um Código?</a></li>
+  <li><a href="#quando-precisamos-paralelizar-um-c%C3%B3digo" id="toc-quando-precisamos-paralelizar-um-código" class="nav-link" data-scroll-target="#quando-precisamos-paralelizar-um-c%C3%B3digo">6.2.2 Quando Precisamos Paralelizar um Código?</a></li>
+  <li><a href="#importante" id="toc-importante" class="nav-link" data-scroll-target="#importante">6.2.3 Importante</a></li>
+  <li><a href="#medindo-a-qualidade-da-paraleliza%C3%A7%C3%A3o" id="toc-medindo-a-qualidade-da-paralelização" class="nav-link" data-scroll-target="#medindo-a-qualidade-da-paraleliza%C3%A7%C3%A3o">6.2.4 Medindo a Qualidade da Paralelização</a></li>
+  </ul>
+</li>
+  <li><a href="#paraleliza%C3%A7%C3%A3o-em-r" id="toc-paralelização-em-r" class="nav-link" data-scroll-target="#paraleliza%C3%A7%C3%A3o-em-r">6.3 Paralelização em R</a></li>
+  <li><a href="#exerc%C3%ADcios-1" id="toc-exercícios-1" class="nav-link" data-scroll-target="#exerc%C3%ADcios-1">6.4 Exercícios</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/06_loopings.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/06_loopings.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06_loopings.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="06_loopings.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">6 Estruturas de Repetição: <em>Loopings</em>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><p>As estruturas de repetição desempenham um papel crucial na programação, pois permitem que tarefas repetitivas sejam realizadas de maneira mais eficaz ou iterem sobre conjuntos de dados extensos. Além disso, as estruturas de repetição são essenciais para processar grandes volumes de dados, realizar cálculos complexos e criar algoritmos mais poderosos.</p>
+<p>Em R existem diversas estruturas de repetição, veremos aqui: <code>while</code>, <code>for</code> e a família <code>apply</code>.</p>
+<section id="estrutura-while" class="level3"><h3 class="anchored" data-anchor-id="estrutura-while">6.0.1 Estrutura <code>while</code>
+</h3>
+<p>O loop while é uma das estruturas de repetição mais simples. Ele é usado quando você precisa repetir um bloco de código <em>enquanto uma condição for verdadeira</em>. E seu critério de parada é atualizado, i.e., você não sabe de imediato quantas vezes vai precisar repetir o procedimento.</p>
+<p>A estrutura básica do while é a seguinte:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">while</span> <span class="op">(</span><span class="va">condicao</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># Código a ser repetido enquanto a condição for verdadeira</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Imprima na tela <code>i</code>, enquanto <code>i</code> for menor do que <code>6</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="co"># sempre definimos o critério de parada fora do loop</span></span>
+<span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">i</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span> <span class="co"># Sempre alteramos o critério </span></span>
+<span>  <span class="co"># de parada, senão caímos em um loop infinito</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+</div>
+<section id="break" class="level4"><h4 class="anchored" data-anchor-id="break">6.0.1.1 <code>Break</code>
+</h4>
+<p>Mesmo quando uma condição é verdadeira, podemos ter interesse em parar uma repetição, mesmo que a condição seja <code>TRUE</code>. Útil quando não queremos cair em um loop infinito.</p>
+<p>Por exemplo, podemos parar o nosso loop caso nosso <code>i == 4</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">i</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">break</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3</code></pre>
+</div>
+</div>
+</section></section><section id="next" class="level3"><h3 class="anchored" data-anchor-id="next">6.0.1.2 <code>Next</code>
+</h3>
+<p>Outras vezes, podemos pular uma iteração sem encerrar o loop:</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">i</span> <span class="op">&lt;</span> <span class="fl">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">i</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">next</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 4
+[1] 5
+[1] 6</code></pre>
+</div>
+</div>
+</section><section id="exercício" class="level3"><h3 class="anchored" data-anchor-id="exercício">6.0.2 Exercício</h3>
+<p>Suponha o lançamento de um dado não viesado, com seis faces. Quantas vezes devo lançar o dado para obter a face 5?</p>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1234</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">n_lancamento</span> <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="va">sorteio</span> <span class="op">=</span> <span class="fl">0</span></span>
+<span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">sorteio</span> <span class="op">!=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">sorteio</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">n_lancamento</span> <span class="op">=</span> <span class="va">n_lancamento</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"\n\nLançamento: "</span>, <span class="va">n_lancamento</span>, <span class="st">"\nValor Sorteado: "</span>, <span class="va">sorteio</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+Lançamento: 1
+Valor Sorteado: 4
+
+Lançamento: 2
+Valor Sorteado: 2
+
+Lançamento: 3
+Valor Sorteado: 6
+
+Lançamento: 4
+Valor Sorteado: 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_lancamento</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_lancamento</span> <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">sorteio</span> <span class="op">!=</span> <span class="fl">7</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">sorteio</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="va">n_lancamento</span> <span class="op">=</span> <span class="va">n_lancamento</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"\n\nLançamento: "</span>, <span class="va">n_lancamento</span>, <span class="st">"\nValor Sorteado: "</span>, <span class="va">sorteio</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">n_lancamento</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw">break</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+Lançamento: 1
+Valor Sorteado: 4
+
+Lançamento: 2
+Valor Sorteado: 1
+
+Lançamento: 3
+Valor Sorteado: 5
+
+Lançamento: 4
+Valor Sorteado: 6
+
+Lançamento: 5
+Valor Sorteado: 4
+
+Lançamento: 6
+Valor Sorteado: 2
+
+Lançamento: 7
+Valor Sorteado: 6
+
+Lançamento: 8
+Valor Sorteado: 2
+
+Lançamento: 9
+Valor Sorteado: 6
+
+Lançamento: 10
+Valor Sorteado: 6
+
+Lançamento: 11
+Valor Sorteado: 4
+
+Lançamento: 12
+Valor Sorteado: 6
+
+Lançamento: 13
+Valor Sorteado: 6
+
+Lançamento: 14
+Valor Sorteado: 6
+
+Lançamento: 15
+Valor Sorteado: 4
+
+Lançamento: 16
+Valor Sorteado: 4
+
+Lançamento: 17
+Valor Sorteado: 5
+
+Lançamento: 18
+Valor Sorteado: 4
+
+Lançamento: 19
+Valor Sorteado: 3
+
+Lançamento: 20
+Valor Sorteado: 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_lancamento</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20</code></pre>
+</div>
+</div>
+<p>Note que em ambos exemplos os valores estão sendo apenas calculados e não estamos guardando em nenhuma variável. Para resolver esse problema podemos simplesmnet guardar o valor sorteado em um vetor.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">valor_sorteado</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">n_lancamento</span> <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">sorteio</span> <span class="op">!=</span> <span class="fl">7</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">n_lancamento</span> <span class="op">=</span> <span class="va">n_lancamento</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>  <span class="va">valor_sorteado</span><span class="op">[</span><span class="va">n_lancamento</span><span class="op">]</span> <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">dado</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span>  </span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"\n\nLançamento: "</span>, <span class="va">n_lancamento</span>, <span class="st">"\nValor Sorteado: "</span>, <span class="va">sorteio</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="va">n_lancamento</span> <span class="op">==</span> <span class="fl">20</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="kw">break</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+Lançamento: 1
+Valor Sorteado: 4
+
+Lançamento: 2
+Valor Sorteado: 4
+
+Lançamento: 3
+Valor Sorteado: 4
+
+Lançamento: 4
+Valor Sorteado: 4
+
+Lançamento: 5
+Valor Sorteado: 4
+
+Lançamento: 6
+Valor Sorteado: 4
+
+Lançamento: 7
+Valor Sorteado: 4
+
+Lançamento: 8
+Valor Sorteado: 4
+
+Lançamento: 9
+Valor Sorteado: 4
+
+Lançamento: 10
+Valor Sorteado: 4
+
+Lançamento: 11
+Valor Sorteado: 4
+
+Lançamento: 12
+Valor Sorteado: 4
+
+Lançamento: 13
+Valor Sorteado: 4
+
+Lançamento: 14
+Valor Sorteado: 4
+
+Lançamento: 15
+Valor Sorteado: 4
+
+Lançamento: 16
+Valor Sorteado: 4
+
+Lançamento: 17
+Valor Sorteado: 4
+
+Lançamento: 18
+Valor Sorteado: 4
+
+Lançamento: 19
+Valor Sorteado: 4
+
+Lançamento: 20
+Valor Sorteado: 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">valor_sorteado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5 2 5 2 6 3 4 4 3 1 3 6 4 2 3 2 5 6 1 6</code></pre>
+</div>
+</div>
+</section><section id="estrutura-for" class="level3"><h3 class="anchored" data-anchor-id="estrutura-for">6.0.3 Estrutura <code>for</code>
+</h3>
+<p>O loop <code>for</code> é usado para iterar sobre uma sequência de valores, como um vetor ou uma lista. A estrutura básica é a seguinte:</p>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">variavel</span> <span class="kw">in</span> <span class="va">sequencia</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># Código a ser executado para cada valor da sequência</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Suponha que queremos calcular o quadrado dos valores de 1:10. Para isso, podemos utilizar um <code>for</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">x1</span> <span class="op">&lt;-</span> <span class="va">i</span><span class="op">^</span><span class="fl">2</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">x1</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 4
+[1] 9
+[1] 16
+[1] 25
+[1] 36
+[1] 49
+[1] 64
+[1] 81
+[1] 100</code></pre>
+</div>
+</div>
+<p>Além disso, podemos ter <code>for</code> aninhados.</p>
+<p>Suponha agora um experimento que consiste no lançamento de dois dados não viesados de seis faces, e definimos uma variável aleatória como o quadrado da soma das faces superiores dos dois dados. Queremos guardar o valor dos dois dados, a soma das faces superiores e o quadrado da soma.</p>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: dplyr</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: magrittr</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dado</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">soma_dois_dados</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">dado1</span>, <span class="va">dado2</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">soma</span> <span class="op">=</span> <span class="va">dado1</span> <span class="op">+</span> <span class="va">dado2</span></span>
+<span>  </span>
+<span><span class="op">}</span></span>
+<span><span class="va">quadrado_soma</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">soma</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">soma2</span> <span class="op">=</span> <span class="va">soma</span><span class="op">^</span><span class="fl">2</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">soma2</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">resultado</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">k</span> <span class="op">=</span> <span class="fl">0</span> </span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">dado</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="va">dado</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">k</span> <span class="op">=</span> <span class="va">k</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span>    <span class="va">soma</span> <span class="op">=</span> <span class="fu">soma_dois_dados</span><span class="op">(</span><span class="va">dado</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">dado</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="va">somaqd</span> <span class="op">=</span> <span class="fu">quadrado_soma</span><span class="op">(</span><span class="va">soma</span><span class="op">)</span></span>
+<span>    </span>
+<span>    <span class="va">resultado</span><span class="op">[[</span><span class="va">k</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>dado1 <span class="op">=</span> <span class="va">dado</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, </span>
+<span>                               dado2 <span class="op">=</span> <span class="va">dado</span><span class="op">[</span><span class="va">j</span><span class="op">]</span>, </span>
+<span>                               soma <span class="op">=</span> <span class="va">soma</span>, </span>
+<span>                               soma2 <span class="op">=</span> <span class="va">somaqd</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">resultado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+  dado1 dado2 soma soma2
+1     1     1    2     4
+
+[[2]]
+  dado1 dado2 soma soma2
+1     1     2    3     9
+
+[[3]]
+  dado1 dado2 soma soma2
+1     1     3    4    16
+
+[[4]]
+  dado1 dado2 soma soma2
+1     1     4    5    25
+
+[[5]]
+  dado1 dado2 soma soma2
+1     1     5    6    36
+
+[[6]]
+  dado1 dado2 soma soma2
+1     1     6    7    49
+
+[[7]]
+  dado1 dado2 soma soma2
+1     2     1    3     9
+
+[[8]]
+  dado1 dado2 soma soma2
+1     2     2    4    16
+
+[[9]]
+  dado1 dado2 soma soma2
+1     2     3    5    25
+
+[[10]]
+  dado1 dado2 soma soma2
+1     2     4    6    36
+
+[[11]]
+  dado1 dado2 soma soma2
+1     2     5    7    49
+
+[[12]]
+  dado1 dado2 soma soma2
+1     2     6    8    64
+
+[[13]]
+  dado1 dado2 soma soma2
+1     3     1    4    16
+
+[[14]]
+  dado1 dado2 soma soma2
+1     3     2    5    25
+
+[[15]]
+  dado1 dado2 soma soma2
+1     3     3    6    36
+
+[[16]]
+  dado1 dado2 soma soma2
+1     3     4    7    49
+
+[[17]]
+  dado1 dado2 soma soma2
+1     3     5    8    64
+
+[[18]]
+  dado1 dado2 soma soma2
+1     3     6    9    81
+
+[[19]]
+  dado1 dado2 soma soma2
+1     4     1    5    25
+
+[[20]]
+  dado1 dado2 soma soma2
+1     4     2    6    36
+
+[[21]]
+  dado1 dado2 soma soma2
+1     4     3    7    49
+
+[[22]]
+  dado1 dado2 soma soma2
+1     4     4    8    64
+
+[[23]]
+  dado1 dado2 soma soma2
+1     4     5    9    81
+
+[[24]]
+  dado1 dado2 soma soma2
+1     4     6   10   100
+
+[[25]]
+  dado1 dado2 soma soma2
+1     5     1    6    36
+
+[[26]]
+  dado1 dado2 soma soma2
+1     5     2    7    49
+
+[[27]]
+  dado1 dado2 soma soma2
+1     5     3    8    64
+
+[[28]]
+  dado1 dado2 soma soma2
+1     5     4    9    81
+
+[[29]]
+  dado1 dado2 soma soma2
+1     5     5   10   100
+
+[[30]]
+  dado1 dado2 soma soma2
+1     5     6   11   121
+
+[[31]]
+  dado1 dado2 soma soma2
+1     6     1    7    49
+
+[[32]]
+  dado1 dado2 soma soma2
+1     6     2    8    64
+
+[[33]]
+  dado1 dado2 soma soma2
+1     6     3    9    81
+
+[[34]]
+  dado1 dado2 soma soma2
+1     6     4   10   100
+
+[[35]]
+  dado1 dado2 soma soma2
+1     6     5   11   121
+
+[[36]]
+  dado1 dado2 soma soma2
+1     6     6   12   144</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/compound.html">%&lt;&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">resultado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   dado1 dado2 soma soma2
+1      1     1    2     4
+2      1     2    3     9
+3      1     3    4    16
+4      1     4    5    25
+5      1     5    6    36
+6      1     6    7    49
+7      2     1    3     9
+8      2     2    4    16
+9      2     3    5    25
+10     2     4    6    36
+11     2     5    7    49
+12     2     6    8    64
+13     3     1    4    16
+14     3     2    5    25
+15     3     3    6    36
+16     3     4    7    49
+17     3     5    8    64
+18     3     6    9    81
+19     4     1    5    25
+20     4     2    6    36
+21     4     3    7    49
+22     4     4    8    64
+23     4     5    9    81
+24     4     6   10   100
+25     5     1    6    36
+26     5     2    7    49
+27     5     3    8    64
+28     5     4    9    81
+29     5     5   10   100
+30     5     6   11   121
+31     6     1    7    49
+32     6     2    8    64
+33     6     3    9    81
+34     6     4   10   100
+35     6     5   11   121
+36     6     6   12   144</code></pre>
+</div>
+</div>
+</section><section id="família-apply" class="level3"><h3 class="anchored" data-anchor-id="família-apply">6.0.4 Família apply</h3>
+<p>A família de funções apply em R inclui <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>, <code><a href="https://rdrr.io/r/base/lapply.html">vapply()</a></code>, <code><a href="https://rdrr.io/r/base/tapply.html">tapply()</a></code>, <code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code>, entre outras. Essas funções são usadas para aplicar uma função a elementos de uma lista, vetor, matriz ou array. Ela funciona similar ao <code>for</code> em termos de repetições.</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code>: Aplica uma função qualquer a uma matriz, array ou data.frame ao longo de margens específicas (linhas <code>1</code> ou colunas <code>2</code>). O output de um <code><a href="https://rdrr.io/r/base/apply.html">apply()</a></code> é um vetor.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matriz1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">soma_linhas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz1</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></span>
+<span><span class="va">soma_colunas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">matriz1</span>, <span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/lapply.html">lapply()</a></code>: Aplica uma função a cada elemento de uma lista e retorna uma lista com os resultados.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">minha_lista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">resultados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">minha_lista</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="va">resultados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$a
+[1] 2
+
+$b
+[1] 5</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/lapply.html">sapply()</a></code>: A função sapply() é semelhante ao lapply(), mas tenta simplificar o resultado em um vetor ou matriz sempre que possível. Se todos os resultados forem do mesmo comprimento, será retornado um vetor. Caso contrário, será retornada uma matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">minha_lista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span>, b <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>, c<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span>,<span class="fl">6</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">resultados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">minha_lista</span>, <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="va">resultados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a b c 
+2 5 7 </code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/mapply.html">mapply()</a></code>: Aplica uma função a vários argumentos. Ele oferece uma maneira eficiente de realizar essas operações de forma flexível e controlada.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">soma_dois_dados</span>, </span>
+<span>                    <span class="va">dado</span>, </span>
+<span>                    <span class="va">dado</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2  4  6  8 10 12</code></pre>
+</div>
+</div>
+<p>E se eu quisesse somar <em>todas as combinações</em> como no <code>for</code> aninhado? Para isso podemos expandir o grid de busca, utilizando o <code>expand.grid</code>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dois_dados</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span><span class="va">dado</span>, <span class="va">dado</span><span class="op">)</span></span>
+<span><span class="va">dois_dados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Var1 Var2
+1     1    1
+2     2    1
+3     3    1
+4     4    1
+5     5    1
+6     6    1
+7     1    2
+8     2    2
+9     3    2
+10    4    2
+11    5    2
+12    6    2
+13    1    3
+14    2    3
+15    3    3
+16    4    3
+17    5    3
+18    6    3
+19    1    4
+20    2    4
+21    3    4
+22    4    4
+23    5    4
+24    6    4
+25    1    5
+26    2    5
+27    3    5
+28    4    5
+29    5    5
+30    6    5
+31    1    6
+32    2    6
+33    3    6
+34    4    6
+35    5    6
+36    6    6</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mapply.html">mapply</a></span><span class="op">(</span><span class="va">soma_dois_dados</span>, </span>
+<span>                    <span class="va">dois_dados</span><span class="op">$</span><span class="va">Var1</span>, </span>
+<span>                    <span class="va">dois_dados</span><span class="op">$</span><span class="va">Var2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  3  4  5  6  7  3  4  5  6  7  8  4  5  6  7  8  9  5  6  7  8  9 10  6
+[26]  7  8  9 10 11  7  8  9 10 11 12</code></pre>
+</div>
+</div>
+</section><section id="exercícios" class="level2"><h2 class="anchored" data-anchor-id="exercícios">6.1 Exercícios</h2>
+<ol type="1">
+<li>Crie uma função que calcule os <code>n</code> primeiros números da sequência de Fibonacci. A sequência de Fibonacci começa com 0 e 1, e os números subsequentes são a soma dos dois anteriores (0, 1, 1, 2, 3, 5, 8, …).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">calcular_fibonacci</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">fibonacci_sequence</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">n</span> <span class="op">&gt;=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">fibonacci_sequence</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
+<span>  <span class="op">}</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">n</span> <span class="op">&gt;=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">fibonacci_sequence</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">fibonacci_sequence</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">fibonacci_sequence</span><span class="op">[</span><span class="va">i</span> <span class="op">-</span> <span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">fibonacci_sequence</span><span class="op">[</span><span class="va">i</span> <span class="op">-</span> <span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">fibonacci_sequence</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Exemplo de uso</span></span>
+<span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu">calcular_fibonacci</span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Os primeiros"</span>, <span class="va">n</span>, <span class="st">"números da sequência de Fibonacci são:"</span>, <span class="va">resultado</span>, <span class="st">"\n"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Os primeiros 10 números da sequência de Fibonacci são: 0 1 1 2 3 5 8 13 21 34 </code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Crie uma função que verifique se um número <code>n</code> é primo.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eh_primo</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">n</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">n</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="va">i</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Exemplos de uso</span></span>
+<span><span class="va">numeros_exemplos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">13</span>, <span class="fl">25</span>, <span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">19</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">numero</span> <span class="kw">in</span> <span class="va">numeros_exemplos</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu">eh_primo</span><span class="op">(</span><span class="va">numero</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">numero</span>, <span class="st">"é um número primo.\n"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">numero</span>, <span class="st">"não é um número primo.\n"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13 é um número primo.
+25 não é um número primo.
+7 é um número primo.
+4 não é um número primo.
+19 é um número primo.</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Calcule o 1o. e 2o. Quartil para todas as variáveis numéricas de <code>mtcars</code>. Se uma variável não for numérica retorne <code>NA</code>. Lembre-se <code>cyl</code>, <code>vs</code> e <code>am</code> são categóricas, e não numéricas.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Transformar cyl, vs e am para character</span></span>
+<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
+<span></span>
+<span><span class="va">dados</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">dados</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="va">dados</span><span class="op">$</span><span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">dados</span><span class="op">$</span><span class="va">vs</span><span class="op">)</span></span>
+<span><span class="va">dados</span><span class="op">$</span><span class="va">am</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">dados</span><span class="op">$</span><span class="va">am</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Função para calcular 1º e 2º quartil para variáveis numéricas</span></span>
+<span><span class="va">calcular_quartis</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">variavel</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">is.numeric</a></span><span class="op">(</span><span class="va">variavel</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">quartis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">variavel</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>quartil_1 <span class="op">=</span> <span class="va">quartis</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, quartil_2 <span class="op">=</span> <span class="va">quartis</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>quartil_1 <span class="op">=</span> <span class="cn">NA</span>, quartil_2 <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Aplicar a função a todas as colunas de mtcars</span></span>
+<span><span class="va">resultados_quartis</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">calcular_quartis</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Mostrar os resultados</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resultados_quartis</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 mpg cyl    disp    hp  drat      wt    qsec vs am gear carb
+quartil_1.25% 15.425   4 120.825  96.5 3.080 2.58125 16.8925  0  0    3    2
+quartil_2.50% 19.200   6 196.300 123.0 3.695 3.32500 17.7100  0  0    4    2</code></pre>
+</div>
+</div>
+</section><section id="paralelização" class="level2"><h2 class="anchored" data-anchor-id="paralelização">6.2 Paralelização</h2>
+<p>A paralelização de código é uma técnica utilizada para melhorar a eficiência de programas, especialmente quando lidamos com tarefas intensivas em processamento.</p>
+<section id="por-que-paralelizar-um-código" class="level3"><h3 class="anchored" data-anchor-id="por-que-paralelizar-um-código">6.2.1 Por que Paralelizar um Código?</h3>
+<p>A paralelização é necessária para aproveitar ao máximo os recursos de <em>hardware</em> disponíveis e melhorar o desempenho de um programa.</p>
+<ol type="1">
+<li><p><strong>Aproveitamento de Recursos</strong>: A maioria dos computadores modernos possui processadores multi-core, o que significa que eles têm várias unidades de processamento disponíveis. Para aproveitar ao máximo esses recursos, podemos dividir uma tarefa em partes menores que podem ser executadas simultaneamente em diferentes núcleos do processador.</p></li>
+<li><p><strong>Redução de Tempo de Execução</strong>: Tarefas que seriam demoradas se executadas em sequência podem ser aceleradas significativamente por meio da paralelização. Isso é especialmente importante em tarefas que envolvem grandes conjuntos de dados ou cálculos complexos.</p></li>
+<li><p><strong>Melhoria da Escalabilidade</strong>: Em situações onde a carga de trabalho pode variar, a paralelização permite que o programa adapte a quantidade de recursos necessários. Quando há mais trabalho a ser feito, mais <em>threads</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> ou processos paralelos podem ser alocados para acelerar o processamento.</p></li>
+<li><p><strong>Resposta em Tempo Real</strong>: Em certos cenários, como em sistemas de controle ou simulações em tempo real, a paralelização pode ser necessária para garantir que as respostas sejam geradas dentro de limites de tempo estritos.</p></li>
+</ol></section><section id="quando-precisamos-paralelizar-um-código" class="level3"><h3 class="anchored" data-anchor-id="quando-precisamos-paralelizar-um-código">6.2.2 Quando Precisamos Paralelizar um Código?</h3>
+<p>Nem todos os programas precisam ser paralelizados. A decisão de quando paralelizar um código depende de vários fatores, incluindo:</p>
+<ol type="1">
+<li><p><strong>Natureza da Tarefa</strong>: Tarefas que podem ser divididas em partes independentes são candidatas naturais para a paralelização. Por exemplo, cálculos em um grande conjunto de dados podem ser paralelizados porque os dados podem ser divididos entre várias unidades de processamento.</p></li>
+<li><p><strong>Recursos Disponíveis</strong>: A paralelização é mais eficaz quando há recursos de hardware adequados, como processadores multi-core ou clusters de computadores disponíveis. Paralelizar em um ambiente com apenas um núcleo de CPU pode não resultar em benefícios significativos.</p></li>
+<li><p><strong>Tempo de Execução Crítico</strong>: Se o tempo de execução de um programa é crítico e precisa ser reduzido para cumprir prazos ou requisitos de desempenho, a paralelização pode ser uma solução viável.</p></li>
+<li><p><strong>Complexidade Computacional</strong>: Tarefas que envolvem cálculos intensivos ou operações repetitivas podem se beneficiar da paralelização para acelerar o processamento.</p></li>
+<li><p><strong>Escalabilidade Futura</strong>: Se você prevê que a carga de trabalho aumentará no futuro, a paralelização pode ser implementada desde o início para garantir que o programa possa lidar com cargas maiores.</p></li>
+</ol></section><section id="importante" class="level3"><h3 class="anchored" data-anchor-id="importante">6.2.3 Importante</h3>
+<ul>
+<li><p><em>Threads</em> são unidades de execução dentro de um processo, enquanto multiprocessadores são sistemas de <em>hardware</em> com vários processadores independentes.</p></li>
+<li><p><em>Threads</em> compartilham o mesmo espaço de endereço, enquanto processadores em um multiprocessador executam tarefas independentes com seus próprios espaços de endereço.</p></li>
+</ul></section><section id="medindo-a-qualidade-da-paralelização" class="level3"><h3 class="anchored" data-anchor-id="medindo-a-qualidade-da-paralelização">6.2.4 Medindo a Qualidade da Paralelização</h3>
+<ol type="1">
+<li>
+<p><strong>Speedup</strong>: O speedup é uma medida que compara o tempo de execução de um programa paralelizado com o tempo de execução do mesmo programa executado de forma sequencial (em um único processador). O speedup é calculado da seguinte forma: <span class="math display">\[s = \frac{Tempo \ Sequencial}{Tempo \ em \ Paralelo}\]</span></p>
+<ul>
+<li>Um <em>speedup</em> de 2, por exemplo, indica que o programa paralelizado é duas vezes mais rápido do que o programa sequencial.</li>
+</ul>
+</li>
+<li>
+<p><strong>Eficiência</strong>: A eficiência é uma medida relacionada ao speedup, mas considera o fator de escalabilidade. Ela é calculada como a razão entre o speedup e o número de threads ou processadores utilizados: <span class="math display">\[E = \frac{S}{numero \ de \ threads}\]</span></p>
+<ul>
+<li><p>A eficiência ideal é 1, o que significa que a adição de mais threads ou processadores resulta em um aumento proporcional no desempenho.</p></li>
+<li><p>O cálculo da eficiência não leva em consideração o tempo gasto para iniciar e encerrar as threads ou processos, chamado de overhead de paralelização. Em algumas situações, o overhead pode ser significativo e afetar a eficiência geral.</p></li>
+</ul>
+</li>
+</ol></section></section><section id="paralelização-em-r" class="level2"><h2 class="anchored" data-anchor-id="paralelização-em-r">6.3 Paralelização em R</h2>
+<p>Existem inúmeras bibliotecas capazes de paralelizar códigos em R. As principais são: <code>parallel</code>, <code>doParallel</code> e a <code>foreach</code>. A primeira opção é a mais poderosa e vem integrada com o R, portanto, será o nosso foco aqui.</p>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Quantos cores disponíveis?</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Cria um cluster de processos com 4 núcleos</span></span>
+<span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">makeCluster</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define uma função que será executada em paralelo</span></span>
+<span><span class="va">funcao</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">x</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Distribui a tarefa entre os processos no cluster (roda e espera)</span></span>
+<span><span class="va">resultados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterApply</a></span><span class="op">(</span><span class="va">cluster</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="va">funcao</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Distribui a tarefa entre os processos no cluster (roda sem espera)</span></span>
+<span><span class="va">resultados2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterApplyLB</a></span><span class="op">(</span><span class="va">cluster</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="va">funcao</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Encerra o cluster</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">stopCluster</a></span><span class="op">(</span><span class="va">cluster</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Resultados contêm os resultados das operações executadas em paralelo</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">resultados</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 4
+
+[[3]]
+[1] 9
+
+[[4]]
+[1] 16
+
+[[5]]
+[1] 25
+
+[[6]]
+[1] 36
+
+[[7]]
+[1] 49
+
+[[8]]
+[1] 64
+
+[[9]]
+[1] 81
+
+[[10]]
+[1] 100</code></pre>
+</div>
+</div>
+<p>A função <code><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterCall()</a></code> permite que você execute uma função em paralelo em todos os processos de um cluster e recolha os resultados.</p>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">makeCluster</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="co">## Chama a função em paralelo, </span></span>
+<span><span class="co">## todas as vezes com os mesmos argumentos</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterCall</a></span><span class="op">(</span><span class="va">cl</span>, <span class="va">funcao</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+ [1]   1   4   9  16  25  36  49  64  81 100
+
+[[2]]
+ [1]   1   4   9  16  25  36  49  64  81 100
+
+[[3]]
+ [1]   1   4   9  16  25  36  49  64  81 100
+
+[[4]]
+ [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Exporta para todas as threads </span></span>
+<span><span class="co">## os objetos</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterExport</a></span><span class="op">(</span><span class="va">cl</span>, <span class="st">"funcao"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="va">fc</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">a</span><span class="op">+</span><span class="va">b</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterExport</a></span><span class="op">(</span><span class="va">cl</span>, <span class="st">"fc"</span><span class="op">)</span></span>
+<span><span class="co">## Avalia a função nos argumentos definidos</span></span>
+<span><span class="co">## Cada thread re-avalia o resultado, mesmos argumentos</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterEvalQ</a></span><span class="op">(</span><span class="va">cl</span>, <span class="fu">fc</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+ [1]  2  4  6  8 10 12 14 16 18 20
+
+[[2]]
+ [1]  2  4  6  8 10 12 14 16 18 20
+
+[[3]]
+ [1]  2  4  6  8 10 12 14 16 18 20
+
+[[4]]
+ [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Avalia a função nos argumentos definidos</span></span>
+<span><span class="co">## Cada thread re-avalia o resultado, argumentos distintos</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterMap</a></span><span class="op">(</span><span class="va">cl</span>, <span class="va">fc</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2
+
+[[2]]
+[1] 4
+
+[[3]]
+[1] 6
+
+[[4]]
+[1] 8
+
+[[5]]
+[1] 10
+
+[[6]]
+[1] 12
+
+[[7]]
+[1] 14
+
+[[8]]
+[1] 16
+
+[[9]]
+[1] 18
+
+[[10]]
+[1] 20</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">stopCluster</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="exercícios-1" class="level2"><h2 class="anchored" data-anchor-id="exercícios-1">6.4 Exercícios</h2>
+<p>Utilizando os dados <code>GlobalIndicators</code>, agrupe os <strong>países</strong> em duas categorias: alto e baixo. A primeira categoria deve conter os países com o último HDI &gt; 0.7, a segunda os demais. Em seguida, para todas as variáveis (com excessão das HDIs) calcule: a média, a mediana, o desvio padrão e o intervalo interquartilíco. Teste se há diferença entre os dois grupos para cada uma das variáveis.</p>
+<ul>
+<li><ul>
+<li><p>Dicas: Crie uma função que receba como argumento o grupo e uma variável.</p></li>
+<li><p>Verifique se a distribuição é normal, utilize o <code><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test()</a></code>. Caso seja, utilize um teste-t (<code><a href="https://rdrr.io/r/stats/t.test.html">t.test()</a></code>), caso contrário, utilize o teste de Mann-Whitney (<code>wilcox.test(..., paired = F)</code>).</p></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: data.table</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'data.table'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:dplyr':
+
+    between, first, last</code></pre>
+</div>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: tidyr</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tidyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:magrittr':
+
+    extract</code></pre>
+</div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">co2</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./datasets/GlobalIndicators/co2_production.csv"</span><span class="op">)</span></span>
+<span><span class="va">gni</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./datasets/GlobalIndicators/gross_national_income_per_capital.csv"</span><span class="op">)</span></span>
+<span><span class="va">hdi</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./datasets/GlobalIndicators/human_development_index.csv"</span><span class="op">)</span></span>
+<span><span class="va">le</span> <span class="op">=</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./datasets/GlobalIndicators/life_expectancy_by_birth.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">co2</span>, <span class="va">gni</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">hdi</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>              <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ISO3</span>, <span class="va">Country</span>, <span class="va">hdi_2021</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">le</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ISO3</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>grupo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">hdi_2021</span> <span class="op">&gt;</span> <span class="fl">0.7</span>, <span class="st">"Alto"</span>, <span class="st">"Baixo"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ISO3</span>, <span class="va">Country</span>, <span class="va">hdi_2021</span>, <span class="va">hdicode</span>, <span class="va">region</span>, <span class="va">hdi_rank_2021</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(ISO3, Country, hdicode, region, hdi_rank_2021)`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(ISO3, Country)`
+Joining with `by = join_by(ISO3, Country, hdicode, region, hdi_rank_2021)`</code></pre>
+</div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">calcula</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">i</span>, <span class="va">grupo</span> <span class="op">=</span> <span class="va">df</span><span class="op">$</span><span class="va">grupo</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">media</span>   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">mediana</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">desvio</span>  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  <span class="va">interq</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span>  </span>
+<span>  </span>
+<span>  <span class="co">### Testando Normalidade por grupo</span></span>
+<span>  <span class="va">norm_alto</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span> <span class="va">grupo</span> <span class="op">==</span> <span class="st">"Alto"</span>,<span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">norm_baixo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/shapiro.test.html">shapiro.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span><span class="va">grupo</span> <span class="op">==</span> <span class="st">"Baixo"</span>,<span class="va">i</span><span class="op">]</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="va">p_norm_alto</span> <span class="op">=</span> <span class="va">norm_alto</span><span class="op">$</span><span class="va">p.value</span></span>
+<span>  <span class="va">p_norm_baixo</span> <span class="op">=</span> <span class="va">norm_baixo</span><span class="op">$</span><span class="va">p.value</span></span>
+<span>  </span>
+<span>  <span class="co">## Se ambos forem normais, então fazer o teste t</span></span>
+<span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">p_norm_alto</span> <span class="op">&gt;</span> <span class="fl">0.05</span>, <span class="va">p_norm_baixo</span> <span class="op">&gt;</span> <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">ptest</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html">t.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">~</span> <span class="va">grupo</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span>    <span class="va">test</span> <span class="op">=</span> <span class="st">"t-test"</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span><span class="op">{</span></span>
+<span>    <span class="va">ptest</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/wilcox.test.html">wilcox.test</a></span><span class="op">(</span><span class="va">df</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">~</span> <span class="va">grupo</span>, paired <span class="op">=</span> <span class="cn">F</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span>    <span class="va">test</span> <span class="op">=</span> <span class="st">"Mann Whitney"</span></span>
+<span>  <span class="op">}</span></span>
+<span>  </span>
+<span>  <span class="co"># Resultado a ser impresso</span></span>
+<span>  <span class="va">resultado</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>media <span class="op">=</span> <span class="va">media</span>, </span>
+<span>                         desvio <span class="op">=</span> <span class="va">desvio</span>, </span>
+<span>                         mediana <span class="op">=</span> <span class="va">mediana</span>, </span>
+<span>                         interq <span class="op">=</span> <span class="va">interq</span>, </span>
+<span>                         shapiro_alto <span class="op">=</span> <span class="va">p_norm_alto</span>, </span>
+<span>                         shapiro_baixo <span class="op">=</span> <span class="va">p_norm_baixo</span>,</span>
+<span>                         test <span class="op">=</span> <span class="va">test</span>, </span>
+<span>                         ptest <span class="op">=</span> <span class="va">ptest</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">resultado</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co">## Fazendo a versão em paralelo</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">parallel</span><span class="op">)</span></span>
+<span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">makeCluster</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterExport</a></span><span class="op">(</span><span class="va">cl</span>, <span class="st">"df"</span><span class="op">)</span></span>
+<span><span class="va">t1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span><span class="va">results</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterApply</a></span><span class="op">(</span><span class="va">cl</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">96</span>, <span class="va">calcula</span><span class="op">)</span></span>
+<span><span class="va">t2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">t2</span><span class="op">-</span><span class="va">t1</span> <span class="co">## Calcula o tempo gasto</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 0.501169 secs</code></pre>
+</div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/compound.html">%&lt;&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span><span class="op">)</span> <span class="co">## Transforma o resultado em um df</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">stopCluster</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Fazendo a mesma coisa utilizando for</span></span>
+<span><span class="va">resultado2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">t1_for</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">96</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">resultado2</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">=</span> <span class="fu">calcula</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">t2_for</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">t2_for</span><span class="op">-</span><span class="va">t1_for</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time difference of 0.2550201 secs</code></pre>
+</div>
+</div>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>Uma <strong>thread</strong> é uma unidade básica de processamento que pode ser executada em um programa. Ela é uma sequência de instruções que pode ser executada pelo processador de um computador.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

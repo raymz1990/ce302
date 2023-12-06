@@ -1,0 +1,882 @@
+---
+always_allow_html: true
+title: "8  Comunicação"
+---
+
+## 8.1 Relatórios dinâmicos
+
+Relatórios dinâmicos são uma ferramenta essencial para analisar dados e compartilhar resultados. Focaremos aqui em Quarto.
+
+### 8.1.1 Quarto
+
+O [Quarto](https://quarto.org/) permite a criação e publicação de artigos, apresentações, relatórios, websites, blogs, livros etc em diversos formatos como HTML, PDF, Word, ePub. O Quarto permite que o usuário personalize completamente o documento a ser gerado e pode ser utilizado a partir do RStudio, VSCode, Jupyter etc. Além de incorporar Markdown com diversas linguagens de programação (como R, Python, C, Julia etc ).
+
+Todo documento em Quarto ou RMarkdown começam com um **YAML** (“YAML Ain’t Markup Language”) .
+
+#### 8.1.1.1 YAML header
+
+O YAML é usado para representar estruturas de dados, como listas, dicionários, valores escalares e aninhamentos de dados de forma legível e intuitiva.
+
+Aqui estão algumas características e conceitos-chave do YAML:
+
+1. **Sintaxe Clara**: O YAML usa uma sintaxe simples baseada em espaços e indentação para estruturar os dados, tornando essa estrutura legíveis.
+
+2. **Pares de Chave e Valor**: O YAML é frequentemente usado para representar dados como pares de chave e valor, onde a chave é seguida de dois pontos (`:`) e o valor é especificado após a chave.
+
+## 8.2 Criando Relatórios
+
+Vamos começar com um exemplo simples de YAML.
+
+* Em um caso simples, temos apenas no nome do autor, nome do documento e a data.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+---
+```
+
+* Contudo, normalmente, temos interesse em incluir mais informações no nosso documento, ou até mesmo personalizarmos o nosso documento. Vamos ver agora, como incluir informações como subtítulo, formato de data e alterar a linguagem do documento.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long # date-format: dddd MMM D, YYYY   
+lang: pt
+---
+```
+
+* **Escolha do formato**: O arquivo gerado pode ser em diferentes formatos, e podemos gerar relatórios em diversos formatos simultaneamente.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long # date-format: dddd MMM D, YYYY   
+lang: pt
+format: 
+   html: default
+   pdf: default
+   docx: default
+---
+```
+
+* **Alterando o tema do código**: Podemos personalizar cada arquivo de maneira diferente. Vamos alterar a formatação do código de maneira diferente em cada arquivo.
+  
+  * [Mais temas para o código.](https://quarto.org/docs/output-formats/html-code.html#highlighting)
+  
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long # date-format: dddd MMM D, YYYY   
+lang: pt
+
+format: 
+  pdf: 
+    highlight-style: dracula
+  html:
+    highlight-style: solarized
+  docx: default
+---
+```
+
+* **Alterando o tema**: Muitas vezes, temos interesse em alterar o tema do nosso documento (e não apenas do código). Vamos focar agora nas alterações do html.
+
+  * [Mais temas para o relatório HTML](https://quarto.org/docs/output-formats/html-themes.html)
+  
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long # date-format: dddd MMM D, YYYY   
+lang: pt
+theme: 
+  light: yeti
+  dark: slate
+format: 
+  pdf: 
+    highlight-style: dracula
+  html:
+    highlight-style: solarized
+  docx: default
+---
+```
+  
+* **Formatação dos códigos**: O código pode ser formatado quanto a sua estética no relatório.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long # date-format: dddd MMM D, YYYY   
+lang: pt
+title-block-style: none
+theme: 
+  light: yeti
+  dark: slate
+  
+format: 
+  html:
+    code-fold: true
+    code-summary: "R"
+    code-overflow: scroll
+    code-tools: true
+    code-line-numbers: false
+    highlight-style: dracula
+    code-link: true ## Funciona se o code-line é false
+---
+```
+
+* **Formatando cores e tamanho do texto e dos links**: O texto pode ser formatado quanto a seu tamanho e cor diretamente no YAML, porém, sua alteração afeta na seleção do tema.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+title-block-style: none
+
+format: 
+  html:
+    code-fold: true
+    code-summary: "R"
+    code-overflow: scroll
+    code-link: true
+    code-tools: true
+    code-line-numbers: true
+    fontcolor: '#C25E8C'
+    linkcolor: '#00C9BA'
+    fontsize: 1.1em
+    highlight-style: dracula
+---
+```
+
+* **Formatação de figuras**: Figuras podem ter suas dimensões e alinhamentos ajustadas em cada chunck, ou no YAML.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+title-block-style: none
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+format: 
+  html:
+    code-fold: true
+    code-summary: "R"
+    code-overflow: scroll
+    code-link: true
+    code-tools: true
+    code-line-numbers: true
+    theme:
+     light: flatly
+     dark: darkly
+    fontsize: 1.1em
+    highlight-style: dracula
+---
+```
+
+* **Incluindo sumário (tabela de conteúdo)**: Podemos incluir um sumário, personalizar seu título e sua profundidade.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+title-block-style: none
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+toc: true
+toc-depth: 5
+toc-title: "Agenda"
+
+format: 
+  html:
+    code-fold: true
+    code-summary: "R"
+    code-overflow: scroll
+    code-link: true
+    code-tools: true
+    code-line-numbers: false
+    theme:
+     light: flatly
+     dark: darkly
+    fontsize: 1.1em
+    highlight-style: dracula
+---
+```
+
+* **Incluíndo Referências**: Para incluimos referências devemos criar um arquivo `.bib` e salvar as informações sobre a nossa referência.
+
+```{latex}
+@book{wickham2016,
+    title = {R for Data Science: Import, Tidy, Transform, Visualize, and Model Data},
+    author = {Wickham, H. and Grolemund, G.},
+    year = {2016},
+    date = {2016},
+    publisher = {O'Reilly Media},
+    note = {LCCN: 2017300238}
+}
+```
+
+* **Adicionando citações**: Para citarmos a referência basta utilizar a seguinte sintaxe `[@wickham2016]`, que ela ficará assim ([Wickham e Grolemund 2016]@book).
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+toc: true
+toc-depth: 3
+toc-title: "Agenda"
+
+bibliography: references.bib
+
+format: 
+  html:
+    code-fold: true
+    code-summary: "R"
+    code-overflow: scroll
+    code-link: true
+    code-tools: true
+    code-line-numbers: true
+    citations-hover: true
+    citation-location: margin
+    theme:
+     light: flatly
+     dark: darkly
+    fontsize: 1.1em
+    highlight-style: dracula
+---
+```
+
+* **Relatórios com alteração de parâmetros**: Muitas vezes, precisamos rodar relatórios similares, porém, com alguns parâmetros diferentes. Para isso, podemos incluir no YAML o seguinte:
+
+```{latex}
+params:
+  alpha: 0.1
+  ratio: 0.1
+```
+
+Para acessarmos esses parâmetros no R, utilizamos:
+
+```{latex}
+params$alpha
+```
+
+## 8.3 Criando Apresentações
+
+Além do suporte para relatórios, o quarto apresenta suporte para apresentações. Para isso, podemos utilizar o formato `revealjs`.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+toc: true
+toc-depth: 3
+toc-title: "Agenda"
+
+bibliography: references.bib
+
+format: revealjs
+---
+```
+
+* Podemos ter interesse em alterar o tipo de incrementação das listas, ou o tipo de transição dos slides.
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+toc: true
+toc-depth: 3
+toc-title: "Agenda"
+
+bibliography: references.bib
+
+format: 
+  revealjs:
+    incremental: true
+    transition: zoom
+---
+```
+
+* Podemos alterar o tema de uma apresentação da mesma maneira que no relatório. A lista de temas disponíveis para slides está [aqui](https://quarto.org/docs/presentations/revealjs/themes.html).
+
+### 8.3.1 Alterando slides
+
+Para criarmos uma coluna em slide basta utilizarmos o seguinte código:
+
+```{latex}
+:::: {.columns}
+
+::: {.column width="40%"}
+Coluna 1
+:::
+
+::: {.column width="60%"}
+Coluna 2
+:::
+
+::::
+```
+
+* Para criarmos abas nos slides basta utilizar o código.
+
+```{latex}
+::: {.panel-tabset}
+
+### Tab A
+
+Conteúdo da aba A.
+
+### Tab B
+
+Conteúdo da aba B.
+
+:::
+```
+
+```{latex}
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+title-block-style: none
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+toc: true
+toc-depth: 3
+toc-title: "Agenda"
+
+format: 
+  pdf: 
+    geometry: 
+      - top=30mm
+      - bottom=20mm
+      - left=20mm
+      - right=20mm
+  html:
+    code-fold: true
+    code-summary: "R"
+    code-overflow: scroll
+    code-link: true
+    code-tools: true
+    code-line-numbers: true
+    fontcolor: '#C25E8C'
+    linkcolor: '#00C9BA'
+    html-math-method: katex
+    citations-hover: true
+    citation-location: margin
+    theme:
+     light: flatly
+     dark: darkly
+    fontsize: 1.1em
+    highlight-style: dracula
+  docx: default
+---
+```
+
+
+## 8.4 Aplicativos Dinâmicos: Introdução aos Aplicativos Shiny para Análise de Dados
+
+Os aplicativos Shiny são uma ferramenta poderosa na análise de dados interativa. Eles permitem que cientistas de dados e analistas criem **interfaces de usuário interativas para explorar dados, visualizar resultados e compartilhar *insights* de uma forma intuitiva e acessível**. Neste capítulo, exploraremos os conceitos fundamentais do Shiny, que servirão como alicerce para o desenvolvimento de aplicativos interativos.
+
+### 8.4.1 Estrutura de um Aplicativo Shiny 
+
+Para compreender a construção de um aplicativo Shiny, é fundamental ter um conhecimento sólido sobre a sua estrutura. Um aplicativo Shiny é um ambiente interativo que combina elementos de **interface do usuário** (UI) com **lógica de servidor** (Server) para criar uma experiência de análise de dados acessível, completa e interativa.
+
+A estrutura de um aplicativo Shiny é dividida em **duas** partes distintas, cada uma desempenhando um papel distinto em seu funcionamento. Vamos explorar essas duas partes em detalhes.
+
+#### 8.4.1.1 Interface do Usuário (UI) 
+
+A Interface do Usuário (UI) é a parte do aplicativo Shiny que lida com a **aparência e a disposição dos elementos visuais** com os quais os usuários interagem. Ela é responsável por criar a experiência visual e agradável que os usuários veem ao utilizar o aplicativo. Na UI, você define quais widgets serão exibidos, como botões, caixas de seleção e gráficos, e como eles serão organizados na tela. Essa parte do aplicativo é projetada para tornar a análise de dados intuitiva e fácil de usar.
+
+#### 8.4.1.2 Lógica do Servidor (Server)
+
+A Lógica do Servidor (Server) é a parte do aplicativo Shiny que controla o **funcionamento interno do aplicativo**. Ela lida com a manipulação de eventos, acesso e processamento de dados, e a atualização dinâmica da interface do usuário em resposta às ações dos usuários. O servidor é onde você cria as funções que definem como o aplicativo se comportará, como ele processará os dados, e como responderá às interações dos usuários. É a espinha dorsal que permite que o aplicativo funcione de forma interativa e responsiva.
+
+A interação entre a UI e o Server é o que torna os aplicativos Shiny tão poderosos. Quando um usuário realiza uma ação na interface do usuário, como clicar em um botão, a ação é capturada e enviada para o servidor para processamento. O servidor, por sua vez, responde a essa ação, atualizando a interface do usuário de acordo com a lógica predefinida.
+
+Compreender a estrutura fundamental de um aplicativo Shiny é o primeiro passo para se aventurar na criação de aplicativos interativos e visualizações de dados dinâmicas.
+
+### 8.4.2 Reatividade
+
+A reatividade é um dos conceitos centrais e mais poderosos nos aplicativos Shiny. **Ela se refere à capacidade dos aplicativos Shiny de responder dinamicamente às ações dos usuários e às mudanças nos dados, atualizando automaticamente a interface do usuário e os resultados apresentados**. Essa característica fundamental é o que torna os aplicativos Shiny tão eficazes na análise de dados interativa.
+
+A reatividade é implementada através de uma série de princípios e técnicas que permitem que os aplicativos Shiny sejam sensíveis a mudanças, **sem a necessidade de recarregar a página ou executar comandos manualmente**. Os principais elementos da reatividade em aplicativos Shiny são:
+
+1. **Dependências Reativas**: Em um aplicativo Shiny, você especifica quais dados ou eventos o código no servidor depende. Isso significa que o aplicativo monitora **automaticamente** essas dependências e atualiza as partes afetadas quando elas mudam. **Por exemplo, se um gráfico depende de um conjunto de dados, ele será atualizado sempre que os dados forem alterados**.
+
+2. **Observadores Reativos**: Observadores reativos são funções no servidor que **observam as dependências reativas** e determinam quando uma ação deve ser tomada em resposta a uma mudança. Eles são responsáveis por **atualizar** a UI e realizar outras operações, como cálculos, quando ocorre uma alteração nas dependências. Isso significa que, quando um usuário interage com um widget ou os dados são atualizados, os observadores reativos **desencadeiam a atualização correspondente na interface do usuário**.
+
+4. **Reatividade Cruzada**: Os aplicativos Shiny são capazes de lidar com múltiplas dependências reativas e observadores reativos interconectados. Isso permite que diferentes partes do aplicativo reajam entre si, criando uma experiência rica e interativa para o usuário. Por exemplo, a seleção de uma região em um gráfico pode influenciar a exibição de estatísticas específicas em outra parte do aplicativo.
+
+Agora, exploraremos cada parte, a UI e o Server, em detalhes e demonstraremos como elas se combinam para criar experiências de análise de dados interativas.
+
+### 8.4.3 Exemplo Prático
+
+No RStudio, crie um novo aplicativo Shiny. Clique em `Novo > Shiny Web App …`, dê um nome ao seu aplicativo, e selecione` multiple file`, escolha o local para salvar seu aplicativo. Ao seguir esses passos será salvo dentro de uma pasta com o nome do app dois arquivos: `server.R` e` ui.R`, contendo o servidor e a interface do usuário, respectivamente.
+
+#### 8.4.3.1 Rodando o aplicativo
+
+Para testar seu aplicativo, basta clicar no botão **RunApp**<i class="fa-solid fa-play" aria-label="play"></i>.
+
+No console do R a seguinte mensagem irá aparecer:
+
+<code>Listening on http://127.0.0.1:4450</code>
+
+Isso informa a URL na qual seu aplicativo pode ser encontrado: 127.0.0.1 é um endereço padrão que significa “este computador” e 4450 é um número de porta atribuído aleatoriamente. Você pode inserir essa URL em qualquer navegador da web compatível para abrir outra cópia do seu aplicativo.
+
+**Observe também que o R está ocupado**: o prompt do R não é visível, e a barra de ferramentas do console exibe um ícone de sinal de parada. Enquanto um aplicativo Shiny está em execução, ele “bloqueia” o console do R. Isso significa que você não pode executar novos comandos no console do R até que o aplicativo Shiny seja interrompido.
+
+Você pode interromper o aplicativo e retornar ao console usando uma destas opções:
+
+* Clique no ícone de sinal de parada na barra de ferramentas do console do R.
+
+* Clique no console e pressione Esc (ou pressione Ctrl + C se você não estiver usando o RStudio).
+
+* Feche a janela do aplicativo Shiny.
+
+O fluxo de trabalho básico no desenvolvimento de aplicativos Shiny é escrever algum código, iniciar o aplicativo, interagir com o aplicativo, escrever mais código e repetir. **Se estiver usando o RStudio, você nem precisa interromper e reiniciar o aplicativo para ver suas alterações**; você pode pressionar o botão “Recarregar aplicativo” na caixa de ferramentas ou usar o atalho de teclado Cmd/Ctrl + Shift + Enter.
+
+#### 8.4.3.2 Analisando o código da Interface com o Usuário (UI)
+
+* `fluidPage()`: é uma função do Layout, ela quem configura a estrutura básica da página.
+
+* `sidebarLayout()`: cria um layout com uma barra lateral (**`sidebarPanel()`**) e uma área principal (**`mainPanel()`**). A barra lateral é exibida com uma cor de fundo distinta e normalmente contém controles de entrada. A área principal ocupa 2/3 da largura horizontal e normalmente contém saídas (outputs).
+
+  * **`sidebarPanel()`**: Formata a barra lateral do aplicativo. Normalmente é onde temos os botões de seleção. Nesse caso, temos um botão de arraste `sliderInput()`. Poderíamos ter um botão de seleção como o `checkboxInput()`.
+
+  * **`mainPanel()`**: Incluí a saída do aplicativo. Neste caso, a saída é uma figura, portanto utilizamos um **plotOutput()**, caso nossa saída fosse uma tabela, poderiamos utilizar o **tableOutput()**. Note que a saída inclui o ID do gráfico a ser apresentado `(distPlot)`.
+
+```{latex}
+library(shiny)
+
+# Defina uma UI que plote um histograma
+fluidPage(
+
+    # Titulo
+    titlePanel("Old Faithful Geyser Data"),
+
+    # Layout separado em painel lateral e painel principal
+    sidebarLayout(
+        sidebarPanel( ## Definicoes do painel lateral
+            sliderInput("bins", ## Nome do ID do input
+                        "Number of bins:", ## O texto que aparece no app
+                        min = 1, ## limite inferior
+                        max = 50, ## limite superior
+                        value = 30 ## valor de default)
+        ),
+
+## Definição do painel principal
+        mainPanel( ## O que deve aparecer no painel principal
+            plotOutput("distPlot") ## Saída 
+        )
+    )
+)
+```
+
+### 8.4.3.3 Analisando o código do Servidor
+
+O servidor apresenta uma função com três argumentos: - Input: Lido no UI - Output: O que queremos que saia para a UI - Session: A sessão.
+
+O objeto de input vai incluir os elementos passados pelo usuário no botão de arraste
+
+```{latex}
+library(shiny)
+
+
+function(input, output, session) {
+
+    output$distPlot <- renderPlot({
+
+        # crie o número de bins do histograma baseado em input$bins passado pelo ui.R
+        x    <- faithful[, 2]
+        bins <- seq(min(x), 
+                    max(x), 
+                    length.out = input$bins + 1)
+
+        # faça o histograma utilizando o input 
+        hist(x, breaks = bins, 
+             col = 'darkgray', 
+             border = 'white',
+             xlab = 'Waiting time to next eruption (in mins)',
+             main = 'Histogram of waiting times')
+
+    })
+
+}
+```
+
+Agora que entendemos o básico do aplicativo, vamos construir dois aplicativos distintos.
+
+### 8.4.4 Aplicativo 1. Gráfico utilizando os dados do tamanho das nadadeiras dos pinguins
+
+```{latex}
+## UI.R
+library(shiny)
+library(shinythemes)
+
+fluidPage(
+  theme = shinytheme("cerulean"), 
+  
+  titlePanel("Vamos criar um gráfico"), 
+  
+  sidebarLayout(
+    sidebarPanel(
+      style = "background-color: #CEE26B;", 
+      
+      checkboxGroupInput("sp", 
+                         choices = c("Adelie", "Gentoo", "Chinstrap"),
+                         selected = c("Adelie", "Gentoo", "Chinstrap"),
+                         inline = TRUE,
+                         label = "Qual espécie"), 
+      sliderInput("peso_g", 
+                  label = "Qual a faixa de peso(g)?",
+                  min = 2500, 
+                  max = 6500, 
+                  step = 100, 
+                  dragRange = TRUE, 
+                  value = c(2500, 5000))
+    ), 
+    mainPanel = mainPanel(
+    
+    plotOutput("PlotPinguins", width = "100%")),
+    position = "right"
+  )
+  
+)
+```
+
+```{latex}
+## server.R
+library(shiny)
+library(tidyverse)
+library(palmerpenguins)
+
+function(input, output, session) {
+  
+  output$PlotPinguins <- 
+    renderPlot({
+      
+      x <- penguins %>% 
+        filter(body_mass_g > input$peso_g[1] & 
+                 body_mass_g < input$peso_g[2]) %>% 
+        filter(species %in% input$sp) 
+      
+      p1 = ggplot(x) +
+        aes(
+          x = "",
+          y = flipper_length_mm,
+          fill = species,
+          colour = species
+        ) +
+        geom_violin(adjust = 1L, scale = "count") +
+        scale_fill_manual(
+          values = c(Adelie = "#E76589",
+                     Chinstrap = "#8D619B", 
+                     Gentoo = "#3E5475")
+        ) +
+        scale_color_manual(
+          values = c(Adelie = "#E76589",
+                     Chinstrap = "#8D619B", 
+                     Gentoo = "#3E5475")
+        ) +
+        coord_flip() +
+        theme_minimal() +
+        labs(x = "Espécie", 
+             y = "Nadadeira (mm)", 
+             color = element_blank(), 
+             fill = element_blank()) + 
+        theme(legend.position = "bottom", 
+              text = element_text(size = 30))
+      
+      print(p1)
+    })
+}
+```
+
+Caso o objetivo esteja em um utilizar um gráfico interativo do Plotly, por exemplo, devemos alterar as funções que fazem as chamadas e criações dos gráficos. Por exemplo:
+
+```{latex}
+## ui.R
+## 
+library(shiny)
+library(shinythemes)
+
+# Define UI for application that draws a histogram
+fluidPage(
+  theme = shinytheme("cerulean"), 
+  
+  titlePanel("Vamos criar um gráfico"), 
+  
+  sidebarLayout(
+    sidebarPanel(
+      style = "background-color: #CEE26B;", 
+      
+      checkboxGroupInput("sp", 
+                         choices = c("Adelie", "Gentoo", "Chinstrap"),
+                         selected = c("Adelie", "Gentoo", "Chinstrap"),
+                         inline = TRUE,
+                         label = "Qual espécie"), 
+      sliderInput("peso_g", 
+                  label = "Qual a faixa de peso(g)?",
+                  min = 2500, 
+                  max = 6500, 
+                  step = 100, 
+                  dragRange = TRUE, 
+                  value = c(2500, 5000))
+    ), 
+    mainPanel = mainPanel(
+    
+    plotly::plotlyOutput("PlotPinguins")),
+    position = "right"
+  )
+  
+)
+```
+
+```{latex}
+## server.R
+
+
+library(shiny)
+library(tidyverse)
+library(palmerpenguins)
+
+function(input, output, session) {
+  
+  output$PlotPinguins <- 
+    plotly::renderPlotly({
+      
+      x <- penguins %>% 
+        filter(body_mass_g > input$peso_g[1] & 
+                 body_mass_g < input$peso_g[2]) %>% 
+        filter(species %in% input$sp) 
+      
+      p1 = ggplot(x) +
+        aes(
+          x = "",
+          y = flipper_length_mm,
+          fill = species,
+          colour = species
+        ) +
+        geom_violin(adjust = 1L, scale = "count") +
+        scale_fill_manual(
+          values = c(Adelie = "#E76589",
+                     Chinstrap = "#8D619B", 
+                     Gentoo = "#3E5475")
+        ) +
+        scale_color_manual(
+          values = c(Adelie = "#E76589",
+                     Chinstrap = "#8D619B", 
+                     Gentoo = "#3E5475")
+        ) +
+        coord_flip() +
+        theme_minimal() +
+        labs(x = "Espécie", 
+             y = "Nadadeira (mm)", 
+             color = element_blank(), 
+             fill = element_blank()) + 
+        theme(legend.position = "bottom", 
+              text = element_text(size = 30))
+      
+      plotly::ggplotly(p1)
+      
+    })
+  
+}
+```
+
+### 8.4.5 Aplicativo 2: Criando Tabs
+
+```{r}
+## ui.R 
+
+# Define UI for random distribution app ----
+require(shiny)
+```
+
+```{latex}
+ui <- fluidPage(
+  
+  # Título do APP
+  titlePanel("Tabsets"),
+  
+  # Layout com Barra Lateral
+  sidebarLayout(
+    
+    # Barra lateral com os Inputs
+    sidebarPanel(
+      
+      # Input: Selecione uma Distribuição
+      radioButtons("dist", "Distribuição:",
+                   c("Normal" = "norm",
+                     "Uniforme" = "unif",
+                     "Log-normal" = "lnorm",
+                     "Exponencial" = "exp")),
+      
+      # Adcione um espaço
+      br(),
+      
+      # Input: Número de observações
+      sliderInput("n",
+                  "Number of observations:",
+                  value = 500,
+                  min = 1,
+                  max = 1000)
+      
+    ),
+    
+    # Painel com os outputs
+    mainPanel(
+      
+      # Output: Tabset com gráfico, sumário e tabela
+      tabsetPanel(type = "tabs",
+                  tabPanel("Gráfico", plotOutput("plot")),
+                  tabPanel("Sumário", verbatimTextOutput("summary")),
+                  tabPanel("Tabela", tableOutput("table"))
+      )
+      
+    )
+  )
+)
+```
+
+```{latex}
+# server.R 
+# 
+# Define a lógica do servidor para a distribuição
+server <- function(input, output) {
+  
+  # Expressão reativa para gerar a distribuição solicitada ----
+  # Isso é chamado sempre que as entradas mudam. As funções de saída
+  # definidas abaixo, então, utilizam o valor calculado a partir desta expressão
+  d <- reactive({
+    dist <- switch(input$dist,
+                   norm = rnorm,
+                   unif = runif,
+                   lnorm = rlnorm,
+                   exp = rexp,
+                   rnorm)
+    
+    dist(input$n)
+  })
+  
+  # Gere um gráfico dos dados ----
+  # Também usa as entradas para criar o rótulo do gráfico. Observe que as
+  # dependências das entradas e da expressão reativa dos dados são
+  # rastreadas e todas as expressões são chamadas na sequência
+  # indicada.
+  
+  output$plot <- renderPlot({
+    dist <- input$dist
+    n <- input$n
+    
+    hist(d(),
+         main = paste("r", dist, "(", n, ")", sep = ""),
+         col = "#007bc2", border = "white")
+  })
+  
+  # Crie o sumário dos dados ----
+  output$summary <- renderPrint({
+    summary(d())
+  })
+  
+  # Gere uma tabela com os dados
+  output$table <- renderTable({
+    d()
+  })
+  
+}
+```
+
+
+### 8.4.6 ShinyUiEditor
+
+Para criar a interface com o usuário de maneira mais simples, podemos utilizar o ShinyUiEditor. Para saber mais, clique (aqui)[https://rstudio.github.io/shinyuieditor/].
+
+```{latex}
+install.packages("remotes")
+remotes::install_github("rstudio/shinyuieditor")
+```
+
+## 8.5 Materiais Recomendados
+
+### 8.5.1 Para Apresentações
+
+* Para saber mais sobre personalização de slides
+  * [Quarto](https://quarto.org/docs/presentations/)
+  * [RevealJS](https://revealjs.com/)
+  
+* Para criar seu próprio tema é necessário saber um pouco de CSS. Aprenda CSS jogando:
+  * [Froggy](https://flexboxfroggy.com/)
+  * [CSSBattle](https://cssbattle.dev/)
+  * [Grid Garden](https://cssgridgarden.com/)
+  * [CSS Diner](https://flukeout.github.io/)
+
+### 8.5.2 Para Shiny
+
+* Livro base para aprender Shiny: [Mastering Shiny](https://mastering-shiny.org/)

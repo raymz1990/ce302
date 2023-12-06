@@ -1,0 +1,132 @@
+---
+always_allow_html: true
+title: "Aula 10"
+---
+
+## Organização de dados
+
+```{r, error = TRUE}
+require(tidyr)
+require(magrittr)
+require(dplyr)
+
+```
+
+```{r, error = TRUE}
+table1
+```
+
+### pivot_wider
+
+```{r, error = TRUE}
+table1 %>% 
+  select(-population) %>% 
+  pivot_wider(names_from = year, 
+              values_from = cases)
+
+table1 %>% 
+  select(-population) %>% 
+  pivot_wider(names_from = year, 
+              values_from = cases, 
+              values_fill = 0,
+              values_fn = length)
+```
+
+## pivot_longer
+
+```{r, error = TRUE}
+table1 %>% 
+  pivot_longer(cols = c(cases, population), 
+               names_to = "variavel", 
+               values_to = "tamanho_pop"
+               
+               )
+```
+
+### separate
+
+```{r, error = TRUE}
+tab3_sep = table3 %>% 
+  separate(rate, 
+          into = c("casos", "populacao"), 
+           sep = "/")
+```
+
+### unite
+
+```{r, error = TRUE}
+tab3_sep %>% 
+  unite(pop_casos, populacao, casos, sep = " | ")
+```
+
+## TB
+
+```{r, error = TRUE}
+require(data.table)
+
+TB <- fread("~/Downloads/TB.csv.gz")
+
+TB1 = TB %>% 
+  select(-c(iso2, iso3)) %>% 
+  pivot_longer(-c(country, year), 
+               names_to = "chave", 
+               values_to = "casos", 
+               values_drop_na = TRUE              )
+```
+
+```{r, error = TRUE}
+TB2 = TB1 %>% 
+  mutate(chave = stringr::str_replace(chave, "newrel", "new_rel"))
+```
+
+```{r, error = TRUE}
+TB3 = TB2 %>% 
+  separate(chave, c("novo", "tipo", "sexoidade"),
+           sep = "_") %>% 
+  select(-novo)
+```
+
+```{r, error = TRUE}
+TB4 = TB3 %>% 
+  separate(sexoidade,
+           c("sexo", "idade"), 
+           sep = 1)
+```
+
+# Exercícios
+
+Utilizando os dados de TB4, crie uma tabela em formato wide, com a quantidade de casos por país por ano. Cada ano deve ser chamado "Ano\_.
+
+```{r, error = TRUE}
+TB4 %>% 
+  pivot_wider(names_from = year, 
+              names_prefix = "Ano_",
+              values_from = casos, 
+              id_cols = country, 
+              values_fn = sum)
+```
+
+```{r, error = TRUE}
+TB5 = TB4 %>% 
+  pivot_wider(names_from = year, 
+              names_prefix = "Ano_", 
+              values_from = casos, 
+              values_fn = sum, 
+              id_cols = c(country, sexo, idade))
+
+TB4 %>% 
+  select(-tipo) %>% 
+  pivot_wider(names_from = year, 
+              names_prefix = "Ano_", 
+              values_from = casos, 
+              values_fn = sum)
+```
+
+```{r, error = TRUE}
+TB5 %>% 
+  pivot_longer(cols = starts_with("Ano"), 
+               names_to = "ano", 
+               values_to = "casos") %>% 
+  mutate(ano = stringr::str_replace(ano, "Ano_", ""))
+
+```

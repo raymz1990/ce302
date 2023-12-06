@@ -1,0 +1,189 @@
+---
+always_allow_html: true
+title: "Aula 07"
+---
+
+## Data.table
+
+```{r}
+#data.frame[#linha,#coluna]
+#data.table[linha, coluna, by]
+```
+
+```{r}
+# install.packages("data.table")
+
+library(data.table)
+
+meu_datatable <- data.table(
+  nome = c("Deisy", "Maria", "José"), 
+  idade = c(50, 61, 30)
+)
+
+meu_datatable
+```
+
+```{r}
+library(data.table)
+
+# Criar um data.table
+meu_data_table <- data.table(
+  nome = c("Alice", "Bob", "Carol", "Ana", "João", "Carlos", "Patrícia", "Leonardo"),
+  idade = c(25, 30, 28, 20, 27, 50, 60, 45),
+  salario = c(5000, 6000, 5500, 8000, 2000, 3500, 10000, 3800 ), 
+  meio_de_transporte = c('onibus', 'bicicleta', 'onibus', 'carro', 'carro', 'onibus', 'onibus', 'bicicleta'))
+meu_data_table
+```
+
+```{r}
+class(meu_data_table)
+```
+
+```{r}
+meu_data_table[idade > 40]
+```
+
+```{r}
+meu_data_table[idade > 40, .(nome, salario)]
+```
+
+```{r}
+meu_data_table[idade > 40, .(media_idade = mean(idade))]
+
+meu_data_table[salario > 4000, .(media_idade = mean(idade))]
+
+```
+
+```{r}
+meu_data_table[ , .(media_salarial = mean(salario)), by = idade ]
+
+meu_data_table[ , .(media_idade = mean(idade)), by = meio_de_transporte ]
+```
+
+## Tible
+
+```{r}
+## install.packages("tidyverse")
+require(tibble)
+require(tidyr)
+require(tidyverse)
+```
+
+```{r}
+meu_tibble <- tibble(
+  nome = c("Alice", "Bob", "Carol", "Ana", "João", "Carlos", "Patrícia", "Leonardo"),
+  idade = c(25, 30, 28, 20, 27, 50, 60, 45),
+  salario = c(5000, 6000, 5500, 8000, 2000, 3500, 10000, 3800 ), 
+  `meio de transporte` = c('onibus', 'bicicleta', 'onibus', 'carro', 'carro', 'onibus', 'onibus', 'bicicleta'))
+meu_tibble
+
+glimpse(meu_tibble)
+```
+
+```{r}
+meu_tibble =  janitor::clean_names(meu_tibble)
+```
+
+```{r}
+meu_tibble = mutate(meu_tibble, idade_em_meses = idade*12)
+meu_tibble$idade_em_meses2 = meu_tibble$idade*2
+meu_datatable$idade = meu_datatable$idade*12  
+```
+
+```{r}
+meu_tibble2 = select(meu_tibble, c(nome, idade))
+meu_tibble2
+
+meu_tibble3 = filter(meu_tibble, idade > 40)
+meu_tibble3
+
+arrange(meu_tibble3, idade)
+
+###
+agregado_meio_transporte = group_by(meu_tibble, 
+                                    meio_de_transporte)
+
+summarise(agregado_meio_transporte, media_idade = mean(idade), 
+          n = n())
+```
+
+## Pipes
+
+```{r}
+x = sample(1:10, 5, replace = TRUE)
+x
+sort(cos(unique(x)), decreasing = TRUE)
+
+sort(
+  cos(
+    unique(x)
+  ),
+  decreasing = TRUE)
+
+require(magrittr)
+x %>%
+  unique() %>% 
+  cos() %>% 
+  sort(., decreasing = TRUE)
+```
+
+```{r}
+x %>% 
+  add(10) %>% 
+  divide_by(2) %>% 
+  subtract(8)
+
+y = sample(1:10, size = 15, replace = TRUE)
+y = y + 20
+y %<>% add(20) 
+
+```
+
+## Lendo banco e manipulando dados
+
+```{r}
+car_crash = fread("data/Brazil Total highway crashes 2010 - 2023.csv.gz")
+
+glimpse(car_crash)
+```
+
+## Seleção de variáveis
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(caminhao, automovel, bicicleta)
+
+car_crash %>% 
+  select(ends_with("feridos"))
+
+car_crash %>% 
+  select(starts_with("tipo"))
+
+
+car_crash %>% 
+  select(contains("_de_"))
+
+car_crash %>% 
+  select(where(is.numeric))
+
+car_crash %>% 
+  select(where(is.character))
+
+
+car_crash %>% 
+  select(where(is.logical))
+
+```
+
+```{r, error=TRUE}
+x = c("sentido", "trator")
+
+car_crash %>% 
+  select(all_of(x))
+
+x = c("sentido", "trator")
+
+car_crash %>% 
+  select(any_of(x))
+
+```

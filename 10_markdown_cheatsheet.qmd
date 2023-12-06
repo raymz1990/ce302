@@ -1,0 +1,44 @@
+---
+always_allow_html: true
+title: "10  Markdown Cheat Sheet"
+---
+
+Esse Cheat-Sheet é baseado em [The Markdown Guide](https://www.markdownguide.org/). Os materiais encontram-se apenas em inglês.
+
+Acesse os links para aprender mais sobre [sintaxe básica](https://www.markdownguide.org/basic-syntax) e [sintaxe extendida](https://www.markdownguide.org/extended-syntax).
+
+## 10.1 Sintaxe básica
+
+Estes são os elementos delineados no documento de design original de John Gruber. Todas as aplicações de Markdown suportam esses elementos.
+
+|**Elemento**| **Sintaxe**|
+|---|---|
+|**Títulos**|`# H1` <br> `## H2` <br> `### H3` |
+|**Negrito**|	`**texto em negrito**` <br> `__texto em negrito__` |
+|**Itálico**|	`*texto em itálico*` <br> `_texto em itálico_` |
+|**Bloco de Citação** |	`> bloco de citação` |
+|**Lista Numerada**	|`1. Primeiro item` <br> `2. Segundo item` <br> `3. Terceiro item`|
+|**Lista com Marcadores**|	`- Primeiro item` <br> `- Segundo item` <br> `- Terceiro item`|
+|**Código** |	```code```|
+|**Linha Horizontal** |	`---` |
+|**Link** |	`[Guia de Markdown](https://www.markdownguide.org)`|
+|**Imagem** |	`![texto alternativo](https://www.markdownguide.org/assets/images/tux.png)`|
+
+## 10.2 Sintaxe Extendida
+
+Esses elementos estendem a sintaxe básica, adicionando recursos adicionais. Nem todas as aplicações de Markdown suportam esses elementos.
+
+|**Elemento**	**Sintaxe em Markdown**
+|---|---|
+|Tabela	| <br> `| Sintaxe | Descrição |` <br> `| ----------- | ----------- |` <br> `| Texto | Texto |` <br> `| Texto | Texto |` |
+|Bloco de código delimitado	| ` ``` ` <br> `{"firstName": "John",` <br> `"lastName": "Smith",` <br> `"age": 25}` <br> 
+` ``` ` |
+|Nota de Rodapé	|`Aqui uma frase com nota de rodapé. [^1]` <br> `[^1]: Uma nota de rodapé.`|
+|Identificação de Título |	`### Meu Título {#sec-id}`
+|Lista de termos	|`termo`<br>`: definição`|
+|Taxado|	`~~A terra é plana.~~`|
+|Lista de coisas a fazer	|`- [x] Assistir aula` <br> `- [ ] Fazer lista de exercício` <br> `- [ ] Treinar novos exercícios`|
+|Emoji	|`Programar é legal! :joy:`|
+|Highlight	|`É ==muito importante== fazer as listas de exercício.`|
+|Subescrito	|`H~2~O`|
+|Superescrito	|`X^2^`|

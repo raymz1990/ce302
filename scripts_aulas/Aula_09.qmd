@@ -1,0 +1,138 @@
+---
+always_allow_html: true
+title: "Aula 09"
+---
+
+# Aula 09
+
+## Junção de dados
+
+```{r}
+require(nycflights13)
+
+# install.packages("nycflights13")
+```
+
+```{r}
+airlines
+```
+
+```{r}
+airports
+```
+
+```{r}
+require(dplyr)
+
+planes %>%  # chave primaria de planes é tailnum
+  count(tailnum) %>% 
+  filter(n > 1)
+```
+
+```{r}
+weather %>% 
+  count(time_hour, origin) %>% 
+  filter(n > 1)
+```
+
+```{r}
+weather %>% 
+  filter(is.na(time_hour)|is.na(origin))
+
+planes %>% 
+  filter(is.na(tailnum))
+```
+
+## Junções
+
+### Junções Mutacionais
+
+-   inner_join
+-   full_join
+-   left_join
+-   right_join
+
+em Excel -\> vlookup / procv
+
+```{r}
+flights2 <- flights %>% 
+  filter(distance > 2000) %>% 
+  select(year, time_hour, origin, dest, tailnum, carrier)
+
+flights2
+```
+
+### Left Join
+
+```{r}
+
+flights2 %>% 
+  left_join(., airlines)
+
+flights2 %>% 
+  left_join(airlines)
+
+
+left_join(flights2, airlines)
+```
+
+```{r}
+
+flights2 %>% 
+  left_join(airlines, 
+            by = "carrier")
+
+flights2 %>% 
+  left_join(airlines, 
+            by = c("carrier"="carrier"))
+
+flights2 %>% 
+  left_join(airlines, 
+            join_by(carrier))
+
+```
+
+## Right Join
+
+```{r}
+planes_flights = flights2 %>% 
+  right_join(planes, join_by(tailnum))
+```
+
+## Inner Join
+
+```{r}
+origin_flights = flights2 %>% 
+  inner_join(airports, by = c("origin"= "faa"))
+
+origin_flights = flights2 %>% 
+  inner_join(airports, join_by(origin == faa))
+```
+
+## Full Join
+
+```{r}
+dest_flights = flights2 %>% 
+  full_join(airports, by = c("dest"= "faa"))
+
+dest_flights = flights2 %>% 
+  full_join(airports, join_by(dest == faa))
+```
+
+## Semi-Join
+
+```{r}
+airports %>% 
+  semi_join(flights2, join_by(faa == origin))
+```
+
+```{r}
+airports %>% 
+  inner_join(flights2, join_by(faa == origin))
+```
+
+```{r}
+flights %>%
+  anti_join(airports, join_by(dest == faa)) %>% 
+  distinct(dest)
+```

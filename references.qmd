@@ -1,0 +1,3 @@
+# References {.unnumbered}
+
+Wickham, H., and G. Grolemund. 2016. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media. https://books.google.com.br/books?id=vfi3DQAAQBAJ.

@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>2 Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./02_basicR.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06_loopings.html" rel="" target="">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">
+<li>
+    <a class="dropdown-item" href="./10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">
+<li>
+    <a class="dropdown-item" href="./listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">
+<li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">
+<li>
+    <a class="dropdown-item" href="./modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">
+<li>
+    <a class="dropdown-item" href="./avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#hist%C3%B3ria-e-contexto-do-r" id="toc-história-e-contexto-do-r" class="nav-link active" data-scroll-target="#hist%C3%B3ria-e-contexto-do-r">2.1 História e Contexto do R</a>
+  <ul class="collapse">
+<li><a href="#contribui%C3%A7%C3%B5es-e-desenvolvimento-cont%C3%ADnuo" id="toc-contribuições-e-desenvolvimento-contínuo" class="nav-link" data-scroll-target="#contribui%C3%A7%C3%B5es-e-desenvolvimento-cont%C3%ADnuo">2.1.1 Contribuições e Desenvolvimento Contínuo</a></li>
+  </ul>
+</li>
+  <li><a href="#caracter%C3%ADsticas-e-vantagens-do-r" id="toc-características-e-vantagens-do-r" class="nav-link" data-scroll-target="#caracter%C3%ADsticas-e-vantagens-do-r">2.2 Características e Vantagens do R</a></li>
+  <li>
+<a href="#o-cran-comprehensive-r-archive-network" id="toc-o-cran-comprehensive-r-archive-network" class="nav-link" data-scroll-target="#o-cran-comprehensive-r-archive-network">2.3 O CRAN (<em>Comprehensive R Archive Network</em>)</a>
+  <ul class="collapse">
+<li><a href="#explorando-o-cran" id="toc-explorando-o-cran" class="nav-link" data-scroll-target="#explorando-o-cran">2.3.1 Explorando o CRAN</a></li>
+  </ul>
+</li>
+  <li><a href="#mecanismos-de-ajuda" id="toc-mecanismos-de-ajuda" class="nav-link" data-scroll-target="#mecanismos-de-ajuda">2.4 Mecanismos de ajuda</a></li>
+  <li><a href="#dicas-para-usar-a-ajuda-no-r" id="toc-dicas-para-usar-a-ajuda-no-r" class="nav-link" data-scroll-target="#dicas-para-usar-a-ajuda-no-r">2.5 Dicas para usar a Ajuda no R</a></li>
+  <li><a href="#manipula%C3%A7%C3%A3o-de-express%C3%B5es-e-diferencia%C3%A7%C3%A3o-de-letras-mai%C3%BAsculas-e-min%C3%BAsculas." id="toc-manipulação-de-expressões-e-diferenciação-de-letras-maiúsculas-e-minúsculas." class="nav-link" data-scroll-target="#manipula%C3%A7%C3%A3o-de-express%C3%B5es-e-diferencia%C3%A7%C3%A3o-de-letras-mai%C3%BAsculas-e-min%C3%BAsculas.">2.6 Manipulação de expressões e diferenciação de letras maiúsculas e minúsculas.</a></li>
+  <li><a href="#exemplos-de-manipula%C3%A7%C3%A3o-de-express%C3%B5es-e-diferencia%C3%A7%C3%A3o-de-letras-mai%C3%BAsculas-e-min%C3%BAsculas" id="toc-exemplos-de-manipulação-de-expressões-e-diferenciação-de-letras-maiúsculas-e-minúsculas" class="nav-link" data-scroll-target="#exemplos-de-manipula%C3%A7%C3%A3o-de-express%C3%B5es-e-diferencia%C3%A7%C3%A3o-de-letras-mai%C3%BAsculas-e-min%C3%BAsculas">2.7 Exemplos de Manipulação de Expressões e Diferenciação de Letras Maiúsculas e Minúsculas</a></li>
+  <li>
+<a href="#conven%C3%A7%C3%B5es-de-nomenclatura-de-vari%C3%A1veis-no-r" id="toc-convenções-de-nomenclatura-de-variáveis-no-r" class="nav-link" data-scroll-target="#conven%C3%A7%C3%B5es-de-nomenclatura-de-vari%C3%A1veis-no-r">2.8 Convenções de Nomenclatura de Variáveis no R</a>
+  <ul class="collapse">
+<li><a href="#compreens%C3%A3o-de-palavras-reservadas" id="toc-compreensão-de-palavras-reservadas" class="nav-link" data-scroll-target="#compreens%C3%A3o-de-palavras-reservadas">2.8.1 Compreensão de Palavras Reservadas</a></li>
+  </ul>
+</li>
+  <li><a href="#execu%C3%A7%C3%A3o-recupera%C3%A7%C3%A3o-e-corre%C3%A7%C3%A3o-de-comandos" id="toc-execução-recuperação-e-correção-de-comandos" class="nav-link" data-scroll-target="#execu%C3%A7%C3%A3o-recupera%C3%A7%C3%A3o-e-corre%C3%A7%C3%A3o-de-comandos">2.9 Execução, Recuperação e Correção de Comandos</a></li>
+  <li>
+<a href="#operadores" id="toc-operadores" class="nav-link" data-scroll-target="#operadores">2.10 Operadores</a>
+  <ul class="collapse">
+<li><a href="#operadores-aritm%C3%A9ticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritm%C3%A9ticos">2.10.1 Operadores Aritméticos</a></li>
+  <li><a href="#operadores-relacionais" id="toc-operadores-relacionais" class="nav-link" data-scroll-target="#operadores-relacionais">2.10.2 Operadores Relacionais</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#vetores-em-r-fundamentos" id="toc-vetores-em-r-fundamentos" class="nav-link" data-scroll-target="#vetores-em-r-fundamentos">2.11 Vetores em R: Fundamentos</a>
+  <ul class="collapse">
+<li><a href="#exemplos-de-uso-de-operadores-aritm%C3%A9ticos-e-relacionais-em-vetores" id="toc-exemplos-de-uso-de-operadores-aritméticos-e-relacionais-em-vetores" class="nav-link" data-scroll-target="#exemplos-de-uso-de-operadores-aritm%C3%A9ticos-e-relacionais-em-vetores">2.11.1 Exemplos de Uso de Operadores Aritméticos e Relacionais em vetores</a></li>
+  <li><a href="#exemplos-de-uso-de-operadores-relacionais" id="toc-exemplos-de-uso-de-operadores-relacionais" class="nav-link" data-scroll-target="#exemplos-de-uso-de-operadores-relacionais">2.11.2 Exemplos de Uso de Operadores Relacionais</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#ordens-de-execu%C3%A7%C3%A3o-no-r" id="toc-ordens-de-execução-no-r" class="nav-link" data-scroll-target="#ordens-de-execu%C3%A7%C3%A3o-no-r">2.12 Ordens de Execução no R</a>
+  <ul class="collapse">
+<li><a href="#exemplos-de-atribui%C3%A7%C3%A3o" id="toc-exemplos-de-atribuição" class="nav-link" data-scroll-target="#exemplos-de-atribui%C3%A7%C3%A3o">2.12.1 Exemplos de Atribuição</a></li>
+  <li><a href="#exemplos-de-ordens-de-execu%C3%A7%C3%A3o-e-comandos-de-atribui%C3%A7%C3%A3o" id="toc-exemplos-de-ordens-de-execução-e-comandos-de-atribuição" class="nav-link" data-scroll-target="#exemplos-de-ordens-de-execu%C3%A7%C3%A3o-e-comandos-de-atribui%C3%A7%C3%A3o">2.12.2 Exemplos de Ordens de Execução e Comandos de Atribuição:**</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#fun%C3%A7%C3%B5es-matem%C3%A1ticas-b%C3%A1sicas" id="toc-funções-matemáticas-básicas" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-matem%C3%A1ticas-b%C3%A1sicas">2.13 Funções Matemáticas Básicas</a>
+  <ul class="collapse">
+<li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo">2.13.1 Exemplo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#fun%C3%A7%C3%B5es-de-manipula%C3%A7%C3%A3o-de-dados" id="toc-funções-de-manipulação-de-dados" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-de-manipula%C3%A7%C3%A3o-de-dados">2.14 Funções de Manipulação de Dados</a>
+  <ul class="collapse">
+<li><a href="#exemplo-1" id="toc-exemplo-1" class="nav-link" data-scroll-target="#exemplo-1">2.14.1 Exemplo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#fun%C3%A7%C3%B5es-para-cria%C3%A7%C3%A3o-de-sequ%C3%AAncias" id="toc-funções-para-criação-de-sequências" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-para-cria%C3%A7%C3%A3o-de-sequ%C3%AAncias">2.15 Funções para Criação de Sequências</a>
+  <ul class="collapse">
+<li><a href="#exemplo-2" id="toc-exemplo-2" class="nav-link" data-scroll-target="#exemplo-2">2.15.1 Exemplo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#fun%C3%A7%C3%B5es-para-cria%C3%A7%C3%A3o-de-gr%C3%A1ficos" id="toc-funções-para-criação-de-gráficos" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-para-cria%C3%A7%C3%A3o-de-gr%C3%A1ficos">2.16 Funções para Criação de Gráficos</a>
+  <ul class="collapse">
+<li><a href="#exemplo-3" id="toc-exemplo-3" class="nav-link" data-scroll-target="#exemplo-3">2.16.1 Exemplo</a></li>
+  </ul>
+</li>
+  <li><a href="#fun%C3%A7%C3%B5es-matem%C3%A1ticas" id="toc-funções-matemáticas" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-matem%C3%A1ticas">2.17 Funções Matemáticas</a></li>
+  <li>
+<a href="#fun%C3%A7%C3%B5es-de-manipula%C3%A7%C3%A3o-de-texto" id="toc-funções-de-manipulação-de-texto" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-de-manipula%C3%A7%C3%A3o-de-texto">2.18 Funções de Manipulação de Texto</a>
+  <ul class="collapse">
+<li><a href="#exemplo-4" id="toc-exemplo-4" class="nav-link" data-scroll-target="#exemplo-4">2.18.1 Exemplo</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#informa%C3%A7%C3%B5es-sobre-diret%C3%B3rios-e-arquivos-em-r" id="toc-informações-sobre-diretórios-e-arquivos-em-r" class="nav-link" data-scroll-target="#informa%C3%A7%C3%B5es-sobre-diret%C3%B3rios-e-arquivos-em-r">2.19 Informações sobre Diretórios e Arquivos em R</a>
+  <ul class="collapse">
+<li><a href="#exemplo-5" id="toc-exemplo-5" class="nav-link" data-scroll-target="#exemplo-5">2.19.1 Exemplo</a></li>
+  <li><a href="#exemplo-6" id="toc-exemplo-6" class="nav-link" data-scroll-target="#exemplo-6">2.19.2 Exemplo</a></li>
+  <li><a href="#fun%C3%A7%C3%B5es-para-importa%C3%A7%C3%A3o-e-exporta%C3%A7%C3%A3o-de-dados-e-objetos" id="toc-funções-para-importação-e-exportação-de-dados-e-objetos" class="nav-link" data-scroll-target="#fun%C3%A7%C3%B5es-para-importa%C3%A7%C3%A3o-e-exporta%C3%A7%C3%A3o-de-dados-e-objetos">2.19.3 Funções para Importação e Exportação de Dados e Objetos</a></li>
+  <li><a href="#explora%C3%A7%C3%A3o-de-conjuntos-de-dados-integrados-e-edi%C3%A7%C3%A3o-dos-mesmos" id="toc-exploração-de-conjuntos-de-dados-integrados-e-edição-dos-mesmos" class="nav-link" data-scroll-target="#explora%C3%A7%C3%A3o-de-conjuntos-de-dados-integrados-e-edi%C3%A7%C3%A3o-dos-mesmos">2.19.4 Exploração de Conjuntos de Dados Integrados e Edição dos Mesmos</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/02_basicR.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/02_basicR.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="02_basicR.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="02_basicR.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">2 Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="história-e-contexto-do-r" class="level2"><h2 class="anchored" data-anchor-id="história-e-contexto-do-r">2.1 História e Contexto do R</h2>
+<p>R é um <strong>ambiente estatístico</strong>, cujo desenvolvimento se deu início em 1993, quando Ross Ihaka e Robert Gentleman, professores de estatística da Universidade de Auckland, perceberam a necessidade de uma <strong>linguagem de programação mais acessível e eficiente para análise de dados</strong>. O Objetivo era o desenvolvimento de uma ferramenta que combinasse a facilidade de uso e a flexibilidade da <strong>linguagem S</strong> com a escalabilidade e a extensibilidade necessárias para enfrentar os desafios da análise de dados cada vez mais complexa.</p>
+<p>O nome “R” foi inspirado nas primeiras letras dos nomes dos criadores, mas também remete à ideia de um ambiente estatístico e reutilizável, referindo-se às características da linguagem S na qual o R foi baseado.</p>
+<p>O R é um software de <strong>código aberto</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, sendo isso fundamental para o seu crescimento e popularidade. Além de permitir que a comunidade global de estatísticos, cientistas de dados, pesquisadores e desenvolvedores colaborasse e compartilhasse suas contribuições em forma de pacotes, expandindo continuamente as capacidades da linguagem.</p>
+<p>O R foi lançado ao público em 1995, sendo inicialmente adotado principalmente por pesquisadores e acadêmicos nas áreas de estatística e ciências sociais. Contudo, com o a expansão da era do <em>Big Data</em> e o crescimento da necessidade de análise de dados em diversas indústrias, o R passou a ser empregado em diversas áreas, desde a análise de dados financeiros até a ciência ambiental, biologia, <em>marketing</em> e muito mais.</p>
+<p>Com o crescimento exponencial de usuários e desenvolvedores de R o ecossistema de pacotes no CRAN expandiu-se para incluir milhares de pacotes criados por usuários de todo o mundo. Esses pacotes fornecem funcionalidades especializadas para praticamente diversas tarefas, transformando o R em uma linguagem altamente flexível e poderosa para análise de dados.</p>
+<section id="contribuições-e-desenvolvimento-contínuo" class="level3"><h3 class="anchored" data-anchor-id="contribuições-e-desenvolvimento-contínuo">2.1.1 Contribuições e Desenvolvimento Contínuo</h3>
+<p>Um dos principais pontos positivos do R é a colaboração da comunidade de usuários e desenvolvedores. O desenvolvimento do R é mantido por uma equipe central, porém qualquer pessoa pode contribuir com melhorias, correções de bugs e novos pacotes, resultando em um fluxo constante de inovações e melhorias.</p>
+<p>Além disso, o R possui integração com outras linguagens de programação, como C, C++, Python e SQL, permitindo a otimização de tarefas computacionalmente intensivas e a integração com outros ecossistemas de <em>software.</em></p>
+</section></section><section id="características-e-vantagens-do-r" class="level2"><h2 class="anchored" data-anchor-id="características-e-vantagens-do-r">2.2 Características e Vantagens do R</h2>
+<p><strong>1. Gratuito e de código aberto</strong>: O R é distribuído gratuitamente e permite acesso ao seu código-fonte, incentivando a colaboração e transparência.</p>
+<p><strong>2. Extensibilidade e Pacotes</strong>: Através do sistema de pacotes disponível no CRAN (<em>Comprehensive R Archive Network</em>), os usuários podem facilmente estender suas funcionalidades, aproveitando inúmeros pacotes criados pela comunidade para tarefas especializadas.</p>
+<p><strong>3. Visualização de Dados</strong>: Reconhecido por suas poderosas capacidades nessa área, o R oferece gráficos e relatórios de alta qualidade.</p>
+<p><strong>4. Análise Estatística e Manipulação de Dados</strong>: O R disponibiliza uma ampla variedade de funções e bibliotecas para análise estatística e manipulação de dados, tornando-o popular entre estatísticos e cientistas de dados.</p>
+<p><strong>5. Documentação e Ajuda</strong>: O R possui extensa documentação oficial, bem como inúmeros tutoriais e exemplos disponíveis online.</p>
+<p><strong>6. Ambiente de Programação e Linguagem</strong>: O R é uma linguagem interpretada, executando o código linha por linha e mostrando os resultados em tempo real. Sua natureza vetorial possibilita manipular e realizar operações eficientes em conjuntos de dados.</p>
+<p><strong>7. Objetos e Tipos de Dados</strong>: No R, tudo é um objeto, podendo ser vetores, matrizes, data frames, listas e outros tipos de dados. É importante entender os diferentes tipos de dados para realizar operações apropriadas em cada um deles.</p>
+<p><strong>8. Operações Aritméticas e Relacionais</strong>: O R suporta operações aritméticas básicas, como adição, subtração, multiplicação e divisão, bem como operações relacionais, como maior que, menor que e igual a.</p>
+<p><strong>9. Estruturas de Controle e Funções</strong>: O R oferece estruturas de controle, como <em>loops</em> (<code>for</code>, <code>while</code>) e condicionais (<code>if</code>, <code>else</code>, <code>ifelse</code>), permitindo repetir tarefas ou executar comandos com base em condições específicas. Além disso, as funções são blocos de código reutilizáveis que executam tarefas específicas. O R possui uma ampla variedade de funções internas e permite a criação de funções personalizadas.</p>
+</section><section id="o-cran-comprehensive-r-archive-network" class="level2"><h2 class="anchored" data-anchor-id="o-cran-comprehensive-r-archive-network">2.3 O CRAN (<em>Comprehensive R Archive Network</em>)</h2>
+<p>O CRAN é o principal repositório de pacotes do R, mantido e organizado pela comunidade de desenvolvedores de R. Sendo criado para fornecer aos usuários do R uma plataforma centralizada para compartilhar, distribuir e acessar pacotes (bibliotecas) que estendem as funcionalidades do R. O CRAN hospeda cerca de 20.000 de pacotes desenvolvidos por usuários, de diversas áreas, desde estatística e aprendizado de máquina até ecologia, bioinformática e visualização de dados.</p>
+<section id="explorando-o-cran" class="level3"><h3 class="anchored" data-anchor-id="explorando-o-cran">2.3.1 Explorando o CRAN</h3>
+<p>Podemos explorar o CRAN através do site oficial ou diretamente do R.</p>
+<ol type="1">
+<li><p><strong>Navegando no Site do CRAN</strong>: No site oficial do CRAN (https://cran.r-project.org/) é possível pesquisar por palavras-chave, categorias temáticas ou até mesmo pelo nome do pacote procurado. Cada pacote possui uma página com informações detalhadas sobre sua funcionalidade, documentação, autor e data de lançamento.</p></li>
+<li><p><strong>Acessando o CRAN do Ambiente R</strong>: Para pesquisar um pacote diretamente no R podemos utilizar a função <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, que instalará o pacote escolhido. Podemos também utilizar a interface gráfica do RStudio para gerenciar pacotes.</p></li>
+</ol>
+<p>Além do CRAN existem outros repositórios de pacotes que oferecem uma variedade de bibliotecas desenvolvidas por diferentes comunidades, e embora o CRAN seja a principal fonte de pacotes para a maioria dos usuários, esses outros repositórios também podem ser úteis, especialmente quando se trata de pacotes mais especializados ou em fase de desenvolvimento. Os principais repositórios de pacotes do R, além da CRAN são:</p>
+<ol type="1">
+<li><p><strong>Bioconductor</strong>: O Bioconductor é um repositório focado em bioinformática e análise de dados genômicos. São especialmente projetados para lidar com dados de biologia e geralmente requerem algum conhecimento em bioinformática para uso efetivo.</p></li>
+<li><p><strong>GitHub</strong> ou <strong>GitLab</strong>: Muitos pacotes R são hospedados em repositórios do GitHub, e é possível instalar esses pacotes diretamente do GitHub usando o pacote <code>devtools</code>.</p></li>
+</ol></section></section><section id="mecanismos-de-ajuda" class="level2"><h2 class="anchored" data-anchor-id="mecanismos-de-ajuda">2.4 Mecanismos de ajuda</h2>
+<p>Saber buscar ajuda e consultar à documentação oficial de pacotes e funções são essenciais para qualquer usuário do R, independentemente do nível de experiência. No R cada função apresenta uma documentação padrão, além de mecanismos integrados para fornecer ajuda instantânea. As principais maneiras de obter ajuda em R são:</p>
+<ol type="1">
+<li><p><code>?</code> e <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code>: No R, o ponto de interrogação <code>?</code> e a função <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> são utilizados para acessar a documentação de funções e pacotes. Por exemplo, para obter ajuda sobre a função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>, você pode digitar <code><a href="https://rdrr.io/r/base/mean.html">?mean</a></code> ou <code><a href="https://rdrr.io/r/base/mean.html">help(mean)</a></code> no console. Isso abrirá a ajuda (documentação) da função <code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code> com a descrição da função, os argumentos que ela recebe, seu uso correto, exemplos de uso e informações sobre os valores de retorno. Além disso, você pode encontrar links para outras funções relacionadas e exemplos de código úteis.</p></li>
+<li><p><code>??</code>, <code><a href="https://rdrr.io/r/utils/help.search.html">help.search()</a></code> e <code><a href="https://rdrr.io/r/utils/apropos.html">apropos()</a></code>: O <code>??</code> é outro operador que permite fazer uma pesquisa na documentação do R usando palavras-chave. Por exemplo, <code>??plot</code> realizará uma busca por tópicos que contenham a palavra “plot” na documentação de funções e pacotes. O resultado será uma lista de funções e pacotes relacionados ao termo pesquisado. Para realizar a mesma pesquisa usando a função <code><a href="https://rdrr.io/r/utils/help.search.html">help.search()</a></code>, você pode digitar <code>help.search("plot")</code> no console. Isso fornecerá um resultado semelhante ao <code>??</code>. Já a função <code><a href="https://rdrr.io/r/utils/apropos.html">apropos()</a></code> é útil para encontrar funções que contenham uma determinada palavra-chave no nome. Por exemplo, <code>apropos("plot")</code> retornará todas as funções que possuem “plot” no nome.</p></li>
+<li><p><code><a href="https://rdrr.io/r/utils/vignette.html">vignette()</a></code>: Muitos pacotes do R incluem documentos chamados “vignettes”, que são tutoriais e guias práticos sobre o uso do pacote. Para acessar as vignettes de um pacote específico, podemos executar <code>vignette(package = "nomedopacote")</code>. Isso abrirá uma lista das vignettes disponíveis para esse pacote.</p></li>
+</ol></section><section id="dicas-para-usar-a-ajuda-no-r" class="level2"><h2 class="anchored" data-anchor-id="dicas-para-usar-a-ajuda-no-r">2.5 Dicas para usar a Ajuda no R</h2>
+<ul>
+<li><p>Quando estiver no ambiente RStudio, a ajuda exibida pelo <code>?</code> ou <code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> aparecerá em uma guia de ajuda na área de trabalho. Isso permite que você consulte a documentação sem sair do ambiente de desenvolvimento.</p></li>
+<li><p>Se você não souber o nome exato de uma função, mas lembrar de uma palavra-chave relacionada, pode usar o <code>??</code> ou <code><a href="https://rdrr.io/r/utils/help.search.html">help.search()</a></code> para encontrar funções que correspondam à palavra-chave.</p></li>
+<li><p>A documentação oficial do R geralmente é bem escrita e detalhada, com muitos exemplos úteis. É uma boa prática ler a documentação para entender completamente como usar uma função ou pacote.</p></li>
+<li><p>Além dos recursos internos de ajuda, também é possível encontrar tutoriais e guias online sobre o R. Blogs, sites de tutoriais e fóruns da comunidade podem ser ótimas fontes de informações adicionais e soluções para problemas específicos.</p></li>
+</ul></section><section id="manipulação-de-expressões-e-diferenciação-de-letras-maiúsculas-e-minúsculas." class="level2"><h2 class="anchored" data-anchor-id="manipulação-de-expressões-e-diferenciação-de-letras-maiúsculas-e-minúsculas.">2.6 Manipulação de expressões e diferenciação de letras maiúsculas e minúsculas.</h2>
+<p>No R, a manipulação de expressões e a diferenciação entre letras maiúsculas e minúsculas são aspectos importantes a serem considerados ao escrever scripts e trabalhar com objetos na linguagem. Vamos explorar esses conceitos em detalhes:</p>
+<ol type="1">
+<li>
+<strong>Manipulação de Expressões</strong>: A manipulação de expressões refere-se à forma como o R interpreta e processa os comandos e expressões de código que são fornecidos pelo usuário. O R é sensível a espaços em branco e a outros caracteres especiais que podem afetar a execução dos comandos. Algumas considerações importantes são:</li>
+</ol>
+<ul>
+<li><p><strong>Final de linha</strong>: O R considera o final da linha como um indicador de que o comando está completo. Se um comando for muito longo, você pode usar a notação <code>(...)</code> para continuar o comando na próxima linha.</p></li>
+<li><p><strong>Comentários</strong>: O R ignora qualquer texto após o símbolo <code>#</code>, permitindo que você insira comentários para explicar seu código.</p></li>
+</ul>
+<ol start="2" type="1">
+<li>
+<strong>Diferenciação de Letras Maiúsculas e Minúsculas</strong>: Uma das peculiaridades do R é que ele diferencia letras maiúsculas e minúsculas em nomes de objetos, funções e palavras reservadas. Isso significa que <code>variavel</code> e <code>Variavel</code> são tratadas como objetos distintos. Portanto, é importante manter a consistência na nomeação de objetos e funções.</li>
+</ol>
+<ul>
+<li><p><strong>Nomes de Variáveis e Funções</strong>: Ao nomear suas variáveis e funções, é aconselhável usar apenas letras minúsculas e, se necessário, separar palavras com underscore (_) ou camelCase. Por exemplo: <code>nome_variavel</code>, <code>meu_contador</code>, <code>calcularMedia</code>, etc.</p></li>
+<li><p><strong>Palavras Reservadas</strong>: O R possui palavras reservadas que são usadas para funções ou operações internas e <strong>não devem ser usadas como nomes de objetos</strong>. Algumas palavras reservadas incluem <code>if</code>, <code>else</code>, <code>while</code>, <code>function</code>, <code>for</code>, entre outras.</p></li>
+</ul></section><section id="exemplos-de-manipulação-de-expressões-e-diferenciação-de-letras-maiúsculas-e-minúsculas" class="level2"><h2 class="anchored" data-anchor-id="exemplos-de-manipulação-de-expressões-e-diferenciação-de-letras-maiúsculas-e-minúsculas">2.7 Exemplos de Manipulação de Expressões e Diferenciação de Letras Maiúsculas e Minúsculas</h2>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exemplo de manipulação de expressões</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
+<span><span class="va">y</span><span class="op">&lt;-</span><span class="fl">10</span> <span class="co"># Não recomendado, espaços são mais legíveis</span></span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">x</span> <span class="op">+</span></span>
+<span>      <span class="va">y</span><span class="op">)</span> <span class="co"># Continuando o comando em outra linha</span></span>
+<span></span>
+<span><span class="va">x</span> <span class="co"># imprime na tela o valor de x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="co"># imprime o valor de y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">z</span> <span class="co"># imprime o valor de z</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exemplo de diferenciação de letras maiúsculas e minúsculas</span></span>
+<span><span class="va">variavel</span> <span class="op">&lt;-</span> <span class="fl">42</span></span>
+<span><span class="va">Variavel</span> <span class="op">&lt;-</span> <span class="fl">24</span></span>
+<span></span>
+<span><span class="va">variavel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 42</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Variavel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24</code></pre>
+</div>
+</div>
+</section><section id="convenções-de-nomenclatura-de-variáveis-no-r" class="level2"><h2 class="anchored" data-anchor-id="convenções-de-nomenclatura-de-variáveis-no-r">2.8 Convenções de Nomenclatura de Variáveis no R</h2>
+<p>As convenções de nomenclatura de variáveis são uma parte importante da prática de programação, pois tornam o código mais legível, consistente e facilitam a colaboração entre os membros da equipe de desenvolvimento. No R, existem duas convenções principais de nomenclatura de variáveis amplamente utilizadas:</p>
+<ol type="1">
+<li>
+<strong>Camel Case e Pascal Case</strong>: Na convenção Camel Case, o nome da variável é <strong>escrito como uma frase sem espaços</strong>, onde as palavras são unidas e a <strong>primeira letra de cada palavra, exceto a primeira, é escrita em maiúscula</strong>. Por exemplo: <code>calcularMedia</code>, <code>idadeDoUsuario</code>, <code>meuContador</code>.</li>
+</ol>
+<p>O Pascal Case é uma variação do Camel Case, onde a primeira letra de cada palavra, incluindo a primeira, é escrita em maiúscula. Por exemplo: <code>CalcularMedia</code>, <code>IdadeDoUsuario</code>, <code>MeuContador</code>.</p>
+<p>Essas convenções são amplamente utilizadas em outras linguagens de programação, como Python, Java e C#.</p>
+<ol start="2" type="1">
+<li>
+<strong>Snake Case</strong>: No Snake Case, o nome da variável é escrito como uma frase sem espaços, onde **as palavras são unidas por underscores (_)**. Todas as letras são escritas em minúsculas. Por exemplo: <code>calcular_media</code>, <code>idade_do_usuario</code>, <code>meu_contador</code>.</li>
+</ol>
+<p>Essa convenção é particularmente útil em ambientes que não diferenciam letras maiúsculas e minúsculas, pois ajuda a melhorar a legibilidade dos nomes das variáveis.</p>
+<section id="compreensão-de-palavras-reservadas" class="level3"><h3 class="anchored" data-anchor-id="compreensão-de-palavras-reservadas">2.8.1 Compreensão de Palavras Reservadas</h3>
+<p>No R, palavras reservadas são termos que possuem significado especial para a linguagem e são usadas para funções, comandos ou operações internas. Essas palavras não podem ser usadas como nomes de variáveis, funções ou objetos, pois isso causaria conflito com o significado e comportamento original dessas palavras na linguagem.</p>
+<p>Exemplos de palavras reservadas no R incluem <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>function</code>, <code>TRUE</code>, <code>FALSE</code>, <code>NULL</code>, <code><a href="https://rdrr.io/r/base/Control.html">break</a></code>, <code><a href="https://rdrr.io/r/base/Control.html">next</a></code>, entre outras.</p>
+<p>É importante compreender as palavras reservadas do R para evitar problemas ao nomear suas variáveis e funções. Caso você acidentalmente tente utilizar uma palavra reservada como nome de variável, o R emitirá um erro e indicará que a palavra é uma palavra reservada e não pode ser usada.</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: &lt;text&gt;:1:5: unexpected assignment
+1: for &lt;-
+        ^</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: &lt;text&gt;:1:4: unexpected assignment
+1: if &lt;-
+       ^</code></pre>
+</div>
+</div>
+</section></section><section id="execução-recuperação-e-correção-de-comandos" class="level2"><h2 class="anchored" data-anchor-id="execução-recuperação-e-correção-de-comandos">2.9 Execução, Recuperação e Correção de Comandos</h2>
+<p>Ao trabalhar com o R, é comum escrever e executar comandos em um ambiente interativo, como o console do RStudio. No entanto, erros podem ocorrer durante a execução desses comandos. Existem várias formas de lidar com a execução, recuperação e correção de comandos no R:</p>
+<ol type="1">
+<li><p><strong>Execução de Comandos</strong>: Para executar um comando, basta digitá-lo no console do RStudio ou em um script e pressionar a tecla Enter. O R executará o comando e exibirá o resultado, se houver. No entanto, se houver algum erro no comando, o R exibirá uma mensagem de erro, indicando o tipo e a causa do erro.</p></li>
+<li><p><strong>Recuperação de Comandos</strong>: Em alguns casos, você pode querer recuperar comandos anteriores para reexecutá-los ou modificá-los. No RStudio, você pode usar as teclas de seta para cima e para baixo para navegar pelos comandos anteriores digitados no console. Também é possível usar o histórico de comandos, que pode ser acessado clicando na guia “History” no ambiente do RStudio.</p></li>
+<li><p><strong>Correção de Comandos</strong>: Se um comando apresentar um erro, você pode corrigi-lo diretamente no console ou no script antes de reexecutá-lo. É importante observar a mensagem de erro fornecida pelo R, pois ela geralmente indica o local do erro e a causa do problema. Após fazer as correções necessárias, você pode pressionar a tecla Enter para reexecutar o comando.</p></li>
+<li><p><strong>Função traceback()</strong>: A função <code><a href="https://rdrr.io/r/base/traceback.html">traceback()</a></code> pode ser útil para depurar o código quando ocorrem erros mais complexos. Ela exibe o rastreamento das chamadas de função que levaram ao erro, ajudando a identificar em qual parte do código o problema ocorreu.</p></li>
+<li><p><strong>Modo Debug</strong>: O RStudio possui um modo de depuração (Debug) que pode ser ativado clicando no botão “Debug” ou usando a combinação de teclas <code>Ctrl + Shift + D</code>. O modo de depuração permite que você execute o código linha por linha, inspecione os valores das variáveis em cada etapa e localize a origem de possíveis erros.</p></li>
+</ol></section><section id="operadores" class="level2"><h2 class="anchored" data-anchor-id="operadores">2.10 Operadores</h2>
+<section id="operadores-aritméticos" class="level3"><h3 class="anchored" data-anchor-id="operadores-aritméticos">2.10.1 Operadores Aritméticos</h3>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>
+<code>+</code> (Adição): Realiza a adição entre dois valores.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">soma</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="va">y</span></span>
+<span><span class="va">soma</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>
+<code>-</code> (Subtração): Realiza a subtração entre dois valores.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">subtracao</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span></span>
+<span><span class="va">subtracao</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>
+<code>*</code> (Multiplicação): Realiza a multiplicação entre dois valores.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">multiplicacao</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="va">y</span></span>
+<span><span class="va">multiplicacao</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>
+<code>/</code> (Divisão): Realiza a divisão entre dois valores.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">divisao</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">/</span> <span class="va">y</span></span>
+<span><span class="va">divisao</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li>
+<code>^</code> ou <code>**</code> (Exponenciação): Eleva um valor à potência de outro.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">exponenciacao</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="va">exponenciacao</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>
+<code>%%</code> (Módulo): Calcula o resto da divisão entre dois valores.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">modulo</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="va">y</span></span>
+<span><span class="va">modulo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<ol start="7" type="1">
+<li>
+<code>%/%</code> (Divisão inteira): Realiza a divisão entre dois valores e retorna o resultado como um número inteiro.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">divisao_inteira</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="va">y</span></span>
+<span><span class="va">divisao_inteira</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+</section><section id="operadores-relacionais" class="level3"><h3 class="anchored" data-anchor-id="operadores-relacionais">2.10.2 Operadores Relacionais</h3>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Operadores Relacionais</span></span>
+<span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="1">
+<li>
+<code>==</code> (Igual a): Verifica se dois valores são iguais.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">igual_a</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">==</span> <span class="va">b</span></span>
+<span><span class="va">igual_a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>
+<code>!=</code> (Diferente de): Verifica se dois valores são diferentes.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">diferente_de</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">!=</span> <span class="va">b</span></span>
+<span><span class="va">diferente_de</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>
+<code>&gt;</code> (Maior que): Verifica se o valor à esquerda é maior do que o valor à direita.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">maior_que</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">&gt;</span> <span class="va">b</span></span>
+<span><span class="va">maior_que</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>
+<code>&lt;</code> (Menor que): Verifica se o valor à esquerda é menor do que o valor à direita.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">menor_que</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">&lt;</span> <span class="va">b</span></span>
+<span><span class="va">menor_que</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li>
+<code>&gt;=</code> (Maior ou igual a): Verifica se o valor à esquerda é maior ou igual ao valor à direita.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">maior_ou_igual_a</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">&gt;=</span> <span class="va">b</span></span>
+<span><span class="va">maior_ou_igual_a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>
+<code>&lt;=</code> (Menor ou igual a): Verifica se o valor à esquerda é menor ou igual ao valor à direita.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">menor_ou_igual_a</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">&lt;=</span> <span class="va">b</span></span>
+<span><span class="va">menor_ou_igual_a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section></section><section id="vetores-em-r-fundamentos" class="level2"><h2 class="anchored" data-anchor-id="vetores-em-r-fundamentos">2.11 Vetores em R: Fundamentos</h2>
+<p>Em R, vetores são estruturas de dados fundamentais que armazenam elementos de um mesmo tipo. Eles desempenham um papel crucial na linguagem, permitindo o armazenamento eficiente e a manipulação de dados. Os aspectos principais de vetores em R são:</p>
+<ol type="1">
+<li><p><strong>Homogeneidade</strong>: Vetores em R contêm elementos do mesmo tipo. Isso significa que um vetor não pode conter uma mistura de números, caracteres e outros tipos de dados. A homogeneidade é uma característica essencial para operações eficientes.</p></li>
+<li><p><strong>Criação de Vetores</strong>: Você pode criar vetores usando a função <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> (combine) ou a função <code><a href="https://rdrr.io/r/base/vector.html">vector()</a></code>. Por exemplo, <code>vetor_numerico &lt;- c(1, 2, 3, 4, 5)</code> cria um vetor numérico com os valores de 1 a 5.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor_numerico</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">vetor_numerico</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia_1_5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">sequencia_1_5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia_10_100</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>                        to <span class="op">=</span> <span class="fl">100</span>, </span>
+<span>                        by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">sequencia_10_100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>
+<strong>Acesso a Elementos</strong>: Os elementos de um vetor podem ser acessados usando índices. O primeiro elemento tem índice 1, o segundo índice 2, e assim por diante. Por exemplo, <code>vetor_numerico[3]</code> retorna o terceiro elemento do vetor.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor_numerico</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor_numerico</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><p><strong>Operações em Vetores</strong>: R permite realizar operações em vetores de forma conveniente e eficiente. Operações aritméticas e relacionais podem ser aplicadas elemento a elemento. Por exemplo, <code>vetor_resultado &lt;- vetor_numerico * 2</code> multiplica cada elemento por 2.</p></li>
+<li><p><strong>Funções em Vetores</strong>: Muitas funções do R são vetorizadas, o que significa que elas podem operar diretamente em vetores. Isso evita a necessidade de loops explícitos. Por exemplo, <code>mean(vetor_numerico)</code> calcula a média dos elementos do vetor.</p></li>
+<li><p><strong>Fatiamento de Vetores</strong>: Além de acessar elementos individuais, é possível fatiar vetores para obter subconjuntos. Por exemplo, <code>subconjunto &lt;- vetor_numerico[2:4]</code> cria um novo vetor contendo os elementos do índice 2 ao 4.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor_numerico</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia_10_100</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20 25 30 35 40 45</code></pre>
+</div>
+</div>
+<ol start="9" type="1">
+<li>
+<strong>Vetores de Caracteres</strong>: Vetores de caracteres são frequentemente usados para representar strings, nomes de variáveis e rótulos. Por exemplo, <code>vetor_caracteres &lt;- c("maçã", "banana", "laranja")</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor_caracteres</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"maçã"</span>, <span class="st">"banana"</span>, <span class="st">"laranja"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vetores são uma das estruturas de dados mais essenciais em R e constituem a base para muitas operações e análises de dados. Eles permitem uma abordagem vetorial para a programação, que é eficiente e expressiva, tornando o R uma linguagem poderosa para análise estatística e manipulação de dados.</p>
+<section id="exemplos-de-uso-de-operadores-aritméticos-e-relacionais-em-vetores" class="level3"><h3 class="anchored" data-anchor-id="exemplos-de-uso-de-operadores-aritméticos-e-relacionais-em-vetores">2.11.1 Exemplos de Uso de Operadores Aritméticos e Relacionais em vetores</h3>
+<div class="cell">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Operações aritméticas com vetores</span></span>
+<span><span class="va">vetor1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">vetor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Soma </span></span>
+<span><span class="va">soma_vetores</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">+</span> <span class="va">vetor2</span></span>
+<span><span class="va">soma_vetores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 7 9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Subtração</span></span>
+<span><span class="va">subtracao_vetores</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">-</span> <span class="va">vetor2</span></span>
+<span><span class="va">subtracao_vetores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -3 -3 -3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Multiplicação</span></span>
+<span><span class="va">multiplicacao_vetores</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">*</span> <span class="va">vetor2</span></span>
+<span><span class="va">multiplicacao_vetores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  4 10 18</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Divisão</span></span>
+<span><span class="va">divisao_vetores</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">/</span> <span class="va">vetor2</span></span>
+<span><span class="va">divisao_vetores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.25 0.40 0.50</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exponenciação </span></span>
+<span><span class="va">exponenciacao_numero</span> <span class="op">&lt;-</span> <span class="va">vetor1</span><span class="op">^</span><span class="fl">2</span>  </span>
+<span><span class="va">exponenciacao_numero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 4 9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Módulo</span></span>
+<span><span class="va">modulo_numero</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">3</span> </span>
+<span><span class="va">modulo_numero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 0</code></pre>
+</div>
+</div>
+</section><section id="exemplos-de-uso-de-operadores-relacionais" class="level3"><h3 class="anchored" data-anchor-id="exemplos-de-uso-de-operadores-relacionais">2.11.2 Exemplos de Uso de Operadores Relacionais</h3>
+<div class="cell">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Comparação entre vetores</span></span>
+<span><span class="va">vetor1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">vetor2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Igualdade</span></span>
+<span><span class="va">vetores_iguais</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">==</span> <span class="va">vetor2</span>  </span>
+<span><span class="va">vetores_iguais</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Diferença</span></span>
+<span><span class="va">vetores_diferentes</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">!=</span> <span class="va">vetor2</span></span>
+<span><span class="va">vetores_diferentes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Maior que</span></span>
+<span><span class="va">vetores_maior_que</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">&gt;</span> <span class="va">vetor2</span></span>
+<span><span class="va">vetores_maior_que</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Menor que</span></span>
+<span><span class="va">vetores_menor_que</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">&lt;</span> <span class="va">vetor2</span></span>
+<span><span class="va">vetores_menor_que</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Maior ou igual</span></span>
+<span><span class="va">vetores_maior_ou_igual_a</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">&gt;=</span> <span class="va">vetor2</span></span>
+<span><span class="va">vetores_maior_ou_igual_a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Menor ou igual</span></span>
+<span><span class="va">vetores_menor_ou_igual_a</span> <span class="op">&lt;-</span> <span class="va">vetor1</span> <span class="op">&lt;=</span> <span class="va">vetor2</span></span>
+<span><span class="va">vetores_menor_ou_igual_a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+</section></section><section id="ordens-de-execução-no-r" class="level2"><h2 class="anchored" data-anchor-id="ordens-de-execução-no-r">2.12 Ordens de Execução no R</h2>
+<p>A ordem de execução é uma consideração importante ao escrever scripts ou interagir com o console do R. O R executa as operações seguindo uma sequência lógica, e entender essa sequência é fundamental para garantir que o código seja executado corretamente.</p>
+<ol type="1">
+<li>
+<strong>Atribuição de Variáveis</strong>: A primeira etapa na ordem de execução é a atribuição de valores a variáveis. A atribuição é realizada usando os operadores de atribuição <code>&lt;-</code> ou <code>=</code>. Por exemplo, <code>x &lt;- 5</code> atribui o valor 5 à variável <code>x</code>. Através da atribuição, você cria objetos que serão usados para realizar cálculos e manipulações no restante do código.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
+<span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>
+<strong>Avaliação de Expressões</strong>: Depois que as variáveis são atribuídas, o R avalia as expressões aritméticas, lógicas ou outras expressões envolvendo as variáveis. Por exemplo, suponha que temos <code>y &lt;- x + 3</code>, o R primeiro avaliará <code>x + 3</code> (que é 5 + 3 = 8) e, em seguida, atribuirá o resultado (<code>8</code>) à variável <code>y</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fl">3</span></span>
+<span><span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><p><strong>Execução de Comandos</strong>: Após as atribuições e avaliações, o R executa os comandos. Os comandos são instruções que realizam ações específicas, como criar gráficos, calcular estatísticas, manipular dados, entre outros. Os comandos são fundamentais para executar tarefas específicas no R.</p></li>
+<li><p><strong>Impressão de Resultados</strong>: Em um ambiente interativo, o R exibirá automaticamente na saída do console o resultado das expressões que não estão atribuídas a uma variável. Se você quiser evitar a impressão de resultados indesejados, pode utilizar a função <code><a href="https://rdrr.io/r/base/invisible.html">invisible()</a></code> para suprimir a saída.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">+</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>
+<strong>Controle de Fluxo</strong>: Se o código contém estruturas de controle de fluxo, como condicionais (<code>if</code>, <code>else</code>) e loops (<code>for</code>, <code>while</code>), o R avaliará essas estruturas para decidir quais partes do código executar com base nas condições.</li>
+</ol>
+<section id="exemplos-de-atribuição" class="level3"><h3 class="anchored" data-anchor-id="exemplos-de-atribuição">2.12.1 Exemplos de Atribuição</h3>
+<div class="cell">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">5</span>         <span class="co"># Atribui o valor 5 à variável x</span></span>
+<span><span class="va">nome</span> <span class="op">&lt;-</span> <span class="st">"João"</span> <span class="co"># Atribui a string "João" à variável nome</span></span>
+<span><span class="va">meus_animais</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gato"</span>, <span class="st">" cachorro"</span>, <span class="st">"cachorro"</span><span class="op">)</span></span>
+<span><span class="va">x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nome</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "João"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meus_animais</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "gato"      " cachorro" "cachorro" </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meus_animais</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="va">meus_animais</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nome</span> <span class="op">&lt;-</span> <span class="st">"Maria"</span></span>
+<span><span class="va">idade</span> <span class="op">&lt;-</span> <span class="fl">30</span></span>
+<span><span class="va">altura</span> <span class="op">&lt;-</span> <span class="fl">1.65</span></span>
+<span><span class="va">vetor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">nome</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Maria"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idade</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">altura</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.65</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>
+<strong>= (sinal de igual)</strong>: Também pode ser usado como operador de atribuição. Por exemplo:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="op">=</span> <span class="fl">10</span>         <span class="co"># Atribui o valor 10 à variável y</span></span>
+<span><span class="va">y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+</section><section id="exemplos-de-ordens-de-execução-e-comandos-de-atribuição" class="level3"><h3 class="anchored" data-anchor-id="exemplos-de-ordens-de-execução-e-comandos-de-atribuição">2.12.2 Exemplos de Ordens de Execução e Comandos de Atribuição:**</h3>
+<div class="cell">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">5</span>       <span class="co"># Atribuição primeiro</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">+</span> <span class="fl">3</span>   <span class="co"># Avaliação de expressão (a + 3 = 5 + 3 = 8)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span>     <span class="co"># Impressão do resultado (8)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+</section></section><section id="funções-matemáticas-básicas" class="level2"><h2 class="anchored" data-anchor-id="funções-matemáticas-básicas">2.13 Funções Matemáticas Básicas</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code>: Calcula a soma dos elementos de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 5 6 7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor_caracteres</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "maçã"    "banana"  "laranja"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vetor2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vetor_caracteres</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in sum(vetor_caracteres): 'type' inválido (character) do argumento</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>: Calcula a média aritmética dos elementos de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vetor2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">vetor_caracteres</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mean.default(vetor_caracteres): argumento não é numérico nem lógico:
+retornando NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/stats/median.html">median()</a></code>: Calcula a mediana dos elementos de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">vetor2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">vetor_caracteres</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "laranja"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Extremes.html">max()</a></code>: Retorna o maior valor de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb138"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">vetor2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb140"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">vetor_caracteres</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "maçã"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Extremes.html">min()</a></code>: Retorna o menor valor de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb142"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb144"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">vetor2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb146"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">vetor_caracteres</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "banana"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code>: Calcula a raiz quadrada de um número ou vetor.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb148"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.000000 1.414214 1.732051 2.000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">vetor2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.000000 2.236068 2.449490 2.645751</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb152"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">vetor_caracteres</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in sqrt(vetor_caracteres): non-numeric argument to mathematical function</code></pre>
+</div>
+</div>
+<section id="exemplo" class="level3"><h3 class="anchored" data-anchor-id="exemplo">2.13.1 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb154"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span>, <span class="fl">25</span>, <span class="fl">30</span><span class="op">)</span></span>
+<span><span class="va">soma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">media</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">mediana</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">valor_maximo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">valor_minimo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">raiz_quadrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="funções-de-manipulação-de-dados" class="level2"><h2 class="anchored" data-anchor-id="funções-de-manipulação-de-dados">2.14 Funções de Manipulação de Dados</h2>
+<div class="cell">
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor3</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">7</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/length.html">length()</a></code>: Retorna o número de elementos em um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb156"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">vetor3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/sort.html">sort()</a></code>: Ordena um vetor ou matriz em ordem crescente.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb158"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">vetor3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 4 4 5 7</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/rev.html">rev()</a></code>: Inverte a ordem dos elementos de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb160"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">vetor3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 1 4 2 7 4</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/unique.html">unique()</a></code>: Retorna os elementos únicos de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb162"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">vetor3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 7 2 1 5</code></pre>
+</div>
+</div>
+<section id="exemplo-1" class="level3"><h3 class="anchored" data-anchor-id="exemplo-1">2.14.1 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">dados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 2 8 3 2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tamanho</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">tamanho</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_ordenados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">dados_ordenados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 2 3 5 8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_invertidos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">dados_invertidos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 3 8 2 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dados_unicos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">dados</span><span class="op">)</span></span>
+<span><span class="va">dados_unicos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 2 8 3</code></pre>
+</div>
+</div>
+</section></section><section id="funções-para-criação-de-sequências" class="level2"><h2 class="anchored" data-anchor-id="funções-para-criação-de-sequências">2.15 Funções para Criação de Sequências</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code>: Cria uma sequência de números em incrementos regulares.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/rep.html">rep()</a></code>: Repete um valor ou vetor várias vezes para criar uma sequência.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb175"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia_repetida</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">sequencia</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="va">sequencia_repetida</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10  1  2  3  4  5  6  7  8  9 10  1  2  3  4  5
+[26]  6  7  8  9 10</code></pre>
+</div>
+</div>
+<section id="exemplo-2" class="level3"><h3 class="anchored" data-anchor-id="exemplo-2">2.15.1 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb177"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>  <span class="co"># Cria uma sequência de 1 a 10 com incremento de 2 </span></span>
+<span><span class="va">sequencia1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 3 5 7 9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb179"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sequencia2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>  <span class="co"># Repete o vetor c(1, 2) três vezes</span></span>
+<span><span class="va">sequencia2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 1 2 1 2</code></pre>
+</div>
+</div>
+</section></section><section id="funções-para-criação-de-gráficos" class="level2"><h2 class="anchored" data-anchor-id="funções-para-criação-de-gráficos">2.16 Funções para Criação de Gráficos</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>: Cria um gráfico de dispersão ou linhas.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb181"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor4</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">vetor5</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">vetor4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">vetor4</span>, </span>
+<span>     y <span class="op">=</span> <span class="va">vetor5</span>, </span>
+<span>    las <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    pch <span class="op">=</span> <span class="fl">16</span></span>
+<span>     <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02_basicR_files/figure-html/unnamed-chunk-94-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/graphics/hist.html">hist()</a></code>: Cria um histograma para visualização da distribuição de dados.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">vetor4</span>, </span>
+<span>     las <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02_basicR_files/figure-html/unnamed-chunk-95-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="exemplo-3" class="level3"><h3 class="anchored" data-anchor-id="exemplo-3">2.16.1 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb183"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, type <span class="op">=</span> <span class="st">"b"</span><span class="op">)</span>  <span class="co"># Cria um gráfico de linhas e pontos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02_basicR_files/figure-html/unnamed-chunk-96-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>  <span class="co"># Cria um histograma dos dados no vetor x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02_basicR_files/figure-html/unnamed-chunk-97-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section></section><section id="funções-matemáticas" class="level2"><h2 class="anchored" data-anchor-id="funções-matemáticas">2.17 Funções Matemáticas</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/MathFun.html">abs()</a></code>: Retorna o valor absoluto de um número ou de cada elemento de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb185"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">valor_negativo</span> <span class="op">=</span> <span class="op">-</span><span class="fl">5.9</span></span>
+<span><span class="va">valor_negativo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -5.9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">valor_negativo</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.9</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>: Arredonda um número para o inteiro mais próximo.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">valor_negativo</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -6</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Round.html">ceiling()</a></code>: Arredonda um número para cima (teto).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">valor_negativo</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -5</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Round.html">floor()</a></code>: Arredonda um número para baixo (piso).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb193"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="va">valor_negativo</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -6</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Trig.html">cos()</a></code>, <code><a href="https://rdrr.io/r/base/Trig.html">sin()</a></code>, <code><a href="https://rdrr.io/r/base/Trig.html">tan()</a></code>: Funções trigonométricas.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb195"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb197"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb199"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">tan</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Log.html">exp()</a></code>: Calcula a exponencial de um número ou vetor (<span class="math inline">\(e^x\)</span>).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb201"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.718282</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/Log.html">log()</a></code>: Calcula o logaritmo natural de um número ou vetor.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb203"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.302585</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb205"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">##  log10 calcula o logaritimo na base 10</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> e <code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code>: Calculam a soma e o produto dos elementos de um vetor ou matriz.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb207"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">vetor1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb209"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="va">vetor1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numero</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">5.8</span></span>
+<span><span class="va">valor_absoluto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">numero</span><span class="op">)</span></span>
+<span><span class="va">arredondado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">3.14159</span><span class="op">)</span></span>
+<span><span class="va">teto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fl">5.1</span><span class="op">)</span></span>
+<span><span class="va">piso</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="fl">5.9</span><span class="op">)</span></span>
+<span><span class="va">cosseno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">pi</span><span class="op">)</span></span>
+<span><span class="va">exponencial</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">soma_valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">produto_valores</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/prod.html">prod</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="funções-de-manipulação-de-texto" class="level2"><h2 class="anchored" data-anchor-id="funções-de-manipulação-de-texto">2.18 Funções de Manipulação de Texto</h2>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/paste.html">paste()</a></code>: Concatena várias strings em uma única string.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nomes</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Maria"</span>, <span class="st">"Ana"</span>, <span class="st">"Rafaela"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nomes</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="st">"e"</span>, <span class="va">nomes</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="st">"são minhas amigas."</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Maria e Ana são minhas amigas."</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb216"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nomes</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">nomes</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">nomes</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, sep <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Maria|Ana|Rafaela"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb218"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">nomes</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Maria Ana Rafaela"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/chartr.html">toupper()</a></code>: Converte uma string em letras maiúsculas.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb220"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">nomes</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "MARIA"   "ANA"     "RAFAELA"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/chartr.html">tolower()</a></code>: Converte uma string em letras minúsculas.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb222"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">nomes</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "maria"   "ana"     "rafaela"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/substr.html">substr()</a></code>: Extrai uma subcadeia de caracteres de uma string.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb224"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">nomes</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, start <span class="op">=</span> <span class="fl">1</span>,stop <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mar"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/grep.html">gsub()</a></code>: Substitui padrões em uma string por outros valores.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb226"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"G"</span>, </span>
+<span>     replacement <span class="op">=</span> <span class="st">"R"</span>,</span>
+<span>     x <span class="op">=</span> <span class="st">"Gato"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Rato"</code></pre>
+</div>
+</div>
+<section id="exemplo-4" class="level3"><h3 class="anchored" data-anchor-id="exemplo-4">2.18.1 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb228"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nome1</span> <span class="op">&lt;-</span> <span class="st">"João"</span></span>
+<span><span class="va">nome2</span> <span class="op">&lt;-</span> <span class="st">"Maria"</span></span>
+<span><span class="va">frase</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Olá,"</span>, <span class="va">nome1</span>, <span class="st">"e"</span>, <span class="va">nome2</span><span class="op">)</span>  <span class="co"># Concatenação de strings</span></span>
+<span><span class="va">frase_upper</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">frase</span><span class="op">)</span></span>
+<span><span class="va">frase_lower</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">frase</span><span class="op">)</span></span>
+<span><span class="va">subcadeia</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">frase</span>, start <span class="op">=</span> <span class="fl">6</span>, stop <span class="op">=</span> <span class="fl">11</span><span class="op">)</span>  <span class="co"># Extrai a subcadeia "João e"</span></span>
+<span><span class="va">frase_substituida</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"João"</span>, <span class="st">"Pedro"</span>, <span class="va">frase</span><span class="op">)</span>  <span class="co"># Substitui "João" por "Pedro"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="informações-sobre-diretórios-e-arquivos-em-r" class="level2"><h2 class="anchored" data-anchor-id="informações-sobre-diretórios-e-arquivos-em-r">2.19 Informações sobre Diretórios e Arquivos em R</h2>
+<p>Antes de realizar operações de importação e exportação de dados, é essencial entender o sistema de arquivos e diretórios em que você está trabalhando. No R, o diretório de trabalho é o local padrão onde o R procura arquivos para importação e salva arquivos exportados. Você pode obter informações sobre o diretório de trabalho atual e também alterá-lo conforme necessário.</p>
+<ul>
+<li>
+<code>getwd():</code> Retorna o diretório de trabalho atual, ou seja, o diretório em que o R procura por arquivos e onde salvará os resultados.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/Convidado/ce302/CE302_Elementos_Programacao_Estatistica"</code></pre>
+</div>
+</div>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/base/getwd.html">setwd()</a></code>: Permite alterar o diretório de trabalho para um caminho específico. Isso é útil quando você precisa importar ou exportar dados em um diretório diferente do padrão.</li>
+</ul>
+<section id="exemplo-5" class="level3"><h3 class="anchored" data-anchor-id="exemplo-5">2.19.1 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Verificar o diretório de trabalho atual</span></span>
+<span><span class="va">diretorio_atual</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">diretorio_atual</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C:/Users/Convidado/ce302/CE302_Elementos_Programacao_Estatistica"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb233"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Alterar o diretório de trabalho para uma pasta específica</span></span>
+<span><span class="co"># setwd("/caminho/para/a/pasta")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Além disso, para listar os arquivos e diretórios presentes em um determinado local, você pode utilizar a função <code><a href="https://rdrr.io/r/base/list.files.html">list.files()</a></code>.</p>
+</section><section id="exemplo-6" class="level3"><h3 class="anchored" data-anchor-id="exemplo-6">2.19.2 Exemplo</h3>
+<div class="cell">
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Listar os arquivos no diretório de trabalho atual</span></span>
+<span><span class="va">arquivos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">arquivos</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "_book"                                        
+ [2] "_freeze"                                      
+ [3] "_quarto.yml"                                  
+ [4] "_site"                                        
+ [5] "_site - Copia.yml"                            
+ [6] "_site.yml"                                    
+ [7] "01_markdown_git.qmd"                          
+ [8] "02_basicR.qmd"                                
+ [9] "02_basicR.rmarkdown"                          
+[10] "02_basicR_files"                              
+[11] "03_objects.qmd"                               
+[12] "04_transfomacao-de-dados.qmd"                 
+[13] "05_funcoes.qmd"                               
+[14] "06_loopings.qmd"                              
+[15] "07_graphics.qmd"                              
+[16] "08_comunicacao.qmd"                           
+[17] "10_markdown_cheatsheet.qmd"                   
+[18] "11_git_cheatsheet.qmd"                        
+[19] "12_git_rstudio_cheatsheet.qmd"                
+[20] "avaliacoes"                                   
+[21] "CE302_Elementos_Programacao_Estatistica.Rproj"
+[22] "dados_novos.csv"                              
+[23] "datasets"                                     
+[24] "docs"                                         
+[25] "imagens"                                      
+[26] "index.qmd"                                    
+[27] "index_files"                                  
+[28] "listas"                                       
+[29] "modelos_relatorios"                           
+[30] "preface.qmd"                                  
+[31] "QmdReport.Rproj"                              
+[32] "README.md"                                    
+[33] "references.bib"                               
+[34] "references.qmd"                               
+[35] "scripts_aulas"                                
+[36] "SEDAR.bib"                                    
+[37] "template.docx"                                </code></pre>
+</div>
+</div>
+</section><section id="funções-para-importação-e-exportação-de-dados-e-objetos" class="level3"><h3 class="anchored" data-anchor-id="funções-para-importação-e-exportação-de-dados-e-objetos">2.19.3 Funções para Importação e Exportação de Dados e Objetos</h3>
+<p>O R oferece diversas funções e pacotes para importar e exportar dados em diferentes formatos. Algumas das funções mais comuns incluem:</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code>: Importa dados de um arquivo CSV (Comma-Separated Values) e cria um dataframe. É um formato amplamente utilizado para armazenar dados tabulares.</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code>: Importa dados de um arquivo de texto delimitado e cria um dataframe. Esse formato é útil quando os dados estão separados por caracteres específicos, como tabulações ou pontos e vírgulas.</li>
+<li>
+<code>read.xlsx()</code> (do pacote “readxl”): Importa dados de um arquivo Excel (.xlsx) e cria um dataframe. O formato Excel é amplamente utilizado para armazenar dados em planilhas.</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/write.table.html">write.csv()</a></code>: Exporta um dataframe para um arquivo CSV, permitindo compartilhar os resultados em formato legível por outros softwares.</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/write.table.html">write.table()</a></code>: Exporta um dataframe para um arquivo de texto delimitado, permitindo compartilhar os resultados de forma mais flexível.</li>
+</ul>
+<p><strong>Exemplo</strong>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb236"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Importar dados de um arquivo CSV</span></span>
+<span><span class="va">dados</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">"dados.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in file(file, "rt"): não foi possível abrir o arquivo 'dados.csv': No
+such file or directory</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in file(file, "rt"): não é possível abrir a conexão</code></pre>
+</div>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exportar um dataframe para um arquivo CSV</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv</a></span><span class="op">(</span><span class="va">dados</span>, <span class="st">"dados_novos.csv"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="exploração-de-conjuntos-de-dados-integrados-e-edição-dos-mesmos" class="level3"><h3 class="anchored" data-anchor-id="exploração-de-conjuntos-de-dados-integrados-e-edição-dos-mesmos">2.19.4 Exploração de Conjuntos de Dados Integrados e Edição dos Mesmos</h3>
+<p>O R inclui diversos conjuntos de dados integrados que estão disponíveis por padrão. Esses conjuntos são úteis para fins de prática, aprendizado e também para a demonstração de recursos da linguagem. Para explorar esses conjuntos, você pode usar funções como <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>, <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>, <code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code> e <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
+<ul>
+<li>
+<code><a href="https://rdrr.io/r/utils/data.html">data()</a></code>: Lista os conjuntos de dados integrados disponíveis no R. Isso permite que você veja quais conjuntos estão disponíveis para importação.</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/head.html">head()</a></code>: Exibe as primeiras linhas de um dataframe, permitindo uma visualização rápida dos dados.</li>
+<li>
+<code><a href="https://rdrr.io/r/utils/head.html">tail()</a></code>: Exibe as últimas linhas de um dataframe, especialmente útil para conjuntos de dados com muitas observações.</li>
+<li>
+<code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>: Fornece um resumo estatístico dos dados em um dataframe, incluindo medidas como média, mediana, mínimo, máximo e quartis.</li>
+</ul>
+<section id="exemplo-7" class="level5"><h5 class="anchored" data-anchor-id="exemplo-7">2.19.4.1 Exemplo</h5>
+<div class="cell">
+<div class="sourceCode" id="cb240"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Listar conjuntos de dados integrados disponíveis no R</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Carregar o conjunto de dados "iris" (conjunto de dados de flores iris)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir as primeiras linhas do conjunto de dados "iris"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb242"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exibir as últimas linhas do conjunto de dados "iris"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+145          6.7         3.3          5.7         2.5 virginica
+146          6.7         3.0          5.2         2.3 virginica
+147          6.3         2.5          5.0         1.9 virginica
+148          6.5         3.0          5.2         2.0 virginica
+149          6.2         3.4          5.4         2.3 virginica
+150          5.9         3.0          5.1         1.8 virginica</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb244"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exibir um resumo estatístico do conjunto de dados "iris"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+       Species  
+ setosa    :50  
+ versicolor:50  
+ virginica :50  
+                
+                
+                </code></pre>
+</div>
+</div>
+<p>Uma vez que os dados são importados ou carregados no R, você pode realizar várias operações de edição, transformação e limpeza nos dataframes. Isso inclui seleção de colunas, filtragem de dados, criação de novas variáveis, cálculos estatísticos e muito mais. O R oferece uma ampla variedade de funções e pacotes que permitem manipular dados de forma eficiente e eficaz.</p>
+
+
+</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+<ol>
+<li id="fn1"><p>software com código-fonte que qualquer pessoa pode inspecionar, modificar e aprimorar.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

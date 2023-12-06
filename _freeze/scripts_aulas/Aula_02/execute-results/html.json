@@ -1,0 +1,14 @@
+{
+  "hash": "161b94e164eb717c567c987f4929914b",
+  "result": {
+    "markdown": "---\nalways_allow_html: true\ntitle: \"Aula 02\"\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nx = 10\nX = 3\n\nMinhaIdade<- 10\nminhaIdade <- 50\nminha_idade <- 45\n\nif <- 90\nfor <- 10\nNA <- 10\n\n\n#### Comentario do código\n\n1 + 2\n1 - 2\n16*6\n5/6\n2^2\n2**2\n6%%2 # resto da divisao\n7%/%2 \n\n\na <- 10\nb <- 20\na == b\n# a = b\n# a\n# b\na != b\na > b\nb > a\n\na >= b\nb <= a\n\nvetor1 = c(1,2,3,4)\na\nvetor2 = seq(1:100)\nvetor2\n\nvetor3 = seq(from = 10, to = 50, by = 5)\nvetor3\n\nvetor3[3] <- 200\nvetor3\n\nvetor2 * 2\nvetor1 + 20\n\nvetor4 = seq(1:10)\nvetor5 = seq(11:20)\n\nvetor4+vetor5\n\nvetor6 <- c(\"banana\", \"maça\", \"laranja\")\nvetor7 <- c('banana', \"maça\", \" maça\")\n\nvetor7 == vetor6\nvetor7\n\n\n#######\nd <- c(10, 20)\nd + 10\n\nprint(d)\n\ninvisible( x<- d + 10)\nx\n```\n\n::: {.cell-output .cell-output-error}\n```\nError: <text>:8:4: unexpected assignment\n7: \n8: if <-\n      ^\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

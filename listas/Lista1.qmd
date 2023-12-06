@@ -1,0 +1,243 @@
+---
+always_allow_html: true
+title: "Lista 01"
+---
+
+# Aula 01: Markdown
+
+---
+
+## Formatação de Texto
+
+---
+
+### 1.  Crie um título de nível 1.
+
+# Título de Nível 1
+
+------------------------------------------------------------------------
+
+### 2.  Escreva um parágrafo de texto normal.
+
+Parágrafo de texto normal.
+
+------------------------------------------------------------------------
+
+### 3.  Destaque uma palavra em itálico.
+
+Uma palavra em *itálico*
+
+------------------------------------------------------------------------
+
+### 4.  Deixe outra palavra em negrito.
+
+Outra palavra em **negrito**.
+
+------------------------------------------------------------------------
+
+### 5.  Crie um texto com sublinhado.
+
+<u>Texto sublinhado</u>
+
+------------------------------------------------------------------------
+
+### 6.  Combine itálico e negrito em uma mesma palavra.
+
+***itálico e negrito***.
+
+------------------------------------------------------------------------
+
+### 7.  Crie uma lista não ordenada com três itens.
+
+-   Item 1
+-   Item 2
+-   Item 3
+
+------------------------------------------------------------------------
+
+### 8.  Faça uma lista ordenada com quatro itens.
+
+Lista de Itens ordenadas 1. Item A 2. Item B 3. Item C 4. Item D
+
+------------------------------------------------------------------------
+
+### 9.  Crie um link para o site do Google.
+
+[Google](https://www.google.com/)
+
+------------------------------------------------------------------------
+
+### 10. Insira uma imagem que esteja no mesmo diretório que seu arquivo.
+
+![Pinguins](./Imagens/pinguim.jpeg)
+
+------------------------------------------------------------------------
+
+### 11. Insira uma imagem da internet.
+
+![O maior de todos](https://e0.pxfuel.com/wallpapers/673/686/desktop-wallpaper-internacional-brasil.jpg)
+
+------------------------------------------------------------------------
+
+### 12. Crie um bloco de citação.
+
+> Isso é um bloco de citação.
+
+------------------------------------------------------------------------
+
+## Elementos Estruturais {#elementos-estruturais}
+
+------------------------------------------------------------------------
+
+### 13. Crie um sub-título de nível 2.
+
+## Subtítulo de Nível 2
+
+------------------------------------------------------------------------
+
+### 14. Faça uma divisão horizontal.
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+### 15. Crie uma lista aninhada com pelo menos dois níveis.
+
+-   Item
+    -   Subitem 1
+    -   Subitem 2
+
+------------------------------------------------------------------------
+
+### 16. Crie um trecho de código inline.
+
+`codigo_inline()`
+
+------------------------------------------------------------------------
+
+### 17. Insira um bloco de código com realce de sintaxe para R.
+
+``` r
+# Soma no R
+x <- 1 + 1
+print(x)
+```
+
+------------------------------------------------------------------------
+
+### 18. Crie um link para uma seção dentro do próprio documento.
+
+[Ir para Elementos Estruturais](#elementos-estruturais)
+
+------------------------------------------------------------------------
+
+### 19. Liste os itens a seguir em uma tabela com duas colunas: "Item" e "Quantidade".
+
+| Item     | Quantidade |
+|----------|------------|
+| Maçãs    | 5          |
+| Bananas  | 3          |
+| Laranjas | 8          |
+
+------------------------------------------------------------------------
+
+## Outras Funcionalidades
+
+---
+
+### 20. Crie uma nota de rodapé com uma explicação.
+
+Eu tenho mais pra dizer. [^1]
+
+[^1]: Nota de rodapé: Esta é a explicação.
+
+------------------------------------------------------------------------
+
+### 21. Crie uma lista de tarefas com três itens.
+
+-   [x] Tarefa 1
+-   [ ] Tarefa 2
+-   [ ] Tarefa 3
+
+------------------------------------------------------------------------
+
+### 22. Inclua uma citação de um livro ou autor.
+
+> "*O Pistoleiro segue o Homem de Preto em um mundo desolado. Sua obsessão por ele vai fazer com que tome decisões ruins ao longo de sua jornada.*" - O Pistoleiro
+
+------------------------------------------------------------------------
+
+### 23. Crie um bloco de código com várias linhas usando realce de sintaxe.
+
+Código
+
+``` {r}
+a = 1
+b = 2
+
+  
+# Resultado
+
+print(a + b)
+````
+
+------------------------------------------------------------------------
+
+### 24. Destaque um trecho de texto como código, sem realce de sintaxe.
+
+A soma de a + b é igual a `3`.
+
+------------------------------------------------------------------------
+
+### 25. Crie um link automático para um URL.
+
+<https://www.google.com>
+
+------------------------------------------------------------------------
+
+### 26. Liste os passos de um tutorial usando sub-listas.
+
+1.  Primeiro passo:
+
+-   Subpasso 1
+-   Subpasso 2
+
+2.  Segundo passo:
+    -   Subpasso 1
+    -   Subpasso 2
+
+------------------------------------------------------------------------
+
+### 27. Incorpore um vídeo do YouTube.
+
+[![Shrek sextou!](https://img.youtube.com/vi/6W7HauaG3Bg/0.jpg)](https://www.youtube.com/watch?v=6W7HauaG3Bg)
+
+------------------------------------------------------------------------
+
+### 28. Insira um elemento de áudio.
+
+------------------------------------------------------------------------
+
+### 29. Insira um emoji no seu texto (por exemplo, um coração ♥).
+
+:heart:
+
+------------------------------------------------------------------------
+
+### 30. Crie um alerta colorido usando callout.
+
+::: {style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;"}
+I am a success message
+:::
+
+::: {style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #a94442; background-color: #f2dede; border-color: #ebccd1;"}
+I am an error message
+:::
+
+::: {style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1;"}
+I am a info message
+:::
+
+::: {style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #8a6d3b;; background-color: #fcf8e3; border-color: #faebcc;"}
+I am a warning message
+:::

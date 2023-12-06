@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>CE302 - Elementos de Programação para Estatística - 2&nbsp; Documentação, Organização de códigos e Sistemas de versionamento</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02_basicR.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01_markdown_git.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Documentação, Organização de códigos e Sistemas de versionamento</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CE302 - Elementos de Programação para Estatística</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/RVerse-Tutorials/QmdReport" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+<li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./CE302---Elementos-de-Programação-para-Estatística.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./CE302---Elementos-de-Programação-para-Estatística.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+</div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Informações Úteis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_markdown_git.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Documentação, Organização de códigos e Sistemas de versionamento</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_basicR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">2 Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_objetcs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Objetos em R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_transfomacao-de-dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">4 Transformação de dados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">5 Funções e Expressões</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_loopings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">6 Estruturas de Repetição: <em>Loopings</em></span></span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li>
+<a href="#markdown" id="toc-markdown" class="nav-link active" data-scroll-target="#markdown"><span class="header-section-number">2.1</span> 1.1 <i class="fas fa-envelope"></i> Markdown</a>
+  <ul class="collapse">
+<li><a href="#editores-de-markdown" id="toc-editores-de-markdown" class="nav-link" data-scroll-target="#editores-de-markdown"><span class="header-section-number">2.1.1</span> 1.1.1 Editores de Markdown</a></li>
+  <li><a href="#sintaxe-b%C3%A1sica" id="toc-sintaxe-básica" class="nav-link" data-scroll-target="#sintaxe-b%C3%A1sica"><span class="header-section-number">2.1.2</span> 1.1.2 Sintaxe Básica</a></li>
+  <li><a href="#funcionalidades-avan%C3%A7adas-do-markdown" id="toc-funcionalidades-avançadas-do-markdown" class="nav-link" data-scroll-target="#funcionalidades-avan%C3%A7adas-do-markdown"><span class="header-section-number">3.1.2</span> 1.1.3 Funcionalidades Avançadas do Markdown</a></li>
+  <li><a href="#cheat-sheet" id="toc-cheat-sheet" class="nav-link" data-scroll-target="#cheat-sheet"><span class="header-section-number">3.3.1</span> 1.3.1 Cheat-Sheet</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#organiza%C3%A7%C3%A3o" id="toc-organização" class="nav-link" data-scroll-target="#organiza%C3%A7%C3%A3o"><span class="header-section-number">3.4</span> 1.4 Organização</a>
+  <ul class="collapse">
+<li><a href="#nomenclatura-adequada" id="toc-nomenclatura-adequada" class="nav-link" data-scroll-target="#nomenclatura-adequada"><span class="header-section-number">3.4.1</span> 1.4.1 Nomenclatura Adequada</a></li>
+  <li><a href="#estrutura-de-diret%C3%B3rios" id="toc-estrutura-de-diretórios" class="nav-link" data-scroll-target="#estrutura-de-diret%C3%B3rios"><span class="header-section-number">3.4.2</span> 1.4.2 Estrutura de Diretórios</a></li>
+  <li><a href="#m%C3%B3dulos-e-fun%C3%A7%C3%B5es-reutiliz%C3%A1veis" id="toc-módulos-e-funções-reutilizáveis" class="nav-link" data-scroll-target="#m%C3%B3dulos-e-fun%C3%A7%C3%B5es-reutiliz%C3%A1veis"><span class="header-section-number">3.4.3</span> 1.4.3 Módulos e Funções Reutilizáveis</a></li>
+  <li><a href="#divis%C3%A3o-por-responsabilidade" id="toc-divisão-por-responsabilidade" class="nav-link" data-scroll-target="#divis%C3%A3o-por-responsabilidade"><span class="header-section-number">3.4.4</span> 1.4.4 Divisão por Responsabilidade</a></li>
+  <li><a href="#documenta%C3%A7%C3%A3o" id="toc-documentação" class="nav-link" data-scroll-target="#documenta%C3%A7%C3%A3o"><span class="header-section-number">3.4.5</span> 1.4.5 Documentação</a></li>
+  <li><a href="#versionamento-com-git" id="toc-versionamento-com-git" class="nav-link" data-scroll-target="#versionamento-com-git"><span class="header-section-number">3.4.6</span> 1.4.6 Versionamento com Git</a></li>
+  <li><a href="#exemplo-de-estrutura-completa-do-projeto" id="toc-exemplo-de-estrutura-completa-do-projeto" class="nav-link" data-scroll-target="#exemplo-de-estrutura-completa-do-projeto"><span class="header-section-number">3.4.7</span> 1.4.7 Exemplo de Estrutura Completa do Projeto</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#sistemas-de-versionamento" id="toc-sistemas-de-versionamento" class="nav-link" data-scroll-target="#sistemas-de-versionamento"><span class="header-section-number">3.5</span> 1.5 Sistemas de Versionamento</a>
+  <ul class="collapse">
+<li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">3.5.1</span> 1.5.1 <i class="fas fa-git"></i> Git</a></li>
+  <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">3.5.2</span> 1.5.2 <i class="fas fa-github"></i> GitHub</a></li>
+  <li><a href="#import%C3%A2ncia-do-versionamento-de-c%C3%B3digo" id="toc-importância-do-versionamento-de-código" class="nav-link" data-scroll-target="#import%C3%A2ncia-do-versionamento-de-c%C3%B3digo"><span class="header-section-number">3.5.3</span> 1.5.3 Importância do Versionamento de Código</a></li>
+  <li><a href="#criando-uma-conta-no-github" id="toc-criando-uma-conta-no-github" class="nav-link" data-scroll-target="#criando-uma-conta-no-github"><span class="header-section-number">3.5.4</span> 1.5.4 Criando uma Conta no GitHub</a></li>
+  <li><a href="#mantendo-projetos-e-colaborando-no-github" id="toc-mantendo-projetos-e-colaborando-no-github" class="nav-link" data-scroll-target="#mantendo-projetos-e-colaborando-no-github"><span class="header-section-number">3.5.5</span> 1.5.5 Mantendo Projetos e Colaborando no GitHub</a></li>
+  <li><a href="#comandos-b%C3%A1sicos-do-git" id="toc-comandos-básicos-do-git" class="nav-link" data-scroll-target="#comandos-b%C3%A1sicos-do-git"><span class="header-section-number">3.5.6</span> 1.5.6 Comandos Básicos do Git</a></li>
+  <li><a href="#cheat-sheet-git" id="toc-cheat-sheet-git" class="nav-link" data-scroll-target="#cheat-sheet-git"><span class="header-section-number">3.5.7</span> 1.5.7 Cheat-Sheet Git</a></li>
+  <li><a href="#cheat-sheet-rstudio-git" id="toc-cheat-sheet-rstudio-git" class="nav-link" data-scroll-target="#cheat-sheet-rstudio-git"><span class="header-section-number">3.5.8</span> 1.5.8 Cheat-Sheet RStudio &amp; Git</a></li>
+  </ul>
+</li>
+  <li><a href="#recursos-extras" id="toc-recursos-extras" class="nav-link" data-scroll-target="#recursos-extras"><span class="header-section-number">3.6</span> 1.6 Recursos extras</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/01_markdown_git.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/01_markdown_git.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Documentação, Organização de códigos e Sistemas de versionamento</span>
+</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="markdown" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="markdown">
+<span class="header-section-number">2.1</span> 1.1 <i class="fas fa-envelope"></i> Markdown</h2>
+<p><strong>Markdown é uma linguagem de marcação leve</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, criada por John Gruber em 2004, que permite formatação de texto de forma simples e rápida, sem a necessidade de conhecimentos avançados de programação ou design. É amplamente utilizado em diversas plataformas para criar documentos, páginas web, blogs, e-mails e muito mais.</p>
+<p>O Markdown foi projetado para ser fácil de ler e escrever, utilizando uma sintaxe simples e intuitiva. Compatível com HTML, ele pode ser convertido diretamente para outras linguagens de marcação, facilitando a publicação em diferentes plataformas.</p>
+<p>O uso do Markdown tem se popularizado principalmente entre escritores, programadores, blogueiros e criadores de conteúdo online sem a complexidade de outras linguagens de marcação, como HTML.</p>
+<p>Neste capítulo, veremos os conceitos básicos do Markdown e como utilizá-lo para <strong>criar conteúdo</strong> com <strong>formatação atraente e organizada</strong>.</p>
+<section id="editores-de-markdown" class="level3" data-number="2.1.1"><h3 data-number="2.1.1" class="anchored" data-anchor-id="editores-de-markdown">
+<span class="header-section-number">2.1.1</span> 1.1.1 Editores de Markdown</h3>
+<p>Antes de começarmos a escrever em Markdown, é útil saber que podemos utilizar qualquer editor de texto simples para criar arquivos Markdown. No entanto, existem editores específicos que oferecem recursos adicionais, como visualização em tempo real, realce de sintaxe e pré-visualização.</p>
+<p>Alguns editores de Markdown populares são:</p>
+<ol type="1">
+<li><p><strong>Visual Studio Code</strong>: Um editor de código altamente configurável que possui extensões para suporte ao Markdown. Além disso, o Visual Studio Code oferece uma pré-visualização em tempo real à medida que você digita seu conteúdo Markdown.</p></li>
+<li><p><strong>Atom</strong>: Outro editor de código fonte aberto com suporte ao Markdown e uma comunidade ativa de desenvolvedores. O Atom também fornece pacotes que aprimoram a experiência de escrita em Markdown.</p></li>
+<li><p><strong>Typora</strong>: Um editor Markdown com visualização em tempo real e uma interface de escrita amigável. O Typora é conhecido por sua abordagem “<em>What You See Is What You Get</em>” (WYSIWYG), o que significa que a visualização em tempo real mostra o documento final como apareceria após ser renderizado.</p></li>
+<li><p><strong>StackEdit</strong>: Uma ferramenta <em>online</em> que permite escrever e salvar seus documentos Markdown na nuvem. O StackEdit também possui uma visualização em tempo real para facilitar a visualização do resultado final. <a href="https://stackedit.io/app#">Teste Aqui</a></p></li>
+<li><p><strong>RStudio/Posit</strong>: RStudio é uma IDE (<em>Integrated Development Environment</em>) muito utilizada por programadores e cientistas de dados em projetos envolvendo a linguagem R. O RStudio possui um ambiente dedicado para edição de documentos R Markdown, que combina a facilidade do Markdown com a capacidade de incorporar análises e gráficos gerados pelo R.</p></li>
+</ol>
+<p>Arquivos puramente em Markdown apresentam a extensão <code>.md</code>. Porém, quando utilizamos RMarkdown ou Quarto sua extensão se torna <code>.Rmd</code> ou <code>.qmd</code>, respectivamente.</p>
+</section><section id="sintaxe-básica" class="level3" data-number="2.1.2"><h3 data-number="2.1.2" class="anchored">
+<span class="header-section-number">2.1.2</span> 1.1.2 Sintaxe Básica</h3>
+<section id="títulos" class="level4" data-number="2.1.2.1"><h4 data-number="2.1.2.1" class="anchored">
+<span class="header-section-number">2.1.2.1</span> 1.1.2.1 Títulos</h4>
+<p>Para criar títulos em Markdown, podemos utilizar a sintaxe de hashtags (<code>#</code>). A quantidade de <em>hashtags</em> determina o nível do título.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Título de Nível 1</span></span>
+<span><span class="co">## Título de Nível 2</span></span>
+<span><span class="co">### Título de Nível 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<h1 id="título-de-nível-1" data-number="3">
+<span class="header-section-number">3</span> Título de Nível 1</h1>
+<h2 id="título-de-nível-2" data-number="3.1" class="anchored" data-anchor-id="títulos">
+<span class="header-section-number">3.1</span> Título de Nível 2</h2>
+<h3 id="título-de-nível-3" data-number="3.1.1" class="anchored">
+<span class="header-section-number">3.1.1</span> Título de Nível 3</h3>
+</blockquote>
+</section><section id="parágrafos-e-quebras-de-linha" class="level4" data-number="3.1.1.1"><h4 data-number="3.1.1.1" class="anchored" data-anchor-id="parágrafos-e-quebras-de-linha">
+<span class="header-section-number">3.1.1.1</span> 1.1.2.2 Parágrafos e Quebras de Linha</h4>
+<p>Para criar parágrafos, basta digitar o texto normalmente. Para criar uma quebra de linha, insira dois espaços no final do parágrafo.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Isso é um parágrafo.</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Isso é outro parágrafo.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<p>Isso é um parágrafo.</p>
+<p>Isso é outro parágrafo.</p>
+</blockquote>
+</section><section id="ênfase" class="level4" data-number="3.1.1.2"><h4 data-number="3.1.1.2" class="anchored" data-anchor-id="ênfase">
+<span class="header-section-number">3.1.1.2</span> 1.1.2.3 Ênfase</h4>
+<p>Para destacar palavras ou frases, você pode utilizar o asterisco (<code>*</code>) ou o sublinhado (<code>_</code>).</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>*Itálico* ou _Itálico_</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>**Negrito** ou __Negrito__</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<p><em>Itálico</em> ou <em>Itálico</em></p>
+<p><strong>Negrito</strong> ou <strong>Negrito</strong></p>
+</blockquote>
+</section><section id="listas" class="level4" data-number="3.1.1.3"><h4 data-number="3.1.1.3" class="anchored" data-anchor-id="listas">
+<span class="header-section-number">3.1.1.3</span> 1.1.2.4 Listas</h4>
+<section id="lista-não-ordenada" class="level5" data-number="3.1.1.3.1"><h5 data-number="3.1.1.3.1" class="anchored" data-anchor-id="lista-não-ordenada">
+<span class="header-section-number">3.1.1.3.1</span> 1.1.2.4.1 Lista Não Ordenada</h5>
+<p>Para criar uma lista não ordenada, utilize o asterisco (<code>*</code>), o sinal de mais (<code>+</code>) ou o traço (<code>-</code>) seguido do item.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>- Item 1</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>- Item 2</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>- Item 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>+ Item 1</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>+ Item 2</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>+ Item 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>* Item 1</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>* Item 2</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>* Item 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+</blockquote>
+</section><section id="lista-ordenada" class="level5" data-number="3.1.1.3.2"><h5 data-number="3.1.1.3.2" class="anchored" data-anchor-id="lista-ordenada">
+<span class="header-section-number">3.1.1.3.2</span> 1.1.2.4.2 Lista Ordenada</h5>
+<p>Para criar uma lista ordenada, digitamos o número seguido de um ponto.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>1.  Item 1</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>2.  Item 2</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>3.  Item 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<ol type="1">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+</blockquote>
+<blockquote class="blockquote">
+<p>Se os números forem colocados fora de ordem, os itens ainda serão numerados corretamente.</p>
+</blockquote>
+</section></section><section id="lista-aninhada" class="level4" data-number="3.1.1.4"><h4 data-number="3.1.1.4" class="anchored" data-anchor-id="lista-aninhada">
+<span class="header-section-number">3.1.1.4</span> 1.1.2.5 Lista Aninhada</h4>
+<p>Para criar uma lista aninhada, simplesmente digitamos uma tabulação antes do indicador de lista (<code>*</code>, <code>+</code>, <code>-</code>, <code>1.</code>).</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>*  Item 1</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>   +  Item 1.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<ul>
+<li>Item 1
+<ul>
+<li>Item 1.1</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+</section><section id="links" class="level4" data-number="3.1.1.5"><h4 data-number="3.1.1.5" class="anchored" data-anchor-id="links">
+<span class="header-section-number">3.1.1.5</span> 1.1.2.6 Links</h4>
+<p>Para adicionar um <em>link</em>, utilizamos a sintaxe <code>[texto](URL)</code>.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[Google.com](google.com)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<p><a href="google.com">Google.com</a></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Para incluir links rapidamente também podemos utilizar <code>&lt;link&gt;</code>.</p>
+</blockquote>
+</section><section id="imagens" class="level4" data-number="3.1.1.6"><h4 data-number="3.1.1.6" class="anchored" data-anchor-id="imagens">
+<span class="header-section-number">3.1.1.6</span> 1.1.2.7 Imagens</h4>
+<p>Para inserirmos uma imagem, utilizamos a sintaxe <code>![texto alternativo](URL da imagem)</code>.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>![Logo do Markdown](https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/312px-Markdown-mark.svg.png?20190322184628)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Markdown-mark.svg/312px-Markdown-mark.svg.png?20190322184628" class="img-fluid" alt="Logo do Markdown">
+</blockquote>
+</section><section id="citações" class="level4" data-number="3.1.1.7"><h4 data-number="3.1.1.7" class="anchored" data-anchor-id="citações">
+<span class="header-section-number">3.1.1.7</span> 1.1.2.8 Citações</h4>
+<p>Para adcionar uma citação, utilizamos o sinal de maior que (<code>&gt;</code>).</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>&gt; E nessa loucura de dizer que não te quero  </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>&gt; Vou negando as aparências  </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>&gt; Disfarçando as evidências  </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>&gt; (Evidências, </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Chitãozinho &amp; Xororó)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<blockquote class="blockquote">
+<p>E nessa loucura de dizer que não te quero <br> Vou negando as aparências <br> Disfarçando as evidências <br> (Evidências, Chitãozinho &amp; Xororó)</p>
+</blockquote>
+</blockquote>
+</section></section><section id="funcionalidades-avançadas-do-markdown" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored">
+<span class="header-section-number">3.1.2</span> 1.1.3 Funcionalidades Avançadas do Markdown</h3>
+<p>Agora que já aprendemos os conceitos básicos do Markdown, vamos explorar algumas funcionalidades mais avançadas que tornam essa linguagem ainda mais poderosa e versátil.</p>
+<section id="referência-cruzada" class="level4" data-number="3.1.2.1"><h4 data-number="3.1.2.1" class="anchored">
+<span class="header-section-number">3.1.2.1</span> 1.1.3.1 Referência cruzada</h4>
+<p>As referências cruzadas permitem que você crie <em>links</em> para seções específicas dentro do seu documento Markdown. Isso é especialmente útil para documentos extensos, onde você deseja facilitar a navegação do leitor. Para criar uma referência cruzada precisamos atribuir um identificador único a um título usando a sintaxe <code>{#identificador}</code> e, em seguida, criar o link utilizando o mesmo identificador precedido de <code>#</code>.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>## Seção 1 {#sec-01}</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Este é o conteúdo da seção 1.</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Para referenciar esta seção, [clique aqui](#sec-01).</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<h2 id="sec-01" data-number="3.2" class="anchored" data-anchor-id="referência-cruzada">
+<span class="header-section-number">3.2</span> Seção 1</h2>
+<p>Este é o conteúdo da seção 1.</p>
+<p>Para referenciar esta seção, <a href="#sec-01">clique aqui</a>.</p>
+</blockquote>
+<p>Outra opção para referenciamento é utilizando o <code>@</code>.</p>
+<blockquote class="blockquote">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>## Seção 2 {#sec-02}</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Este é o conteúdo da seção 2.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Como visto na @sec-02, ... .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<h2 id="sec-02" data-number="3.3" class="anchored">
+<span class="header-section-number">3.3</span> Seção 2</h2>
+<p>Este é o conteúdo da seção 2.</p>
+<p>Como visto na <a href="#sec-02"><span>Section&nbsp;3.3</span></a>, … .</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Para uma melhor organização das referências cruzadas em um projeto categorizamos figuras como <code>fig-</code>, tabelas como <code>tab-</code> e seções como <code>sec-</code>.</p>
+</blockquote>
+</section><section id="tabelas" class="level4" data-number="3.3.0.1"><h4 data-number="3.3.0.1" class="anchored" data-anchor-id="tabelas">
+<span class="header-section-number">3.3.0.1</span> 1.3.0.1 Tabelas</h4>
+<p>As tabelas permitem organizar dados em formato tabular. Para criar uma tabela em Markdown, utilizamos o caractere de pipe (<code>|</code>) para separar as colunas e o hífen (<code>-</code>) na segunda linha para definir o alinhamento das células.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>| Nome   | Idade | Profissão       |</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>|--------|-------|-----------------|</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>| João   | 30    | Estatístico     |</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>| Maria  | 28    | Designer        |</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>| Pedro  | 35    | Desenvolvedor   |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<table class="table">
+<thead><tr class="header">
+<th>Nome</th>
+<th>Idade</th>
+<th>Profissão</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>João</td>
+<td>30</td>
+<td>Estatístico</td>
+</tr>
+<tr class="even">
+<td>Maria</td>
+<td>28</td>
+<td>Designer</td>
+</tr>
+<tr class="odd">
+<td>Pedro</td>
+<td>35</td>
+<td>Desenvolvedor</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</section><section id="blocos-de-código" class="level4" data-number="3.3.0.2"><h4 data-number="3.3.0.2" class="anchored" data-anchor-id="blocos-de-código">
+<span class="header-section-number">3.3.0.2</span> 1.3.0.2 Blocos de Código</h4>
+<p>Para exibir blocos de código, utilizamos três acentos graves (<code>```</code>) seguidos do nome da linguagem de programação. Isso destacará a sintaxe de acordo com a linguagem escolhida.</p>
+<p>Quando estamos utilizando Quarto, portanto, um arquivo <code>.qmd</code> o código incluído dentro do bloco delimitado será executado de acordo com a linguagem definida. Isto é, se o código dentro do bloco é um código em R, será executado como em R, se é um código em Python, será executado em Python, se é um código em Mermaid, será executado em Mermaid, e assim por diante.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>1 + 1 </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\`</span>``</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>```{python}</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>1 + 1 </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\`</span>``</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+</div>
+</blockquote>
+</section><section id="linhas-horizontais" class="level4" data-number="3.3.0.3"><h4 data-number="3.3.0.3" class="anchored" data-anchor-id="linhas-horizontais">
+<span class="header-section-number">3.3.0.3</span> 1.3.0.3 Linhas Horizontais</h4>
+<p>Para criar uma linha horizontal, utilize três hífens (<code>---</code>).</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Texto acima da linha horizontal.</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>Texto abaixo da linha horizontal.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<p>Texto acima da linha horizontal.</p>
+<hr>
+<p>Texto abaixo da linha horizontal.</p>
+</blockquote>
+</section><section id="fórmulas-matemáticas" class="level4" data-number="3.3.0.4"><h4 data-number="3.3.0.4" class="anchored" data-anchor-id="fórmulas-matemáticas">
+<span class="header-section-number">3.3.0.4</span> 1.3.0.4 Fórmulas Matemáticas</h4>
+<p>Se você precisa escrever fórmulas matemáticas, é possível utilizar a notação LaTeX dentro de um par de cifrões (<code>$$</code>). Isso permitirá que o Markdown renderize a fórmula corretamente.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>A equação quadrática é definida como <span class="ss">$$ax^2 + bx + c = 0.$$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<p>A equação quadrática é definida como <span class="math display">\[ax^2 + bx + c = 0.\]</span></p>
+</blockquote>
+<p>Quando queremos utilizar alguma fórmula matemática dentro de um texto utilizamos apenas um cifrão <code>$</code> de cada lado da equação.</p>
+<blockquote class="blockquote">
+<p>Exemplo</p>
+<p><i class="fas fa-file-code-o"></i> <strong>Código</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>A equação quadrática é definida como <span class="ss">$ax^2 + bx + c = 0.$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><i class="fas fa-calculator"></i> <strong>Resultado</strong></p>
+<p>A equação quadrática é definida como <span class="math inline">\(ax^2 + bx + c = 0.\)</span></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Para saber mais sobre como escrever equações em LaTex acesse a <a href="http://fap.if.usp.br/~vvuolo/A%20-%20HOME%20-%20Fisica/Apostiladelatex.pdf">Apostila Online</a>.</p>
+</blockquote>
+</section></section><section id="cheat-sheet" class="level3" data-number="3.3.1"><h3 data-number="3.3.1" class="anchored" data-anchor-id="cheat-sheet">
+<span class="header-section-number">3.3.1</span> 1.3.1 Cheat-Sheet</h3>
+<p><a href="https://gysi.quarto.pub/ce302/cheatsheet/md_cheatsheet.html">Clique aqui</a> para a cheat-sheet so material de Markdown.</p>
+</section></section><section id="organização" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="organização">
+<span class="header-section-number">3.4</span> 1.4 Organização</h2>
+<p>As boas práticas de programação são essenciais para desenvolver código de qualidade, que seja fácil de entender, manter e evoluir. Uma das áreas importantes dentro das boas práticas é a organização dos arquivos, que ajuda a tornar o projeto mais coeso e legível.</p>
+<section id="nomenclatura-adequada" class="level3" data-number="3.4.1"><h3 data-number="3.4.1" class="anchored" data-anchor-id="nomenclatura-adequada">
+<span class="header-section-number">3.4.1</span> 1.4.1 Nomenclatura Adequada</h3>
+<p>A nomenclatura adequada dos arquivos é essencial para uma organização eficiente. Ao criar arquivos para projetos de análise de dados, independente da linguagem, devemos escolher nomes descritivos que reflitam o conteúdo ou a finalidade do arquivo. Por exemplo, <code>limpeza_dados.R</code> ou a<code>nalise_exploratoria.R</code> são nomes mais informativos do que <code>arquivo1.R</code> ou <code>script_final.R</code>.</p>
+<p>Quando lidamos com uma sequência nas quais os códigos devem ser executados prefira salvar os códigos com nomes que indiquem essa ordem. Por exemplo, se há necessidade de que os dados sejam <em>limpos</em> antes de iniciarmos uma <em>análise exploratória</em> devemos salvar os códigos com os seguintes nomes <code>01_limpeza_dados.R</code> e <code>02_analise_exploratoria.R</code>, indicando a ordem na qual os códigos devem ser executados.</p>
+<p>Ao longo do curso, utilizaremos nomes consistentes para facilitar a compreensão e a busca de arquivos relacionados.</p>
+</section><section id="estrutura-de-diretórios" class="level3" data-number="3.4.2"><h3 data-number="3.4.2" class="anchored" data-anchor-id="estrutura-de-diretórios">
+<span class="header-section-number">3.4.2</span> 1.4.2 Estrutura de Diretórios</h3>
+<p>A organização dos arquivos em diretórios lógicos é crucial para projetos de análise de dados. Considere uma estrutura de diretórios que abranja etapas comuns da análise, como <code>dados</code> para armazenar os dados brutos, <code>codigo</code> para conter os códigos de análise e <code>resultados</code> para guardar os resultados da análise.</p>
+<p>Exemplo de estrutura de diretórios:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>meu_projeto/</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>|-- dados/</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>|-- codigos/</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>|-- resultados/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Também podemos ter essa mesma estrutura em inglês:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_project/</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>|-- data/</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>|-- code/</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>|-- results/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mantendo uma estrutura organizada torna mais fácil encontrar e gerenciar os arquivos relevantes para cada etapa da análise em cada um dos projetos.</p>
+<p>Obviamente, cada pasta pode conter sub-pastas, por exemplo, em projetos onde temos muitos dados brutos e dados processados podemos subdividir a pasta <code>data</code> em <code>raw</code> e <code>clean</code>, ou <code>input</code> e <code>output.</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>my_project/</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>|-- data/</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>|   |-- raw/</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>|   |-- clean/</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>|-- code/</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>|-- results/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>my_project/</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>|-- data/</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>|   |-- input/</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>|   |-- output/</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>|-- code/</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>|-- results/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="módulos-e-funções-reutilizáveis" class="level3" data-number="3.4.3"><h3 data-number="3.4.3" class="anchored" data-anchor-id="módulos-e-funções-reutilizáveis">
+<span class="header-section-number">3.4.3</span> 1.4.3 Módulos e Funções Reutilizáveis</h3>
+<p>Em diversas linguagens, como R, Python, Perl, C, etc, podemos criar funções reutilizáveis para realizar tarefas específicas. Separe o código em módulos e funções para facilitar a manutenção e a reutilização em diferentes partes da análise.</p>
+<p>Por exemplo, podemos criar um módulo <code>limpeza_dados.R</code> que contenha funções para lidar com a limpeza e preparação dos dados brutos. Dessa forma, essas funções podem ser reutilizadas em outras análises futuras, economizando tempo e esforço.</p>
+<p>Também devemos nomear os arquivos de módulos e funções através de um prefixo que identifique que aquele arquivo contém funções e módulos ao invés das análises específicas para o projeto em questão. Por exemplo, identifique com o prefixo <code>mod_</code>, obtendo o arquivo <code>mod_limpeza_dados.R</code>.</p>
+</section><section id="divisão-por-responsabilidade" class="level3" data-number="3.4.4"><h3 data-number="3.4.4" class="anchored" data-anchor-id="divisão-por-responsabilidade">
+<span class="header-section-number">3.4.4</span> 1.4.4 Divisão por Responsabilidade</h3>
+<p>Agrupe os arquivos de acordo com suas responsabilidades na análise. Por exemplo, separe os scripts que realizam a limpeza dos dados dos scripts que executam a análise estatística. Além disso, crie um arquivo específico para a geração de gráficos e visualizações dos resultados.</p>
+<p>Essa abordagem facilita a manutenção do código, já que cada arquivo é responsável por uma tarefa específica.</p>
+</section><section id="documentação" class="level3" data-number="3.4.5"><h3 data-number="3.4.5" class="anchored" data-anchor-id="documentação">
+<span class="header-section-number">3.4.5</span> 1.4.5 Documentação</h3>
+<p>A documentação adequada é essencial para entender a análise de dados, independente da linguagem. Sempre comente o código de forma clara e inclua explicações para as etapas mais importantes da análise.</p>
+<p>Também podemos considerar a utilização de arquivos do tipo R Markdown ou Quarto para criar relatórios interativos que combinem código, gráficos e texto explicativo em um único documento. Essa prática é excelente para comunicar os resultados da análise de forma mais clara e visual.</p>
+</section><section id="versionamento-com-git" class="level3" data-number="3.4.6"><h3 data-number="3.4.6" class="anchored" data-anchor-id="versionamento-com-git">
+<span class="header-section-number">3.4.6</span> 1.4.6 Versionamento com Git</h3>
+<p>Utilize o Git para controlar as versões do código e acompanhar o histórico de alterações. O versionamento é especialmente útil em análises de dados, pois permite que você explore diferentes abordagens e compare os resultados de diferentes versões do código.</p>
+</section><section id="exemplo-de-estrutura-completa-do-projeto" class="level3" data-number="3.4.7"><h3 data-number="3.4.7" class="anchored" data-anchor-id="exemplo-de-estrutura-completa-do-projeto">
+<span class="header-section-number">3.4.7</span> 1.4.7 Exemplo de Estrutura Completa do Projeto</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>my_projeto/</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>|-- data/</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>|   |-- raw/</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>|   |-- clean/</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>|-- scripts/</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>|   |-- 00_limpeza_dados.R</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>|   |-- 01_analise_estatistica.R</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>|   |-- 02_visualizacao_resultados.R</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>|   |-- mod_limpeza_dados.R</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>|-- results/</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>|   |-- relatorio_analise.html</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>|   |-- graficos/</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>|       |-- grafico1.png</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>|       |-- grafico2.png</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section><section id="sistemas-de-versionamento" class="level2" data-number="3.5"><h2 data-number="3.5" class="anchored" data-anchor-id="sistemas-de-versionamento">
+<span class="header-section-number">3.5</span> 1.5 Sistemas de Versionamento</h2>
+<p><strong>Versionamento de Código</strong> refere-se ao controle cuidadoso das alterações feitas em um projeto de software ao longo do tempo. Isso é realizado através de um sistema de controle de versão, como o Git, que registra todas as modificações no código-fonte do projeto. Cada conjunto de mudanças é registrado em uma versão, permitindo que os desenvolvedores acessem e revertam as alterações conforme necessário.</p>
+<p>Um sistema de controle de versão é uma ferramenta essencial para o desenvolvimento colaborativo, permitindo que várias pessoas trabalhem em um mesmo projeto sem conflitos e de maneira mais organizada. O Git é um exemplo de sistema de versionamento de códigos, que pode ser hospedado no GitHub, por exemplo.</p>
+<section id="git" class="level3" data-number="3.5.1"><h3 data-number="3.5.1" class="anchored" data-anchor-id="git">
+<span class="header-section-number">3.5.1</span> 1.5.1 <i class="fas fa-git"></i> Git</h3>
+<p><strong>Git</strong> é um sistema de controle de versão distribuído. Foi criado por Linus Torvalds em 2005 e é amplamente utilizado na indústria de desenvolvimento de software. O Git permite que desenvolvedores rastreiem mudanças no código-fonte ao longo do tempo, facilitando o trabalho em equipe e a colaboração. Ele oferece recursos para criar ramos (ramificações) do código, mesclá-los e reverter alterações, permitindo que os desenvolvedores experimentem diferentes abordagens sem afetar a versão principal do projeto. O Git é executado localmente no computador do desenvolvedor e não requer uma conexão com a internet, a menos que você queira sincronizar com um repositório remoto, como o GitHub.</p>
+</section><section id="github" class="level3" data-number="3.5.2"><h3 data-number="3.5.2" class="anchored" data-anchor-id="github">
+<span class="header-section-number">3.5.2</span> 1.5.2 <i class="fas fa-github"></i> GitHub</h3>
+<p>O <strong>GitHub</strong> é uma plataforma de hospedagem de código-fonte e colaboração baseada em Git. Lançado em 2008, o GitHub tornou-se rapidamente um dos maiores repositórios de código-fonte do mundo. Ele permite que os desenvolvedores hospedem seus repositórios Git na nuvem e colaborem com outros membros da equipe ou contribuidores externos. O GitHub facilita o compartilhamento de código, rastreamento de problemas (issues), solicitações de pull (pull requests) e revisão de código. Além disso, fornece uma interface amigável para visualizar histórico de alterações, ramos, problemas e outras informações importantes relacionadas ao desenvolvimento do software.</p>
+</section><section id="importância-do-versionamento-de-código" class="level3" data-number="3.5.3"><h3 data-number="3.5.3" class="anchored" data-anchor-id="importância-do-versionamento-de-código">
+<span class="header-section-number">3.5.3</span> 1.5.3 Importância do Versionamento de Código</h3>
+<p><strong>1. Rastreamento de Alterações</strong>: Com o versionamento de código, é possível rastrear todas as modificações feitas no projeto, incluindo quem realizou cada alteração e quando. Isso facilita a identificação de problemas e a compreensão do histórico do projeto.</p>
+<p><strong>2. Reversão Segura</strong>: Caso um erro seja introduzido no código, é possível reverter para uma versão anterior que esteja funcionando corretamente. Isso é especialmente útil em situações de bugs críticos ou mudanças indesejadas.</p>
+<p><strong>3. Colaboração Eficiente</strong>: Equipes de desenvolvimento podem trabalhar em paralelo em diferentes partes do projeto, sem interferir no trabalho um do outro. O versionamento permite que cada desenvolvedor trabalhe em sua própria cópia (branch) do código antes de integrá-lo ao projeto principal.</p>
+<p><strong>4. Testes e Experimentações</strong>: É possível criar branches para testar novos recursos, correções ou experimentações sem impactar o código principal. Esses branches podem ser compartilhados com colegas para revisão antes de serem incorporados.</p>
+<p><strong>5. Backup e Segurança</strong>: Os repositórios versionados atuam como um backup seguro para o código-fonte do projeto. Em caso de falha no <em>hardware</em> ou perda de dados local, as versões remotas do código podem ser recuperadas.</p>
+</section><section id="criando-uma-conta-no-github" class="level3" data-number="3.5.4"><h3 data-number="3.5.4" class="anchored" data-anchor-id="criando-uma-conta-no-github">
+<span class="header-section-number">3.5.4</span> 1.5.4 Criando uma Conta no GitHub</h3>
+<p><strong>GitHub</strong> é uma plataforma popular para hospedar projetos versionados usando o Git. Siga os seguintes passos para criar uma conta:</p>
+<ol type="1">
+<li><p>Acesse o site oficial do GitHub em <a href="https://github.com/">https://github.com/</a>.</p></li>
+<li><p>Clique em “Sign Up” ou “Criar conta”.</p></li>
+<li><p>Preencha seus dados, incluindo nome de usuário, endereço de e-mail e senha.</p></li>
+<li><p>Selecione um plano de conta.</p></li>
+<li><p>Conclua o processo de criação de conta seguindo as instruções na tela.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>Utilize seu e-mail <span class="citation" data-cites="ufpr">@ufpr</span> para criação da conta para ter acesso a conta Pro.</p>
+</blockquote>
+</section><section id="mantendo-projetos-e-colaborando-no-github" class="level3" data-number="3.5.5"><h3 data-number="3.5.5" class="anchored" data-anchor-id="mantendo-projetos-e-colaborando-no-github">
+<span class="header-section-number">3.5.5</span> 1.5.5 Mantendo Projetos e Colaborando no GitHub</h3>
+<p><strong>1. Repositórios</strong>: Após criar uma conta no GitHub, você pode criar um novo repositório ou clonar (fazer uma cópia local) um repositório existente para começar a trabalhar no projeto.</p>
+<p><strong>2. Commits</strong>: Os <code>commits</code> são registros das alterações feitas no código. Ao fazer um commit, é importante fornecer uma mensagem clara e concisa que explique o que foi alterado. Isso ajuda na compreensão das mudanças realizadas em cada versão.</p>
+<p><strong>3. Branches</strong>: Os <code>branches</code> permitem que você crie cópias do seu repositório para trabalhar em funcionalidades específicas ou correções. Branches são úteis para desenvolver recursos em paralelo sem afetar o projeto principal. Quando um trabalho em um branch estiver concluído, ele pode ser mesclado ao projeto principal através de um <code>pull request</code>.</p>
+<p><strong>4. Pull Requests</strong>: Um pull request é uma solicitação para mesclar as alterações de um branch ao projeto principal. É uma etapa crucial para a colaboração, pois permite que outros membros da equipe revisem as mudanças, façam comentários e discutam as alterações antes de serem integradas ao código principal.</p>
+<p><strong>5. Forks</strong>: Quando você deseja contribuir para um projeto mantido por outra pessoa, pode criar um <code>fork</code>, que é uma cópia independente do repositório original em sua conta do GitHub. Após fazer as alterações em seu fork, você pode enviar um pull request para o repositório original, sugerindo que suas mudanças sejam incorporadas ao projeto principal.</p>
+</section><section id="comandos-básicos-do-git" class="level3" data-number="3.5.6"><h3 data-number="3.5.6" class="anchored" data-anchor-id="comandos-básicos-do-git">
+<span class="header-section-number">3.5.6</span> 1.5.6 Comandos Básicos do Git</h3>
+<p>Aqui estão os comandos essenciais do Git que ajudarão você a começar com o versionamento de código:</p>
+<p><strong>1. <code>git init</code></strong>: Inicializa um novo repositório Git em um diretório vazio ou converte um projeto existente em um repositório Git.</p>
+<p><strong>2. <code>git clone</code></strong>: Cria uma cópia local de um repositório Git existente. Você pode clonar um repositório do GitHub ou de outro servidor Git.</p>
+<p><strong>3. <code>git add</code></strong>: Adiciona arquivos ao índice (staging area) para serem incluídos no próximo commit. Use “git add .” para adicionar todos os arquivos modificados.</p>
+<p><strong>4. <code>git commit</code></strong>: Registra as alterações adicionadas ao índice como uma nova versão no histórico do repositório. Lembre-se de fornecer uma mensagem significativa usando o parâmetro “-m”.</p>
+<p><strong>5. <code>git status</code></strong>: Exibe o estado atual do seu repositório, mostrando os arquivos modificados, adicionados e aqueles que ainda não foram monitorados pelo Git.</p>
+<p><strong>6. <code>git log</code></strong>: Mostra o histórico de commits do repositório, incluindo os autores, datas e mensagens de commit.</p>
+<p><strong>7. <code>git branch</code></strong>: Lista todas as branches do repositório. O branch atual é marcado com um asterisco.</p>
+<p><strong>8. <code>git checkout</code></strong>: Permite alternar entre branches. Use “git checkout -b nome-do-branch” para criar e alternar para um novo branch.</p>
+<p><strong>9. <code>git merge</code></strong>: Mescla as alterações de um branch específico no branch atual. Use após realizar um pull request ou ao concluir o trabalho em um branch paralelo.</p>
+<p><strong>10.<code>git pull</code></strong>: Puxa as alterações do repositório remoto para o seu repositório local. É uma combinação dos comandos “git fetch” e “git merge”.</p>
+<p><strong>11. <code>git push</code></strong>: Envia as alterações do seu repositório local para o repositório remoto (por exemplo, GitHub). Use “git push origin nome-do-branch” para enviar um branch específico.</p>
+<p><strong>12. <code>git remote</code></strong>: Exibe informações sobre os repositórios remotos conectados ao seu projeto.</p>
+<p><strong>13. <code>git fetch</code></strong>: Busca as alterações do repositório remoto, mas não as mescla automaticamente em seu repositório local.</p>
+<p><strong>14. <code>git rm</code></strong>: Remove arquivos do repositório e os prepara para serem removidos do controle de versão.</p>
+<p><strong>15. <code>git diff</code></strong>: Mostra as diferenças entre o código no diretório de trabalho e as alterações confirmadas.</p>
+</section><section id="cheat-sheet-git" class="level3" data-number="3.5.7"><h3 data-number="3.5.7" class="anchored" data-anchor-id="cheat-sheet-git">
+<span class="header-section-number">3.5.7</span> 1.5.7 Cheat-Sheet Git</h3>
+<p><a href="https://gysi.quarto.pub/ce302/cheatsheet/git_cheatsheet.html">Clique aqui</a> para a cheat-sheet do material de Git.</p>
+</section><section id="cheat-sheet-rstudio-git" class="level3" data-number="3.5.8"><h3 data-number="3.5.8" class="anchored" data-anchor-id="cheat-sheet-rstudio-git">
+<span class="header-section-number">3.5.8</span> 1.5.8 Cheat-Sheet RStudio &amp; Git</h3>
+<p><a href="https://gysi.quarto.pub/ce302/cheatsheet/gitR_cheatsheet.html">Clique aqui</a> para a cheat-sheet do material de Git &amp; Rstudio.</p>
+</section></section><section id="recursos-extras" class="level2" data-number="3.6"><h2 data-number="3.6" class="anchored" data-anchor-id="recursos-extras">
+<span class="header-section-number">3.6</span> 1.6 Recursos extras</h2>
+<p>Alguns recursos extras que podem ser utilizados:</p>
+<ul>
+<li><p><a href="https://commonmark.org/">Aprenda Markdown em 60 segundos</a></p></li>
+<li><p><a href="https://holtzy.github.io/Pimp-my-rmd/">Melhore seu <code>.Rmd</code></a></p></li>
+<li><p><a href="https://docs.github.com/pt/get-started/using-git">Como usar o GitHub</a></p></li>
+<li><p><a href="https://learngitbranching.js.org/?locale=pt_BR">Mais sobre o GitHub</a></p></li>
+</ul>
+
+
+</section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr>
+<ol>
+<li id="fn1"><p>conjunto de sinais e códigos aplicados a um texto ou a dados para para definir formatos, maneiras de exibição e padrões. Ao contrário de linguagens de programação, não possui estruturas de controle como os comandos condicionais e de repetição.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Informações Úteis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02_basicR.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">2 Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

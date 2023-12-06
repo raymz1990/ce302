@@ -1,0 +1,195 @@
+
+
+## Questão 1
+
+Dado o conjunto de números Naturais entre 1 e 500.000. Faça o que se pede:
+
+1.  Quantos números primos temos?
+```{r}
+
+maximo <- 500000
+
+# Função para verificar se um número é primo
+adiciona_primo <- function(n, primos) {
+  limite <- length(primos) / 2
+  for (p in primos) {
+    if (p > limite) {
+      break
+    }
+    if (n %% p == 0) {
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+}
+
+LPrimos <- c(2)  # Começamos com 2 (o único número par que é primo)
+
+# Constrói a lista com todos os primos até 500000
+for (n in seq(3, maximo, by = 2)) {  # Começamos de 3 e avançamos de 2 em 2 para pegar apenas os ímpares
+  if (adiciona_primo(n, LPrimos)) {
+    LPrimos <- c(LPrimos, n)
+  }
+}
+
+quantidade_primos <- length(LPrimos)
+
+cat("Quantidade de números primos até 500000:", quantidade_primos, "\n")
+
+```
+
+2.  Quantos números pertencem a seguinte sequência:
+    -   $$S_i = i + i^2/2$$
+```{r}
+limite_superior <- 500000
+
+contar_numeros <- function(limite) {
+  i <- 1
+  numeros <- c()
+  
+  while (TRUE) {
+    termo <- i + i^2/2
+    if (termo > limite) {
+      break
+    }
+    numeros <- c(numeros, termo)
+    i <- i + 1
+  }
+  
+  return(numeros)
+}
+
+sequencia <- contar_numeros(limite_superior)
+quantidade_numeros <- length(sequencia)
+
+cat("Quantidade de números na sequência até", limite_superior, ":", quantidade_numeros, "\n")
+
+```
+
+
+## Questão 2
+
+-   Faça um programa que receba o código correspondente ao cargo de um funcionário e seu salário atual e mostre o cargo, o valor do aumento e seu novo salário. Os cargos e seus respectivos aumentos estão na tabela abaixo.
+
+    | Código | Cargo           | Aumento |
+    |--------|-----------------|---------|
+    | 1      | Estagiário      | 10%     |
+    | 2      | Analista Júnior | 20%     |
+    | 3      | Analista Pleno  | 22%     |
+    | 4      | Analista Senior | 25%     |
+    | 5      | Especialista    | 28%     |
+
+
+```{r}
+# Função para calcular o novo salário com base no cargo e salário atual
+calcular_aumento <- function(codigo_cargo, salario_atual) {
+  aumento <- 0
+  
+  # Determinar o aumento com base no código do cargo
+  if (codigo_cargo == 1) {
+    aumento <- 0.10
+    cargo <- "Estagiário"
+  } else if (codigo_cargo == 2) {
+    aumento <- 0.20
+    cargo <- "Analista Júnior"
+  } else if (codigo_cargo == 3) {
+    aumento <- 0.22
+    cargo <- "Analista Pleno"
+  } else if (codigo_cargo == 4) {
+    aumento <- 0.25
+    cargo <- "Analista Senior"
+  } else if (codigo_cargo == 5) {
+    aumento <- 0.28
+    cargo <- "Especialista"
+  } 
+  
+  # Calcular o novo salário
+  novo_salario <- salario_atual * (1 + aumento)
+  
+  # Imprimir os resultados
+  cat("Cargo:", cargo, "\n")
+  cat("Aumento:", aumento * 100, "%\n")
+  cat("Novo salário:", novo_salario, "\n")
+
+}
+
+# Exemplo de uso da função
+codigo_cargo <- 3
+salario_atual <- 5000
+
+calcular_aumento(codigo_cargo, salario_atual)
+
+```
+
+## Questão 3
+
+-   Um indivíduo possuí três meios de transporte, e utiliza cada um deles de acordo com a regra:
+-   Quando a kilometragem rodada é superior a 500km ele utiliza seu avião particular;
+-   Quando a kilometragem rodada é superior a 50km ele utiliza o carro;
+-   Quando a kilometragem rodada é inferior a 50km, ele utiliza a bicicleta.
+-   Quando ele utiliza o carro, ele ainda decide qual o melhor combustível. Caso o valor do etanol esteja até 75% o valor da gasolina, ele utiliza o etanol; caso o valor do GNV esteja até 60% do valor da gasolina, ele utiliza o GNV; caso contrário ele abastece de gasolina.
+-   Considere os seguinte valores do combustível para hoje (lembre-se que os valores não podem ser fixos).
+    -   Gasolina: R\$ 5,80
+    -   Etanol: R\$ 4,80
+    -   GNV: R\$ 7,20
+
+Implemente a seguinte rotina e responda:
+
+-   Caso o indivíduo esteja indo a Florianópolis, qual meio de transporte (e combustivel) ele deve escolher?
+
+-   Suponha haver a seguinte previsão de valores de combustíveis para semana que vem.
+
+  -   Gasolina: R\$ 4,20
+  -   Etanol: R\$ 2,80
+  -   GNV: R\$ 3,20
+  
+  -   Qual combustível ele deverá utilizar?
+
+-   Caso o indivíduo esteja indo a Natal, qual meio de transporte (e combustivel) ele deve escolher?
+
+-   Caso o indivíduo esteja indo a Araucária, qual meio de transporte (e combustivel) ele deve escolher?
+
+```{r}
+# Função para determinar o meio de transporte e combustível com base na distância e preços dos combustíveis
+escolher_meio_de_transporte <- function(destino, distancia, gasolina, etanol, gnv) {
+  
+  if (distancia > 500) {
+    cat("Para", destino, "utilize o avião particular.\n")
+  } else if (distancia > 50) {
+    if (etanol <= 0.75 * gasolina) {
+      cat("Para", destino, "utilize o carro abastecido com etanol.\n")
+    } else if (gnv <= 0.6 * gasolina) {
+      cat("Para", destino, "utilize o carro abastecido com GNV.\n")
+    } else {
+      cat("Para", destino, "utilize o carro abastecido com gasolina.\n")
+    }
+  } else {
+    cat("Para", destino, "utilize a bicicleta.\n")
+  }
+}
+
+# Valores dos combustíveis para hoje
+gasolina_hoje <- 5.80
+etanol_hoje <- 4.80
+gnv_hoje <- 7.20
+
+# Caso o indivíduo esteja indo a Florianópolis (distância fictícia de 200 km)
+escolher_meio_de_transporte("Florianópolis", 200, gasolina_hoje, etanol_hoje, gnv_hoje)
+
+# Previsão de valores dos combustíveis para semana que vem
+gasolina_semana_que_vem <- 4.20
+etanol_semana_que_vem <- 2.80
+gnv_semana_que_vem <- 3.20
+
+# Caso o indivíduo esteja indo a Florianópolis na semana que vem (mesma distância fictícia de 200 km)
+escolher_meio_de_transporte("Florianópolis", 200, gasolina_semana_que_vem, etanol_semana_que_vem, gnv_semana_que_vem)
+
+# Caso o indivíduo esteja indo a Natal (distância fictícia de 600 km)
+escolher_meio_de_transporte("Natal", 600, gasolina_semana_que_vem, etanol_semana_que_vem, gnv_semana_que_vem)
+
+# Caso o indivíduo esteja indo a Araucária (distância fictícia de 40 km)
+escolher_meio_de_transporte("Araucária", 40, gasolina_semana_que_vem, etanol_semana_que_vem, gnv_semana_que_vem)
+
+
+```
+

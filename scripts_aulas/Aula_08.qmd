@@ -1,0 +1,172 @@
+---
+always_allow_html: true
+title: "Aula 08"
+---
+
+## Aula 08
+
+## Filtros, Sumarização de dados & manipulação de datas.
+
+```{r, error=TRUE}
+library(data.table)
+library(magrittr)
+library(tidyverse)
+
+car_crash <- fread("./data/Brazil Total highway crashes 2010 - 2023.csv.gz")
+
+```
+
+## Filtros nas observações
+
+```{r, error=TRUE}
+car_crash %>% 
+  filter(automovel > 8)
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(automovel > 8 & caminhao > 5)
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(automovel > 8, caminhao > 5) # & implicito
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(automovel == 8 | caminhao == 5) # OU
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(between(caminhao, 2, 7)) # valores dentro de um intervalo
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(caminhao >= 2 & caminhao <= 7)
+```
+
+```{r, error= TRUE}
+# %in% Operador utilizado em strings / char / fatores
+
+com_sem_vitima = car_crash %>% 
+  filter(tipo_de_ocorrencia %in% c("com vítima", 
+                                   "sem vítima"))
+
+
+contrario = car_crash %>% 
+  filter(!(tipo_de_ocorrencia %in% c("com vítima", 
+                                   "sem vítima")))
+
+`%ni%` <- Negate(`%in%`) # define um operador de negação "fora"
+
+contrario2 = car_crash %>% 
+  filter(tipo_de_ocorrencia %ni% c("com vítima", 
+                                   "sem vítima"))
+
+car_crash %>% 
+  filter(automovel > mean(automovel, na.rm = TRUE))
+
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(tipo_de_ocorrencia == "vítima")
+
+
+vitima = car_crash %>% 
+  filter(tipo_de_ocorrencia %like% "vítima")
+```
+
+```{r, error= TRUE}
+car_crash %>% 
+    filter(grepl("ilesa|fatal", tipo_de_ocorrencia))
+```
+
+## Sumarização de dados
+
+```{r, error= TRUE}
+tabela <- car_crash %>% 
+  summarise(n = n(), 
+            media_ac_automoveis = mean(automovel, na.rm = T), 
+            media_ac_caminhao = mean(caminhao, na.rm = TRUE), 
+            mediana_ac_trator, median(trator_maquinas, na.rm = TRUE))
+```
+
+### Resumo por caracteristicas
+
+```{r, error= TRUE}
+car_crash %>% 
+  filter(tipo_de_ocorrencia %in% c("com vítima", "sem vítima")) %>% 
+  group_by(tipo_de_ocorrencia) %>% 
+  summarise(n = n(), max = max(automovel, na.rm = TRUE))
+```
+
+## Exercícios
+
+Utilizando o banco de dados starwars faça o que se pede: 1. Qual é o número total de espécies únicas presentes? Qual a frequência de indivíduos por espécie?
+
+```{r, error= TRUE}
+starwars %>% 
+  group_by(species) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n))
+```
+
+2.  Calcule a altura média de personagens masculinos e femininos.
+
+```{r, error= TRUE}
+starwars %>% 
+  group_by(gender) %>% 
+  summarise(media = mean(height, na.rm = TRUE))
+```
+
+3.  Qual é a média de idade dos personagens de cada espécie para personagens masculinos?
+
+```{r, error= TRUE}
+starwars %>% 
+  filter(gender,= "masculine") %>% 
+  group_by(species) %>% 
+  summarise(mean = mean(birth_year, na.rm = TRUE))
+```
+
+4.  Para cada espécie presente na base de dados, identifique o personagem mais velho e sua idade correspondente.
+
+```{r, error= TRUE}
+starwars %>% 
+  group_by(species) %>% 
+  mutate(max_idade = max(birth_year, na.rm = TRUE)) %>% 
+  filter(max_idade == birth_year) %>% 
+  ungroup() %>% 
+  select(name, max_idade) 
+```
+
+## Data
+
+```{r, error= TRUE}
+minha_data = "11-09-2023"
+minha_data = as.Date(minha_data, format = "%d-%m-%Y")
+
+##YYYYMMDD
+
+minha_data +5
+minha_data > minha_data +25
+
+```
+
+```{r, error= TRUE}
+ano = format(minha_data, "%Y")
+ANO = format(minha_data, "%y")
+mes = format(minha_data, "%m")
+dia = format(minha_data, "%d")
+
+difftime(minha_data, (minha_data + 25))
+```
+
+```{r, error= TRUE}
+require(lubridate)
+
+
+```

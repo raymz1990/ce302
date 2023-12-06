@@ -1,0 +1,334 @@
+---
+title: "Lista 2"
+author: "Raymundo"
+#date: "2023-09-27"
+output:
+  html_document:                    
+    toc: true                       
+    toc_depth: 3                    
+    toc_float:                      
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           
+
+    highlight: espresso
+               
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+    #keep_md: true 
+---
+
+---
+
+# Aula 02: Conceitos básicos de R
+
+---
+
+## Atribuição de Variáveis: Numéricas, Character e Vetores
+
+---
+ 
+### 1. Crie uma variável chamada "idade" e atribua o valor 25.
+
+```{r}
+idade <- 25 
+idade
+```
+
+---
+
+### 2. Declare uma variável "nome" e atribua o nome "Maria".
+```{r}
+nome <- 'Maria'
+nome
+```
+
+
+
+---
+
+### 3. Crie um vetor numérico chamado "notas" com valores 8, 9, 7 e 6.
+```{r}
+notas <- c(8, 9, 7, 6)
+notas
+```
+
+
+---
+
+### 4. Crie um vetor de caracteres "frutas" com os elementos "maçã", "banana" e "laranja".
+```{r}
+frutas <- c('maçã',
+            'banana',
+            'laranja')
+frutas
+```
+
+
+---
+
+### 5. Crie um vetor numérico "idades" com os valores 30, 40 e 50.
+```{r}
+idades <- c(30, 40, 50)
+idades
+
+```
+
+---
+
+## Criação de Vetores Utilizando c, seq e rep
+
+---
+
+### 6. Utilizando a função `c()`, crie um vetor com os números de 1 a 10.
+```{r}
+numeros <- c(1:10)
+numeros
+```
+
+
+---
+
+### 7. Crie um vetor com os números pares de 2 a 20 usando a função `seq()`.
+```{r}
+numeros_pares <- seq(from = 2,
+                     to = 20,
+                     by = 2)
+numeros_pares
+```
+
+
+---
+
+### 8. Crie um vetor com cinco repetições do valor 5 usando a função `rep()`.
+```{r}
+repeticoes <- rep(5, 5)
+repeticoes
+```
+
+
+---
+
+### 9. Crie um vetor chamado "alturas" com 100 alturas, variando de 1.50 a 2.00. 
+```{r}
+alturas <- round(seq(1.50, 2.00, length.out = 100), 2)
+alturas
+```
+
+
+---
+ 
+## Operadores Aritméticos
+
+---
+
+### 9. Multiplique a variável "idade" por 2 e atribua o resultado a uma nova variável.
+```{r}
+idade2 <- idade / 2
+idade2
+```
+
+
+---
+
+### 10. Calcule a média das notas do vetor "notas".
+```{r}
+media_notas <- mean(notas)
+media_notas
+```
+
+
+---
+
+### 11. Eleve o vetor "idades" ao quadrado.
+```{r}
+idades_quadrado <- idades ^ 2
+idades_quadrado
+
+```
+
+---
+
+### 12. Realize a divisão inteira de 15 por 4.
+```{r}
+divisao_inteira <- 15 %/% 4
+divisao_inteira
+```
+
+
+---
+
+### 13. Calcule o resto da divisão de 15 por 4.
+```{r}
+resto_divisao <- 15 %% 4
+resto_divisao
+```
+
+
+---
+
+## Operadores Relacionais
+
+---
+ 
+### 14. Verifique se a variável "idade" é maior que 18.
+```{r}
+idade_maior <- idade > 18
+idade_maior
+```
+
+
+---
+
+### 15. Determine se o primeiro elemento do vetor "notas" é igual a 8.
+```{r}
+notas_maior <- notas[1] == 8
+notas_maior
+```
+
+
+---
+
+### 16. Verifique se algum valor no vetor "idades" é menor que 35.
+```{r}
+idades_menor <- idades < 35
+idades_menor
+```
+
+
+---
+
+### 17. Selecione as alturas menores do que 1.85 do vetor de "alturas".
+```{r}
+alturas_menores <- alturas[alturas < 1.85]
+alturas_menores
+```
+
+
+---
+
+## Utilização de Funções Matemáticas Básicas
+
+---
+ 
+### 17. Calcule a raiz quadrada de 16.
+```{r}
+raiz <- sqrt(16)
+raiz
+```
+
+
+---
+
+### 18. Arredonde o valor 3.78 para o inteiro mais próximo.
+```{r}
+arredondando_cima <- ceiling(3.78)
+arredondando_cima
+```
+
+
+---
+
+### 19. Arredonde para cima o vetor de alturas.
+```{r}
+arredondando_cima_alturas <- ceiling(alturas)
+arredondando_cima_alturas
+```
+
+
+---
+
+### 20. Arredonde para baixo o vetor de alturas
+```{r}
+arredondando_cima_alturas <- floor(alturas)
+arredondando_cima_alturas
+```
+
+
+---
+
+### 21. Calcule o valor absoluto da diferença entre 10 e 7.
+```{r}
+absoluto <- abs(10 - 7)
+absoluto
+```
+
+
+---
+  
+## Utilização de Funções para Manipulação de Texto: R Base e Stringr
+
+---
+ 
+### 22. Crie uma string com o texto "Análise de Dados".
+```{r}
+texto <- 'Analise de Dados'
+texto
+```
+
+
+---
+
+### 23. Extraia os primeiros 5 caracteres da string criada no exercício anterior.
+```{r}
+cinco_caract <- substr(x = texto[1], 
+                       start = 1,
+                       stop = 5)
+cinco_caract
+
+```
+
+---
+
+### 24. Converta a string "R é uma linguagem de programação" para maiúsculas.
+```{r}
+outro_texto <- "R é uma linguagem de programação" 
+maiusculas <- toupper(outro_texto)
+maiusculas
+```
+
+
+---
+
+### 25. Substitua a palavra "linguagem" por "software" na mesma string.
+```{r}
+subst<- gsub(pattern = "linguagem", 
+             replacement = "software",
+             x = outro_texto)
+subst  
+```
+   
+
+---
+
+## Regex
+
+---
+
+### 27. Use expressões regulares para encontrar todos os dígitos em "Texto1234".
+```{r}
+texto1234 <- "Texto1234"
+texto1234 <- regmatches(texto1234, gregexpr("\\d", texto1234, perl = TRUE))
+texto1234
+```
+
+
+---
+
+### 28. Utilize regex para extrair as palavras que começam com a letra "C" em "Casa, carro, frutas, animais e cidade".
+```{r}
+library(stringr)
+
+texto3 <- c('Casa', 'carro', 'frutas', 'animais', 'abacate', 'e', 'cidade')
+texto3
+
+palavras_c <- str_subset(texto3, pattern = "^(?![cC])")
+palavras_c
+```
+
+
+
+---

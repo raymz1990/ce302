@@ -1,0 +1,79 @@
+---
+always_allow_html: true
+title: "Aula 02"
+---
+
+```{r, error=TRUE}
+x = 10
+X = 3
+
+MinhaIdade<- 10
+minhaIdade <- 50
+minha_idade <- 45
+
+if <- 90
+for <- 10
+NA <- 10
+
+
+#### Comentario do código
+
+1 + 2
+1 - 2
+16*6
+5/6
+2^2
+2**2
+6%%2 # resto da divisao
+7%/%2 
+
+
+a <- 10
+b <- 20
+a == b
+# a = b
+# a
+# b
+a != b
+a > b
+b > a
+
+a >= b
+b <= a
+
+vetor1 = c(1,2,3,4)
+a
+vetor2 = seq(1:100)
+vetor2
+
+vetor3 = seq(from = 10, to = 50, by = 5)
+vetor3
+
+vetor3[3] <- 200
+vetor3
+
+vetor2 * 2
+vetor1 + 20
+
+vetor4 = seq(1:10)
+vetor5 = seq(11:20)
+
+vetor4+vetor5
+
+vetor6 <- c("banana", "maça", "laranja")
+vetor7 <- c('banana', "maça", " maça")
+
+vetor7 == vetor6
+vetor7
+
+
+#######
+d <- c(10, 20)
+d + 10
+
+print(d)
+
+invisible( x<- d + 10)
+x
+
+```

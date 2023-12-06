@@ -1,0 +1,152 @@
+project:
+  type: website
+
+website:
+#  title: CE302 - Elementos de Programação para Estatística
+#  author:
+#    - name: Prof. Deisy Morselli Gysi, Ph.D.
+#      affiliations:
+#        - name: Universidade Federal do Paraná
+#          department: Departmento de Estatística
+
+  navbar:
+    pinned: true
+    search: true
+    left:
+      - text: Home
+        href: index.qmd
+    right:
+      - href: 01_markdown_git.qmd
+        text: Documentação
+      - href: 02_basicR.qmd
+        text: Ambiente R
+      - href: 03_objects.qmd
+        text: Objetos em R
+      - href: 04_transfomacao-de-dados.qmd
+        text: Transformação de Dados
+      - href: 05_funcoes.qmd
+        text: Funções
+      - href: 06_loopings.qmd
+        text: Loopings
+      - href: 07_graphics.qmd
+        text: Gráficos 
+      - href: 08_comunicacao.qmd
+        text: Comunicação
+      - text: Cheat Sheet
+        menu:
+          - text: Markdown Cheat Sheet
+            href: 10_markdown_cheatsheet.qmd
+          - text: Git Cheat Sheet
+            href: 11_git_cheatsheet.qmd
+          - text: Git RStudio Cheat Sheet
+            href: 12_git_rstudio_cheatsheet.qmd
+      - text: Listas
+        menu:
+          - text: Lista 01
+            href: listas\Lista1.qmd
+          - text: Lista 02
+            href: listas\Lista2.qmd
+          - text: Lista 03
+            href: listas\Lista3.qmd
+          - text: Lista 04
+            href: listas\Lista4.qmd
+          - text: Lista 05
+            href: listas\Lista5.qmd
+      - text: Scripts Aulas
+        menu:
+          - text: Aula 02
+            href: scripts_aulas\Aula_02.qmd
+          - text: Aula 03
+            href: scripts_aulas\Aula_03.qmd
+          - text: Aula 04
+            href: scripts_aulas\Aula_04.qmd
+          - text: Aula 05
+            href: scripts_aulas\Aula_05.qmd
+          - text: Aula 07
+            href: scripts_aulas\Aula_07.qmd
+          - text: Aula 08
+            href: scripts_aulas\Aula_08.qmd
+          - text: Aula 09
+            href: scripts_aulas\Aula_09.qmd
+          - text: Aula 10
+            href: scripts_aulas\Aula_10.qmd
+          - text: Aula 11
+            href: scripts_aulas\Aula_11.qmd
+      - text: Modelos
+        menu:
+          - text: Modelo Slide
+            href: modelos_relatorios\01_exemplo_slide.qmd
+          - text: Modelo Relatório
+            href: modelos_relatorios\02_exemplo_relatorio.qmd
+          - text: Modelo Referência Bibliográfica
+            href: modelos_relatorios\03_exemplo_referencia.qmd
+          - text: Modelo Shiny
+            href: modelos_relatorios\04_exemplo_shiny.qmd
+          - text: Modelo Dashboard Shiny
+            href: modelos_relatorios\05_exemplo_shiny_dash.qmd
+          - text: Modelo SCSS
+            href: modelos_relatorios\06_exemplo_scss.qmd
+          
+      - text: Provas
+        menu:
+          - text: Prova 01
+            href: avaliacoes\avaliação_01.qmd
+          - text: Prova 02
+            href: avaliacoes\avaliação_01.qmd
+
+#  sidebar:
+#    - title: "Home"
+#      style: "docked"
+#      search: false  
+#      contents: auto
+
+      
+  
+  site-url: https://rverse-tutorials.github.io/QmdReport/
+  repo-url: https://github.com/RVerse-Tutorials/QmdReport
+  repo-actions: [edit, source, issue]
+  search: true
+  page-navigation: true
+  back-to-top-navigation: true
+
+execute:
+  freeze: auto
+
+
+format:
+  html:
+    theme:
+      light: yetti
+      dark: slate
+    toc: true # barra lateral esquerda com conteudo
+    toc-location: left
+    code-fold: false
+    code-summary: "R"
+    code-overflow: wrap
+    code-link: true
+    code-tools: false
+    code-line-numbers: false
+    # fontcolor: '#C25E8C'
+    linkcolor: 'red'
+    fontsize: 1.1em
+    highlight-style: dracula
+
+  
+  docx:
+    toc: true
+    reference-doc: template.docx
+    always_allow_html: true
+  
+  pdf:
+    documentclass: scrbook
+    classoption: ["oneside"]
+    template-partials: ["partials/before-body.tex"]
+    keep-tex: true
+    toc: true
+    lof: true
+    lot: true
+    include-in-header: 
+      - partials/inheader.tex
+    geometry: 
+      - a4paper
+

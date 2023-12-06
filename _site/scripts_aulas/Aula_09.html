@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Aula 09</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../02_basicR.html" rel="" target="">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../06_loopings.html" rel="" target="">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">
+<li>
+    <a class="dropdown-item" href="../10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">
+<li>
+    <a class="dropdown-item" href="../listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">
+<li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">
+<li>
+    <a class="dropdown-item" href="../modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">
+<li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#aula-09" id="toc-aula-09" class="nav-link active" data-scroll-target="#aula-09">Aula 09</a>
+  <ul class="collapse">
+<li><a href="#jun%C3%A7%C3%A3o-de-dados" id="toc-junção-de-dados" class="nav-link" data-scroll-target="#jun%C3%A7%C3%A3o-de-dados">Junção de dados</a></li>
+  <li>
+<a href="#jun%C3%A7%C3%B5es" id="toc-junções" class="nav-link" data-scroll-target="#jun%C3%A7%C3%B5es">Junções</a>
+  <ul class="collapse">
+<li><a href="#jun%C3%A7%C3%B5es-mutacionais" id="toc-junções-mutacionais" class="nav-link" data-scroll-target="#jun%C3%A7%C3%B5es-mutacionais">Junções Mutacionais</a></li>
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join">Left Join</a></li>
+  </ul>
+</li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join">Right Join</a></li>
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join">Inner Join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join">Full Join</a></li>
+  <li><a href="#semi-join" id="toc-semi-join" class="nav-link" data-scroll-target="#semi-join">Semi-Join</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/scripts_aulas/Aula_09.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/scripts_aulas/Aula_09.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Aula_09.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="Aula_09.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Aula 09</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="aula-09" class="level1"><h1>Aula 09</h1>
+<section id="junção-de-dados" class="level2"><h2 class="anchored" data-anchor-id="junção-de-dados">Junção de dados</h2>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hadley/nycflights13">nycflights13</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: nycflights13</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># install.packages("nycflights13")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airlines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   carrier name                       
+   &lt;chr&gt;   &lt;chr&gt;                      
+ 1 9E      Endeavor Air Inc.          
+ 2 AA      American Airlines Inc.     
+ 3 AS      Alaska Airlines Inc.       
+ 4 B6      JetBlue Airways            
+ 5 DL      Delta Air Lines Inc.       
+ 6 EV      ExpressJet Airlines Inc.   
+ 7 F9      Frontier Airlines Inc.     
+ 8 FL      AirTran Airways Corporation
+ 9 HA      Hawaiian Airlines Inc.     
+10 MQ      Envoy Air                  
+11 OO      SkyWest Airlines Inc.      
+12 UA      United Air Lines Inc.      
+13 US      US Airways Inc.            
+14 VX      Virgin America             
+15 WN      Southwest Airlines Co.     
+16 YV      Mesa Airlines Inc.         </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airports</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,458 × 8
+   faa   name                             lat    lon   alt    tz dst   tzone    
+   &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;    
+ 1 04G   Lansdowne Airport               41.1  -80.6  1044    -5 A     America/…
+ 2 06A   Moton Field Municipal Airport   32.5  -85.7   264    -6 A     America/…
+ 3 06C   Schaumburg Regional             42.0  -88.1   801    -6 A     America/…
+ 4 06N   Randall Airport                 41.4  -74.4   523    -5 A     America/…
+ 5 09J   Jekyll Island Airport           31.1  -81.4    11    -5 A     America/…
+ 6 0A9   Elizabethton Municipal Airport  36.4  -82.2  1593    -5 A     America/…
+ 7 0G6   Williams County Airport         41.5  -84.5   730    -5 A     America/…
+ 8 0G7   Finger Lakes Regional Airport   42.9  -76.8   492    -5 A     America/…
+ 9 0P2   Shoestring Aviation Airfield    39.8  -76.6  1000    -5 U     America/…
+10 0S9   Jefferson County Intl           48.1 -123.    108    -8 A     America/…
+# ℹ 1,448 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: dplyr</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">planes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>  <span class="co"># chave primaria de planes é tailnum</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">tailnum</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# ℹ 2 variables: tailnum &lt;chr&gt;, n &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weather</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">time_hour</span>, <span class="va">origin</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 3
+# ℹ 3 variables: time_hour &lt;dttm&gt;, origin &lt;chr&gt;, n &lt;int&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">weather</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">time_hour</span><span class="op">)</span><span class="op">|</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">origin</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 15
+# ℹ 15 variables: origin &lt;chr&gt;, year &lt;int&gt;, month &lt;int&gt;, day &lt;int&gt;, hour &lt;int&gt;,
+#   temp &lt;dbl&gt;, dewp &lt;dbl&gt;, humid &lt;dbl&gt;, wind_dir &lt;dbl&gt;, wind_speed &lt;dbl&gt;,
+#   wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
+#   time_hour &lt;dttm&gt;</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">planes</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">tailnum</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 9
+# ℹ 9 variables: tailnum &lt;chr&gt;, year &lt;int&gt;, type &lt;chr&gt;, manufacturer &lt;chr&gt;,
+#   model &lt;chr&gt;, engines &lt;int&gt;, seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section><section id="junções" class="level2"><h2 class="anchored" data-anchor-id="junções">Junções</h2>
+<section id="junções-mutacionais" class="level3"><h3 class="anchored" data-anchor-id="junções-mutacionais">Junções Mutacionais</h3>
+<ul>
+<li>inner_join</li>
+<li>full_join</li>
+<li>left_join</li>
+<li>right_join</li>
+</ul>
+<p>em Excel -&gt; vlookup / procv</p>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights2</span> <span class="op">&lt;-</span> <span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">distance</span> <span class="op">&gt;</span> <span class="fl">2000</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">time_hour</span>, <span class="va">origin</span>, <span class="va">dest</span>, <span class="va">tailnum</span>, <span class="va">carrier</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">flights2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 6
+    year time_hour           origin dest  tailnum carrier
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;  
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA     
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA     
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA     
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA     
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US     
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US     
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA     
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA     
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6     
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL     
+# ℹ 51,685 more rows</code></pre>
+</div>
+</div>
+</section><section id="left-join" class="level3"><h3 class="anchored" data-anchor-id="left-join">Left Join</h3>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">.</span>, <span class="va">airlines</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(carrier)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 7
+    year time_hour           origin dest  tailnum carrier name                 
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA      United Air Lines Inc.
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA      United Air Lines Inc.
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA      United Air Lines Inc.
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA      United Air Lines Inc.
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US      US Airways Inc.      
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US      US Airways Inc.      
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA      United Air Lines Inc.
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA      United Air Lines Inc.
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6      JetBlue Airways      
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL      Delta Air Lines Inc. 
+# ℹ 51,685 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">airlines</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(carrier)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 7
+    year time_hour           origin dest  tailnum carrier name                 
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA      United Air Lines Inc.
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA      United Air Lines Inc.
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA      United Air Lines Inc.
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA      United Air Lines Inc.
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US      US Airways Inc.      
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US      US Airways Inc.      
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA      United Air Lines Inc.
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA      United Air Lines Inc.
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6      JetBlue Airways      
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL      Delta Air Lines Inc. 
+# ℹ 51,685 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">flights2</span>, <span class="va">airlines</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(carrier)`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 7
+    year time_hour           origin dest  tailnum carrier name                 
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA      United Air Lines Inc.
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA      United Air Lines Inc.
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA      United Air Lines Inc.
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA      United Air Lines Inc.
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US      US Airways Inc.      
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US      US Airways Inc.      
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA      United Air Lines Inc.
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA      United Air Lines Inc.
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6      JetBlue Airways      
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL      Delta Air Lines Inc. 
+# ℹ 51,685 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">airlines</span>, </span>
+<span>            by <span class="op">=</span> <span class="st">"carrier"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 7
+    year time_hour           origin dest  tailnum carrier name                 
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA      United Air Lines Inc.
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA      United Air Lines Inc.
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA      United Air Lines Inc.
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA      United Air Lines Inc.
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US      US Airways Inc.      
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US      US Airways Inc.      
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA      United Air Lines Inc.
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA      United Air Lines Inc.
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6      JetBlue Airways      
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL      Delta Air Lines Inc. 
+# ℹ 51,685 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">airlines</span>, </span>
+<span>            by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"carrier"</span><span class="op">=</span><span class="st">"carrier"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 7
+    year time_hour           origin dest  tailnum carrier name                 
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA      United Air Lines Inc.
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA      United Air Lines Inc.
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA      United Air Lines Inc.
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA      United Air Lines Inc.
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US      US Airways Inc.      
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US      US Airways Inc.      
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA      United Air Lines Inc.
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA      United Air Lines Inc.
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6      JetBlue Airways      
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL      Delta Air Lines Inc. 
+# ℹ 51,685 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">airlines</span>, </span>
+<span>            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">carrier</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 7
+    year time_hour           origin dest  tailnum carrier name                 
+   &lt;int&gt; &lt;dttm&gt;              &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;                
+ 1  2013 2013-01-01 06:00:00 JFK    LAX   N29129  UA      United Air Lines Inc.
+ 2  2013 2013-01-01 06:00:00 EWR    SFO   N53441  UA      United Air Lines Inc.
+ 3  2013 2013-01-01 06:00:00 EWR    LAS   N76515  UA      United Air Lines Inc.
+ 4  2013 2013-01-01 06:00:00 JFK    SFO   N532UA  UA      United Air Lines Inc.
+ 5  2013 2013-01-01 06:00:00 EWR    PHX   N807AW  US      US Airways Inc.      
+ 6  2013 2013-01-01 06:00:00 JFK    PHX   N535UW  US      US Airways Inc.      
+ 7  2013 2013-01-01 06:00:00 EWR    LAX   N33289  UA      United Air Lines Inc.
+ 8  2013 2013-01-01 06:00:00 EWR    SNA   N38727  UA      United Air Lines Inc.
+ 9  2013 2013-01-01 06:00:00 JFK    LAS   N558JB  B6      JetBlue Airways      
+10  2013 2013-01-01 07:00:00 JFK    SFO   N705TW  DL      Delta Air Lines Inc. 
+# ℹ 51,685 more rows</code></pre>
+</div>
+</div>
+</section></section><section id="right-join" class="level2"><h2 class="anchored" data-anchor-id="right-join">Right Join</h2>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">planes_flights</span> <span class="op">=</span> <span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">right_join</a></span><span class="op">(</span><span class="va">planes</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">tailnum</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="inner-join" class="level2"><h2 class="anchored" data-anchor-id="inner-join">Inner Join</h2>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">origin_flights</span> <span class="op">=</span> <span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">airports</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"origin"</span><span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">origin_flights</span> <span class="op">=</span> <span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">origin</span> <span class="op">==</span> <span class="va">faa</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="full-join" class="level2"><h2 class="anchored" data-anchor-id="full-join">Full Join</h2>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dest_flights</span> <span class="op">=</span> <span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">airports</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dest"</span><span class="op">=</span> <span class="st">"faa"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">dest_flights</span> <span class="op">=</span> <span class="va">flights2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">dest</span> <span class="op">==</span> <span class="va">faa</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="semi-join" class="level2"><h2 class="anchored" data-anchor-id="semi-join">Semi-Join</h2>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airports</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">flights2</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">faa</span> <span class="op">==</span> <span class="va">origin</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 8
+  faa   name                  lat   lon   alt    tz dst   tzone           
+  &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           
+1 EWR   Newark Liberty Intl  40.7 -74.2    18    -5 A     America/New_York
+2 JFK   John F Kennedy Intl  40.6 -73.8    13    -5 A     America/New_York</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airports</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">flights2</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">faa</span> <span class="op">==</span> <span class="va">origin</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51,695 × 13
+   faa   name        lat   lon   alt    tz dst   tzone  year time_hour          
+   &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;dttm&gt;             
+ 1 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 06:00:00
+ 2 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 06:00:00
+ 3 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 06:00:00
+ 4 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 06:00:00
+ 5 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 06:00:00
+ 6 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 07:00:00
+ 7 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 07:00:00
+ 8 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 08:00:00
+ 9 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 08:00:00
+10 EWR   Newark L…  40.7 -74.2    18    -5 A     Amer…  2013 2013-01-01 08:00:00
+# ℹ 51,685 more rows
+# ℹ 3 more variables: dest &lt;chr&gt;, tailnum &lt;chr&gt;, carrier &lt;chr&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">flights</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">airports</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join_by.html">join_by</a></span><span class="op">(</span><span class="va">dest</span> <span class="op">==</span> <span class="va">faa</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">dest</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 1
+  dest 
+  &lt;chr&gt;
+1 BQN  
+2 SJU  
+3 STT  
+4 PSE  </code></pre>
+</div>
+</div>
+
+
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

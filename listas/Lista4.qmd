@@ -1,0 +1,320 @@
+---
+title: "Lista 4"
+author: "Raymundo"
+#date: "2023-09-27"
+output:
+  html_document:                    
+    toc: true                       
+    toc_depth: 3                    
+    toc_float:                      
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           
+
+    highlight: espresso
+               
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+    #keep_md: true 
+---
+
+---
+
+# 
+
+---
+
+## 
+
+---
+
+## Exercício 1:
+* Utilizando o operador **`%>%`**, crie um pipeline que execute as seguintes operações utilizando o conjunto de dados chamado **`lakers`**:
+
+```{r}
+library(dplyr)
+library(lubridate)
+
+lakers <- lakers
+```
+
+-   Filtre as linhas onde a coluna "points" é maior que 2.
+-   Em seguida, ordene o conjunto de dados pela coluna "time" em ordem decrescente.
+-   Por fim, exiba as colunas "opponent" e "team" para observações únicas.
+
+``` {r}
+exercicio1 <- lakers %>%
+  filter(points > 2) %>%
+  arrange(desc(time)) %>%
+  select(opponent, team) %>%
+  distinct()
+
+exercicio1
+```
+
+## Exercício 2:
+* Usando o operador **`%<>%`**, atualize o conjunto de dados **`lakers`** da seguinte forma:
+
+-   Adicione uma nova coluna chamada "game_type_opponent" que seja uma combinação entre as colunas "game_type" e "opponent" separadas por " \| ".
+
+``` {r}
+exercicio2 <- lakers %>%
+  mutate(game_type_opponent = paste(game_type, 
+                                    opponent, 
+                                    sep = " | "))
+
+exercicio2
+```
+
+## Exercício 3:
+
+* Crie um pipeline usando **`%>%`** que realize as seguintes operações utilizando o conjunto de dados chamado **`lakers`**:
+
+-   Agrupe os dados pela coluna "team".
+
+-   Calcule a média dos valores na coluna "points" para cada grupo.
+
+-   Renomeie a coluna resultante para "media_pontos_por_time".
+
+``` {r}
+exercicio3 <- lakers %>%
+  group_by(team) %>%
+  summarise(media_pontos_por_time = mean(points))
+
+exercicio3
+```
+
+## Exercício 4:
+
+* Utilize **`%<>%`** para atualizar o conjunto de dados da seguinte maneira:
+
+-   Crie uma coluna "ln_media_pontos_por_time", utilizando o logaritmos naturais de "media_pontos_por_time".
+
+``` {r}
+exercicio4 <- exercicio3 %>%
+  mutate(ln_media_pontos_por_time = log(media_pontos_por_time))
+
+exercicio4
+```
+
+## Exercício 5:
+
+* Usando o conjunto de dados dos Lakers, crie uma nova coluna chamada "data_formatada" que contenha as datas de jogo no formato "Ano-Mês-Dia" (por exemplo, "2023-09-23").
+
+``` {r}
+q5 <- lakers %>% 
+  mutate(date = ymd(date))
+q5
+```
+
+## Exercício 6:
+
+* Utilizando o conjunto de dados dos Lakers, crie uma nova coluna chamada "dia_da_semana" que contenha o dia da semana correspondente a cada data de jogo. Em seguida, calcule a contagem de jogos que ocorreram em cada dia da semana.
+
+-   Dica: utilize a função `wday`.
+
+
+``` {r}
+exercicio6 <- q5 %>%
+  mutate(dia_da_semana = weekdays(date)) %>%
+  count(dia_da_semana)
+
+exercicio6
+```
+
+## Exercício 7
+
+* No conjunto de dados dos Lakers, crie uma nova coluna chamada "mes" que contenha o mês de cada jogo. Em seguida, calcule a média do número de pontos que cada time marcou em cada mês ao longo de todos os anos.
+
+
+``` {r}
+exercicio7 <- q5 %>%
+  mutate(mes = format(date, "%m")) %>%
+  group_by(team, mes) %>%
+  summarise(media_pontos = mean(points))
+
+
+exercicio7
+```
+
+## Exercício 8
+* Crie uma matriz com o número de pontos totais feitos pelo lakers vs outros times.
+
+-   **Dica:** Utilize as funções da família `pivot_*.`
+
+```{r, error=TRUE}
+# Carregue a biblioteca tidyverse
+library(tidyverse)
+
+# Suponha que seus dados estejam em um objeto chamado "lakers_data"
+
+# Use a função pivot_wider para criar a matriz de pontos totais
+matriz_pontos <- lakers %>%
+  group_by(team) %>%
+  summarize(TotalPontos = sum(points)) %>%
+  pivot_wider(names_from = team, 
+              values_from = TotalPontos,
+              names_prefix = "Total_Pontos_")
+
+# Imprima a matriz de pontos totais
+print(matriz_pontos)
+
+
+```
+
+## Exercício 9:
+* Utilizando o banco de dados `storms` do `dplyr` 
+
+```{r, error=TRUE}
+# Carregue a biblioteca dplyr
+library(dplyr)
+
+storms <- storms
+head(storms)
+```
+
+* Crie uma data utilizando o dia, mes e ano, e outra o horário (hora e minuto).
+
+```{r, error=TRUE}
+
+# Crie uma coluna de data
+q9 <- storms %>%
+  select(name, year, month, day, hour) %>%
+  unite(data, year, month, day, sep = "-") %>%
+  mutate(hour = sprintf("%02d:00", hour))
+
+q9
+
+
+
+
+```
+
+## Exercício 10:
+
+* Calcule o número total de tempestades em cada ano, a média de tempestades por mês, e a média dos ventos e apresente os resultados em ordem decrescente de frequência.
+
+
+```{r, error=TRUE}
+q10 <- storms %>%
+  group_by(year) %>%
+  summarise(
+    total_tempestades = n(),
+    media_tempestades_por_mes = mean(n() / 12),
+    media_ventos = mean(wind)
+  ) %>%
+  arrange(desc(total_tempestades))
+
+q10
+
+```
+
+## Exercício 11:
+
+* No conjunto de dados "storms," crie uma nova coluna chamada "tempo_de_duracao" que contenha a duração de cada tempestade em dias. Em seguida, encontre a tempestade com a maior duração e apresente suas informações.
+
+
+```{r, error=TRUE}
+q11 <- storms %<>%
+  mutate(data_hora = as.POSIXct(paste(year, month, day, hour, minute), format = "%Y-%m-%d %H:%M")) %>%
+  group_by(name) %>%
+  summarise(tempo_de_duracao = as.numeric(difftime(max(data_hora), min(data_hora), units = "days"))) %>%
+  arrange(desc(tempo_de_duracao)) 
+q11
+
+```
+
+## Exercício 12:
+
+* Utilizando o conjunto de dados "storms", calcule a média dos ventos (coluna "wind") das tempestades para cada mês do ano.
+
+```{r, error=TRUE}
+q12 <- storms %>%
+  group_by(name, year, month) %>%
+  summarise(media_ventos = mean(wind))
+
+q12
+```
+
+## Exercício 13: 
+
+* Para os exercícios a seguir precisamos criar um banco de dados:
+
+```{r, error=TRUE}
+# Carregue o pacote dplyr
+library(dplyr)
+
+df1 <- data.frame(
+  ID = c(1:5,9),
+  Nome = c("Alice", 
+           "Ana", 
+           "Carmen", 
+           "Daniela", 
+           "Bianca", 
+           "Aline")
+)
+
+# Crie outro data frame em memória
+df2 <- data.frame(
+  ID = 3:7,
+  Idade = c(25, 30, 35, 40, 45)
+)
+
+df3 <- data.frame(
+  ID = 1:7,
+  Estado = c("PR", "RN", "SC", 
+             "AL", "MA", "PR", "SP")
+) 
+```
+
+-   Qual a idade média dos moradores do estado "PR"?
+
+```{r, error=TRUE}
+
+idade_media_pr <- df1 %>%
+  inner_join(df2, by = "ID") %>%
+  inner_join(df3, by = "ID") %>%
+  filter(Estado == "PR") %>%
+  summarise(idade_media = mean(Idade))
+
+idade_media_pr
+
+  
+```
+
+- Qual a idade da Bianca?
+
+```{r, error=TRUE}
+idade_bianca <- df1 %>%
+  inner_join(df2, by = "ID") %>%
+  filter(Nome == "Bianca") %>%
+  select(Idade)
+
+idade_bianca
+
+```
+
+- Qual estado mora Carmen?
+
+```{r, error=TRUE}
+estado_carmen <- df1 %>%
+  inner_join(df3, by = "ID") %>%
+  filter(Nome == "Carmen") %>%
+  select(Estado)
+
+estado_carmen
+```
+
+- Qual idade de Aline?
+
+```{r, error=TRUE}
+idade_aline <- df1 %>%
+  inner_join(df2, by = "ID") %>%
+  filter(Nome == "Aline") %>%
+  select(Idade)
+
+idade_aline
+```

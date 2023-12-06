@@ -1,0 +1,293 @@
+---
+always_allow_html: true
+title: "Aula 05"
+---
+
+## Aula 05
+
+### Lista
+
+```{r}
+primeira_lista <- list(
+  nome = "Deisy",
+  matrix1 = matrix(c(1:9), ncol = 3),
+  animais <- c("gato", "cachorro")
+)
+
+primeira_lista
+```
+
+```{r}
+primeira_lista[[2]]
+
+primeira_lista[[2]][1,]
+
+primeira_lista$matrix1[1, ]
+```
+
+```{r}
+primeira_lista[["matrix1"]]
+```
+
+```{r}
+primeira_lista[[4]] <- sum(primeira_lista$matrix1)
+primeira_lista[[4]]
+
+primeira_lista$media = rowMeans(primeira_lista$matrix1)
+```
+
+```{r}
+primeira_lista$matrix1 <- NULL
+```
+
+#### Aninhamento de Listas
+
+```{r}
+endereco = list( rua = "abc", 
+                 numero = 586,
+                 bairro = "UFPR", 
+                 pais = "Brasil")
+
+primeira_lista$endereco <- endereco
+```
+
+## Data Frame
+
+```{r}
+# Exemplo de criação de Data Frame
+meu_data_frame <- 
+  data.frame(
+  nome = c("Alice", "Bob", "Carol", "Ana", "João", "Carlos", "Patrícia", "Leonardo"),
+  idade = c(25, 30, 28, 20, 27, 50, 60, 45),
+  salario = c(5000, 6000, 5500, 8000, 2000, 3500, 10000, 3800 ), 
+  meio_de_transporte = c('onibus', 'bicicleta', 'onibus', 'carro', 'carro', 'onibus', 'onibus', 'bicicleta')
+)
+
+## Nomes de colunas do nosso data.frame não possuem espaço, podem ser separadas por "." ou "_".
+```
+
+```{r}
+head(meu_data_frame)
+tail(meu_data_frame)
+```
+
+```{r}
+meu_data_frame[, 1:2]
+meu_data_frame[1:2, ]
+```
+
+```{r}
+meu_data_frame$genero <- c("F", "M", "F", "F", "M", "M", "F", "M")
+```
+
+```{r}
+names(meu_data_frame)
+```
+
+```{r,results='markup'}
+meu_data_frame$nome # vetor
+meu_data_frame[,1] # vetor
+meu_data_frame["nome"] # df
+meu_data_frame[,"nome"] # vetor
+
+meu_data_frame$genero <- NULL
+meu_data_frame
+```
+
+### Filtros
+
+```{r}
+meu_data_frame[meu_data_frame$idade > 25,]
+
+meu_data_frame[meu_data_frame$idade > 25, "salario"]
+
+meu_data_frame$salario[meu_data_frame$idade > 25] # vetor
+
+```
+
+```{r}
+subset(meu_data_frame, idade > 25)
+
+
+subset(meu_data_frame, idade > 25, select = c("salario", "meio_de_transporte")) # df
+
+```
+
+```{r}
+class(meu_data_frame)
+
+class(meu_data_frame$idade)
+
+class(meu_data_frame$meio_de_transporte)
+
+```
+
+```{r}
+str(meu_data_frame)
+```
+
+```{r}
+dim(meu_data_frame) ## Linha, Coluna
+
+nrow(meu_data_frame) ## Linhas
+ncol(meu_data_frame) ## Colunas
+
+dim(meu_data_frame)[1]
+```
+
+```{r}
+summary(meu_data_frame)
+fivenum(meu_data_frame$salario)
+```
+
+```{r}
+# Exemplo de uso da função by()
+resultado <- by(meu_data_frame$salario,
+                meu_data_frame$idade,
+                mean)
+resultado
+
+
+resultado <- by(meu_data_frame$salario,
+                meu_data_frame$meio_de_transporte,
+                median)
+resultado
+```
+
+## Fatores
+
+```{r}
+meu_data_frame$meio_de_transporte 
+
+meu_data_frame$meio_de_transporte_fc = as.factor(meu_data_frame$meio_de_transporte)
+
+meu_data_frame$meio_de_transporte_fc = factor(meu_data_frame$meio_de_transporte,
+                                              levels = c("carro", "onibus", "bicicleta", "aplicativo"))
+
+levels(meu_data_frame$meio_de_transporte_fc)
+nlevels(meu_data_frame$meio_de_transporte_fc)
+
+as.character(meu_data_frame$meio_de_transporte_fc) 
+str(meu_data_frame)
+```
+
+```{r}
+meu_data_frame$genero <- c("F", "M", "F", "F", "M", "M", "F", "M")
+
+table(meu_data_frame$meio_de_transporte)
+tabela_1 = table(meu_data_frame$meio_de_transporte, 
+      meu_data_frame$genero)
+
+prop.table(tabela_1) # divide pelo total
+prop.table(tabela_1, margin = 1) # linha
+prop.table(tabela_1, margin = 2) # coluna
+
+```
+
+```{r}
+# data()
+data("USArrests")
+```
+
+### Exercícios
+
+1.  Imprima na tela as 9 primeiras observações.
+
+```{r}
+head(USArrests, n = 9)
+USArrests[1:9,]
+```
+
+2.  Imprima as últimas 3 observações.
+
+```{r}
+tail(USArrests, n = 3)
+USArrests[(nrow(USArrests)-2) : nrow(USArrests), ]
+```
+
+3.  Quantas observações temos?
+
+```{r}
+nrow(USArrests)
+dim(USArrests)[1]
+
+```
+
+4.  Quantas variáveis temos?
+
+```{r}
+ncol(USArrests)
+
+```
+
+5.  Apresente o sumário dos dados.
+
+```{r}
+summary(USArrests)
+```
+
+6.  Apresente a estrutura dos dados.
+
+```{r}
+str(USArrests)
+
+```
+
+7.  Indique os estados cujo número de Murder está entre 10 e 15.
+
+```{r}
+rownames(USArrests[USArrests$Murder >= 10 & USArrests$Murder <= 15, ])
+
+rownames(subset(USArrests, Murder >= 10 & Murder <= 15))
+```
+
+8.  Qual a média de Assault para os estados cuja variável Rape está no IQR ($Q_3 - Q_1$ )?
+
+```{r}
+rape_q3 = quantile(USArrests$Rape, 0.75)
+rape_q1 = quantile(USArrests$Rape, 0.25)
+
+rape_q3
+rape_q1
+
+assault_rape_q3_q1 = subset(USArrests, Rape > rape_q1 & Rape < rape_q3, select = Assault)
+mean(assault_rape_q3_q1$Assault)
+```
+
+```{r}
+png("test.png")
+plot(1:10, 1:10)
+dev.off
+
+```
+
+![](test.png)
+
+::: callout-note
+Oi
+:::
+
+1.  Use expressões regulares para encontrar todos os dígitos em "Texto1234".
+
+```{r}
+x = "Texto1234"
+gsub(x = x, 
+     pattern = "[A-Za-z]", 
+     replacement = "")
+
+gsub(x = x, 
+     pattern = "[1-9]", 
+     replacement = "")
+```
+
+2.  Utilize regex para extrair as palavras que começam com a letra "C" em "Casa, carro, frutas, animais e cidade".
+
+```{r}
+y = "Casa, carro, frutas, animais e cidade"
+y = strsplit(y, " ")
+
+z = gsub(x = y[[1]],
+         replacement = "", 
+         pattern = ",")
+z[grep("^c", z, ignore.case = T)]
+```

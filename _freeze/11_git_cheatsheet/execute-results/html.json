@@ -1,0 +1,14 @@
+{
+  "hash": "21ee6f1af695125700ef58f585a7a1d5",
+  "result": {
+    "markdown": "---\nalways_allow_html: true\ntitle: \"11  Git Cheat-Sheet\"\n---\n\n\n## 11.1 Configuração Inicial\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git config --global user.name \"Seu Nome\"    # Configura o nome do usuário globalmente\n- git config --global user.email \"seu@email.com\"    # Configura o email globalmente\n```\n:::\n\n\n## 11.2 Iniciar um Repositório\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git init    # Inicializa um novo repositório Git\n```\n:::\n\n\n## 11.3 Clonar um Repositório\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git clone URL_DO_REPOSITORIO    # Cria uma cópia local de um repositório remoto\n```\n:::\n\n\n## 11.4 Realizando Alterações\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git status    # Exibe o status do repositório (arquivos modificados, adicionados etc.)\n- git add nome-do-arquivo    # Adiciona um arquivo específico para ser incluído no próximo commit\n- git add .    # Adiciona todos os arquivos modificados para serem incluídos no próximo commit\n- git commit -m \"mensagem do commit\"    # Registra as alterações adicionadas como uma nova versão\n```\n:::\n\n\n## 11.5 Visualizando o Histórico\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git log    # Mostra o histórico de commits\n```\n:::\n\n\n## 11.6 Trabalhando com Branches\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git branch    # Lista todos os branches\n- git branch nome-do-branch    # Cria um novo branch\n- git checkout nome-do-branch    # Alterna para um branch específico\n- git checkout -b nome-do-branch    # Cria e alterna para um novo branch\n- git merge nome-do-branch    # Mescla as alterações de um branch ao branch atual\n```\n:::\n\n\n#11.7 Colaborando com o Repositório Remoto\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git pull origin nome-do-branch    # Puxa as alterações do repositório remoto para o branch local\n- git push origin nome-do-branch    # Envia as alterações do branch local para o repositório remoto\n```\n:::\n\n\n## 11.8 Resolução de Conflitos\n\n* Durante o merge, o Git pode identificar conflitos que precisam ser resolvidos manualmente.\n\n## 11.9 Outros Comandos Úteis\n\n\n::: {.cell}\n\n```{.r .cell-code}\n- git remote    # Exibe informações sobre os repositórios remotos conectados\n- git fetch    # Busca as alterações do repositório remoto, mas não as mescla automaticamente\n- git rm nome-do-arquivo    # Remove um arquivo do repositório e prepara para ser removido do controle de versão\n- git diff    # Mostra as diferenças entre o código no diretório de trabalho e as alterações confirmadas\n- git push --tags    # Envia as tags para o repositório remoto\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

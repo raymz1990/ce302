@@ -1,0 +1,37 @@
+---
+title: "Seu Título Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+---
+
+## Relatório de Exemplo
+
+Algum texto aqui.
+
+-   lista
+-   lista
+-   lista
+
+## Slide com código
+
+```{r}
+require(tidyverse)
+require(palmerpenguins)
+```
+
+```{r}
+palmerpenguins::penguins
+```
+
+```{r}
+penguins %>% 
+  group_by(species, island) %>% 
+  summarise(n = n(), 
+            media_comprimento = mean(bill_length_mm, na.rm = TRUE), 
+            media_profundidade = mean(bill_depth_mm, na.rm = TRUE), 
+            media_asa = mean(flipper_length_mm, na.rm = TRUE), 
+            media_massa = mean(body_mass_g, na.rm = TRUE))
+```
+
+```         
+```

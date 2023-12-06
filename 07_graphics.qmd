@@ -1,0 +1,781 @@
+---
+always_allow_html: true
+title: "7 Procedimentos Gráficos"
+---
+
+## 7.1 Introdução ao ggplot2 
+
+O `ggplot2` é uma das bibliotecas mais populares para criação de gráficos em R. Ele foi desenvolvido por Hadley Wickham e é conhecido por sua abordagem de “*gramática dos gráficos*”, que permite criar visualizações complexas com facilidade. Uma das principais características do ggplot2 é o conceito de **camadas**, onde adicionamos componentes visuais ao gráfico de forma incremental, permitindo maior controle sobre a estética e os dados representados.
+
+Para começar a trabalhar com o ggplot2, precisamos carregar a biblioteca, o `ggplot2` faz parte do `tidyverse`.
+
+Para a aula de hoje, vamos agrupar 16 bancos de dados sobre “Filmes”, disponíveis em [Kaggle](https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre/).
+
+Primeira coisa que precisamos fazer é ler os 16 bancos de dados, criar uma variável com o tipo do filme e em seguida montar o nosso banco único para podermos explorar os dados.
+
+* **Lendo os dados**
+
+```{r}
+require(data.table)
+```
+
+```{r}
+require(tidyverse)
+```
+
+```{r}
+require(magrittr)
+```
+
+
+
+
+```{r}
+files <- list.files("./datasets/movies", full.names = TRUE)
+filmes <- list()
+
+for (i in 1:length(files)) {
+  nome <- gsub(x = basename(files[i]), 
+               pattern = ".csv", 
+               replacement = "")
+  
+  filmes[[i]] <- fread(files[i]) %>%
+    mutate(tipo = nome)
+  
+  filmes[[i]]$year %<>% as.integer()
+  filmes[[i]]$`gross(in $)` %<>% as.numeric()
+}
+```
+
+```{r}
+filmes %<>% bind_rows()
+
+filmes
+```
+
+### 7.1.1 Gráfico de Dispersão (Scatter Plot) 
+
+* **Aplicação**: Mostra a relação entre **duas** variáveis **quantitativas**.
+
+```{r}
+filmes %>% # Carregar o banco
+  ggplot() + ## Chamar o ggplot
+  aes( x = year, y = `gross(in $)`) + ## aplicar a estética, isto é, quais são as variáveis e o que elas significam, x e y, neste caso
+  geom_point() # Fazer o scatterplot
+```
+
+Podemos incluir a cor dos pontos, mudando a estética do gráfico.
+
+```{r}
+filmes %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo) + ## Adicionamos cor
+  geom_point()
+```
+
+```{r}
+filmes %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo) + 
+  geom_point() + 
+  theme_minimal() ## Incluímos tema
+```
+
+```{r}
+filmes %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo) + 
+  geom_point() + 
+  facet_wrap(vars(tipo)) + ## Fazemos o gráfico separado por tipo
+  theme_minimal()
+```
+
+Suponha que tenhamos interesse em que o tamanho dos pontos estejam relacionados com o *rating* do filme. Vamos fazer isso, agora, apenas para os filmes de animação.
+
+```{r}
+filmes %>% 
+  filter(tipo %in% "animation") %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo, 
+       size = rating) + 
+  geom_point() + 
+  theme_minimal()
+```
+
+Para ajustarmos a escala dos pontos, basta adcionarmos uma camada de `scale_size`.
+
+```{r}
+filmes %>% 
+  filter(tipo %in% "animation") %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo, 
+       size = rating) + 
+  geom_point() + 
+  scale_size_continuous(range=c(0.01, 2)) + 
+  theme_minimal()
+
+```
+
+Podemos alterar os nomes nos eixos utilizando a função `labs`.
+
+```{r}
+filmes %>% 
+  filter(tipo %in% "animation") %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo, 
+       size = rating) + 
+  geom_point() + 
+  scale_size_continuous(range=c(0.01, 2)) + 
+  labs(x = "Ano", 
+       y = "Investimento ($)") + 
+  theme_minimal()
+```
+
+Para incluírmos uma linha de tendência no gráfico podemos utilizar a função `geom_smooth`.
+
+```{r}
+filmes %>% 
+  filter(tipo %in% "animation") %>% 
+  ggplot() +
+  aes( x = year, 
+       y = `gross(in $)`, 
+       color = tipo, 
+       fill = tipo) + 
+  geom_point() + 
+  geom_smooth(method = "loess") + # O método aqui se refere ao método utilizado para estimação da curva
+  scale_size_continuous(range=c(0.01, 2)) + 
+  labs(x = "Ano", 
+       y = "Investimento ($)") + 
+  theme_minimal()
+```
+
+### 7.1.2 Gráfico de Linhas 
+
+* **Aplicação**: Mostra a relação entre **duas** variáveis **quantitativas**.
+
+```{r}
+filmes %>% 
+  group_by(year, tipo) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio, 
+       color = tipo) + 
+  geom_line() + 
+  facet_wrap(vars(tipo)) + 
+  theme_minimal()
+
+```
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + ## Alteramos a transparencia da linha
+  geom_point() + ## Colocamos Pontos
+  theme_minimal()
+```
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + ## Alteramos a transparencia da linha
+  geom_point() + ## Colocamos Pontos
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  theme_minimal()
+
+```
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + 
+  geom_point() + 
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  scale_y_continuous(labels = scales::label_dollar()) + 
+  theme_minimal()
+```
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + 
+  geom_point() + 
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  scale_y_continuous(labels = scales::label_dollar()) + ## Alterando o label dos eixos y e x
+  scale_x_continuous(breaks = seq(from = 1900, to = 2020, by = 10)) + 
+  theme_minimal()
+```
+
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + 
+  geom_point() + 
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  scale_y_continuous(labels = scales::label_dollar()) +
+  scale_x_continuous(breaks = seq(from = 1900, to = 2020, by = 10)) + 
+  theme_minimal() +
+  theme(text = element_text(size = 20, 
+                            hjust = 0.5, 
+                            face = "bold")) # tamanho da fonte
+```
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE), 
+            n_filmes = n()) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + 
+  geom_point(aes(size = n_filmes)) + 
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  scale_y_continuous(labels = scales::label_dollar()) +
+  scale_x_continuous(breaks = seq(from = 1900, to = 2020, by = 10)) + 
+  theme_minimal() +
+  theme(text = element_text(size = 20, 
+                            hjust = 0.5, 
+                            face = "bold")) # tamanho da fonte
+```
+
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE), 
+            n_filmes = n()) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + 
+  geom_point(aes(size = n_filmes)) + 
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  scale_y_continuous(labels = scales::label_dollar()) +
+  scale_x_continuous(breaks = seq(from = 1900, to = 2020, by = 10)) + 
+  scale_size_continuous(range = c(0.1, 10)) + 
+  theme_minimal() +
+  theme(text = element_text(size = 20, 
+                            hjust = 0.5, 
+                            face = "bold")) # tamanho da fonte
+```
+
+
+```{r}
+filmes %>% 
+  group_by(year) %>% 
+  summarise(Valor_Gasto_Medio = mean(`gross(in $)`, na.rm = TRUE), 
+            n_filmes = n()) %>%
+  ggplot() +
+  aes( x = year, 
+       y = Valor_Gasto_Medio) + 
+  geom_line(alpha = 0.2) + 
+  geom_point(aes(size = n_filmes)) + 
+  labs(x = "Ano de Lançamento", 
+       y = "Investimento ($)", 
+       title = "Gráfico do investimento médio em filmes por ano") + 
+  scale_y_continuous(labels = scales::label_dollar(),
+                     trans = "log10") +
+  scale_x_continuous(breaks = seq(from = 1900, to = 2020, by = 10)) + 
+  scale_size_continuous(range = c(0.1, 10)) + 
+  theme_minimal() +
+  theme(text = element_text(size = 20, 
+                            hjust = 0.5, 
+                            face = "bold")) # tamanho da fonte
+```
+
+
+### 7.1.3 Gráfico de barras
+
+* **Aplicação**: Comparação de categorias em um eixo **categórico**.
+
+```{r}
+filmes %>% 
+  group_by(tipo) %>% 
+  summarise(Total_Investido = sum(`gross(in $)`, na.rm = TRUE)) %>%
+  mutate(tipo = reorder(tipo, Total_Investido)) %>% 
+  ggplot() +
+  aes( x = tipo, 
+       y = Total_Investido, 
+       color = tipo, 
+       fill = tipo) +
+  geom_col() + 
+  scale_y_continuous(labels = scales::label_dollar()) +
+  coord_flip() +
+  labs(x = "Tipo de Filme", 
+       y = "Total Investido ($)") + 
+  theme_minimal()
+```
+
+```{r}
+filmes %>% 
+  group_by(tipo) %>% 
+  summarise(Total_Investido = sum(`gross(in $)`, na.rm = TRUE)) %>%
+  mutate(tipo = reorder(tipo, Total_Investido)) %>% 
+  ggplot() +
+  aes( x = tipo, 
+       y = Total_Investido, 
+       color = tipo, 
+       fill = tipo) +
+  geom_col(alpha = 0.2, 
+           ltw = 2) + 
+  scale_y_continuous(labels = scales::label_dollar()) +
+  coord_flip() +
+  labs(x = "Tipo de Filme", 
+       y = "Total Investido ($)") + 
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+filmes %>% 
+  mutate(tipo = stringr::str_to_title(tipo)) %>% 
+  mutate(ano_categorico = case_when(year < 1900 ~ "< 1900", 
+                                    year < 1925 ~ "< 1925", 
+                                    year < 1950 ~ "< 1950", 
+                                    year < 1975 ~ "< 1975", 
+                                    year < 2000 ~ "< 2000", 
+                                    year < 2025 ~ "< 2025")) %>%
+  group_by(tipo, ano_categorico) %>% 
+  summarise(Total_Investido = sum(`gross(in $)`, na.rm = TRUE)) %>%
+  ungroup() %>% 
+  group_by(tipo) %>% 
+  mutate(total = sum(Total_Investido, na.rm = TRUE)) %>%
+  ggplot() +
+  aes( x = reorder(tipo, total), 
+       y = Total_Investido, 
+       color = ano_categorico, 
+       fill = ano_categorico) +
+  geom_col() + 
+  scale_y_continuous(labels = scales::label_dollar()) +
+  scale_color_manual(values = colorRampPalette(c("Blue", "Pink"))(7)) + 
+  scale_fill_manual(values = colorRampPalette(c("Blue", "Pink"))(7)) + 
+  
+  coord_flip() +
+  labs(x = "Tipo de Filme", 
+       y = "Total Investido ($)",
+       color = "Ano", 
+       fill = "Ano") + 
+  theme_minimal() +
+  theme(legend.position = "bottom", 
+        text = element_text(size = 18))
+```
+
+### 7.1.4 Histograma
+
+* **Aplicação**: Visualização da distribuição de uma variável numérica.
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating) +
+  geom_histogram(bins = 100, fill = "#555555") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, fill = tipo) +
+  geom_histogram(bins = 100, na.rm = TRUE) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+### 7.1.5 Densidade
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating) +
+  geom_density() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, fill = tipo, color = tipo) +
+  geom_density(alpha = 0.1) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+```
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, fill = tipo, color = tipo) +
+  geom_density(alpha = 0.1) +
+  facet_wrap(vars(tipo)) + 
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+### 7.1.6 Boxplot
+
+* **Aplicação**: Visualização da distribuição de uma variável numérica.
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, fill = tipo, color = tipo) +
+  geom_boxplot(alpha = 0.1) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, 
+      y = tipo, 
+      fill = tipo, 
+      color = tipo) +
+  geom_boxplot(alpha = 0.1, 
+               outlier.shape = NA) +
+  geom_jitter(size = 0.1, 
+              alpha = 0.1, 
+              pch = 20) + 
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+### 7.1.7 Gráfico de Violino
+
+* **Aplicação**: Visualização da distribuição de uma variável numérica.
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, y = tipo, color = tipo) +
+  geom_violin(alpha = 0.1) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, y = 1) +
+  geom_violin(alpha = 0.1) +
+  geom_boxplot() + 
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+ggplot(filmes) +
+  aes(x = rating, y = 1) +
+  geom_violin(alpha = 0.1) +
+  geom_boxplot(width = 0.4) + 
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## 7.2 Adições ao `ggplot2` & outros procedimentos gráficos
+
+### 7.2.1 Gráficos de Dispersão Hexagonais
+
+O `geom_hex` é útil para criar gráficos de dispersão hexagonais. Esses gráficos são úteis quando você deseja representar dados de alta densidade em um gráfico de dispersão, especialmente quando há muitos pontos que se sobrepõem.
+
+```{r}
+filmes %>%
+  filter(tipo %in% "animation") %>% 
+  ggplot() + 
+  aes(x = rating, y = year) + 
+  geom_hex(bins = 20, 
+           color = "white", 
+           size = 2) +
+  scale_fill_gradient(low = "#FED0BB",
+                      high = "#461220", 
+                      guide = FALSE) + 
+  coord_flip() + 
+  theme_minimal()
+```
+
+### 7.2.2 Gráfico de Contorno
+
+O `geom_contour` é uma camada geométrica do pacote ggplot2 em R que é usada para criar gráficos de contorno. Os gráficos de contorno são usados para visualizar a densidade de pontos em um espaço bidimensional, onde as linhas de contorno representam regiões de densidade semelhante. Isso é útil quando você deseja identificar padrões de densidade em um gráfico de dispersão ou mapa.
+
+```{r}
+filmes %>%
+  filter(tipo %in% "war") %>% 
+  mutate(runtime_num = stringr::str_remove(runtime, "min") %>% 
+           str_squish() %>% 
+           as.numeric()) %>% 
+  filter(!is.na(runtime_num)) %>% 
+  filter(`gross(in $)` > 0 | !is.na(`gross(in $)`)) %>% 
+  ggplot() + 
+  aes(x = year, 
+      y = runtime_num) + 
+  geom_density_2d() +
+  theme_minimal() + 
+  theme(legend.position = "none")
+```
+
+
+```{r}
+filmes %>%
+  filter(tipo %in% c("war", "animation", "horror")) %>%
+  mutate(runtime_num = stringr::str_remove(runtime, "min") %>% 
+           str_squish() %>% 
+           as.numeric()) %>% 
+  filter(!is.na(runtime_num)) %>% 
+  filter(`gross(in $)` > 0 | !is.na(`gross(in $)`)) %>% 
+  ggplot() + 
+  aes(x = year, 
+      y = runtime_num) + 
+  geom_density_2d_filled(contour_var = "density") +
+  theme_minimal() + 
+  theme(legend.position = "none") +
+  facet_wrap(vars(tipo), scales = "free")
+```
+
+## 7.3 Utilizando o pacote `esquisse` 
+
+Uma opção para facilitar a utilização do pacote `ggplot2` é utilizarmos o *addin* `esquisse`. A utilização do pacote permite a criação de um gráfico base que podemos personalizar em seguir.
+
+### 7.3.1 Adcionando `labels` nos gráficos
+
+Muitas vezes temos interesse em incluir alguma informação no nosso gráfico, seja ela por meio de um texto ou anotação. Uma maneira simples e rápida para fazermos isso é pelo uso da estética `label` e o `geom_text`.
+
+```{r}
+filmes %>% 
+  filter(tipo %in% c("animation")) %>% 
+  mutate(nome = ifelse(`gross(in $)` > quantile(`gross(in $)`, 0.95, na.rm = T), movie_name, NA)) %>% 
+  mutate(col = ifelse(!is.na(nome), "Importante", "Não Importante")) %>%
+  ggplot() +
+  aes(x = year, 
+      y = rating, 
+      label = nome, 
+      color = col)+
+  geom_point() +
+  geom_label() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+Contudo, nem sempre é possível incluirmos os labels dessa maneira. A extensão `ggrepel` é uma alternativa, permitindo que vários labels seja adcionados sem sobreposição.
+
+```{r}
+require(ggrepel)
+```
+
+```{r}
+filmes %>% 
+  filter(tipo %in% c("animation")) %>% 
+  mutate(nome = ifelse(`gross(in $)` > quantile(`gross(in $)`, 0.95, na.rm = T), movie_name, NA)) %>% 
+  mutate(col = ifelse(!is.na(nome), "Importante", "Não Importante")) %>%
+  ggplot() +
+  aes(x = year, 
+      y = rating, 
+      label = nome, 
+      color = col)+
+  geom_point() +
+  geom_label_repel(box.padding = 0.5, 
+                   max.overlaps = 1000) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+```{r}
+filmes %>% 
+  filter(tipo %in% c("animation")) %>% 
+  mutate(nome = ifelse(`gross(in $)` > quantile(`gross(in $)`, 0.95, na.rm = T), movie_name, NA)) %>% 
+  mutate(col = ifelse(!is.na(nome), "Importante", "Não Importante")) %>%
+  ggplot() +
+  aes(x = year, 
+      y = rating, 
+      label = nome, 
+      color = col)+
+  geom_point() +
+  geom_text_repel(box.padding = 0.5, 
+                  max.overlaps = 1000, 
+                  nudge_x = .15,
+                  nudge_y = 1,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+## 7.4 Layouts
+
+Muitas vezes precisamos colocar diversos gráficos em uma mesma página. Para isso, podemos utilizar diversos pacotes como o `cowplot` e o `patchwork`.
+
+```{r}
+require(patchwork)
+```
+
+```{r}
+p1 = 
+  filmes %>% 
+  filter(tipo %in% c("animation")) %>% 
+  mutate(nome = ifelse(`gross(in $)` > quantile(`gross(in $)`, 0.95, na.rm = T), movie_name, NA)) %>% 
+  mutate(col = ifelse(!is.na(nome), "Importante", "Não Importante")) %>%
+  ggplot() +
+  aes(x = year, 
+      y = rating, 
+      label = nome, 
+      color = col)+
+  geom_point() +
+  geom_text_repel(box.padding = 0.5, 
+                  max.overlaps = 1000, 
+                  nudge_x = .15,
+                  nudge_y = 1,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p2 = filmes %>% 
+  filter(tipo %in% c("animation")) %>% 
+  ggplot() +
+  aes(group = year, 
+      y = rating, 
+  )+
+  geom_boxplot() +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p3 = filmes %>% 
+  filter(tipo %in% c("animation")) %>% 
+  group_by(year) %>% 
+  summarise(rate = mean(rating, na.rm = TRUE)) %>% 
+  ggplot()+
+  aes(x = year, 
+      y = rate) + 
+  geom_line() +
+  geom_point() +
+  theme_minimal()
+
+p1 / p2
+```
+
+```{r}
+p1 + p2 + p3
+```
+
+```{r}
+(p1 + p2 )/(p3) + plot_annotation(tag_levels = "A")
+```
+
+### 7.4.1 Exportando gráfico
+
+Para exportarmos um gráfico como PDF ou PNG podemos realizar o seguinte procedimento:
+
+```{latex}
+Cairo::CairoPDF("Caminho/nome_do_grafico.pdf")
+p1
+dev.off()
+```
+
+```{latex}
+Cairo::CairoPNG("Caminho/nome_do_grafico.png")
+p1
+dev.off()
+```
+
+### 7.4.2 Gráficos Interativos
+
+Podemos transformar qualquer gráfico do ggplot em interativo utilizando o pacote `plotly`.
+
+```{r}
+require(plotly)
+```
+
+```{r}
+p3 %>%  ggplotly()
+```
+
+## 7.5 Gráficos Animados
+
+Para fazer gráficos dinâmicos podemos utilizar o `gganimate`.
+
+```{r}
+require(gganimate)
+```
+
+```{r}
+filmes %>% 
+    group_by(tipo, year) %>% 
+    summarise(n = log10(n())) %>%
+    group_by(year) %>% 
+    mutate(Rank = rank(n)) %>%
+    ggplot() + 
+    aes(x = Rank, 
+        y = n, 
+        color = tipo, 
+        fill = tipo, 
+        label = tipo) +
+    geom_col(show.legend = F, alpha = 0.5) + 
+    geom_text(show.legend = F, nudge_y = 1 , size = 10) + 
+    coord_flip() + 
+    scale_y_continuous(limits  = c(0,8)) + 
+    # Agora, incluimos as partes do gganimate
+    labs(#title = 'Ano: {frame_time}', 
+        x = 'Tipo de Filme', 
+        y = 'Número de Filmes') +
+    #transition_time(year) +
+    ggtitle('{closest_state}') +
+    transition_states(year,
+                      transition_length = 5,
+                      state_length = 1) +
+    ease_aes('linear') + 
+    theme_minimal() +  
+    theme(text = element_text(size = 20)) + 
+    exit_fade() +   
+    enter_fade() 
+```
+
+
+## 7.6 Exercício
+1. Faça pelo menos cinco gráficos (distintos), utilizando os diferentes dados apresentados no conjunto de dados `filmes`.
+
+2. Combine os gráficos em uma página e salve em um pdf.
+
+3. Crie um gráfico animado.

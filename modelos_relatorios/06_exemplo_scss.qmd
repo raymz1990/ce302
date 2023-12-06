@@ -1,0 +1,30 @@
+```{latex}
+/*-- scss:defaults --*/
+
+$dark:      #845EC2 !default;
+$light:     #B39CD0 !default;
+$lighter:    #FBEAFF !default;
+$primary:    #b6323b !default;
+$secondary:  #00926f !default;
+$info:       #6bd0bb !default;
+$accent1:    #296073 !default;
+$accent2:    #3596B5 !default;
+$accent3:    #ADC5CF !default;
+$success:    #63ad00 !default;
+$warning:    #ffc275 !default;
+$danger:     #f60068 !default;
+$callout-background:       #F7F5DD !default;
+$callout-border: #f60068 !default;
+$border-color-left: #74A5D2 !default;
+$navbar-bg: #5E3C9C !default;
+// Body
+
+$body-bg:                   $lighter !default;
+$body-color:                $dark !default;
+@function body-mix($weight) {
+    @return mix($body-bg, $body-color, $weight);
+}
+
+
+
+```

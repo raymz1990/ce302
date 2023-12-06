@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Aula 05</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../02_basicR.html" rel="" target="">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../06_loopings.html" rel="" target="">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">
+<li>
+    <a class="dropdown-item" href="../10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">
+<li>
+    <a class="dropdown-item" href="../listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">
+<li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">
+<li>
+    <a class="dropdown-item" href="../modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">
+<li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#aula-05" id="toc-aula-05" class="nav-link active" data-scroll-target="#aula-05">Aula 05</a>
+  <ul class="collapse">
+<li><a href="#lista" id="toc-lista" class="nav-link" data-scroll-target="#lista">Lista</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame">Data Frame</a>
+  <ul class="collapse">
+<li><a href="#filtros" id="toc-filtros" class="nav-link" data-scroll-target="#filtros">Filtros</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#fatores" id="toc-fatores" class="nav-link" data-scroll-target="#fatores">Fatores</a>
+  <ul class="collapse">
+<li><a href="#exerc%C3%ADcios" id="toc-exercícios" class="nav-link" data-scroll-target="#exerc%C3%ADcios">Exercícios</a></li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/scripts_aulas/Aula_05.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/scripts_aulas/Aula_05.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Aula_05.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="Aula_05.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Aula 05</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="aula-05" class="level2"><h2 class="anchored" data-anchor-id="aula-05">Aula 05</h2>
+<section id="lista" class="level3"><h3 class="anchored" data-anchor-id="lista">Lista</h3>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>  nome <span class="op">=</span> <span class="st">"Deisy"</span>,</span>
+<span>  matrix1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>  <span class="va">animais</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gato"</span>, <span class="st">"cachorro"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">primeira_lista</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$nome
+[1] "Deisy"
+
+$matrix1
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+
+[[3]]
+[1] "gato"     "cachorro"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 4 7</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">$</span><span class="va">matrix1</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 4 7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">[[</span><span class="st">"matrix1"</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">primeira_lista</span><span class="op">$</span><span class="va">matrix1</span><span class="op">)</span></span>
+<span><span class="va">primeira_lista</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 45</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">$</span><span class="va">media</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowMeans</a></span><span class="op">(</span><span class="va">primeira_lista</span><span class="op">$</span><span class="va">matrix1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">primeira_lista</span><span class="op">$</span><span class="va">matrix1</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="aninhamento-de-listas" class="level4"><h4 class="anchored" data-anchor-id="aninhamento-de-listas">Aninhamento de Listas</h4>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">endereco</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span> rua <span class="op">=</span> <span class="st">"abc"</span>, </span>
+<span>                 numero <span class="op">=</span> <span class="fl">586</span>,</span>
+<span>                 bairro <span class="op">=</span> <span class="st">"UFPR"</span>, </span>
+<span>                 pais <span class="op">=</span> <span class="st">"Brasil"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">primeira_lista</span><span class="op">$</span><span class="va">endereco</span> <span class="op">&lt;-</span> <span class="va">endereco</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section></section><section id="data-frame" class="level2"><h2 class="anchored" data-anchor-id="data-frame">Data Frame</h2>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exemplo de criação de Data Frame</span></span>
+<span><span class="va">meu_data_frame</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>  nome <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Carol"</span>, <span class="st">"Ana"</span>, <span class="st">"João"</span>, <span class="st">"Carlos"</span>, <span class="st">"Patrícia"</span>, <span class="st">"Leonardo"</span><span class="op">)</span>,</span>
+<span>  idade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">30</span>, <span class="fl">28</span>, <span class="fl">20</span>, <span class="fl">27</span>, <span class="fl">50</span>, <span class="fl">60</span>, <span class="fl">45</span><span class="op">)</span>,</span>
+<span>  salario <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="fl">6000</span>, <span class="fl">5500</span>, <span class="fl">8000</span>, <span class="fl">2000</span>, <span class="fl">3500</span>, <span class="fl">10000</span>, <span class="fl">3800</span> <span class="op">)</span>, </span>
+<span>  meio_de_transporte <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'onibus'</span>, <span class="st">'bicicleta'</span>, <span class="st">'onibus'</span>, <span class="st">'carro'</span>, <span class="st">'carro'</span>, <span class="st">'onibus'</span>, <span class="st">'onibus'</span>, <span class="st">'bicicleta'</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Nomes de colunas do nosso data.frame não possuem espaço, podem ser separadas por "." ou "_".</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    nome idade salario meio_de_transporte
+1  Alice    25    5000             onibus
+2    Bob    30    6000          bicicleta
+3  Carol    28    5500             onibus
+4    Ana    20    8000              carro
+5   João    27    2000              carro
+6 Carlos    50    3500             onibus</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade salario meio_de_transporte
+3    Carol    28    5500             onibus
+4      Ana    20    8000              carro
+5     João    27    2000              carro
+6   Carlos    50    3500             onibus
+7 Patrícia    60   10000             onibus
+8 Leonardo    45    3800          bicicleta</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade
+1    Alice    25
+2      Bob    30
+3    Carol    28
+4      Ana    20
+5     João    27
+6   Carlos    50
+7 Patrícia    60
+8 Leonardo    45</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   nome idade salario meio_de_transporte
+1 Alice    25    5000             onibus
+2   Bob    30    6000          bicicleta</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">genero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "nome"               "idade"              "salario"           
+[4] "meio_de_transporte" "genero"            </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">nome</span> <span class="co"># vetor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Alice"    "Bob"      "Carol"    "Ana"      "João"     "Carlos"   "Patrícia"
+[8] "Leonardo"</code></pre>
+</div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="co"># vetor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Alice"    "Bob"      "Carol"    "Ana"      "João"     "Carlos"   "Patrícia"
+[8] "Leonardo"</code></pre>
+</div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span><span class="st">"nome"</span><span class="op">]</span> <span class="co"># df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome
+1    Alice
+2      Bob
+3    Carol
+4      Ana
+5     João
+6   Carlos
+7 Patrícia
+8 Leonardo</code></pre>
+</div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span>,<span class="st">"nome"</span><span class="op">]</span> <span class="co"># vetor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Alice"    "Bob"      "Carol"    "Ana"      "João"     "Carlos"   "Patrícia"
+[8] "Leonardo"</code></pre>
+</div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">genero</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span><span class="va">meu_data_frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade salario meio_de_transporte
+1    Alice    25    5000             onibus
+2      Bob    30    6000          bicicleta
+3    Carol    28    5500             onibus
+4      Ana    20    8000              carro
+5     João    27    2000              carro
+6   Carlos    50    3500             onibus
+7 Patrícia    60   10000             onibus
+8 Leonardo    45    3800          bicicleta</code></pre>
+</div>
+</div>
+<section id="filtros" class="level3"><h3 class="anchored" data-anchor-id="filtros">Filtros</h3>
+<div class="cell">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">idade</span> <span class="op">&gt;</span> <span class="fl">25</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade salario meio_de_transporte
+2      Bob    30    6000          bicicleta
+3    Carol    28    5500             onibus
+5     João    27    2000              carro
+6   Carlos    50    3500             onibus
+7 Patrícia    60   10000             onibus
+8 Leonardo    45    3800          bicicleta</code></pre>
+</div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">[</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">idade</span> <span class="op">&gt;</span> <span class="fl">25</span>, <span class="st">"salario"</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  6000  5500  2000  3500 10000  3800</code></pre>
+</div>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">salario</span><span class="op">[</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">idade</span> <span class="op">&gt;</span> <span class="fl">25</span><span class="op">]</span> <span class="co"># vetor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  6000  5500  2000  3500 10000  3800</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">meu_data_frame</span>, <span class="va">idade</span> <span class="op">&gt;</span> <span class="fl">25</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      nome idade salario meio_de_transporte
+2      Bob    30    6000          bicicleta
+3    Carol    28    5500             onibus
+5     João    27    2000              carro
+6   Carlos    50    3500             onibus
+7 Patrícia    60   10000             onibus
+8 Leonardo    45    3800          bicicleta</code></pre>
+</div>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">meu_data_frame</span>, <span class="va">idade</span> <span class="op">&gt;</span> <span class="fl">25</span>, select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"salario"</span>, <span class="st">"meio_de_transporte"</span><span class="op">)</span><span class="op">)</span> <span class="co"># df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  salario meio_de_transporte
+2    6000          bicicleta
+3    5500             onibus
+5    2000              carro
+6    3500             onibus
+7   10000             onibus
+8    3800          bicicleta</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">idade</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   8 obs. of  4 variables:
+ $ nome              : chr  "Alice" "Bob" "Carol" "Ana" ...
+ $ idade             : num  25 30 28 20 27 50 60 45
+ $ salario           : num  5000 6000 5500 8000 2000 3500 10000 3800
+ $ meio_de_transporte: chr  "onibus" "bicicleta" "onibus" "carro" ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span> <span class="co">## Linha, Coluna</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8 4</code></pre>
+</div>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span> <span class="co">## Linhas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span> <span class="co">## Colunas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     nome               idade          salario      meio_de_transporte
+ Length:8           Min.   :20.00   Min.   : 2000   Length:8          
+ Class :character   1st Qu.:26.50   1st Qu.: 3725   Class :character  
+ Mode  :character   Median :29.00   Median : 5250   Mode  :character  
+                    Mean   :35.62   Mean   : 5475                     
+                    3rd Qu.:46.25   3rd Qu.: 6500                     
+                    Max.   :60.00   Max.   :10000                     </code></pre>
+</div>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/fivenum.html">fivenum</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">salario</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2000  3650  5250  7000 10000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exemplo de uso da função by()</span></span>
+<span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/by.html">by</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">salario</span>,</span>
+<span>                <span class="va">meu_data_frame</span><span class="op">$</span><span class="va">idade</span>,</span>
+<span>                <span class="va">mean</span><span class="op">)</span></span>
+<span><span class="va">resultado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>meu_data_frame$idade: 20
+[1] 8000
+------------------------------------------------------------ 
+meu_data_frame$idade: 25
+[1] 5000
+------------------------------------------------------------ 
+meu_data_frame$idade: 27
+[1] 2000
+------------------------------------------------------------ 
+meu_data_frame$idade: 28
+[1] 5500
+------------------------------------------------------------ 
+meu_data_frame$idade: 30
+[1] 6000
+------------------------------------------------------------ 
+meu_data_frame$idade: 45
+[1] 3800
+------------------------------------------------------------ 
+meu_data_frame$idade: 50
+[1] 3500
+------------------------------------------------------------ 
+meu_data_frame$idade: 60
+[1] 10000</code></pre>
+</div>
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/by.html">by</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">salario</span>,</span>
+<span>                <span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span>,</span>
+<span>                <span class="va">median</span><span class="op">)</span></span>
+<span><span class="va">resultado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>meu_data_frame$meio_de_transporte: bicicleta
+[1] 4900
+------------------------------------------------------------ 
+meu_data_frame$meio_de_transporte: carro
+[1] 5000
+------------------------------------------------------------ 
+meu_data_frame$meio_de_transporte: onibus
+[1] 5250</code></pre>
+</div>
+</div>
+</section></section><section id="fatores" class="level2"><h2 class="anchored" data-anchor-id="fatores">Fatores</h2>
+<div class="cell">
+<div class="sourceCode" id="cb72"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "onibus"    "bicicleta" "onibus"    "carro"     "carro"     "onibus"   
+[7] "onibus"    "bicicleta"</code></pre>
+</div>
+<div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte_fc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte_fc</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span>,</span>
+<span>                                              levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"carro"</span>, <span class="st">"onibus"</span>, <span class="st">"bicicleta"</span>, <span class="st">"aplicativo"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte_fc</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "carro"      "onibus"     "bicicleta"  "aplicativo"</code></pre>
+</div>
+<div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nlevels.html">nlevels</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte_fc</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte_fc</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "onibus"    "bicicleta" "onibus"    "carro"     "carro"     "onibus"   
+[7] "onibus"    "bicicleta"</code></pre>
+</div>
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   8 obs. of  5 variables:
+ $ nome                 : chr  "Alice" "Bob" "Carol" "Ana" ...
+ $ idade                : num  25 30 28 20 27 50 60 45
+ $ salario              : num  5000 6000 5500 8000 2000 3500 10000 3800
+ $ meio_de_transporte   : chr  "onibus" "bicicleta" "onibus" "carro" ...
+ $ meio_de_transporte_fc: Factor w/ 4 levels "carro","onibus",..: 2 3 2 1 1 2 2 3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">genero</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+bicicleta     carro    onibus 
+        2         2         4 </code></pre>
+</div>
+<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tabela_1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">meu_data_frame</span><span class="op">$</span><span class="va">meio_de_transporte</span>, </span>
+<span>      <span class="va">meu_data_frame</span><span class="op">$</span><span class="va">genero</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tabela_1</span><span class="op">)</span> <span class="co"># divide pelo total</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+                F     M
+  bicicleta 0.000 0.250
+  carro     0.125 0.125
+  onibus    0.375 0.125</code></pre>
+</div>
+<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tabela_1</span>, margin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="co"># linha</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+               F    M
+  bicicleta 0.00 1.00
+  carro     0.50 0.50
+  onibus    0.75 0.25</code></pre>
+</div>
+<div class="sourceCode" id="cb88"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tabela_1</span>, margin <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># coluna</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           
+               F    M
+  bicicleta 0.00 0.50
+  carro     0.25 0.25
+  onibus    0.75 0.25</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb90"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># data()</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"USArrests"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercícios" class="level3"><h3 class="anchored" data-anchor-id="exercícios">Exercícios</h3>
+<ol type="1">
+<li>Imprima na tela as 9 primeiras observações.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">USArrests</span>, n <span class="op">=</span> <span class="fl">9</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Murder Assault UrbanPop Rape
+Alabama       13.2     236       58 21.2
+Alaska        10.0     263       48 44.5
+Arizona        8.1     294       80 31.0
+Arkansas       8.8     190       50 19.5
+California     9.0     276       91 40.6
+Colorado       7.9     204       78 38.7
+Connecticut    3.3     110       77 11.1
+Delaware       5.9     238       72 15.8
+Florida       15.4     335       80 31.9</code></pre>
+</div>
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">USArrests</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>,<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            Murder Assault UrbanPop Rape
+Alabama       13.2     236       58 21.2
+Alaska        10.0     263       48 44.5
+Arizona        8.1     294       80 31.0
+Arkansas       8.8     190       50 19.5
+California     9.0     276       91 40.6
+Colorado       7.9     204       78 38.7
+Connecticut    3.3     110       77 11.1
+Delaware       5.9     238       72 15.8
+Florida       15.4     335       80 31.9</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Imprima as últimas 3 observações.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">USArrests</span>, n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Murder Assault UrbanPop Rape
+West Virginia    5.7      81       39  9.3
+Wisconsin        2.6      53       66 10.8
+Wyoming          6.8     161       60 15.6</code></pre>
+</div>
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">USArrests</span><span class="op">[</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span><span class="op">-</span><span class="fl">2</span><span class="op">)</span> <span class="op">:</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span>, <span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Murder Assault UrbanPop Rape
+West Virginia    5.7      81       39  9.3
+Wisconsin        2.6      53       66 10.8
+Wyoming          6.8     161       60 15.6</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Quantas observações temos?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Quantas variáveis temos?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li>Apresente o sumário dos dados.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Murder          Assault         UrbanPop          Rape      
+ Min.   : 0.800   Min.   : 45.0   Min.   :32.00   Min.   : 7.30  
+ 1st Qu.: 4.075   1st Qu.:109.0   1st Qu.:54.50   1st Qu.:15.07  
+ Median : 7.250   Median :159.0   Median :66.00   Median :20.10  
+ Mean   : 7.788   Mean   :170.8   Mean   :65.54   Mean   :21.23  
+ 3rd Qu.:11.250   3rd Qu.:249.0   3rd Qu.:77.75   3rd Qu.:26.18  
+ Max.   :17.400   Max.   :337.0   Max.   :91.00   Max.   :46.00  </code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li>Apresente a estrutura dos dados.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   50 obs. of  4 variables:
+ $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+ $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
+ $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
+ $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...</code></pre>
+</div>
+</div>
+<ol start="7" type="1">
+<li>Indique os estados cujo número de Murder está entre 10 e 15.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">[</span><span class="va">USArrests</span><span class="op">$</span><span class="va">Murder</span> <span class="op">&gt;=</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">USArrests</span><span class="op">$</span><span class="va">Murder</span> <span class="op">&lt;=</span> <span class="fl">15</span>, <span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Alabama"        "Alaska"         "Illinois"       "Maryland"      
+ [5] "Michigan"       "Nevada"         "New Mexico"     "New York"      
+ [9] "North Carolina" "South Carolina" "Tennessee"      "Texas"         </code></pre>
+</div>
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">USArrests</span>, <span class="va">Murder</span> <span class="op">&gt;=</span> <span class="fl">10</span> <span class="op">&amp;</span> <span class="va">Murder</span> <span class="op">&lt;=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Alabama"        "Alaska"         "Illinois"       "Maryland"      
+ [5] "Michigan"       "Nevada"         "New Mexico"     "New York"      
+ [9] "North Carolina" "South Carolina" "Tennessee"      "Texas"         </code></pre>
+</div>
+</div>
+<ol start="8" type="1">
+<li>Qual a média de Assault para os estados cuja variável Rape está no IQR (<span class="math inline">\(Q_3 - Q_1\)</span> )?</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rape_q3</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">$</span><span class="va">Rape</span>, <span class="fl">0.75</span><span class="op">)</span></span>
+<span><span class="va">rape_q1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span><span class="op">(</span><span class="va">USArrests</span><span class="op">$</span><span class="va">Rape</span>, <span class="fl">0.25</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">rape_q3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   75% 
+26.175 </code></pre>
+</div>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rape_q1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   25% 
+15.075 </code></pre>
+</div>
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">assault_rape_q3_q1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">USArrests</span>, <span class="va">Rape</span> <span class="op">&gt;</span> <span class="va">rape_q1</span> <span class="op">&amp;</span> <span class="va">Rape</span> <span class="op">&lt;</span> <span class="va">rape_q3</span>, select <span class="op">=</span> <span class="va">Assault</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">assault_rape_q3_q1</span><span class="op">$</span><span class="va">Assault</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 179.7083</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html">png</a></span><span class="op">(</span><span class="st">"test.png"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">dev.off</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>function (which = dev.cur()) 
+{
+    if (which == 1) 
+        stop("cannot shut down device 1 (the null device)")
+    .External(C_devoff, as.integer(which))
+    dev.cur()
+}
+&lt;bytecode: 0x0000021dc51c1b20&gt;
+&lt;environment: namespace:grDevices&gt;</code></pre>
+</div>
+</div>
+<p><img src="test.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Oi</p>
+</div>
+</div>
+<ol type="1">
+<li>Use expressões regulares para encontrar todos os dígitos em “Texto1234”.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">=</span> <span class="st">"Texto1234"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, </span>
+<span>     pattern <span class="op">=</span> <span class="st">"[A-Za-z]"</span>, </span>
+<span>     replacement <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1234"</code></pre>
+</div>
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, </span>
+<span>     pattern <span class="op">=</span> <span class="st">"[1-9]"</span>, </span>
+<span>     replacement <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Texto"</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Utilize regex para extrair as palavras que começam com a letra “C” em “Casa, carro, frutas, animais e cidade”.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">y</span> <span class="op">=</span> <span class="st">"Casa, carro, frutas, animais e cidade"</span></span>
+<span><span class="va">y</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">y</span>, <span class="st">" "</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">z</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">y</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>,</span>
+<span>         replacement <span class="op">=</span> <span class="st">""</span>, </span>
+<span>         pattern <span class="op">=</span> <span class="st">","</span><span class="op">)</span></span>
+<span><span class="va">z</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"^c"</span>, <span class="va">z</span>, ignore.case <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Casa"   "carro"  "cidade"</code></pre>
+</div>
+</div>
+
+
+</section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

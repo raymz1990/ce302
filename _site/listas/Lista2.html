@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Raymundo">
+<title>Lista 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../02_basicR.html" rel="" target="">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../06_loopings.html" rel="" target="">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">
+<li>
+    <a class="dropdown-item" href="../10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">
+<li>
+    <a class="dropdown-item" href="../listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">
+<li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">
+<li>
+    <a class="dropdown-item" href="../modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">
+<li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li>
+<a href="#aula-02-conceitos-b%C3%A1sicos-de-r" id="toc-aula-02-conceitos-básicos-de-r" class="nav-link active" data-scroll-target="#aula-02-conceitos-b%C3%A1sicos-de-r">Aula 02: Conceitos básicos de R</a>
+  <ul class="collapse">
+<li>
+<a href="#atribui%C3%A7%C3%A3o-de-vari%C3%A1veis-num%C3%A9ricas-character-e-vetores" id="toc-atribuição-de-variáveis-numéricas-character-e-vetores" class="nav-link" data-scroll-target="#atribui%C3%A7%C3%A3o-de-vari%C3%A1veis-num%C3%A9ricas-character-e-vetores">Atribuição de Variáveis: Numéricas, Character e Vetores</a>
+  <ul class="collapse">
+<li><a href="#crie-uma-vari%C3%A1vel-chamada-idade-e-atribua-o-valor-25." id="toc-crie-uma-variável-chamada-idade-e-atribua-o-valor-25." class="nav-link" data-scroll-target="#crie-uma-vari%C3%A1vel-chamada-idade-e-atribua-o-valor-25.">1. Crie uma variável chamada “idade” e atribua o valor 25.</a></li>
+  <li><a href="#declare-uma-vari%C3%A1vel-nome-e-atribua-o-nome-maria." id="toc-declare-uma-variável-nome-e-atribua-o-nome-maria." class="nav-link" data-scroll-target="#declare-uma-vari%C3%A1vel-nome-e-atribua-o-nome-maria.">2. Declare uma variável “nome” e atribua o nome “Maria”.</a></li>
+  <li><a href="#crie-um-vetor-num%C3%A9rico-chamado-notas-com-valores-8-9-7-e-6." id="toc-crie-um-vetor-numérico-chamado-notas-com-valores-8-9-7-e-6." class="nav-link" data-scroll-target="#crie-um-vetor-num%C3%A9rico-chamado-notas-com-valores-8-9-7-e-6.">3. Crie um vetor numérico chamado “notas” com valores 8, 9, 7 e 6.</a></li>
+  <li><a href="#crie-um-vetor-de-caracteres-frutas-com-os-elementos-ma%C3%A7%C3%A3-banana-e-laranja." id="toc-crie-um-vetor-de-caracteres-frutas-com-os-elementos-maçã-banana-e-laranja." class="nav-link" data-scroll-target="#crie-um-vetor-de-caracteres-frutas-com-os-elementos-ma%C3%A7%C3%A3-banana-e-laranja.">4. Crie um vetor de caracteres “frutas” com os elementos “maçã”, “banana” e “laranja”.</a></li>
+  <li><a href="#crie-um-vetor-num%C3%A9rico-idades-com-os-valores-30-40-e-50." id="toc-crie-um-vetor-numérico-idades-com-os-valores-30-40-e-50." class="nav-link" data-scroll-target="#crie-um-vetor-num%C3%A9rico-idades-com-os-valores-30-40-e-50.">5. Crie um vetor numérico “idades” com os valores 30, 40 e 50.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#cria%C3%A7%C3%A3o-de-vetores-utilizando-c-seq-e-rep" id="toc-criação-de-vetores-utilizando-c-seq-e-rep" class="nav-link" data-scroll-target="#cria%C3%A7%C3%A3o-de-vetores-utilizando-c-seq-e-rep">Criação de Vetores Utilizando c, seq e rep</a>
+  <ul class="collapse">
+<li><a href="#utilizando-a-fun%C3%A7%C3%A3o-c-crie-um-vetor-com-os-n%C3%BAmeros-de-1-a-10." id="toc-utilizando-a-função-c-crie-um-vetor-com-os-números-de-1-a-10." class="nav-link" data-scroll-target="#utilizando-a-fun%C3%A7%C3%A3o-c-crie-um-vetor-com-os-n%C3%BAmeros-de-1-a-10.">6. Utilizando a função <code>c()</code>, crie um vetor com os números de 1 a 10.</a></li>
+  <li><a href="#crie-um-vetor-com-os-n%C3%BAmeros-pares-de-2-a-20-usando-a-fun%C3%A7%C3%A3o-seq." id="toc-crie-um-vetor-com-os-números-pares-de-2-a-20-usando-a-função-seq." class="nav-link" data-scroll-target="#crie-um-vetor-com-os-n%C3%BAmeros-pares-de-2-a-20-usando-a-fun%C3%A7%C3%A3o-seq.">7. Crie um vetor com os números pares de 2 a 20 usando a função <code>seq()</code>.</a></li>
+  <li><a href="#crie-um-vetor-com-cinco-repeti%C3%A7%C3%B5es-do-valor-5-usando-a-fun%C3%A7%C3%A3o-rep." id="toc-crie-um-vetor-com-cinco-repetições-do-valor-5-usando-a-função-rep." class="nav-link" data-scroll-target="#crie-um-vetor-com-cinco-repeti%C3%A7%C3%B5es-do-valor-5-usando-a-fun%C3%A7%C3%A3o-rep.">8. Crie um vetor com cinco repetições do valor 5 usando a função <code>rep()</code>.</a></li>
+  <li><a href="#crie-um-vetor-chamado-alturas-com-100-alturas-variando-de-1.50-a-2.00." id="toc-crie-um-vetor-chamado-alturas-com-100-alturas-variando-de-1.50-a-2.00." class="nav-link" data-scroll-target="#crie-um-vetor-chamado-alturas-com-100-alturas-variando-de-1.50-a-2.00.">9. Crie um vetor chamado “alturas” com 100 alturas, variando de 1.50 a 2.00.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#operadores-aritm%C3%A9ticos" id="toc-operadores-aritméticos" class="nav-link" data-scroll-target="#operadores-aritm%C3%A9ticos">Operadores Aritméticos</a>
+  <ul class="collapse">
+<li><a href="#multiplique-a-vari%C3%A1vel-idade-por-2-e-atribua-o-resultado-a-uma-nova-vari%C3%A1vel." id="toc-multiplique-a-variável-idade-por-2-e-atribua-o-resultado-a-uma-nova-variável." class="nav-link" data-scroll-target="#multiplique-a-vari%C3%A1vel-idade-por-2-e-atribua-o-resultado-a-uma-nova-vari%C3%A1vel.">9. Multiplique a variável “idade” por 2 e atribua o resultado a uma nova variável.</a></li>
+  <li><a href="#calcule-a-m%C3%A9dia-das-notas-do-vetor-notas." id="toc-calcule-a-média-das-notas-do-vetor-notas." class="nav-link" data-scroll-target="#calcule-a-m%C3%A9dia-das-notas-do-vetor-notas.">10. Calcule a média das notas do vetor “notas”.</a></li>
+  <li><a href="#eleve-o-vetor-idades-ao-quadrado." id="toc-eleve-o-vetor-idades-ao-quadrado." class="nav-link" data-scroll-target="#eleve-o-vetor-idades-ao-quadrado.">11. Eleve o vetor “idades” ao quadrado.</a></li>
+  <li><a href="#realize-a-divis%C3%A3o-inteira-de-15-por-4." id="toc-realize-a-divisão-inteira-de-15-por-4." class="nav-link" data-scroll-target="#realize-a-divis%C3%A3o-inteira-de-15-por-4.">12. Realize a divisão inteira de 15 por 4.</a></li>
+  <li><a href="#calcule-o-resto-da-divis%C3%A3o-de-15-por-4." id="toc-calcule-o-resto-da-divisão-de-15-por-4." class="nav-link" data-scroll-target="#calcule-o-resto-da-divis%C3%A3o-de-15-por-4.">13. Calcule o resto da divisão de 15 por 4.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#operadores-relacionais" id="toc-operadores-relacionais" class="nav-link" data-scroll-target="#operadores-relacionais">Operadores Relacionais</a>
+  <ul class="collapse">
+<li><a href="#verifique-se-a-vari%C3%A1vel-idade-%C3%A9-maior-que-18." id="toc-verifique-se-a-variável-idade-é-maior-que-18." class="nav-link" data-scroll-target="#verifique-se-a-vari%C3%A1vel-idade-%C3%A9-maior-que-18.">14. Verifique se a variável “idade” é maior que 18.</a></li>
+  <li><a href="#determine-se-o-primeiro-elemento-do-vetor-notas-%C3%A9-igual-a-8." id="toc-determine-se-o-primeiro-elemento-do-vetor-notas-é-igual-a-8." class="nav-link" data-scroll-target="#determine-se-o-primeiro-elemento-do-vetor-notas-%C3%A9-igual-a-8.">15. Determine se o primeiro elemento do vetor “notas” é igual a 8.</a></li>
+  <li><a href="#verifique-se-algum-valor-no-vetor-idades-%C3%A9-menor-que-35." id="toc-verifique-se-algum-valor-no-vetor-idades-é-menor-que-35." class="nav-link" data-scroll-target="#verifique-se-algum-valor-no-vetor-idades-%C3%A9-menor-que-35.">16. Verifique se algum valor no vetor “idades” é menor que 35.</a></li>
+  <li><a href="#selecione-as-alturas-menores-do-que-1.85-do-vetor-de-alturas." id="toc-selecione-as-alturas-menores-do-que-1.85-do-vetor-de-alturas." class="nav-link" data-scroll-target="#selecione-as-alturas-menores-do-que-1.85-do-vetor-de-alturas.">17. Selecione as alturas menores do que 1.85 do vetor de “alturas”.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#utiliza%C3%A7%C3%A3o-de-fun%C3%A7%C3%B5es-matem%C3%A1ticas-b%C3%A1sicas" id="toc-utilização-de-funções-matemáticas-básicas" class="nav-link" data-scroll-target="#utiliza%C3%A7%C3%A3o-de-fun%C3%A7%C3%B5es-matem%C3%A1ticas-b%C3%A1sicas">Utilização de Funções Matemáticas Básicas</a>
+  <ul class="collapse">
+<li><a href="#calcule-a-raiz-quadrada-de-16." id="toc-calcule-a-raiz-quadrada-de-16." class="nav-link" data-scroll-target="#calcule-a-raiz-quadrada-de-16.">17. Calcule a raiz quadrada de 16.</a></li>
+  <li><a href="#arredonde-o-valor-3.78-para-o-inteiro-mais-pr%C3%B3ximo." id="toc-arredonde-o-valor-3.78-para-o-inteiro-mais-próximo." class="nav-link" data-scroll-target="#arredonde-o-valor-3.78-para-o-inteiro-mais-pr%C3%B3ximo.">18. Arredonde o valor 3.78 para o inteiro mais próximo.</a></li>
+  <li><a href="#arredonde-para-cima-o-vetor-de-alturas." id="toc-arredonde-para-cima-o-vetor-de-alturas." class="nav-link" data-scroll-target="#arredonde-para-cima-o-vetor-de-alturas.">19. Arredonde para cima o vetor de alturas.</a></li>
+  <li><a href="#arredonde-para-baixo-o-vetor-de-alturas" id="toc-arredonde-para-baixo-o-vetor-de-alturas" class="nav-link" data-scroll-target="#arredonde-para-baixo-o-vetor-de-alturas">20. Arredonde para baixo o vetor de alturas</a></li>
+  <li><a href="#calcule-o-valor-absoluto-da-diferen%C3%A7a-entre-10-e-7." id="toc-calcule-o-valor-absoluto-da-diferença-entre-10-e-7." class="nav-link" data-scroll-target="#calcule-o-valor-absoluto-da-diferen%C3%A7a-entre-10-e-7.">21. Calcule o valor absoluto da diferença entre 10 e 7.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#utiliza%C3%A7%C3%A3o-de-fun%C3%A7%C3%B5es-para-manipula%C3%A7%C3%A3o-de-texto-r-base-e-stringr" id="toc-utilização-de-funções-para-manipulação-de-texto-r-base-e-stringr" class="nav-link" data-scroll-target="#utiliza%C3%A7%C3%A3o-de-fun%C3%A7%C3%B5es-para-manipula%C3%A7%C3%A3o-de-texto-r-base-e-stringr">Utilização de Funções para Manipulação de Texto: R Base e Stringr</a>
+  <ul class="collapse">
+<li><a href="#crie-uma-string-com-o-texto-an%C3%A1lise-de-dados." id="toc-crie-uma-string-com-o-texto-análise-de-dados." class="nav-link" data-scroll-target="#crie-uma-string-com-o-texto-an%C3%A1lise-de-dados.">22. Crie uma string com o texto “Análise de Dados”.</a></li>
+  <li><a href="#extraia-os-primeiros-5-caracteres-da-string-criada-no-exerc%C3%ADcio-anterior." id="toc-extraia-os-primeiros-5-caracteres-da-string-criada-no-exercício-anterior." class="nav-link" data-scroll-target="#extraia-os-primeiros-5-caracteres-da-string-criada-no-exerc%C3%ADcio-anterior.">23. Extraia os primeiros 5 caracteres da string criada no exercício anterior.</a></li>
+  <li><a href="#converta-a-string-r-%C3%A9-uma-linguagem-de-programa%C3%A7%C3%A3o-para-mai%C3%BAsculas." id="toc-converta-a-string-r-é-uma-linguagem-de-programação-para-maiúsculas." class="nav-link" data-scroll-target="#converta-a-string-r-%C3%A9-uma-linguagem-de-programa%C3%A7%C3%A3o-para-mai%C3%BAsculas.">24. Converta a string “R é uma linguagem de programação” para maiúsculas.</a></li>
+  <li><a href="#substitua-a-palavra-linguagem-por-software-na-mesma-string." id="toc-substitua-a-palavra-linguagem-por-software-na-mesma-string." class="nav-link" data-scroll-target="#substitua-a-palavra-linguagem-por-software-na-mesma-string.">25. Substitua a palavra “linguagem” por “software” na mesma string.</a></li>
+  </ul>
+</li>
+  <li>
+<a href="#regex" id="toc-regex" class="nav-link" data-scroll-target="#regex">Regex</a>
+  <ul class="collapse">
+<li><a href="#use-express%C3%B5es-regulares-para-encontrar-todos-os-d%C3%ADgitos-em-texto1234." id="toc-use-expressões-regulares-para-encontrar-todos-os-dígitos-em-texto1234." class="nav-link" data-scroll-target="#use-express%C3%B5es-regulares-para-encontrar-todos-os-d%C3%ADgitos-em-texto1234.">27. Use expressões regulares para encontrar todos os dígitos em “Texto1234”.</a></li>
+  <li><a href="#utilize-regex-para-extrair-as-palavras-que-come%C3%A7am-com-a-letra-c-em-casa-carro-frutas-animais-e-cidade." id="toc-utilize-regex-para-extrair-as-palavras-que-começam-com-a-letra-c-em-casa-carro-frutas-animais-e-cidade." class="nav-link" data-scroll-target="#utilize-regex-para-extrair-as-palavras-que-come%C3%A7am-com-a-letra-c-em-casa-carro-frutas-animais-e-cidade.">28. Utilize regex para extrair as palavras que começam com a letra “C” em “Casa, carro, frutas, animais e cidade”.</a></li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/listas/Lista2.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/listas/Lista2.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Lista2.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="Lista2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Lista 2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Raymundo </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header><hr>
+<section id="aula-02-conceitos-básicos-de-r" class="level1"><h1>Aula 02: Conceitos básicos de R</h1>
+<hr>
+<section id="atribuição-de-variáveis-numéricas-character-e-vetores" class="level2"><h2 class="anchored" data-anchor-id="atribuição-de-variáveis-numéricas-character-e-vetores">Atribuição de Variáveis: Numéricas, Character e Vetores</h2>
+<hr>
+<section id="crie-uma-variável-chamada-idade-e-atribua-o-valor-25." class="level3"><h3 class="anchored" data-anchor-id="crie-uma-variável-chamada-idade-e-atribua-o-valor-25.">1. Crie uma variável chamada “idade” e atribua o valor 25.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idade</span> <span class="op">&lt;-</span> <span class="fl">25</span> </span>
+<span><span class="va">idade</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+</div>
+<hr></section><section id="declare-uma-variável-nome-e-atribua-o-nome-maria." class="level3"><h3 class="anchored" data-anchor-id="declare-uma-variável-nome-e-atribua-o-nome-maria.">2. Declare uma variável “nome” e atribua o nome “Maria”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nome</span> <span class="op">&lt;-</span> <span class="st">'Maria'</span></span>
+<span><span class="va">nome</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Maria"</code></pre>
+</div>
+</div>
+<hr></section><section id="crie-um-vetor-numérico-chamado-notas-com-valores-8-9-7-e-6." class="level3"><h3 class="anchored" data-anchor-id="crie-um-vetor-numérico-chamado-notas-com-valores-8-9-7-e-6.">3. Crie um vetor numérico chamado “notas” com valores 8, 9, 7 e 6.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">notas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">7</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span><span class="va">notas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8 9 7 6</code></pre>
+</div>
+</div>
+<hr></section><section id="crie-um-vetor-de-caracteres-frutas-com-os-elementos-maçã-banana-e-laranja." class="level3"><h3 class="anchored" data-anchor-id="crie-um-vetor-de-caracteres-frutas-com-os-elementos-maçã-banana-e-laranja.">4. Crie um vetor de caracteres “frutas” com os elementos “maçã”, “banana” e “laranja”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">frutas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'maçã'</span>,</span>
+<span>            <span class="st">'banana'</span>,</span>
+<span>            <span class="st">'laranja'</span><span class="op">)</span></span>
+<span><span class="va">frutas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "maçã"    "banana"  "laranja"</code></pre>
+</div>
+</div>
+<hr></section><section id="crie-um-vetor-numérico-idades-com-os-valores-30-40-e-50." class="level3"><h3 class="anchored" data-anchor-id="crie-um-vetor-numérico-idades-com-os-valores-30-40-e-50.">5. Crie um vetor numérico “idades” com os valores 30, 40 e 50.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">50</span><span class="op">)</span></span>
+<span><span class="va">idades</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30 40 50</code></pre>
+</div>
+</div>
+<hr></section></section><section id="criação-de-vetores-utilizando-c-seq-e-rep" class="level2"><h2 class="anchored" data-anchor-id="criação-de-vetores-utilizando-c-seq-e-rep">Criação de Vetores Utilizando c, seq e rep</h2>
+<hr>
+<section id="utilizando-a-função-c-crie-um-vetor-com-os-números-de-1-a-10." class="level3"><h3 class="anchored" data-anchor-id="utilizando-a-função-c-crie-um-vetor-com-os-números-de-1-a-10.">6. Utilizando a função <code>c()</code>, crie um vetor com os números de 1 a 10.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numeros</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">numeros</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<hr></section><section id="crie-um-vetor-com-os-números-pares-de-2-a-20-usando-a-função-seq." class="level3"><h3 class="anchored" data-anchor-id="crie-um-vetor-com-os-números-pares-de-2-a-20-usando-a-função-seq.">7. Crie um vetor com os números pares de 2 a 20 usando a função <code>seq()</code>.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">numeros_pares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>                     to <span class="op">=</span> <span class="fl">20</span>,</span>
+<span>                     by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">numeros_pares</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  4  6  8 10 12 14 16 18 20</code></pre>
+</div>
+</div>
+<hr></section><section id="crie-um-vetor-com-cinco-repetições-do-valor-5-usando-a-função-rep." class="level3"><h3 class="anchored" data-anchor-id="crie-um-vetor-com-cinco-repetições-do-valor-5-usando-a-função-rep.">8. Crie um vetor com cinco repetições do valor 5 usando a função <code>rep()</code>.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">repeticoes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">repeticoes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 5 5 5 5</code></pre>
+</div>
+</div>
+<hr></section><section id="crie-um-vetor-chamado-alturas-com-100-alturas-variando-de-1.50-a-2.00." class="level3"><h3 class="anchored" data-anchor-id="crie-um-vetor-chamado-alturas-com-100-alturas-variando-de-1.50-a-2.00.">9. Crie um vetor chamado “alturas” com 100 alturas, variando de 1.50 a 2.00.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alturas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1.50</span>, <span class="fl">2.00</span>, length.out <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">alturas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 1.50 1.51 1.51 1.52 1.52 1.53 1.53 1.54 1.54 1.55 1.55 1.56 1.56 1.57 1.57
+ [16] 1.58 1.58 1.59 1.59 1.60 1.60 1.61 1.61 1.62 1.62 1.63 1.63 1.64 1.64 1.65
+ [31] 1.65 1.66 1.66 1.67 1.67 1.68 1.68 1.69 1.69 1.70 1.70 1.71 1.71 1.72 1.72
+ [46] 1.73 1.73 1.74 1.74 1.75 1.75 1.76 1.76 1.77 1.77 1.78 1.78 1.79 1.79 1.80
+ [61] 1.80 1.81 1.81 1.82 1.82 1.83 1.83 1.84 1.84 1.85 1.85 1.86 1.86 1.87 1.87
+ [76] 1.88 1.88 1.89 1.89 1.90 1.90 1.91 1.91 1.92 1.92 1.93 1.93 1.94 1.94 1.95
+ [91] 1.95 1.96 1.96 1.97 1.97 1.98 1.98 1.99 1.99 2.00</code></pre>
+</div>
+</div>
+<hr></section></section><section id="operadores-aritméticos" class="level2"><h2 class="anchored" data-anchor-id="operadores-aritméticos">Operadores Aritméticos</h2>
+<hr>
+<section id="multiplique-a-variável-idade-por-2-e-atribua-o-resultado-a-uma-nova-variável." class="level3"><h3 class="anchored" data-anchor-id="multiplique-a-variável-idade-por-2-e-atribua-o-resultado-a-uma-nova-variável.">9. Multiplique a variável “idade” por 2 e atribua o resultado a uma nova variável.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idade2</span> <span class="op">&lt;-</span> <span class="va">idade</span> <span class="op">/</span> <span class="fl">2</span></span>
+<span><span class="va">idade2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12.5</code></pre>
+</div>
+</div>
+<hr></section><section id="calcule-a-média-das-notas-do-vetor-notas." class="level3"><h3 class="anchored" data-anchor-id="calcule-a-média-das-notas-do-vetor-notas.">10. Calcule a média das notas do vetor “notas”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">media_notas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">notas</span><span class="op">)</span></span>
+<span><span class="va">media_notas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.5</code></pre>
+</div>
+</div>
+<hr></section><section id="eleve-o-vetor-idades-ao-quadrado." class="level3"><h3 class="anchored" data-anchor-id="eleve-o-vetor-idades-ao-quadrado.">11. Eleve o vetor “idades” ao quadrado.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idades_quadrado</span> <span class="op">&lt;-</span> <span class="va">idades</span> <span class="op">^</span> <span class="fl">2</span></span>
+<span><span class="va">idades_quadrado</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  900 1600 2500</code></pre>
+</div>
+</div>
+<hr></section><section id="realize-a-divisão-inteira-de-15-por-4." class="level3"><h3 class="anchored" data-anchor-id="realize-a-divisão-inteira-de-15-por-4.">12. Realize a divisão inteira de 15 por 4.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">divisao_inteira</span> <span class="op">&lt;-</span> <span class="fl">15</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">4</span></span>
+<span><span class="va">divisao_inteira</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<hr></section><section id="calcule-o-resto-da-divisão-de-15-por-4." class="level3"><h3 class="anchored" data-anchor-id="calcule-o-resto-da-divisão-de-15-por-4.">13. Calcule o resto da divisão de 15 por 4.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">resto_divisao</span> <span class="op">&lt;-</span> <span class="fl">15</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">4</span></span>
+<span><span class="va">resto_divisao</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<hr></section></section><section id="operadores-relacionais" class="level2"><h2 class="anchored" data-anchor-id="operadores-relacionais">Operadores Relacionais</h2>
+<hr>
+<section id="verifique-se-a-variável-idade-é-maior-que-18." class="level3"><h3 class="anchored" data-anchor-id="verifique-se-a-variável-idade-é-maior-que-18.">14. Verifique se a variável “idade” é maior que 18.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idade_maior</span> <span class="op">&lt;-</span> <span class="va">idade</span> <span class="op">&gt;</span> <span class="fl">18</span></span>
+<span><span class="va">idade_maior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<hr></section><section id="determine-se-o-primeiro-elemento-do-vetor-notas-é-igual-a-8." class="level3"><h3 class="anchored" data-anchor-id="determine-se-o-primeiro-elemento-do-vetor-notas-é-igual-a-8.">15. Determine se o primeiro elemento do vetor “notas” é igual a 8.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">notas_maior</span> <span class="op">&lt;-</span> <span class="va">notas</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fl">8</span></span>
+<span><span class="va">notas_maior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<hr></section><section id="verifique-se-algum-valor-no-vetor-idades-é-menor-que-35." class="level3"><h3 class="anchored" data-anchor-id="verifique-se-algum-valor-no-vetor-idades-é-menor-que-35.">16. Verifique se algum valor no vetor “idades” é menor que 35.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">idades_menor</span> <span class="op">&lt;-</span> <span class="va">idades</span> <span class="op">&lt;</span> <span class="fl">35</span></span>
+<span><span class="va">idades_menor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+<hr></section><section id="selecione-as-alturas-menores-do-que-1.85-do-vetor-de-alturas." class="level3"><h3 class="anchored" data-anchor-id="selecione-as-alturas-menores-do-que-1.85-do-vetor-de-alturas.">17. Selecione as alturas menores do que 1.85 do vetor de “alturas”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">alturas_menores</span> <span class="op">&lt;-</span> <span class="va">alturas</span><span class="op">[</span><span class="va">alturas</span> <span class="op">&lt;</span> <span class="fl">1.85</span><span class="op">]</span></span>
+<span><span class="va">alturas_menores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1.50 1.51 1.51 1.52 1.52 1.53 1.53 1.54 1.54 1.55 1.55 1.56 1.56 1.57 1.57
+[16] 1.58 1.58 1.59 1.59 1.60 1.60 1.61 1.61 1.62 1.62 1.63 1.63 1.64 1.64 1.65
+[31] 1.65 1.66 1.66 1.67 1.67 1.68 1.68 1.69 1.69 1.70 1.70 1.71 1.71 1.72 1.72
+[46] 1.73 1.73 1.74 1.74 1.75 1.75 1.76 1.76 1.77 1.77 1.78 1.78 1.79 1.79 1.80
+[61] 1.80 1.81 1.81 1.82 1.82 1.83 1.83 1.84 1.84</code></pre>
+</div>
+</div>
+<hr></section></section><section id="utilização-de-funções-matemáticas-básicas" class="level2"><h2 class="anchored" data-anchor-id="utilização-de-funções-matemáticas-básicas">Utilização de Funções Matemáticas Básicas</h2>
+<hr>
+<section id="calcule-a-raiz-quadrada-de-16." class="level3"><h3 class="anchored" data-anchor-id="calcule-a-raiz-quadrada-de-16.">17. Calcule a raiz quadrada de 16.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">raiz</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">16</span><span class="op">)</span></span>
+<span><span class="va">raiz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<hr></section><section id="arredonde-o-valor-3.78-para-o-inteiro-mais-próximo." class="level3"><h3 class="anchored" data-anchor-id="arredonde-o-valor-3.78-para-o-inteiro-mais-próximo.">18. Arredonde o valor 3.78 para o inteiro mais próximo.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">arredondando_cima</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fl">3.78</span><span class="op">)</span></span>
+<span><span class="va">arredondando_cima</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<hr></section><section id="arredonde-para-cima-o-vetor-de-alturas." class="level3"><h3 class="anchored" data-anchor-id="arredonde-para-cima-o-vetor-de-alturas.">19. Arredonde para cima o vetor de alturas.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">arredondando_cima_alturas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">alturas</span><span class="op">)</span></span>
+<span><span class="va">arredondando_cima_alturas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ [38] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ [75] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2</code></pre>
+</div>
+</div>
+<hr></section><section id="arredonde-para-baixo-o-vetor-de-alturas" class="level3"><h3 class="anchored" data-anchor-id="arredonde-para-baixo-o-vetor-de-alturas">20. Arredonde para baixo o vetor de alturas</h3>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">arredondando_cima_alturas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">floor</a></span><span class="op">(</span><span class="va">alturas</span><span class="op">)</span></span>
+<span><span class="va">arredondando_cima_alturas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2</code></pre>
+</div>
+</div>
+<hr></section><section id="calcule-o-valor-absoluto-da-diferença-entre-10-e-7." class="level3"><h3 class="anchored" data-anchor-id="calcule-o-valor-absoluto-da-diferença-entre-10-e-7.">21. Calcule o valor absoluto da diferença entre 10 e 7.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">absoluto</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fl">10</span> <span class="op">-</span> <span class="fl">7</span><span class="op">)</span></span>
+<span><span class="va">absoluto</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<hr></section></section><section id="utilização-de-funções-para-manipulação-de-texto-r-base-e-stringr" class="level2"><h2 class="anchored" data-anchor-id="utilização-de-funções-para-manipulação-de-texto-r-base-e-stringr">Utilização de Funções para Manipulação de Texto: R Base e Stringr</h2>
+<hr>
+<section id="crie-uma-string-com-o-texto-análise-de-dados." class="level3"><h3 class="anchored" data-anchor-id="crie-uma-string-com-o-texto-análise-de-dados.">22. Crie uma string com o texto “Análise de Dados”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">texto</span> <span class="op">&lt;-</span> <span class="st">'Analise de Dados'</span></span>
+<span><span class="va">texto</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Analise de Dados"</code></pre>
+</div>
+</div>
+<hr></section><section id="extraia-os-primeiros-5-caracteres-da-string-criada-no-exercício-anterior." class="level3"><h3 class="anchored" data-anchor-id="extraia-os-primeiros-5-caracteres-da-string-criada-no-exercício-anterior.">23. Extraia os primeiros 5 caracteres da string criada no exercício anterior.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">cinco_caract</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">texto</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, </span>
+<span>                       start <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>                       stop <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">cinco_caract</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Anali"</code></pre>
+</div>
+</div>
+<hr></section><section id="converta-a-string-r-é-uma-linguagem-de-programação-para-maiúsculas." class="level3"><h3 class="anchored" data-anchor-id="converta-a-string-r-é-uma-linguagem-de-programação-para-maiúsculas.">24. Converta a string “R é uma linguagem de programação” para maiúsculas.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">outro_texto</span> <span class="op">&lt;-</span> <span class="st">"R é uma linguagem de programação"</span> </span>
+<span><span class="va">maiusculas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">toupper</a></span><span class="op">(</span><span class="va">outro_texto</span><span class="op">)</span></span>
+<span><span class="va">maiusculas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "R É UMA LINGUAGEM DE PROGRAMAÇÃO"</code></pre>
+</div>
+</div>
+<hr></section><section id="substitua-a-palavra-linguagem-por-software-na-mesma-string." class="level3"><h3 class="anchored" data-anchor-id="substitua-a-palavra-linguagem-por-software-na-mesma-string.">25. Substitua a palavra “linguagem” por “software” na mesma string.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">subst</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"linguagem"</span>, </span>
+<span>             replacement <span class="op">=</span> <span class="st">"software"</span>,</span>
+<span>             x <span class="op">=</span> <span class="va">outro_texto</span><span class="op">)</span></span>
+<span><span class="va">subst</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "R é uma software de programação"</code></pre>
+</div>
+</div>
+<hr></section></section><section id="regex" class="level2"><h2 class="anchored" data-anchor-id="regex">Regex</h2>
+<hr>
+<section id="use-expressões-regulares-para-encontrar-todos-os-dígitos-em-texto1234." class="level3"><h3 class="anchored" data-anchor-id="use-expressões-regulares-para-encontrar-todos-os-dígitos-em-texto1234.">27. Use expressões regulares para encontrar todos os dígitos em “Texto1234”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">texto1234</span> <span class="op">&lt;-</span> <span class="st">"Texto1234"</span></span>
+<span><span class="va">texto1234</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/regmatches.html">regmatches</a></span><span class="op">(</span><span class="va">texto1234</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gregexpr</a></span><span class="op">(</span><span class="st">"\\d"</span>, <span class="va">texto1234</span>, perl <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">texto1234</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "1" "2" "3" "4"</code></pre>
+</div>
+</div>
+<hr></section><section id="utilize-regex-para-extrair-as-palavras-que-começam-com-a-letra-c-em-casa-carro-frutas-animais-e-cidade." class="level3"><h3 class="anchored" data-anchor-id="utilize-regex-para-extrair-as-palavras-que-começam-com-a-letra-c-em-casa-carro-frutas-animais-e-cidade.">28. Utilize regex para extrair as palavras que começam com a letra “C” em “Casa, carro, frutas, animais e cidade”.</h3>
+<div class="cell">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">texto3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Casa'</span>, <span class="st">'carro'</span>, <span class="st">'frutas'</span>, <span class="st">'animais'</span>, <span class="st">'abacate'</span>, <span class="st">'e'</span>, <span class="st">'cidade'</span><span class="op">)</span></span>
+<span><span class="va">texto3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Casa"    "carro"   "frutas"  "animais" "abacate" "e"       "cidade" </code></pre>
+</div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">palavras_c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_subset.html">str_subset</a></span><span class="op">(</span><span class="va">texto3</span>, pattern <span class="op">=</span> <span class="st">"^(?![cC])"</span><span class="op">)</span></span>
+<span><span class="va">palavras_c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "frutas"  "animais" "abacate" "e"      </code></pre>
+</div>
+</div>
+<hr>
+
+
+</section></section></section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

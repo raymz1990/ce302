@@ -1,0 +1,883 @@
+---
+title: "Lista 3"
+author: "Raymundo"
+#date: "2023-09-27"
+output:
+  html_document:                    
+    toc: true                       
+    toc_depth: 3                    
+    toc_float:                      
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true           
+
+    highlight: espresso
+               
+    fig_width: 7                    
+    fig_height: 6                   
+    fig_caption: true               
+    fig_align: 'center'
+    #code_folding: hide              
+    #keep_md: true 
+---
+
+---
+
+# 
+
+---
+
+## Exercícios sobre Matrizes:
+
+---
+
+### 1. Crie uma matriz 3x3 com os números: 2 96 49 35 2 100 42 43 92.
+
+```{r}
+matriz <- matrix(c(2, 96, 49,
+                  35, 2, 100,
+                  42, 43, 92),
+                nrow = 3,
+                ncol = 3)
+
+matriz
+```
+
+---
+
+### 2. Calcule a soma dos elementos de cada coluna da matriz A.
+
+```{r}
+soma_matriz <- colSums(matriz)
+
+soma_matriz
+
+```
+
+---
+
+### 3. Calcule a média dos elementos de cada linha da matriz A.
+
+```{r}
+media_matriz <- rowMeans(matriz)
+
+media_matriz
+```
+
+---
+
+### 4. Transponha a matriz A.
+
+```{r}
+transposta_matriz <- t(matriz)
+
+transposta_matriz
+```
+
+---
+
+### 5. Multiplique a matriz A por 3.
+
+```{r}
+mult_matriz <- matriz * 3
+
+mult_matriz
+```
+
+---
+
+### 6. Calcule o determinante de A.
+
+```{r}
+determinante_matriz <- det(matriz)
+
+determinante_matriz
+```
+
+---
+
+### 7. Crie uma matriz identidade 4x4.
+
+```{r}
+matriz_identidade <- diag(4)
+
+matriz_identidade
+```
+
+---
+
+### 8. Resolva um sistema de equações lineares usando a matriz e o método da inversa.
+
+```{r}
+# Equação da Matriz do exercicio 1:
+# 2x  +  35y + 42z = 0
+# 96x +   2y + 43z = 0
+# 49x + 100y + 92z = 0
+
+# Definição das matrizes
+matrizA <- matriz 
+vetor <- c(0, 0, 0)
+
+# Verifique se A é invertível
+if (det(matrizA) != 0) {
+  # Calcule a matriz inversa de A
+  invA <- solve(matrizA)
+  
+  # Calcule a solução para x
+  x <- invA %*% vetor
+  
+  # Imprima a solução
+  print(x)
+} else {
+  print("A matriz A não é invertível.")
+}
+
+```
+
+---
+
+### 9. Crie uma matriz com números aleatórios e encontre o maior valor.
+* Utilize a função runif() 
+
+```{r}
+# Dimensões da matriz
+l <- 3
+c <- 4
+
+# Crie a matriz com números aleatórios entre 0 e 1
+matrizB <- matrix(runif(l * c),
+                  nrow = l,
+                  ncol = c)
+
+# Maior valor na matriz
+maiorB <- max(matrizB)
+
+# Resultado
+cat("Matriz:\n")
+print(matrizB)
+cat("\nMaior valor na matriz:", maiorB, "\n")
+
+```
+
+---
+
+* Utilize a função rnorm() 
+
+```{r}
+# Dimensões da matriz
+l <- 3
+c <- 4
+
+# matriz
+matrizC <- matrix(rnorm(l * c),
+                   nrow = l, 
+                   ncol = c)
+
+# Maior valor na matriz
+maiorC <- max(matrizC)
+
+# Resultado
+cat("Matriz:\n")
+print(matrizC)
+cat("\nMaior valor na matriz:", maiorC, "\n")
+
+```
+
+---
+
+### 10. Substitua todos os elementos negativos da matriz por zero.
+```{r}
+matrizD <- matrizC
+
+matrizD[matrizD < 0] <- 0
+
+matrizD
+
+```
+
+---
+
+# Exercícios sobre Operações com Matrizes:
+
+---
+
+### 11. Crie duas matrizes de mesmo tamanho e some-as.
+
+---
+
+```{r}
+matriz1 <- matrix(c(1, 2, 3,
+                    4, 5, 6,
+                    7, 8, 9), 
+                  nrow = 3, 
+                  ncol = 3)
+matriz2 <- matrix(c(9, 8, 7,
+                    6, 5, 4,
+                    3, 2, 1),
+                  nrow = 3, 
+                  ncol = 3)
+
+soma_matrizes <- matriz1 + matriz2
+soma_matrizes
+
+```
+
+---
+
+### 12. Multiplique as duas matrizes criadas no exercício 11.
+```{r}
+multiplicacao_matrizes <- matriz1 %*% matriz2
+multiplicacao_matrizes
+```
+
+---
+
+### 13. Calcule o produto matricial entre a transposta de uma matriz e a matriz original.
+```{r}
+matriz_transposta <- t(matriz1)
+
+matricial <- matriz_transposta %*% matriz1
+
+matricial
+
+```
+
+---
+
+### 14. Crie uma matriz diagonal com números diferentes na diagonal principal.
+```{r}
+matriz_diagonal <- diag(c(1, 2, 3))
+matriz_diagonal
+```
+
+---
+
+### 15. Calcule a soma de todos os elementos acima da diagonal principal.
+```{r}
+soma_diagonal <- sum(matriz1[upper.tri(matriz1)])
+soma_diagonal
+```
+
+---
+
+### 16. Calcule a média de uma matriz.
+```{r}
+media_matriz <- mean(matriz1)
+media_matriz
+```
+
+---
+
+### 17. Crie uma matriz simétrica qualquer.
+```{r}
+matriz_simetrica <- matrix(c(1, 2, 3,
+                             2, 4, 5,
+                             3, 5, 6),
+                           nrow = 3,
+                           ncol = 3)
+matriz_simetrica
+```
+
+---
+
+### 18. Encontre os autovalores e autovetores de uma matriz simétrica.
+```{r}
+# Encontrando os autovalores e autovetores
+autovalores <- eigen(matriz_simetrica)$values
+autovetores <- eigen(matriz_simetrica)$vectors
+autovalores
+autovetores
+```
+
+---
+
+# Exercícios sobre Arrays:
+
+---
+
+### 19. Crie um array 3D com números inteiros de sua escolha.
+```{r}
+array3d <- array(data = c(1, 2, 3,
+                          4, 5, 6,
+                          7, 8, 9), 
+                 dim = c(3, 3, 3))
+array3d
+```
+
+---
+
+### 20. Acesse o elemento na primeira linha, segunda coluna e primeira "profundidade".
+```{r}
+arrayelemento <- array3d[1, 2, 1]
+arrayelemento
+
+```
+
+---
+
+### 21. Calcule a média dos elementos em cada camada do array 3D.
+```{r}
+medias_camadas <- apply(array3d, 
+                        MARGIN = 3,
+                        FUN = mean)
+medias_camadas
+```
+
+---
+
+### 22. Substitua todos os elementos negativos do array por zero.
+```{r}
+arraynegativo <- array3d[array3d < 0] <- 0
+arraynegativo
+```
+
+---
+
+### 23. Encontre o máximo valor em um array.
+```{r}
+max_valor <- max(array3d)
+max_valor
+```
+
+---
+
+### 24. Crie um array 4D representando volumes de dados em diferentes dimensões.
+```{r}
+array4d <- array(data = 1:24,
+                 dim = c(2, 3, 2, 2))
+array4d
+```
+
+---
+
+# Exercícios Mistos:
+
+---
+
+### 25. Crie uma matriz e um array e realize uma operação entre eles.
+```{r}
+# Criar uma matriz
+matriz <- matrix(1:9, nrow = 3, ncol = 3)
+
+# Criar um array usando a função array()
+array <- array(1:3, dim = c(3, 1, 1))
+
+# Converter o array em uma matriz com dimensões compatíveis
+array_matriz <- array[,,1]
+
+# Realizar uma operação entre a matriz e o array convertido em matriz
+resultado <- matriz + array_matriz
+
+# Imprimir a matriz, o array e o resultado
+print("Matriz:")
+print(matriz)
+print("Array:")
+print(array)
+print("Array convertido em matriz:")
+print(array_matriz)
+print("Resultado:")
+print(resultado)
+
+
+```
+
+---
+
+### 26. Resolva um sistema de equações usando uma matriz e um array.
+
+```{r}
+# Criar a matriz de coeficientes como uma matriz
+matriz26 <- matrix(c(2, 3, 4, -2), nrow = 2, byrow = TRUE)
+
+# Criar o array de constantes usando a função array()
+array26 <- array(c(12, 6), dim = c(2, 1, 1))
+
+
+# Resolver o sistema de equações usando a função solve()
+solucao <- solve(matriz26, array26)
+
+# Imprimir a solução
+print("Solução:")
+print(solucao)
+
+
+```
+
+---
+
+### 27. Crie uma matriz diagonal a partir dos autovalores de uma matriz.
+
+```{r}
+# Defina uma matriz
+matriz <- matrix(c(2, 1, 1, 3), nrow = 2)
+
+# Calcular os autovalores
+autovalores <- eigen(matriz)$values
+
+# Criar a matriz diagonal
+matriz_diagonal <- diag(autovalores)
+
+# Defina uma matriz
+matriz <- matrix(c(2, 1, 1, 3), nrow = 2)
+
+# Calcular os autovalores
+autovalores <- eigen(matriz)$values
+
+# Criar a matriz diagonal
+matriz_diagonal <- diag(autovalores)
+
+# Imprimir a matriz diagonal
+print("Matriz Diagonal:")
+print(matriz_diagonal)
+```
+
+---
+
+### 28. Multiplique uma matriz por um array e vice-versa.
+
+```{r}
+# Criar uma matriz
+matriz <- matrix(1:9, nrow = 3, ncol = 3)
+
+# Criar um array usando a função array()
+array <- array(1:3, dim = c(3, 1, 1))
+
+# Multiplicar a matriz por vetor (matriz por vetor)
+resultado1 <- matriz %*% array
+
+# Multiplicar o vetor por matriz (vetor por matriz)
+resultado2 <- array %*% matriz
+
+# Imprimir os resultados
+print("Multiplicação da matriz por vetor:")
+print(resultado1)
+
+print("Multiplicação do vetor por matriz:")
+print(resultado2)
+```
+
+---
+
+### 29. Acesse elementos de um array usando diferentes técnicas de indexação.
+
+```{r}
+# Criando um array 2x3x4
+array <- array(1:24, dim = c(2, 3, 4))
+
+# Acessar o primeiro elemento
+primeiro_elemento <- array[1]
+
+# Acessar o terceiro elemento
+terceiro_elemento <- array[3]
+
+# Acessar elementos nas posições 2 e 4
+posicoes <- c(2, 4)
+elementos_selecionados <- array[posicoes]
+
+# Criar um vetor lógico para acessar elementos maiores que 5
+elementos_maiores_que_5 <- array > 5
+elementos_selecionados <- array[elementos_maiores_que_5]
+
+# Excluir o terceiro elemento
+array_sem_terceiro_elemento <- array[-3]
+
+# Imprimir os resultados com mensagens descritivas
+print(paste("Indexação posição numérica - Primeiro elemento:", primeiro_elemento, ". Terceiro elemento:", terceiro_elemento))
+print(paste("Indexação por vetor de posições - Elementos nas posições 2 e 4:", elementos_selecionados))
+print(paste("Indexação Lógica - Elementos maiores que 5:", elementos_selecionados))
+print(paste("Indexação Negativa - Excluindo Terceiro Elemento:", array_sem_terceiro_elemento))
+
+
+```
+
+---
+
+# Manipulação de Listas e Data Frames:
+
+---
+
+### 31. Crie uma lista contendo três vetores: nomes, idades e salários.
+
+```{r}
+# Criar vetores com nomes, idades e salários
+nomes <- c("Alice", "Bob", "Carol", "David")
+idades <- c(25, 30, 28, 35)
+salarios <- c(5000, 6000, 5500, 700)
+
+# Criar uma lista com os vetores
+lista <- list(Nomes = nomes,
+              Idades = idades,
+              Salarios = salarios)
+
+# Imprimir a lista
+print(lista)
+
+```
+
+---
+
+### 32. Converta essa lista em um data frame.
+
+```{r}
+data <- data.frame(lista)
+data
+```
+
+---
+
+### 33. Adicione uma nova coluna chamada "gênero" ao data frame.
+
+```{r}
+data$genero <- c("F", "M", "F", "M")
+data
+```
+
+---
+
+### 34. Remova a coluna "idades" do data frame.
+
+```{r}
+data2 <- data
+data2$Idades <- NULL
+data2
+
+```
+
+---
+
+### 35. Acesse o segundo elemento da lista original.
+
+```{r}
+data[, 2]
+```
+
+---
+
+### 36. Crie uma nova lista de pessoas com informações diferentes e adicione-a ao data frame.
+
+```{r}
+# Criar um data frame com as novas pessoas
+novas_pessoas <- data.frame(
+  Nomes = c("Eva", "João", "José", "Luis"),
+  Idades = c(27, 45, 50, 18),
+  Salarios = c(6200, 1000, 1200, 8000),
+  genero = c("F", "M", "M", "M")
+)
+
+# Adicionar a nova pessoa ao data frame existente
+data4 <- rbind(data, novas_pessoas)
+
+data4
+
+```
+
+---
+
+### 37. Aninhe uma lista dentro da lista original para armazenar informações de endereço.
+
+```{r}
+# Aninhando listas
+endereco <- list(
+  rua = c("Rua 1","Rua 5", "Rua 7", "Rua 5"),
+  numero = c(123, 265, 6568, 978),
+  cidade = c("São Paulo", "São Paulo", "São Paulo", "São Paulo")
+)
+
+lista$endereco <- endereco
+lista
+```
+
+---
+
+### 38. Acesse o número da casa da primeira pessoa no data frame.
+
+```{r}
+data5 <- data.frame(lista)
+```
+
+---
+
+### 39. Crie um novo data frame apenas com as pessoas com salário acima de 5000.
+
+```{r}
+salario_maior_5000 <- data5[data5$Salarios > 5000, ]  
+salario_maior_5000
+```
+
+---
+
+### 40. Ordene o data frame pelo nome das pessoas em ordem alfabética.
+
+```{r}
+ordem <- data[order(data$Nomes), ]
+ordem
+```
+
+---
+
+# Manipulação de Fatores:
+
+---
+
+### 41. Crie um vetor de fatores representando o grau de escolaridade (fundamental, médio, superior).
+
+```{r}
+# Criação de fator
+grau_escolaridade <- factor(c("fundamental", "médio", "superior"))
+grau_escolaridade
+```
+
+---
+
+### 42. Converta o vetor de fatores para um vetor de strings.
+
+```{r}
+vetor_string <- as.character(grau_escolaridade)
+vetor_string
+```
+
+---
+
+### 43. Crie um fator com níveis personalizados e aplique-o a um vetor.
+
+```{r}
+# Definindo fator com níveis específicos
+q43 <- factor(c("fundamental", "médio", "superior"), 
+                levels = c("fundamental", "médio", "superior", "doutorado"))
+q43
+
+```
+
+---
+
+### 44. Ordene os níveis do fator em ordem alfabética.
+
+```{r}
+q44 <- as.character(q43)
+q44
+
+```
+
+---
+
+### 45. Faça a contagem de frequência de cada nível no fator.
+
+```{r}
+# Fazer a contagem de frequência dos níveis no fator
+q45 <- table(q43)
+
+# Imprimir a contagem de frequência
+q45
+
+```
+
+---
+
+### 46. Concatenação de Fatores com Strings:
+
+```{r}
+# Exemplo de fatores
+fator1 <- factor(c("A", "B", "C"))
+fator2 <- factor(c("X", "Y", "Z"))
+
+# Converter os fatores em strings usando as.character()
+strings1 <- as.character(fator1)
+strings2 <- as.character(fator2)
+
+# Concatenar as strings com outros strings
+q46 <- paste(strings1, "e", strings2)
+
+# Imprimir o resultado
+q46
+
+```
+
+---
+
+### 47. Crie um vetor de strings representando nomes de cidades.
+
+```{r}
+# Criar um vetor de strings com nomes de cidades
+q47 <- c("Nova Iorque", "São Paulo", "Londres", "Buenos Aires", "Munique")
+
+# Imprimir o vetor de nomes de cidades
+q47
+
+```
+
+---
+
+### 48. Crie um fator a partir desse vetor.
+
+```{r}
+q48 <- factor(q47)
+q48
+```
+
+---
+
+### 49. Crie um novo vetor de strings representando países.
+
+```{r}
+# Criar um vetor de strings com nomes de países
+q49 <- c("Estados Unidos", "Brasil", "Inglaterra", "Argentina", "Alemanha")
+
+# Imprimir o vetor de nomes de países
+q49
+
+```
+
+---
+
+### 50. Concatene o fator de cidades com o vetor de países, separando-os por vírgula.
+
+```{r}
+q50 = paste(as.character(q48), q49, sep = ", ")
+q50
+```
+
+---
+
+### 51. Converta o resultado da concatenação de volta para um vetor de strings.
+
+```{r}
+
+q51 <- strsplit(q50, ", ")
+
+q51 <- unlist(q51)
+
+q51
+```
+
+---
+
+# Exercícios de Desafio:
+
+---
+
+### 52. Crie uma lista de data frames, onde cada data frame representa dados de uma turma diferente.
+
+```{r}
+# Criar data frames para turmas
+turma1 <- data.frame(
+  Aluno = c("Alice", "Bob", "Carol"),
+  Nota = c(95, 88, 78)
+)
+
+turma2 <- data.frame(
+  Aluno = c("David", "Eva", "Frank"),
+  Nota = c(89, 92, 85)
+)
+
+turma3 <- data.frame(
+  Aluno = c("Grace", "Hank", "Ivy"),
+  Nota = c(76, 91, 83)
+)
+
+# Criar uma lista de data frames
+lista_turmas <- list(turma1, turma2, turma3)
+
+# Imprimir a lista de data frames
+print(lista_turmas)
+
+```
+
+---
+
+### 53. Crie um fator a partir de um vetor lógico representando aprovação ou reprovação.
+
+```{r}
+# Criar um vetor lógico representando aprovação (TRUE) e reprovação (FALSE)
+aprovacao_reprovacao <- c(TRUE, FALSE, TRUE, FALSE, TRUE)
+
+# Converter o vetor lógico em um fator
+fator_aprovacao <- factor(aprovacao_reprovacao, levels = c(FALSE, TRUE), labels = c("Reprovado", "Aprovado"))
+
+# Imprimir o fator
+print(fator_aprovacao)
+
+```
+
+---
+
+### 54. Concatene o fator de aprovação com um vetor de notas como strings.
+
+```{r}
+# Criar um fator de aprovação
+fator_aprovacao <- factor(c("Reprovado", "Aprovado", "Reprovado", "Aprovado", "Aprovado"))
+
+# Criar um vetor de notas como strings
+notas <- c("85", "92", "78", "95", "89")
+
+# Converter o fator de aprovação em um vetor de strings
+strings_aprovacao <- as.character(fator_aprovacao)
+
+# Concatenar o fator de aprovação com as notas
+resultado <- paste(strings_aprovacao, notas, sep = ": ")
+
+# Imprimir o resultado
+print(resultado)
+
+```
+
+---
+
+### 55. Crie um data frame a partir do resultado da concatenação, com colunas "Resultado" e "Nota".
+
+```{r}
+# Resultado da concatenação
+resultado <- c("Reprovado: 85", "Aprovado: 92", "Reprovado: 78", "Aprovado: 95", "Aprovado: 89")
+
+# Separar o resultado em colunas "Resultado" e "Nota" usando strsplit
+resultado_separado <- strsplit(resultado, ": ")
+
+# Criar o data frame
+data_frame_resultado <- data.frame(
+  Resultado = sapply(resultado_separado, "[[", 1),
+  Nota = as.numeric(sapply(resultado_separado, "[[", 2))
+)
+
+# Imprimir o data frame
+print(data_frame_resultado)
+
+```
+
+---
+
+### 56. Aninhe um data frame dentro de outro data frame, representando informações detalhadas sobre cada pessoa.
+
+```{r}
+# Criar um data frame com informações gerais sobre as pessoas
+info_pessoas <- data.frame(
+  Nome = c("Alice", "Bob", "Carol"),
+  Idade = c(25, 30, 28)
+)
+
+# Criar um data frame aninhado com informações detalhadas
+info_detalhadas <- list(
+  data.frame(
+    Nome = "Alice",
+    Endereco = "123 Main St",
+    Telefone = "555-1234"
+  ),
+  data.frame(
+    Nome = "Bob",
+    Endereco = "456 Elm St",
+    Telefone = "555-5678"
+  ),
+  data.frame(
+    Nome = "Carol",
+    Endereco = "789 Oak St",
+    Telefone = "555-9876"
+  )
+)
+
+# Adicionar o data frame aninhado ao data frame principal
+info_pessoas$InfoDetalhada <- info_detalhadas
+
+# Imprimir o data frame principal
+print(info_pessoas)
+
+```
+
+---

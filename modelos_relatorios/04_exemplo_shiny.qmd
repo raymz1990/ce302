@@ -1,0 +1,116 @@
+---
+title: "Movies Explorer"
+author: "Prof. Deisy Morselli Gysi"
+format: html
+server: shiny
+theme: 
+   - custom.scss
+   - cosmos
+---
+
+
+```{r, echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+#| context: setup
+library(ggplot2)
+library(data.table)
+require(tidyverse)
+require(magrittr)
+
+filmes <- fread("filmes.csv.gz") %>%
+  filter(!is.na(year)) %>% 
+  filter(!is.na(`gross(in $)`)) %>% 
+  mutate(runtime = stringr::str_remove(runtime, " min") %>% 
+           as.numeric())
+```
+
+## Relatório sobre filmes
+
+```{r}
+sliderInput('ano', 'Ano de lançamento', 
+            min=min(filmes$year), 
+            max=max(filmes$year),
+            value=c(min(filmes$year), max(filmes$year)),
+            step=1, 
+            round=0)
+br()
+checkboxGroupInput('movies', "Selecione os tipos de filmes", 
+                   unique(filmes$tipo), 
+                   c("war", "animation"), 
+                   inline = TRUE)
+
+checkboxInput('jitter', 'Jitter')
+checkboxInput('smooth', 'Smooth')
+```
+
+```{r}
+numerics = filmes %>%
+  select(where(is.numeric)) %>% 
+  names
+chars = c('tipo', 'genre', 'certificate')
+filmes$tipo %<>% as.factor()
+filmes$genre %<>% as.factor()
+filmes$certificate %<>% as.factor()
+
+selectInput('x', 'X', numerics) 
+selectInput('y', 'Y', numerics)
+selectInput('color', 'Color', c('None', chars))
+```
+
+```{r}
+
+selectInput('facet_row', 'Facet Row',
+  c(None='.', chars))
+selectInput('facet_col', 'Facet Column',
+  c(None='.', chars))
+```
+
+# Plot
+
+```{r}
+plotOutput('plot')
+```
+
+# Data
+
+```{r}
+tableOutput('data')
+```
+
+```{r}
+#| context: server
+
+dataset <- reactive({
+  filmes %>% 
+    filter(between(year, input$ano[1], input$ano[2]))  %>%
+    filter(tipo %in% input$movies)
+})
+ 
+output$plot <- renderPlot({
+  
+  p <- ggplot(
+    dataset(), 
+    aes_string(x=input$x, y=input$y)) + geom_point()
+  
+  if (input$color != 'None')
+    p <- p + aes_string(color=input$color)
+  
+  facets <- paste(input$facet_row, '~', input$facet_col)
+  if (facets != '. ~ .')
+    p <- p + facet_grid(facets)
+
+  if (input$jitter)
+    p <- p + geom_jitter()
+  if (input$smooth)
+    p <- p + geom_smooth()
+  
+  p
+  
+})
+
+output$data <- renderTable({
+  dataset() %>% 
+    group_by(tipo, year) %>% 
+    summarise(n = n()) %>% 
+    arrange(desc(n))
+})
+```

@@ -1,0 +1,100 @@
+---
+title: "Seu Título Aqui"
+subtitle: "Seu Subtítulo Aqui"
+author: "Seu Nome aqui"
+date: 10/10/2023
+date-format: long 
+lang: pt
+
+fig-align: center
+fig-width: 10
+fig-height: 12
+
+toc: true
+toc-depth: 3
+toc-title: "Agenda"
+
+format: revealjs
+---
+# Rode esses slides com o botão "Render"
+> Teste, gradativamente, os códigos do capítulo 8. 
+
+
+## Lista
+
+Para criar um slide com conteúdo basta utilizarmos um título de nível 2
+
+- Podemos incluir itens de uma lista
+- Mais um item
+
+## Slide com Código
+- Podemos incluir um código no slide. 
+
+```{r, echo=TRUE}
+require(ggplot2)
+require(palmerpenguins)
+require(magrittr)
+```
+
+## Citação
+> _Not all those who wander are lost._
+(J. R. R. Tolkein)
+
+# Novo título
+
+## Figura
+
+- Para alterar as dimensões de uma figura incluimos no chunck:
+
+``` r
+#| fig-width: 20 # comprimento
+#| fig-height: 12 # altura
+#| fig-align: "center"
+```
+
+```{r, echo=FALSE}
+#| fig-width: 20
+#| fig-height: 12
+#| fig-align: "center"
+ggplot(palmerpenguins::penguins) +
+  aes(
+    x = species,
+    y = flipper_length_mm,
+    fill = species,
+    colour = species
+  ) +
+  geom_violin(adjust = 2L, scale = "count") +
+  scale_fill_manual(
+    values = c(Adelie = "#440154",
+    Chinstrap = "#22908B",
+    Gentoo = "#FDE725")
+  ) +
+  scale_color_manual(
+    values = c(Adelie = "#440154",
+    Chinstrap = "#22908B",
+    Gentoo = "#FDE725")
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Tabela
+
+- Para incluir uma tabela precisamos alterar o tipo do resultado para 'asis' e pedir para a tabela ser formatada como uma tabela markdown. Fazemos isso com a função `kable`, do pacote `knitr`.  
+
+```{r, results='asis'}
+palmerpenguins::penguins %>% 
+  dplyr::group_by(species) %>% 
+  dplyr::summarise(n = dplyr::n()) %>% 
+  knitr::kable(col.names = c("Species", "Total") )
+```
+
+## Aprofundamento
+- Para saber mais sobre personalização de slides
+    - [Quarto](https://quarto.org/docs/presentations/)
+    - [RevealJS](https://revealjs.com/)
+- Para criar seu próprio tema é necessário saber um pouco de CSS. Aprenda CSS jogando:
+    - [Froggy](https://flexboxfroggy.com/)
+    - [CSSBattle](https://cssbattle.dev/)
+    - [Grid Garden](https://cssgridgarden.com/)
+    - [CSS Diner](https://flukeout.github.io/)

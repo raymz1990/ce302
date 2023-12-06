@@ -1,0 +1,1760 @@
+---
+always_allow_html: true
+title: "4  Transformação de dados"
+---
+
+## 4.1 Pipes
+
+![](./imagens/pipes.png)
+
+Uma maneira de fazermos os códigos em R mais legíveis é através da utilização dos operadores pipe. Os pipes fazem com a sequência das análises se torne mais aparente, o que torna o código muito menos complexo e mais fácil de ser alterado.
+
+Tomemos como exemplo a seguinte análise: Seja `x` um vetor com 9 elementos, queremos obter um vetor ordenado do cosseno desses valores. Para fazer isso em R podemos aninhar diversas funções.
+
+```{r, error=TRUE}
+x <- c(-4:4)
+x
+```
+
+```{r, error=TRUE}
+sort(cos(unique(x)), decreasing = TRUE)
+```
+O que torna o código pouco legível e difícil de ser interpretado.
+
+Podemos identar o código para faciliar a leitura:
+
+```{r, error=TRUE}
+sort(
+  cos(
+    unique(
+      x
+    )
+  ), 
+  decreasing = TRUE)
+```
+Contudo, ainda assim, o código não é de fácil compreensão, principalmente porque devemos ler o código de dentro para fora. Os pipes surgem como uma alternativa para solucionar esse problema, tornando os códigos mais legíveis e debugáveis. Os pipes, representados pelo operador `%>%`, são uma característica poderosa e conveniente introduzida pelo pacote `magrittr` e amplamente adotada em R para simplificar a manipulação de dados. Os pipes permitem encadear sequências de operações em uma maneira legível e intuitiva, tornando o código mais conciso e fácil de entender.
+
+**Funcionamento dos Pipes**: O operador `%>%` permite que você passe o resultado de uma expressão como o primeiro argumento de outra expressão. Isso é particularmente útil ao realizar uma série de transformações em um objeto sem a necessidade de criar variáveis intermediárias. O mesmo código que vimos anteriormente, com a utilização de pipe ficaria:
+
+```{r, error=TRUE}
+require(magrittr)
+```
+
+```{r, error=TRUE}
+x %>% 
+  unique() %>% 
+  cos() %>%
+  sort(decreasing = TRUE)
+```
+
+### 4.1.1 Uso do pipe
+
+* `x %>% f` é equivalente à `f(x)`
+* `x %>% f(y)` é equivalente à `f(x, y)`
+* `x %>% f %>% g %>% h` é equivalente à `h(g(f(x)))`
+
+O `%>%` significa que o elemento à esquerda sera avaliado pela função à direita.
+
+Podemos também utilizar o `.` como espaço reservado para o elemento à esquerda, isto é:
+
+* `x %>% f(y, .)` é equivalente à `f(y, x)`
+* `x %>% f(., y)` é equivalente à `f(x, y)`
+* `x %>% f(y, z = .)` é equivalente à `f(y, z = x)`.
+
+#### 4.1.1.1 Exemplos
+
+Note que não conseguimos utilizar o `%>%` com operadores aritiméticos. Portanto, uma alternativa é utiliarmos as funções `add()`, `subtract()`, `multiply_by()`, `raise_to_power()`, `divide_by()` etc. Para a lista completa de funções, utilize `?add`.
+
+```{r, error=TRUE}
+set.seed(123)
+
+rnorm(10)    %>%
+  multiply_by(5) %>%
+  add(5) 
+```
+
+Outra opção é utilizarmos os a operação entre aspas.
+
+```{r, error=TRUE}
+set.seed(123)
+
+rnorm(10) %>%
+  `*`(5) %>%
+  `+`(5)
+```
+
+### 4.1.2 Benefícios dos Pipes
+
+* **Legibilidade**: Os pipes permitem ler o código da esquerda para a direita, refletindo a sequência de operações realizadas.
+
+* **Redução de Variáveis Intermediárias**: Com pipes, não precisamos criar variáveis intermediárias para armazenar resultados parciais.
+
+* **Encadeamento Simples**: O encadeamento de operações se torna mais intuitivo e fácil de seguir o código e procedimentos.
+
+* **Depuração**: Ao usar pipes, podemos isolar cada etapa para depuração, facilitando a identificação de erros.
+
+### 4.1.3 Pipe de atribuição
+
+Muitas vezes queremos realizar opereções e atribuir os resultados ao mesmo `data.frame` de entrada, por exemplo, podemos querer criar uma nova variável em `meu_data_frame`, porem, não temos interesse em duplicar o banco de dados. Podemos fazer uma atribuição explicita ou implicita. Para a explicita, simplismente atribuímos utilizando `=` ou `<-`, como vimos até agora durante o curso. Porém, podemos fazer uma atribuição implicita utilizando o operador `%<>%`.
+
+```{r, error=TRUE}
+require(dplyr)
+```
+
+
+```{r, error=TRUE}
+## Atribuição explicita
+meu_data_frame <- data.frame(
+  nome = c("Alice", "Bob", "Carol", "Ana", "João", "Carlos", "Patrícia", "Leonardo"),
+  idade = c(25, 30, 28, 20, 27, 50, 60, 45),
+  salario = c(5000, 6000, 5500, 8000, 2000, 3500, 10000, 3800 ), 
+  meio_de_transporte = c('onibus', 'bicicleta', 'onibus', 'carro', 'carro', 'onibus', 'onibus', 'bicicleta'))
+
+meu_data_frame = meu_data_frame %>%
+  mutate(idade_25 = idade > 25)
+
+glimpse(meu_data_frame)
+```
+
+```{r, error=TRUE}
+## Atribuição implicita
+meu_data_frame %<>% 
+  mutate(idade_50 = idade > 50)
+glimpse(meu_data_frame)
+```
+
+## 4.2 Manipulação de Dados
+
+```{r, error=TRUE}
+require(data.table)
+```
+
+
+```{r, error=TRUE}
+require(dplyr)
+require(tidyr)
+```
+
+```{r, error=TRUE}
+car_crash <- fread("./datasets/Brazil Total highway crashes 2010 - 2023.csv.gz")
+
+# Dados extraídos de https://www.kaggle.com/datasets/liamarguedas/brazil-total-highway-crashes-2010-2023
+
+glimpse(car_crash)
+```
+
+### 4.2.1 Seleção de Variáveis
+No `tidyverse`, a função `select()` do pacote `dplyr` é amplamente utilizada para selecionar as colunas relevantes de um conjunto de dados. Além de selecionar colunas pelo nome, a função `select()` oferece diversas opções avançadas para facilitar a seleção e manipulação de colunas. Vamos explorar algumas dessas opções:
+
+#### 4.2.1.1 Seleção por Nome de Coluna
+A forma mais simples de usar o `select()` é especificar os nomes das colunas que você deseja manter no resultado, por exemplo, podemos estar interessados em selecionarmos a `data` e o `tipo_de_acidente`.
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(data, tipo_de_acidente) %>% 
+  head()
+```
+
+1. Seleção por Nome de Coluna que inicie com alguma palavra - `starts_with()`: Essa função permite selecionar colunas cujos nomes começam com um determinado padrão de caracteres. No nosso banco de dados, podemos estar interessados em selecionar todas as variáveis que iniciem com “tipo”.
+
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(starts_with("tipo")) %>% 
+  head()
+```
+
+2. Seleção por Nome de Coluna que termine com alguma palavra - `ends_with()`: Essa função permite selecionar colunas cujos nomes terminam com um determinado padrão de caracteres. No nosso banco de dados, podemos estar interessados em selecionar todas as variáveis que terminem com “feridos”.
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(ends_with("feridos")) %>% 
+  head()
+```
+
+3. Seleção por Nome de Coluna que contenha alguma palavra - `contains()`: Essa função permite selecionar colunas cujos nomes contenham um determinado padrão de caracteres. No nosso banco de dados, podemos estar interessados em selecionar todas as variáveis que contenham “mente”.
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(contains("mente")) %>% 
+  head()
+```
+
+#### 4.2.1.2 Seleção de variáveis por Tipos específicos de dados
+Muitas vezes, estamos interessados em selecionar apenas variáveis de um tipo, para tratarmos os dados da maneira mais adequada.
+
+1. Selecionar apenas variáveis numéricas: `is.numeric()`
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(where(is.numeric)) %>% 
+  glimpse()
+```
+
+2. Selecionar apenas variáveis characters: `is.character()`
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(where(is.character)) %>% 
+  glimpse()
+```
+
+
+3. Selecionar apenas variáveis lógicas: `is.logical()`
+
+
+```{r, error=TRUE}
+car_crash %>% 
+  select(where(is.logical)) %>% 
+  glimpse()
+```
+
+#### 4.2.1.3 Seleção por critérios
+* `all_of()`, `any_of()`: Permitem usar variáveis definidas externamente como argumentos da função. Note que quando utilizamos `all_of()` todas as variáveis devem existir, já `any_of()` permite que nem todas as variáveis existam no banco de dados.
+
+```{r, error=TRUE}
+vars_interesse = c("automovel", "bicicleta", "onibus")
+car_crash %>% 
+  select(all_of(vars_interesse)) %>% 
+  glimpse()
+```
+
+```{r, error=TRUE}
+vars_interesse2 = c("automovel", "bicicleta", "onibus", "trator")
+car_crash %>% 
+  select(any_of(vars_interesse2)) %>% 
+  glimpse()
+```
+
+### 4.2.2 Seleção de Observações
+No pacote `dplyr` do tidyverse, a função `filter()` é amplamente utilizada para filtrar linhas de um conjunto de dados com base em condições específicas. Ela oferece diversas opções para criar filtros complexos que atendam às suas necessidades de análise. Vamos explorar diferentes tipos de filtros e como utilizá-los de maneira eficaz.
+
+#### 4.2.2.1 Filtros Simples
+Filtros simples envolvem comparações entre valores de uma coluna e um valor constante. Alguns operadores de comparação comuns incluem:
+
+* `==`: Igual a
+
+* `!=`: Diferente de
+
+* `<`: Menor que
+
+* `>`: Maior que
+
+* `<=`: Menor ou igual a
+
+* `>=`: Maior ou igual a
+
+Podemos estar interessados em filtrar as observações com pelo menos três carros envolvidos no acidente:
+
+```{r, error=TRUE}
+dados_filtrados <- car_crash %>%
+  filter(automovel >= 3)
+dados_filtrados
+```
+
+#### 4.2.2.2 Filtros Combinados
+Você pode combinar filtros usando os operadores lógicos `&` (AND) e `|` (OR) para criar condições mais complexas.
+
+Podemos estar interessados em filtrar as observações com pelo menos três carros e dois caminhões envolvidos no acidente:
+
+```{r, error=TRUE}
+dados_filtrados <- car_crash %>%
+  filter(automovel >= 3 & caminhao > 2)
+dados_filtrados
+```
+
+Podemos omitir o operador lógico `&`, então a função ficaria:
+
+```{r, error=TRUE}
+dados_filtrados <- car_crash %>%
+  filter(automovel >= 3, caminhao > 2)
+dados_filtrados
+```
+
+Podemos estar interessados em filtrar as observações com pelo menos três carros OU dois caminhões envolvidos no acidente:
+
+```{r, error=TRUE}
+dados_filtrados <- car_crash %>%
+  filter(automovel >= 3 | caminhao > 2)
+dados_filtrados
+```
+
+#### 4.2.2.3 Filtrando valores dentro de um intervalo
+Para filtramos valores dentro de um intervalo definido podemos utilizar as funções `between()` e `%in%`.
+
+A função `between()` é útil para filtrar valores dentro de um intervalo numérico.
+
+Podemos estar interessados em filtrar as observações com valores entre 4 e 8 motos envolvidas no acidente:
+
+```{r, error=TRUE}
+dados_filtrados <- car_crash %>%
+  filter(between(moto, lower = 4, upper = 8, incbounds = TRUE)) 
+dados_filtrados
+```
+
+A função `%in%` é usada para filtrar valores que correspondem a um conjunto de valores.
+
+Podemos estar interessados em filtrar as observações com ocorrência em alguma das seguintes operadoras: “Autopista Regis Bittencourt”, “Autopista Litoral Sul”, “Via Sul”.
+
+```{r, error=TRUE}
+autopistas = c("Autopista Regis Bittencourt", "Autopista Litoral Sul", "Via Sul")
+
+dados_filtrados <- car_crash %>%
+  filter(lugar_acidente %in% autopistas) 
+dados_filtrados 
+```
+
+Podemos estar interessados nas autopistas que não são operadas pelas mesmas operadoras. Para isso precisamos definir um operador de *not in*.
+
+```{r, error=TRUE}
+`%ni%` <- Negate(`%in%`)
+
+dados_filtrados <- car_crash %>%
+  filter(lugar_acidente %ni% autopistas) 
+dados_filtrados
+```
+
+Alternativamente,
+
+```{r, error=TRUE}
+car_crash %>%
+  filter(!(lugar_acidente %in% autopistas))
+```
+
+Outras vezes, podemos utilizar o operador `%like%` que busca padrões. Por exemplo, podemos estar interessados em buscar todos acidentes que ocorreram com vítimas, e no campo `tipo_de_ocorrencia` podemos simplesmente buscar por:
+
+```{r, error=TRUE}
+car_crash %>% 
+  filter(tipo_de_ocorrencia %like% "com vítima")
+```
+
+Algumas vezes temos apenas vários padrões de texto que gostaríamos de buscar. Para isso, a função `grepl()` permite filtrar com base em padrões de texto.
+
+```{r, error=TRUE}
+car_crash %>% 
+  filter(grepl("ilesa|fatal", tipo_de_ocorrencia))
+```
+
+### 4.2.3 Resumo de informações
+No tidyverse, as funções `summarise()` e `group_by()` são amplamente utilizadas para resumir informações e realizar cálculos agregados em conjuntos de dados. Elas desempenham um papel crucial na análise exploratória e na obtenção de insights significativos a partir dos dados. Vamos explorar como essas funções funcionam e como usá-las para resumir informações de maneira eficaz.
+
+#### 4.2.3.1 Função `summarise()`
+A função `summarise()` é utilizada para calcular estatísticas resumidas para uma coluna ou um conjunto de colunas. Ela permite calcular médias, somas, desvios padrão, mínimos, máximos e outras estatísticas relevantes.
+
+Estamos interessados em uma tabela descritiva para a variável `levemente_feridos`.
+
+```{r, error=TRUE}
+tabela <- car_crash %>% 
+    summarise(n = n(), 
+              f_r = n()/nrow(car_crash), 
+              f_per = n()/nrow(car_crash) * 100, 
+              media = mean(levemente_feridos, na.rm = T), 
+              Q1 = quantile(levemente_feridos, 0.25, type = 5, na.rm = T), 
+              Q2 = quantile(levemente_feridos, 0.5, type = 5, na.rm = T), 
+              Q3 = quantile(levemente_feridos, 0.75, type = 5, na.rm = T), 
+              var = var(levemente_feridos, na.rm = T), 
+              sd  = sd(levemente_feridos, na.rm = T), 
+              min = min(levemente_feridos, na.rm = T), 
+              max = max(levemente_feridos, na.rm = T)) 
+
+tabela
+```
+
+#### 4.2.3.2 Agrupamento de dados
+A função `group_by()` é usada para agrupar o conjunto de dados por uma ou mais colunas. Isso cria um contexto em que a função `summarise()` pode calcular estatísticas específicas para cada grupo.
+
+Estamos interessados em uma tabela descritiva para a variável `levemente_feridos` por `tipo_de_ocorrencia`.
+
+```{r, error=TRUE}
+tabela <- car_crash %>% 
+    summarise(n = n(), 
+              f_r = n()/nrow(car_crash), 
+              f_per = n()/nrow(car_crash) * 100, 
+              media = mean(levemente_feridos, na.rm = T), 
+              Q1 = quantile(levemente_feridos, 0.25, type = 5, na.rm = T), 
+              Q2 = quantile(levemente_feridos, 0.5, type = 5, na.rm = T), 
+              Q3 = quantile(levemente_feridos, 0.75, type = 5, na.rm = T), 
+              var = var(levemente_feridos, na.rm = T), 
+              sd  = sd(levemente_feridos, na.rm = T), 
+              min = min(levemente_feridos, na.rm = T), 
+              max = max(levemente_feridos, na.rm = T)) 
+
+tabela
+```
+
+## 4.3 Exercício
+1. Utilizando o banco de dados `starwars` faça o que se pede:
+```{r, error=TRUE}
+library(dplyr)
+data(starwars)
+head(starwars)
+```
+
+a) Qual é o número total de espécies únicas presentes? Qual a frequência de indivíduos por espécie?
+```{r, error=TRUE}
+# Calcule o número total de espécies únicas presentes
+num_species <- starwars %>% 
+  distinct(species) %>% 
+  nrow()
+
+# Calcule a frequência de indivíduos por espécie
+species_frequency <- starwars %>% 
+  group_by(species) %>% 
+  summarise(frequency = n())
+
+# Exiba os resultados
+num_species  # Número total de espécies únicas
+species_frequency  # Frequência de indivíduos por espécie
+
+```
+
+b) Calcule a altura média de personagens masculinos e femininos.
+```{r, error=TRUE}
+height_gender <- starwars %>%
+  na.omit(gender) %>%
+  group_by(gender) %>%
+  summarise(altura_media = mean(height, na.rm = T))
+
+height_gender
+
+```
+
+c) Qual é a média de idade dos personagens de cada espécie para personagens masculinos?
+```{r, error=TRUE}
+media_idade <- starwars %>%
+  filter(gender == "masculine") %>%
+  group_by(species) %>%
+  summarise(media_idade = mean(birth_year, na.rm = TRUE))
+
+media_idade
+```
+
+d) Para cada espécie presente na base de dados, identifique o personagem mais velho e sua idade correspondente.
+```{r, error=TRUE}
+old_character <- starwars %>%
+  group_by(species) %>%
+  filter(!is.na(birth_year)) %>% # sem este filtro, especies com valores ausentes não vão aparecer
+  filter(birth_year == max(birth_year)) %>%
+  summarise(personagem = name,
+            idade = max(birth_year))
+
+old_character
+  
+```
+
+## 4.4 Manipulação de Data no R
+A transformação de strings em datas e a manipulação de datas são tarefas comuns em análise de dados. No R, existem várias funções e pacotes disponíveis para facilitar essas operações. Vamos explorar como realizar essas tarefas usando as funcionalidades básicas do R.
+
+### 4.4.1 Transformando Strings em Datas
+Para transformar strings em datas, podemos utilizar a função `as.Date()`. Por exemplo:
+
+```{r, error=TRUE}
+# String representando uma data
+data_string <- "2023-08-21"
+
+# Transformando a string em data
+data <- as.Date(data_string)
+
+# Exibindo a data
+print(data)
+```
+
+Também podemos especificar o formato da string de data usando o argumento `format`. Por exemplo:
+
+```{r, error=TRUE}
+data_string <- "21/08/2023"
+
+data <- as.Date(data_string, 
+                format = "%d/%m/%Y")
+print(data)
+```
+
+### 4.4.2 Manipulação de Datas
+Após transformar strings em datas, podemos realizar várias operações de manipulação de datas. Algumas das operações mais comuns incluem:
+
+* Adição e subtração de dias, semanas, meses ou anos:
+
+```{r, error=TRUE}
+data <- as.Date("2023-08-21")
+data2 <- data + 7  # Adicionando 7 dias
+data3 <- data - 1  # Subtraindo 1 dia
+```
+
+* Comparação de datas:
+
+```{r, error=TRUE}
+data1 <- as.Date("2023-08-21")
+data2 <- as.Date("2023-08-15")
+data1 > data2  # Verifica se data1 é posterior a data2
+```
+
+* Formatação de datas para strings:
+
+```{r, error=TRUE}
+data <- as.Date("2023-08-21")
+data_formatada <- format(data, "%d/%m/%Y")
+```
+
+* Extração de componentes de data (ano, mês, dia):
+```{r, error=TRUE}
+data <- as.Date("2023-08-21")
+ano <- format(data, "%Y")
+mes <- format(data, "%m")
+dia <- format(data, "%d")
+```
+
+* Cálculo de diferenças entre datas:
+```{r, error=TRUE}
+data1 <- as.Date("2023-08-21")
+data2 <- as.Date("2023-08-15")
+diferenca <- difftime(data1, data2, units = "days")  # Diferença em dias
+```
+
+### 4.4.3 Lubridate: Facilitando a Manipulação de Datas no R
+
+Lidar com datas no R pode ser uma tarefa desafiadora, especialmente quando se precisa realizar operações complexas ou extrair informações específicas das datas. O pacote `lubridate` foi desenvolvido para simplificar a manipulação de datas, tornando as tarefas relacionadas a datas mais fáceis e intuitivas. Vamos explorar algumas das principais funcionalidades do `lubridate` em mais detalhes, com exemplos práticos:
+
+#### 4.4.3.1 Instalação e Carregamento do Lubridate
+Antes de usar o `lubridate`, é necessário instalá-lo e carregá-lo no R. Para isso, utilize o comando `install.packages("lubridate")` para a instalação e `library(lubridate)` para o carregamento do pacote. Essas etapas devem ser executadas apenas uma vez.
+
+#### 4.4.3.2 Criando Datas
+O `lubridate` torna a criação de datas simples e flexível. Podemos criar datas usando diferentes funções, dependendo do formato dos seus dados. Além da já mencionada `ymd()` para datas no formato “ano-mês-dia,” também podemos utilizar:
+
+* `mdy()` para datas no formato “mês-dia-ano.”
+
+* `dmy()` para datas no formato “dia-mês-ano.”
+
+Essas funções ajudam a evitar confusões em relação ao formato das datas, tornando o processo de entrada de dados mais seguro. Veja um exemplo:
+
+```{r, error=TRUE}
+require(lubridate)
+```
+
+```{r, error=TRUE}
+data_ymd <- ymd("2023-08-21")
+data_mdy <- mdy("08-21-2023")
+data_dmy <- dmy("21-08-2023")
+
+print(data_ymd)
+```
+
+```{r, error=TRUE}
+print(data_mdy)
+```
+
+```{r, error=TRUE}
+print(data_dmy)
+```
+
+#### 4.4.3.3 Operações com Datas
+Operações com datas, como adição e subtração de dias, semanas, meses ou anos, são realizadas de forma mais clara e intuitiva no `lubridate`. O pacote fornece funções específicas para isso, como `days()`, `weeks()`, `months()`, e `years()`. Isso permite que executemos operações como:
+
+```{r, error=TRUE}
+data <- ymd("2023-08-21")
+data_nova <- data + days(7)  # Adiciona 7 dias
+data_anterior <- data - months(2)  # Subtrai 2 meses
+
+print(data_nova)
+```
+
+```{r, error=TRUE}
+print(data_anterior)
+```
+
+Essa sintaxe simplificada torna as operações com datas mais legíveis e menos propensas a erros.
+
+#### 4.4.3.4 Extraindo Informações de Datas
+O `lubridate` permite extrair facilmente informações de datas. Com funções como `year()`, `month()`, e `day()`, você pode obter o ano, mês ou dia de uma data específica. Além disso, é possível extrair informações mais detalhadas, como hora, minuto, e segundo, caso necessário. Isso é particularmente útil ao lidar com séries temporais ou análises de eventos temporais específicos. Veja exemplos:
+
+```{r, error=TRUE}
+data <- ymd_hms("2023-08-21 15:30:45")
+ano <- year(data)
+mes <- month(data)
+dia <- day(data)
+hora <- hour(data)
+minuto <- minute(data)
+segundo <- second(data)
+```
+
+```{r, error=TRUE}
+print(ano)
+```
+
+```{r, error=TRUE}
+print(mes)
+```
+
+```{r, error=TRUE}
+print(dia)
+```
+
+```{r, error=TRUE}
+print(hora)
+```
+
+```{r, error=TRUE}
+print(minuto)
+```
+
+```{r, error=TRUE}
+print(segundo)
+```
+
+#### 4.4.3.5 Funções de Resumo de Datas
+O `lubridate` oferece funções que auxiliam na análise e resumo de datas. Podemos calcular a diferença entre duas datas com facilidade, obtendo o resultado em dias, semanas, meses ou anos. Isso é útil em cenários em que é preciso medir a duração entre eventos ou calcular intervalos de tempo:
+
+```{r, error=TRUE}
+data1 <- ymd("2023-08-21")
+data2 <- ymd("2023-08-15")
+diferenca_em_dias <- as.numeric(data2 - data1)
+diferenca_em_semanas <- as.numeric(weeks(data2 - data1))
+```
+
+```{r, error=TRUE}
+print(diferenca_em_dias)
+```
+
+```{r, error=TRUE}
+print(diferenca_em_semanas)
+```
+
+#### 4.4.3.6 Lidar com Fusos Horários
+Para situações que envolvem fusos horários, o `lubridate` facilita a manipulação, permitindo a converção de datas entre fusos e calcule diferenças de tempo em fusos diferentes. Isso é especialmente valioso em análises que abrangem regiões geográficas distintas ou quando é necessário considerar fusos horários em análises de eventos globais.
+
+* Converter uma Data para um Fuso Horário Específico:
+Imagine que temos uma data em um fuso horário específico e desejamos convertê-la para outro fuso horário. O `lubridate` facilita essa tarefa usando a função `with_tz()`. Veja um exemplo:
+
+```{r, error=TRUE}
+# Data original no fuso horário de Nova Iorque
+data_ny <- ymd_hms("2023-08-21 12:00:00", tz = "America/New_York")
+
+# Converter para o fuso horário de Londres
+data_london <- with_tz(data_ny, tz = "Europe/London")
+```
+
+```{r, error=TRUE}
+print(data_ny)
+```
+
+```{r, error=TRUE}
+print(data_london)
+```
+
+Neste exemplo, convertemos uma data de Nova Iorque para Londres.
+
+* **Calcular a Diferença de Tempo entre Datas em Fusos Horários Diferentes**:
+
+Calcular a diferença de tempo entre duas datas em fusos horários diferentes pode ser útil para determinar a sincronização de eventos em locais geograficamente distintos. O `lubridate` permite isso com facilidade:
+
+```{r, error=TRUE}
+# Duas datas em fusos horários diferentes
+data_ny <- ymd_hms("2023-08-21 12:00:00", tz = "America/New_York")
+data_london <- ymd_hms("2023-08-21 17:00:00", tz = "Europe/London")
+
+# Calcular a diferença de tempo em horas
+diferenca_horas <- as.numeric(data_london - data_ny)
+
+print(diferenca_horas)
+```
+
+* **Trabalhar com Fusos Horários em Data Frames**:
+Em muitos casos, você pode ter um conjunto de dados com datas em diferentes fusos horários. O `lubridate` permite a manipulação desses dados em um Data Frame de forma eficiente. Suponha que temos um Data Frame chamado `dados` com datas em diferentes fusos horários:
+
+```{r, error=TRUE}
+dados <- data.frame(
+  nome = c("Evento 1", "Evento 2"),
+  data = c(
+    ymd_hms("2023-08-21 12:00:00", tz = "America/New_York"),
+    ymd_hms("2023-08-21 17:00:00", tz = "Europe/London")
+  )
+)
+
+# Converter todas as datas para um fuso horário comum, por exemplo, UTC
+dados$data_utc <- with_tz(dados$data, tz = "UTC")
+
+print(dados)
+
+```
+
+Neste exemplo, convertemos todas as datas no Data Frame para o fuso horário UTC, criando uma nova coluna chamada `data_utc`.
+
+Lidar com fusos horários em análises de dados é fundamental para garantir que as informações temporais sejam precisas e consistentes, especialmente em cenários globais ou quando eventos ocorrem em locais diferentes ao redor do mundo. O pacote `lubridate` no R simplifica significativamente essa tarefa, tornando a manipulação de datas com fusos horários uma tarefa mais clara e eficiente.
+
+## 4.5 Exercícios
+
+1. Utilizando o banco de dados `car_crash`:
+```{r, error=TRUE}
+# Carregue as bibliotecas
+library(dplyr)
+library(lubridate)
+
+car_crash <- fread("./datasets/Brazil Total highway crashes 2010 - 2023.csv.gz")
+
+head(car_crash)
+```
+
+
+a) formate a coluna data em uma `data` (dd-mm-yyyy)
+```{r, error=TRUE}
+car_crash$data_formatada <- as.Date(car_crash$data,
+                                    format = "%d/%m/%Y")
+car_crash %>% 
+  select(data, data_formatada) %>% 
+  distinct(data, .keep_all = TRUE)
+```
+
+b) formate a coluna horario para o `horário` do acidente (hh:mm:ss)
+```{r, error=TRUE}
+car_crash$horario_acidente <- format(strptime(car_crash$horario, format = "%H:%M:%S"), "%H:%M:%S")
+
+
+car_crash %>% 
+  select(horario, horario_acidente) %>% 
+  distinct(horario, .keep_all = TRUE)
+```
+
+c) Qual o mês com maior quantidade de acidentes?
+```{r, error=TRUE}
+car_crash$mes <- month(car_crash$data_formatada)
+
+questao_c <- car_crash %>%
+  group_by(mes) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+
+questao_c
+```
+
+d) Qual ano ocorreram mais acidentes?
+```{r, error=TRUE}
+car_crash$ano <- year(car_crash$data_formatada)
+
+questao_d <- car_crash %>%
+  group_by(ano) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+
+questao_d
+```
+
+e) Qual horário acontecem menos acidentes?
+```{r, error=TRUE}
+car_crash$hora <- format(strptime(car_crash$horario, format = "%H:%M"), "%H:%M")
+
+questao_e <- car_crash %>%
+  group_by(hora) %>%
+  summarise(n = n()) %>%
+  arrange(n)
+
+questao_e
+```
+
+f) Qual a média, desvio padrão, mediana, Q1 e Q3 para a quantidade de indivíduos classificados como levemente feridos por mês/ano?
+```{r, error=TRUE}
+car_crash$mes <- sprintf("%02d", as.integer(car_crash$mes))
+car_crash$`mes/ano` <- paste(car_crash$ano, car_crash$mes, sep = "/")
+
+questao_f <- car_crash %>% 
+  filter(!is.na(levemente_feridos)) %>%
+  group_by(`mes/ano`) %>%
+  summarise(n = n(),
+            media = mean(levemente_feridos, na.rm = T), 
+            Q1 = quantile(levemente_feridos, 0.25, type = 5, na.rm = T), 
+            mediana = quantile(levemente_feridos, 0.5, type = 5, na.rm = T), 
+            Q3 = quantile(levemente_feridos, 0.75, type = 5, na.rm = T),
+            min = min(levemente_feridos),
+            max = max(levemente_feridos),
+            sd  = sd(levemente_feridos, na.rm = T)) 
+
+questao_f
+```
+
+g) Quantos acidentes com vítimas fatais aconteceram, por mês/ano, em mediana entre as 6:00am e 11:59am.
+```{r, error=TRUE}
+questao_g <- car_crash %>% 
+  filter(tipo_de_ocorrencia %like% "com vítima" & between(hora, "06:00", "11:59")) %>%
+  group_by(`mes/ano`) %>%
+  summarise(n = n()) 
+
+questao_g
+```
+
+## 4.6 Junção de dados
+É raro que uma análise de dados envolva apenas uma única fonte de dados. Normalmente, você possui vários `data.frames` e precisa uni-los para realizar as análises que lhe interessam.
+
+### 4.6.1 Dados
+Para a aula de hoje, utilizaremos o pacote `nycflights13`, o qual contém dados relacionados a voos na cidade de Nova York.
+
+### 4.6.2 Chaves Primárias e Chaves Estrangeiras
+Para compreender os principais tipos de junções de banco de dados, é fundamental entender como duas tabelas podem ser conectadas por meio de um par de chaves, dentro de cada tabela. Vamos estudar brevemente sobre os dois tipos principais de chaves, para isso, vamos utilizar os conjuntos de dados do pacote `nycflights13`. Esse pacote apresenta cinco tabelas com informações distintas acerca de vôos em New York.
+
+#### 4.6.2.1 Chaves primárias e estrangeiras
+Toda junção envolve um par de chaves: *uma chave primária e uma chave estrangeira*. **Uma chave primária é uma variável ou conjunto de variáveis que identifica cada observação de forma única**. Quando mais de uma variável é necessária, a chave é chamada de chave composta. Por exemplo, no `nycfights13`:
+
+* A tabela `airlines` registra dois dados sobre cada companhia aérea: seu código de operadora e seu nome completo. Você pode identificar uma companhia aérea pelo seu código de operadora de duas letras, tornando o código de operadora (`carrier`) a chave primária (*primary key*).
+
+```{r, error=TRUE}
+require(nycflights13)
+```
+
+```{r, error=TRUE}
+airlines
+```
+
+* A tabela `airports`, por sua vez, registra dados sobre cada aeroporto. Podemos identificar cada aeroporto pelo seu código de aeroporto de três letras, tornando o código `FAA` a chave primária.
+
+```{r, error=TRUE}
+airports
+```
+
+* A tabela `planes` registra dados sobre cada aeronave. Podemos identificar uma aeronave pelo seu número de cauda (`tailnum`), tornando o número de cauda a chave primária.
+
+```{r, error=TRUE}
+planes
+```
+
+* A tabela `weather` registra dados sobre o clima nos aeroportos de origem. Você pode identificar cada observação pela **combinação** de localização e horário, tornando a origem (`origin`) e o horário (`time_hour`) a **chave primária composta**.
+
+```{r, error=TRUE}
+weather
+```
+
+**Uma chave estrangeira é uma variável (ou conjunto de variáveis) que corresponde a uma chave primária em outra tabela**. Por exemplo:
+
+* `flights$tailnum` é uma chave estrangeira que corresponde à chave primária `planes$tailnum`.
+* `flights$carrier` é uma chave estrangeira que corresponde à chave primária `airlines$carrier`.
+
+Podemos ver como cada banco de dados está relacionado com os demais na Figura abaixo.
+![Descrição da Imagem](./imagens/ncyflights13.png)
+
+* A Tabela “flights” está vinculada à tabela “planes” por meio de uma variável única, “tailnum”.
+
+* A Tabela “flights” está vinculada à tabela “airlines” por meio de uma variável única, “carrier”.
+
+* A Tabela “flights” está vinculada à tabela “airports” de duas maneiras: por meio das variáveis “origin” e “dest”.
+
+* A Tabela “flights” está vinculada à tabela “weather” por meio das variáveis “origin” (localização), “year”, “month”, “day” e “hour”.
+
+Note que as chaves primárias e estrangeiras têm quase sempre os mesmos nomes, o que, como veremos em breve, tornará sua vida de junção muito mais fácil. Também vale a pena observar a relação oposta: quase todos os nomes de variáveis usados em várias tabelas têm o mesmo significado em cada lugar. Há apenas uma exceção: o ano (`year`) significa o ano de partida nos voos (`flights`) e o ano de fabricação nas aeronaves (`planes`).
+
+#### 4.6.2.2 Verificação de Chaves Primárias
+Agora que identificamos as chaves primárias em cada tabela, é uma boa prática verificar se elas realmente identificam de forma única cada observação. Uma maneira de fazer isso é contar as chaves primárias e procurar entradas em que `n()` seja maior que um.
+
+```{r, error=TRUE}
+planes %>% 
+  count(tailnum) %>%
+  filter(n > 1)
+```
+
+
+```{r, error=TRUE}
+weather %>%
+  count(time_hour, origin) %>%
+  filter(n > 1)
+```
+
+Além de termos chave primária única, é importante que não haja valores faltantes, se um valor estiver ausente, ele não poderá identificar uma observação.
+```{r, error=TRUE}
+planes %>%
+  filter(is.na(tailnum))
+```
+
+```{r, error=TRUE}
+weather %>% 
+  filter(is.na(time_hour) | is.na(origin))
+```
+
+### 4.6.3 Combinando dados
+
+Bom, agora que compreendemos a importância de chaves vamos agora introdur dois tipos importantes de junções:
+
+* Junções mutacionais, que adicionam novas variáveis a um conjunto de dados a partir de observações correspondentes em outro banco de dados. São elas:
+  * `inner_join`;
+  * `full_join`;
+  * `left_join`;
+  * `right_join`.
+* Junções de filtragem, que filtram observações de um quadro de dados com base em se elas correspondem ou não a uma observação em outro banco de dados.
+  * `semi_join()`;
+  * `anti_join()`.
+  
+### 4.6.4 Junções Mutacionais
+
+Uma junção mutacional (*mutating join*) permite combinar **variáveis de dois conjuntos de dados**: primeiro, ele corresponde às observações através de suas chaves e, em seguida, copia as variáveis de um conjunto de dados para o outro. Assim como a função `mutate()`, as funções de `join` adicionam variáveis *à direita*, portanto, se o seu conjunto de dados tiver muitas variáveis, as novas variáveis não serão imediatamente visíveis. Para facilitar a compreensão dos exemplos a seguir, criaremos um conjunto de dados mais suscinto com apenas seis variáveis, e apenas com vôos com distância superior à 1000km:
+
+```{r, error=TRUE}
+flights2 <- flights %>% 
+  filter(distance > 2000) %>% 
+  select(year, time_hour, origin, dest, tailnum, carrier)
+flights2
+```
+
+#### 4.6.4.1 Left Join
+O `left join` retorna todas as linhas do primeiro conjunto de dados (tabela à esquerda) e as linhas correspondentes do segundo conjunto de dados (tabela à direita), se houver correspondência. Se não houver correspondência na tabela à direita, os valores serão preenchidos com `NA` (valores ausentes).
+
+![Descrição da Imagem](./imagens/leftjoin.svg)
+Suponha que gostariamos de adicionar o nome completo da companhia aerea no nosso banco de dados. Para isso, precisamos combinar as informações de `flights2` com `airlines`.
+
+```{r, error=TRUE}
+flights2_airlines = 
+  flights2  %>% 
+  left_join(., airlines)
+```
+
+Note que, por definição, a função buscou a chave primária como `carrier`. Nesse caso, como temos apenas uma chave, é viável fazermos isso. Contudo, é uma boa prática definirmos qual a chave que gostaríamos de combinar os bancos de dados.
+
+```{r, error=TRUE}
+flights2_airlines = 
+  flights2  %>% 
+  left_join(., airlines, 
+            by = "carrier")
+
+flights2_airlines
+```
+
+#### 4.6.4.2 Right Join
+
+O `right_join` retorna apenas as linhas do primeiro conjunto de dados (tabela à esquerda) se houver correspondência com o segundo conjunto de dados (tabela à direita). Se não houver correspondência na tabela à esquerda, os valores serão preenchidos com `NA` (valores ausentes).
+
+![Descrição da Imagem](./imagens/righttjoin.svg)
+
+Suponha que, temos interesse em buscar informações acerca dos dos vôos realizados pelos aviões em `flights2`. Para isso, basta unirmos as tabelas `planes` com `flights2`.
+
+```{r, error=TRUE}
+planes_flights = flights2 %>% 
+  right_join(planes, by = "tailnum")
+
+planes_flights
+```
+
+#### 4.6.4.3 Inner Join
+O `inner join` retorna apenas as linhas que têm correspondências em ambos os conjuntos de dados. Ou seja, ele preserva apenas as observações com chaves correspondentes em ambas as tabelas.
+
+![Descrição da Imagem](./imagens/innerjoin.svg)
+
+ Suponha que, temos interesse em buscar informações acerca dos aeroportos de origem realizados pelos aviões em `flights2`. Porém, apenas temos interesse em informações que aparecem em ambos bancos. Para isso, basta unirmos as tabelas `flights2` com `airports`.
+ 
+```{r, error=TRUE}
+origin_flights = flights2 %>% 
+  inner_join(airports, by = c("origin"= "faa"))
+
+origin_flights = flights2 %>% 
+  inner_join(airports, join_by(origin == faa))
+
+origin_flights
+```
+
+#### 4.6.4.4 Full Join
+O `full_join` retorna todas as linhas de ambos os conjuntos de dados (tabelas à esquerda e à direita). Ele preenche com `NA` aqueles valores que não têm correspondência em uma das tabelas.
+
+![Descrição da Imagem](./imagens/fulljoin.svg)
+
+Suponha que, temos interesse em buscar informações acerca dos aeroportos de destino realizados pelos aviões em `flights2`. Porém, apenas temos interesse em todas informações que aparecem em ambos bancos. Para isso, basta unirmos as tabelas `flights2` com `airports`.
+
+```{r, error=TRUE}
+dest_flights = flights2 %>% 
+  full_join(airports, by = c("dest"= "faa"))
+
+dest_flights = flights2 %>% 
+  full_join(airports, join_by(dest == faa))
+
+dest_flights
+```
+
+### 4.6.5 Junções de Filtragem
+Como o próprio nome sugere, a ação principal de uma junção de filtragem é filtrar as linhas. Existem dois tipos: semi-junções e anti-junções. Semi-junções mantêm todas as linhas em `x` que têm uma correspondência em `y`. Por exemplo, poderíamos usar uma semi-junção para filtrar o conjunto de dados de aeroportos (`airports`) para mostrar apenas os aeroportos de origem:
+
+```{r, error=TRUE}
+airports %>% 
+  semi_join(flights2, join_by(faa == origin))
+```
+
+Anti-junções são o oposto: elas retornam todas as linhas em `x` que não têm correspondência em `y`. São úteis para encontrar valores ausentes que são implícitos nos dados. Valores implicitamente ausentes não aparecem como NAs, mas sim existem apenas como uma ausência. Por exemplo, podemos encontrar linhas ausentes em aeroportos procurando voos que não tenham um aeroporto de destino correspondente:
+
+```{r, error=TRUE}
+flights %>%
+  anti_join(airports, join_by(dest == faa)) %>% 
+  distinct(dest)
+```
+
+## 4.7 Exercícios
+
+```{r, error=TRUE}
+require(nycflights13)
+flights_voos <- flights
+flights_cias <- airlines
+flights_aeroportos <- airports
+flights_aviao <- planes
+flights_clima <- weather
+```
+
+1. Para vôos com atraso superior a 24 horas em `flights`, verifique as condições climáticas em `weather`. Há algum padrão? Quais os meses do ano em que você encontra os maiores atrasos?
+
+```{r, error=TRUE}
+# Filtrar os voos com atraso superior a 24 horas em "flights"
+voos_atraso_24h <- flights %>%
+  filter(arr_delay > 12)
+
+# Juntar os dados de clima de "weather" com os voos atrasados
+voos_clima_atraso <- voos_atraso_24h %>%
+  left_join(weather, by = c("year", "month", "day"))
+
+# Agregar e calcular a contagem de voos atrasados por mês
+contagem_atrasos_por_mes <- voos_clima_atraso %>%
+  group_by(month) %>%
+  summarise(total_atrasos = n())
+
+# Exibir os meses com os maiores atrasos
+meses_maior_atraso <- contagem_atrasos_por_mes %>%
+  arrange(desc(total_atrasos)) %>%
+  head()
+
+# Exibir a tabela de frequência dos meses com os maiores atrasos
+print(meses_maior_atraso)
+
+```
+
+2. Encontre os 20 destinos mais comuns e identifique seu aeroporto. Qual a temperatura média (mensal) em Celcius desses lugares? E a precipitação média, em cm?
+```{r, error=TRUE}
+# Convertendo temperatura de °F para °C e polegadas para cm
+flights_clima <- flights_clima %>%
+  mutate(temp_celsius = (temp - 32) / 1.8,
+         precip_cm = precip * 2.54)
+
+# Flitrando flight voos e identificando seu aeroporto
+flights_destinos <- flights_voos %>%
+  inner_join(airports, by = c("dest"= "faa")) %>%
+  select(dest, origin, name, time_hour)
+
+# Encontrando os 20 maiores destino, e media de temperatura e precipitação
+q2 <- flights_destinos %>%
+  left_join(., flights_clima) %>%
+  select(dest, origin, name, time_hour, temp_celsius, precip_cm) %>%
+  group_by(dest, name) %>%
+  summarise(media_temp = mean(temp_celsius, na.rm = T),
+            media_precip = mean(precip_cm, na.rm = T)) %>%
+  head(20)
+
+# Exibindo o resultado
+print(q2)
+
+```
+
+
+3. Inclua uma coluna com a cia aérea na tabela `planes`. Quantas companhias áreas voaram cada avião naquele ano?
+```{r, error=TRUE}
+# Filtrando voos de cada companhia aerea
+flights_by_cia <- flights_cias %>%
+  inner_join(flights_voos, by = "carrier") %>%
+  group_by(tailnum, carrier, name) %>%
+  summarise(total_voos = n())
+
+# Verificando se a filtragem está correta
+print(sum(flights_by_cia$total_voos))
+print(nrow(flights_voos))
+
+# Juntando as informações das companhias aéreas com os aviões
+planes_with_airlines <- flights_aviao %>%
+  left_join(flights_by_cia, 
+            by = "tailnum")
+
+# Exibindo o resultado
+print(planes_with_airlines)
+
+```
+
+
+
+Inclua a latitude e longitude de cada origem destino na tabela `flights`.
+```{r, error=TRUE}
+# filtrando flights_aeroportos
+flights_lat_long <- select(flights_aeroportos, faa, lat, lon)
+
+# Agora, vamos juntar as informações de latitude e longitude com a tabela "flights"
+flights_coordinates <- flights_voos %>%
+  select(origin, dest) %>%
+  left_join(flights_lat_long, by = c("origin" = "faa")) %>%
+  rename(origin_lat = lat, origin_lon = lon) %>%
+  left_join(flights_lat_long, by = c("dest" = "faa")) %>%
+  rename(dest_lat = lat, dest_lon = lon)
+
+# Exibir o resultado
+print(flights_coordinates)
+```
+
+
+
+## 4.8 Organização de dados
+Compreender a organização de dados é fundamental para análises estatísticas eficazes. Quando trabalhamos com dados em R, é importante seguir as regras que tornam um conjunto de dados *tidy* (organizado), o que facilita o processamento e a interpretação dos dados. Existem três regras inter-relacionadas que tornam um conjunto de dados *tidy*:
+
+1. **Cada variável é uma coluna; cada coluna é uma variável**: Isso significa que cada característica ou medida que você está analisando deve ser representada por uma coluna separada no conjunto de dados.
+
+  * Por exemplo, se você estiver trabalhando com dados de pacientes, as variáveis como idade, gênero, altura e peso devem ser colunas separadas.
+  
+2. **Cada observação é uma linha; cada linha é uma observação**: Cada linha do conjunto de dados deve representar uma única observação, caso ou instância. Isso garante que os dados estejam organizados de maneira que seja fácil identificar e comparar diferentes casos.
+
+  * Por exemplo, cada linha pode representar um paciente individual em um conjunto de dados médicos.
+
+3. **Cada valor é uma célula; cada célula é um único valor**: Cada célula no conjunto de dados deve conter um único valor. Isso significa que não deve haver combinações de valores em uma única célula. Cada célula deve conter uma informação única e específica relacionada à variável e à observação correspondente.
+
+Ao seguir essas três regras, você cria um conjunto de dados tidy que é fácil de manipular, visualizar e analisar. Essa organização facilita a utilização de funções como `pivot_longer` e `pivot_wider` para remodelar os dados quando necessário a fim de adaptá-los às necessidades de sua análise estatística em R
+
+![Descrição da Imagem](./imagens/tidy_data.svg)
+
+### 4.8.1 Pivotagem
+
+Pivotar, como o próprio nome sugere, é um processo de transformação de um conjunto de dados, no qual as colunas e linhas são reorganizadas de tal forma que os valores que originalmente estavam dispostos em linhas agora são apresentados como colunas, e vice-versa. Esse procedimento é fundamental para preparar e organizar dados para análises estatísticas e visualizações mais eficazes.
+
+#### 4.8.1.1 Formato Wide (Largo) e Formato Long (Longo)
+
+Em ciência de dados, é comum falarmos em dois formatos principais: o formato *wide* (largo) e o formato *long* (longo). Essas representações são especialmente úteis para diferentes tipos de análises e visualizações.
+
+1. **Formato Wide (Largo)**: Nesse formato, os dados são organizados de forma que cada variável é representada por uma coluna separada e cada observação (ou instância) ocupa uma única linha. Isso significa que as informações são distribuídas em várias colunas, tornando-o mais adequado para conjuntos de dados com poucas variáveis, onde as informações são bem condensadas.
+
+![Descrição da Imagem](./imagens/tidy_data.svg)
+
+2. **Formato Long (Longo)**: Já no formato long (ou longo), os dados são organizados de maneira que as variáveis estão empilhadas em uma única coluna, enquanto uma coluna adicional é usada para indicar o nome da variável. Cada observação é representada por uma linha separada. Esse formato é ideal quando se trabalha com conjuntos de dados mais complexos, nos quais as informações estão espalhadas em várias categorias ou momentos de tempo, por exemplo.
+
+![Descrição da Imagem](./imagens/long_data.svg)
+
+### 4.8.2 Exercício
+Com os dois conjuntos de dados abaixo, defina qual a versão *organizada* dos dados.
+
+1. **Conjunto 1:**
+
+* **Wide**:
+
+|Nome     |Idade|Peso (kg)|Gênero   |
+|---------|-----|---------|---------|
+|Alice    |34   |52.16    |Feminino |
+|Bob      |35   |72.57    |Masculino|
+|Christine|38   |56.70    |Feminino |
+
+* **Long**:
+
+|Nome     |Variável |Valor     |
+|---------|---------|----------|
+|Alice    |Idade    |34        |
+|Alice    |Peso (kg)|52.16     |
+|Alice    |Gênero   |Feminino  |
+|Bob      |Idade    |35        |
+|Bob      |Peso (kg)|72.57     |
+|Bob      |Gênero   |Masculino |
+|Christine|Idade    |38        |
+|Christine|Peso (kg)|56.70     |
+|Christine|Gênero   |Feminino  |
+
+1. **Conjunto 2:**
+
+* **Wide**:
+
+|Tamanho da Pedra |Tratamento A - Recuperados|Tratamento A - Falhas|Tratamento B - Recuperados|Tratamento B - Falhas|
+|-----------------|--------------------------|---------------------|--------------------------|---------------------|
+|Pequeno          |81                        |6                    |234                       |36                   |
+|Grande           |192                       |71                   |55                        |25                   |
+
+* **Long**:
+
+|Tamanho da Pedra   |Tratamento   |Recuperado |Falha  |
+|-------------------|-------------|-----------|-------|
+|Pequena            |A            |81         |6      |
+|Pequena            |B            |234        |36     |
+|Grande             |A            |192        |71     |
+|Grande             |B            |55         |25     |
+
+### 4.8.2 Pivotando dados em R
+
+Para aprendermos sobre os tipos de *pivot* em R, vamos utilizar o banco de dados `table1`. Esse banco de dados possui dados de casos reportados de Tuberculose e o tamanho da população em dois anos para três países. Esses dados são provenientes dos dados `who`.
+
+```{r, error=TRUE}
+require(tidyr)
+require(magrittr)
+require(dplyr)
+
+table1
+
+```
+
+#### 4.8.2.1 `pivot_wider`
+
+A função `pivot_wider` é usada para transformar um conjunto de dados de um formato longo para um formato largo. Isso é útil quando temos informações em uma única coluna que desejamos espalhar em várias colunas.
+
+* **Sintaxe:**
+
+`pivot_wider(data, names_from, values_from)` - `data`: O conjunto de dados que você deseja transformar. - `names_from`: A coluna que contém os nomes das variáveis que você deseja espalhar. - `values_from`: A coluna que contém os valores correspondentes a essas variáveis.
+
+**Exemplo**: Transformando em dados de `table1` em wide.
+
+* Suponha que queremos o número de casos por ano.
+
+```{r}
+table1 %>% 
+  select(country, year, cases) %>% 
+  pivot_wider(names_from = year, values_from = cases)
+```
+
+#### 4.8.2.2 `pivot_longer` 
+A função pivot_longer é utilizada para transformar um conjunto de dados de um formato largo (wide) para um formato longo (long). Isso é útil quando temos variáveis espalhadas em várias colunas e desejamos organizar esses dados em uma única coluna, tornando-os mais adequados para análises e visualizações. Geralmente, usamos `pivot_longer` quando temos variáveis empilhadas em diferentes colunas e queremos reunir essas informações em uma única coluna.
+
+* **Sintaxe:** `pivot_longer(data, cols, names_to, values_to)`
+  * `data`: O conjunto de dados que você deseja transformar.
+  * `cols`: As colunas que você deseja empilhar no formato longo.
+  * `names_to`: O nome da nova coluna que irá conter os nomes das variáveis empilhadas.
+  * `values_to`: O nome da nova coluna que irá conter os valores das variáveis empilhadas.
+
+**Exemplo**: Transformando em dados de `table1` em long.
+
+* Suponha que queremos os casos e o tamanho da população como uma variável.
+
+```{r}
+table1 %>% 
+  pivot_longer(cols = -c(country, year), 
+               names_to = "variavel", 
+               values_to = "tamanho")
+```
+
+#### 4.8.2.3 Separando observações
+
+A função separate() divide uma única coluna em várias colunas, dividindo-a sempre que um caractere separador aparece. Vamos considerar o exemplo da `table3`:
+
+```{r}
+table3
+```
+
+Note que a coluna `rate` é na verdade uma coluna onde temos os casos e a população separadas por “/”. Podemos separar essa coluna em duas utilizando a função separate.
+
+```{r}
+separated = table3 %>% 
+  separate(rate, into = c("cases", "population"))
+```
+
+Caso tenhamos interesse em uni-las novamente, podemos utilizar a função `unite`.
+
+```{r}
+separated %>% 
+  unite(rate, cases, population, sep = "/")
+```
+
+### 4.8.3 Exemplo
+
+Vamos utilizar os dados de notificações de casos provenientes do site do [WHO](https://www.who.int/teams/global-tuberculosis-programme/data).
+
+```{r}
+TB <- fread("./datasets/TB.csv.gz")
+```
+
+
+
+Este conjunto de dados exemplifica uma situação comum na vida real, onde os dados estão desorganizados e não estão em um formato adequado para análises. Ele apresenta colunas redundantes, códigos de variáveis incomuns e uma abundância de valores ausentes. Em suma, está em uma condição “bagunçada” e precisaremos de várias etapas para limpá-lo e organizá-lo de forma apropriada. Assim como o pacote `dplyr`, o `tidyr` foi projetado para que cada função tenha uma função específica e bem definida. Isso significa que, em cenários da vida real, você geralmente precisará encadear várias dessas funções em uma sequência lógica para obter os dados em um estado utilizável.
+
+O ponto de partida mais eficaz geralmente é reunir as colunas que não são consideradas variáveis. Vamos examinar o que temos:
+
+1. **Country (país), iso2 e iso3**: Essas três colunas parecem redundantes e especificam o país de formas diferentes. Variável redundante.
+
+2. **Year (ano)**: É claramente uma variável que representa o ano em que os dados foram registrados.
+
+3. **Outras Colunas Não Identificadas**: As colunas restantes, como “new_sp_m014”, “new_ep_m014” e “new_ep_f014”, não sabemos o que representam ainda. De acordo com a estrutura dos nomes das colunas, elas provavelmente contêm valores, não são variáveis.
+
+Portanto, nossa primeira tarefa é agrupar todas as colunas, desde “new_sp_m014” até “newrel_f65”, porque ainda não compreendemos completamente o que essas colunas representam. Chamaremos essa variável genérica de “chave”. Além disso, sabemos que as células dessas colunas representam a contagem de casos, então criaremos uma variável chamada “casos” para armazenar esses valores.
+
+É importante observar que há muitos valores ausentes nos dados atuais. Para facilitar a análise inicial, usaremos a função “values_drop_na” para nos concentrarmos apenas nos valores que estão presentes, deixando os valores ausentes de lado temporariamente.
+
+Dessa forma, estaremos prontos para começar o processo de organização e limpeza desses dados desorganizados.
+
+```{r}
+TB1 <- TB %>% 
+  pivot_longer(
+    cols = -c(1:4), 
+    names_to = "chave", 
+    values_to = "casos", 
+    values_drop_na = TRUE
+  )
+TB1
+```
+
+Para tentarmos entender a estrutura de chave, vamos contar ela.
+
+```{r}
+TB1 %>% 
+  count(chave)
+```
+
+Se olharmos o dicionário de variáveis, presente junto aos dados, estamos interessados nos casos, ou seja, nas variáveis descritas por `new`. Vamos então, filtrar nossos dados para manter apenas essas variáveis.
+
+```{r}
+TB1 %<>% filter(chave %like% "^new")
+```
+
+Além disso, o dicionário das variáveis nos informa o seguinte:
+
+* As três primeiras letras de cada coluna indicam se a coluna contém casos novos (new) ou antigos (old) de tuberculose.
+
+* As letras seguintes descrevem o tipo de tuberculose:
+
+  * “rel” indica casos de recaída.
+
+  * “ep” indica casos de tuberculose extrapulmonar.
+
+  * “sn” indica casos de tuberculose pulmonar que não puderam ser diagnosticados por esfregaço pulmonar (*smear negative*).
+
+  * “sp” indica casos de tuberculose pulmonar que puderam ser diagnosticados por esfregaço pulmonar (*smear positive*).
+
+* A sexta letra indica o sexo dos pacientes com tuberculose, sendo “m” para masculino e “f” para feminino.
+
+* Os números restantes representam os grupos etários. O conjunto de dados agrupa os casos em sete faixas etárias:
+
+  * “014” = 0 a 14 anos
+
+  * “1524” = 15 a 24 anos
+
+  * “2534” = 25 a 34 anos
+
+  * “3544” = 35 a 44 anos
+
+  * “4554” = 45 a 54 anos
+
+  * “5564” = 55 a 64 anos
+
+  * “65” = 65 anos ou mais
+
+Para tornar o formato dos nomes das colunas mais consistente, é necessário fazer um pequeno ajuste: infelizmente, os nomes estão ligeiramente inconsistentes, pois em vez de “new_rel”, temos “newrel”. Para isso, vamos utilizar a função `str_replace()`, a ideia básica é simples: substituir os caracteres “newrel” por “new_rel”. Isso tornará todos os nomes das variáveis consistentes.
+
+```{r}
+TB2 <- TB1 %>% 
+  mutate(chave = stringr::str_replace(chave, "newrel", "new_rel"))
+TB2
+```
+
+Podemos separar os valores em cada código usando duas etapas da função `separate()`. A primeira etapa dividirá os códigos em cada sublinhado (underscore).
+
+```{r}
+TB3 <- TB2 %>% 
+  separate(chave, c("new", "type", "sexage"), 
+           sep = "_")
+TB3
+```
+
+
+Nesse caso, podemos eliminar a nova coluna, já que ela é constante em todo o conjunto de dados. Além disso, como mencionado anteriormente, as colunas “iso2” e “iso3” são redundantes e podem ser removidas. A eliminação de colunas não essenciais ajuda a simplificar o conjunto de dados e a economizar espaço de armazenamento.
+
+```{r}
+TB4 <- TB3 %>% 
+  select(-new, -iso2, -iso3)
+```
+
+Agora podemos separar o sexo e a idade.
+
+```{r}
+TB5 <- TB4 %>% 
+  separate(sexage, c("sexo", "idade"), sep = 1)
+TB5
+```
+
+### 4.8.4 Exercícios
+1. Utilizando os dados de TB5, crie uma tabela em formato wide, com a quantidade de casos por país por ano. Cada ano deve ser chamado “Ano_.
+```{r, error=TRUE}
+TB6 <- TB5 %>%
+  pivot_wider(names_from = year, 
+              values_from = casos,
+              names_prefix = "Ano_")
+
+TB6
+
+```
+
+2. Utilizando os dados de TB5, crie uma tabela em formato wide, com a quantidade de casos por país, ano, idade e sexo.
+  * Dica: Utilize o argumento `values_fn` da função.
+  
+3. Volte o banco criado em 1 e 2 para o formato `long`.
+
+
+## 4.9 Strings
+
+No [Capítulo 2](https://gysi.quarto.pub/ce302/chapters/02_basicR.html) vimos como criar a fazer manipulações simples em *strings*. Agora vamos aprofundar nossos conhecimentos em manipulação de *strings*. Para trabalharmos com strings em R, podemos utilizar diversos pacotes, como o `base`, `stringr` e `stringi` . Nas aulas introdutórias focamos apenas nas funções do `base`, agora vamos focar nas funções do stringr. As funções do pacote `stringr` são, na sua maioria, wrappers das funções implementadas no `stringi` .
+
+Strings são objetos (ou variáveis) do tipo texto, e são delimitadas por aspas (duplas ou simples).
+
+```{r}
+require(tidyverse)
+```
+
+```{r}
+require(magrittr)
+
+x <- "Seu nome aqui"
+y <- 'Seu nome aqui'
+
+x == y
+```
+
+Caso eu tenha interesse em criar uma string que contenha aspas, podemos cria-la da seguinte maneira:
+
+```{r}
+var_com_aspas <- "Ela disse: 'Eu adoro lasanha.'"
+var_com_aspas
+```
+
+```{r}
+str_view(var_com_aspas)
+```
+
+```{r}
+var_com_aspas2 <- 'Ela disse: "Eu adoro lasanha."'
+var_com_aspas2
+```
+
+```{r}
+str_view(var_com_aspas2)
+```
+
+```{r}
+var_com_aspas3 <- "Ela disse: \"Eu adoro lasanha.\""
+var_com_aspas3
+```
+
+
+```{r}
+str_view(var_com_aspas3)
+```
+
+```{r}
+var_com_aspas4 <- 'Ela disse: \'Eu adoro lasanha.\''
+var_com_aspas4
+```
+
+```{r}
+str_view(var_com_aspas4)
+```
+
+### 4.9.1 Caracteres especiais
+
+Quando estamos trabalhando com textos, frequentemente temos caracteres especiais. Caracteres especiais são caracteres que não são alfanuméricos e muitas vezes têm funções específicas ou significados especiais em linguagens de programação e processamento de texto. Aqui estão alguns exemplos comuns de caracteres especiais:
+
+* **Espaço em Branco**: O espaço em branco, muitas vezes representado como ” ” ou “\s” em linguagens de programação, é um caractere especial que denota um espaço vazio entre palavras ou caracteres em uma string.
+  * Em R, podemos usar espaços em branco em strings de texto da maneira usual. Por exemplo:
+  
+```{r}
+texto <- "Isso é um exemplo de texto com espaços em branco."
+str_view(texto)
+```
+  
+* **Nova Linha (\n)**: O caractere “\n” é usado para representar uma quebra de linha em uma string. Quando incluído em uma string, ele faz com que o texto subsequente seja exibido em uma nova linha.
+  * Para criar uma nova linha em uma string, podemos usar “\n”. Isso é útil para criar múltiplas linhas de texto.
+
+```{r}
+texto_multilinhas <- "Primeira linha\nSegunda linha\nTerceira linha"
+str_view(texto_multilinhas)
+```
+
+* **Tabulação (\t)**: O caractere “\t” representa uma tabulação horizontal. É frequentemente usado para criar recuos ou alinhar o texto em colunas.
+  * Para adicionar tabulações em uma string, você pode usar “\t”.
+
+```{r}
+texto_tabulado <- "Primeira coluna\tSegunda coluna\tTerceira coluna" 
+str_view(texto_tabulado)
+```
+
+* **Caracteres de Escape (\)**: O caractere “\” é usado como um caractere de escape em muitas linguagens de programação. Isso significa que ele “escapa” o significado especial de outros caracteres, permitindo que você os inclua em uma string. Por exemplo, “\” é usado para representar uma única barra invertida em vez de um caractere de escape.
+
+```{r}
+texto_com_barras <- "Isso é uma única barra invertida: \\"
+str_view(texto_com_barras)
+```
+
+* **Caracteres Unicode**: Em linguagens de programação modernas, podemos usar caracteres Unicode em strings para representar uma ampla variedade de caracteres especiais de diferentes idiomas e símbolos.
+  * Podemos utilizar códigos Unicode para incluir caracteres especiais em uma string em R. Por exemplo, o símbolo do grau (°) pode ser representado pelo código Unicode “\u00B0”.
+
+
+```{r}
+texto_unicode_grau <- "A temperatura é de 25\u00B0C."
+str_view(texto_unicode_grau)
+```
+
+* O símbolo “\n” (nova linha), pode ser representados usando seus códigos Unicode.
+```{r}
+texto_multilinhas_unicode <- "Primeira linha\u000ASegunda linha"
+str_view(texto_multilinhas_unicode)
+```
+
+* Caracteres matemáticos, como o símbolo de somatório ($\sum$), podem ser representados com seus códigos Unicode.
+
+```{r}
+simbolo_somatorio <- "O símolo do somatório é: \u2211"
+str_view(simbolo_somatorio)
+```
+
+* Emojis também podem ser representados por Unicode.
+
+```{r}
+emoji <- "OMG! Também posso usar emoji! \U1F631"
+str_view(emoji)
+```
+
+### 4.9.2 Concatenando strings
+Muitas vezes temos interesse em combinar strings, como faziamos antes com a função `paste()`.
+
+```{r}
+df <- data.frame(nome = c("Ana", "Maria", "João", NA), 
+                 sobrenome= c("Santos", "Silva", "Souza", NA))
+df %>% 
+  mutate(ola = str_c("Boa noite ", nome, " ", sobrenome, "!"))
+```
+
+Alternativamente, quando temos diversas variáveis que queremos combinar, podemos utilizar a função `str_glue`.
+
+```{r}
+df %>% 
+  mutate(mensagem = str_glue("Boa noite {nome} {sobrenome}!"))
+```
+
+Outra opção para a qual utilizamavamos o `paste`, era para unir todos os elementos de uma string, utilizando o argumento `collapse`.
+
+
+```{r}
+df$nome %>% 
+  paste(., collapse = ", ")
+
+```
+
+Uma alternativa é utilizarmos a função `str_flatten`.
+
+```{r}
+df$nome %>% 
+  str_flatten(na.rm = TRUE)
+```
+
+```{r}
+df$nome %>% 
+  str_flatten(na.rm = TRUE, collapse = ", ", last = " e ")
+```
+
+### 4.9.3 Separando Strings
+
+Muitas vezes precisamos separar uma string em duas (ou mais). Na aula passada vimos a função `separate`. Hoje vamos ver a `str_split`.
+
+```{r}
+df %<>% 
+  mutate(Nome_Sobrenome = str_c(nome, sobrenome, sep = " "))
+
+df$Nome_Sobrenome %>% 
+  str_split(., " ", simplify = TRUE)
+```
+
+### 4.9.4 Formatação básica
+
+Muitas vezes queremos passar um texto para caixa alta, caixa baixa, título ou até mesmo formato de sentença. Para isso podemos utilizar as funções: `str_to_upper()`, `str_to_lower()`, `str_to_title()` e `str_to_sentence()` respectivamente.
+
+
+```{r}
+texto_exemplo = c("caixa baixa", "CAIXA ALTA", "Texto de sentença", "Texto Em Título")
+str_to_lower(texto_exemplo)
+```
+
+
+```{r}
+str_to_sentence(texto_exemplo)
+```
+
+```{r}
+str_to_title(texto_exemplo)
+```
+
+```{r}
+str_to_upper(texto_exemplo)
+```
+
+Algumas vezes recebemos um texto desformatado, no sentido de conter diversos espaços no meio do texto. E temos interesse em limpar os excessos de espaço. Para isso podemos utilizar as seguintes funções: `str_trim()` e `str_squish()`.
+
+```{r}
+texto_com_espaços = "  Olá, esse texto tem    diversos        espaços completamente desnecessários. "
+
+str_trim(texto_com_espaços, side = "left")
+```
+
+```{r}
+str_trim(texto_com_espaços, side = "right")
+```
+
+```{r}
+str_trim(texto_com_espaços, side = "both")
+```
+
+```{r}
+str_squish(texto_com_espaços)
+```
+
+### 4.9.5 Comprimento de string
+
+Muitas vezes temos interesse em encontrar textos incorretos em um banco de dados, uma maneira de identificar essas observações é simplesmente por contar a quantidade de caracteres de uma string. Para isso podemos utilizar a função `str_length()`.
+
+```{r}
+df %>% 
+  mutate(comprimento_nome = str_length(nome))
+```
+
+
+Alternativamente podemos estar interessados em contar a quantidade de caracteres especificos. Para isso, utilizamos a função `str_count()`.
+
+```{r}
+df %>% 
+  mutate(qtd_a = str_count(nome, "a"))
+```
+
+```{r}
+df %>% 
+  mutate(qtd_vogais = str_count(nome, "[aeiou]")) %>%
+  mutate(qtd_consoantes = str_count(nome, "[^aeiou]"))
+```
+
+### 4.9.6 Substituição de strings
+
+Algumas vezes podemos estar interessados em substituir alguma string por outra. Para isso podemos utilizar a função `str_replace()`.
+
+```{r}
+df %>% 
+  mutate(nome = str_replace(nome, "ã", "a"))
+```
+
+
+Outras vezes queremos simplesmente remover algum caracter. Para isso utilizamos a função `str_remove()` para remover a primeira instância do caracter ou `str_remove_all()` para remover todas as instâncias.
+
+```{r}
+df %>% 
+  mutate(nome = str_remove(nome, "[aeiouã]"))
+```
+
+```{r}
+df %>% 
+  mutate(nome = str_remove_all(nome, "[aeiouã]"))
+```
+
+### 4.9.7 Expressões Regulares
+
+Expressões regulares, muitas vezes abreviadas como “RegEx” são padrões de texto que descrevem conjuntos de *strings*. Elas são amplamente utilizadas para realizar operações de busca, correspondência e manipulação de *strings* em linguagens de programação e ferramentas de processamento de texto, incluindo R. Alguns símbolos e conceitos-chave em expressões regulares:
+
+1. **Literais:** Caracteres literais correspondem a si mesmos. Por exemplo, a regex “abc” corresponderá à sequência “abc” em uma string.
+
+```{r}
+texto <- "O gato é um animal adorável."
+padrao <- "gato"
+str_detect(texto, padrao)
+```
+
+2. **Meta-caracteres:** São caracteres com significados especiais em regex. Alguns exemplos incluem:
+
+  * `.` (ponto): Corresponde a qualquer caractere, exceto uma nova linha.
+  * `*`: Corresponde a zero ou mais ocorrências do caractere ou grupo anterior.
+  * `+`: Corresponde a uma ou mais ocorrências do caractere ou grupo anterior.
+  * `?`: Corresponde a zero ou uma ocorrência do caractere ou grupo anterior.
+  * `[]`: Define uma classe de caracteres. Por exemplo, `[aeiou]` corresponde a qualquer vogal.
+  * `|` (barra vertical): Funciona como um “OU” lógico. Por exemplo, “a|b” corresponde a “a” ou “b”.
+
+```{r}
+texto <- c("O rato correu para o buraco.", 
+           "O gato correu para o buraco.",
+           "O mato.")
+padrao <- "(g|r)ato"
+str_detect(texto, padrao)
+```
+
+3. **Âncoras**: São usadas para ancorar padrões em posições específicas da string.
+  * `^`: Corresponde ao início da string.
+  * `$`: Corresponde ao final da string.
+  * `\b`: Corresponde a uma borda de palavra (início ou fim de uma palavra).
+
+```{r}
+texto <- c("Banana", "Ana", "Ananas")
+padrao <- "^ana"
+str_detect(texto, padrao)
+```
+
+```{r}
+## Ignorar case
+str_detect(texto, "(?i)ana")
+```
+
+```{r}
+## Ignorar case, terminar com ana
+str_detect(texto, "(?i)ana$")
+```
+
+```{r}
+## Ignorar case, começar com ana
+str_detect(texto, "(?i)^ana")
+```
+
+```{r}
+## Ignorar case, exatamente  ana
+str_detect(texto, "(?i)^ana$")
+```
+
+4. **Grupos**: Parênteses `()` são usados para agrupar caracteres em subexpressões. Isso é útil para aplicar operadores a um conjunto de caracteres.
+  * Exemplo: `(abc)+` corresponde a “abc”, “abcabc”, “abcabcabc”, etc.
+  
+```{r}
+str_extract(texto, "(na)+")
+```
+  
+5. **Quantificadores**: Controlam o número de ocorrências de um caractere ou grupo.
+  * `{n}`: Corresponde exatamente a n ocorrências.
+  * `{n,}`: Corresponde a pelo menos n ocorrências.
+  * `{n,m}`: Corresponde de n a m ocorrências.
+  
+```{r}
+texto <- "Os números 123 e 456 são importantes."
+padrao <- "\\d{3}"
+numeros <- str_extract_all(texto, padrao, simplify = TRUE)
+numeros
+```
+  
+```{r}
+texto <- "Os números 123, 456 e 78 são importantes."
+padrao <- "\\d{2}"
+numeros <- str_extract_all(texto, padrao, simplify = TRUE)
+numeros
+```
+
+### 4.9.8 Exercício
+
+Utilizando os dados disponíveis em `words` crie RegEx capaz de encontrar palavras que:
+
+1. Comece com “y”.
+
+2. Não comece com “y”.
+
+3. Termine com “x”.
+
+4. Tenham exatamente três letras.
+
+5. Tenham sete letras ou mais.
+
+6. Contenham um par vogal-consoante.
+
+7. Contenham pelo menos dois pares vogal-consoante consecutivos.
+
+Para cada um dos desafios a seguir, tente resolvê-los usando tanto uma única expressão regular quanto uma combinação de várias chamadas de `str_detect()`:
+
+1. Encontre todas as palavras que começam ou terminam com “x”.
+
+2. Encontre todas as palavras que começam com uma vogal e terminam com uma consoante.
+
+3. Existem palavras que contêm pelo menos uma de cada vogal diferente?
+
+4. Em `colors()` existem diversos modificadores de cores como *light* e *dark*. Crie um banco contendo o nome da cor original e o nome sem o modificador.
+
+## 4.10 Cheatsheets
+
+* [TidyR](https://github.com/rstudio/cheatsheets/blob/main/tidyr.pdf)
+
+* [Manipulando dados](https://github.com/rstudio/cheatsheets/blob/main/translations/portuguese/data-wrangling_pt.pdf)
+
+* [Lubridate](https://github.com/rstudio/cheatsheets/blob/main/lubridate.pdf)
+
+* [Strings](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf)
+
+* [RegEx](https://github.com/rstudio/cheatsheets/blob/main/regex.pdf)
+
+* [Para saber mais sobre RegEx](https://regexr.com/)
+
+* Jogo de palavra cruzadas em [RegEx](https://regexcrossword.com/).
+
+

@@ -1,0 +1,152 @@
+---
+always_allow_html: true
+title: "12  Git & RStudio Cheat-Sheet"
+---
+
+Esse material é baseado no suporte da [Posit](https://posit.co/) para sincronização do Git & RStudio disponível [aqui](https://support.posit.co/hc/en-us/articles/200532077).
+
+## 12.1 Instalação
+
+Antes de utilizar os recursos de controle de versão do RStudio, você precisará garantir que o **Git** e/ou **Subversion** estejam instalados em seu sistema. Descrevo a seguir como fazer isso em diversas plataformas.
+
+### 12.1.1 Git
+
+Antes de usar o Git com o RStudio, você deve instalá-lo usando o método apropriado para a sua plataforma:
+
+* Windows e OS X: http://git-scm.com/downloads
+* Debian/Ubuntu: sudo apt-get install git-core
+* Fedora/RedHat: sudo yum install git-core
+
+#### 12.1.2 Subversion
+
+Antes de usar o Subversion com o RStudio, você deve instalá-lo usando o método apropriado para a sua plataforma:
+
+* Windows: [SilkSVN](https://sliksvn.com/download/)
+* OSX (≤ v10.7): Não é necessário - já está incluído nas versões do OSX 10.7 e anteriores
+* OSX (v10.8+): Instale as Ferramentas de Linha de Comando do Xcode a partir dos downloads do desenvolvedor da Apple
+* Debian/Ubuntu: `sudo apt-get install subversion`
+* Fedora/RedHat: `sudo yum install subversion`
+
+## 12.2 Ativando Git no RStudio
+
+Após instalar o seu sistema de Controle de Versão preferido, você precisará ativá-lo no RStudio seu sistema seguindo estes passos:
+
+* Acesse as Opções Globais (no menu Ferramentas)
+* Clique em Git/SVN
+* Clique em Habilitar interface de controle de versão para projetos do RStudio
+* Se necessário, insira o caminho para o executável do Git ou SVN, se fornecido. Você também pode criar ou adicionar sua chave RSA para SSH, se necessário.
+
+![Tools -> Global Options -> Git/SNV](.\imagens\c1_global_options.png)
+
+## 12.3 Configurar o Git
+
+Após ativarmos o Git no RStudio, precisamos declarar para o Git seu nome e e-mail associado a sua conta do GitHub. Isso pode ser feito da seguinte forma:
+
+1. Pelo **Terminal** no RStudio, digite esses comandos substituindo seu nome/e-mail:
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+git config --global user.name 'Seu Nome'
+git config --global user.email 'seu.email@email.com'
+```
+
+2. Usando o pacote `usethis`, no **Console** do RStudio:
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+library(usethis)
+use_git_config(user.name = "Seu Nome", 
+               user.email = "seu.email@email.com")
+```
+
+## 12.4 Criar um token do GitHub
+
+Para que a interação entre o seu computador (especificamente o repositório Git local) e o GitHub (repositório remoto) funcione corretamente, é necessário autenticação. Essa autenticação garante que você possui as permissões necessárias para realizar as ações desejadas. Uma maneira fácil de implementar essa autenticação é configurando um token do GitHub, também conhecido como PAT (Personal Access Token).
+
+Podemos criar o token da seguinte maneira no **console** do RStudio:
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+usethis::create_github_token()
+```
+
+Esse comando abrirá uma página no seu navegador. Clique em *Generate token* e copie o código do token gerado.
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+Nota
+Não feche a página. Ao fechar a página não será possível visualizá-lo novamente.
+```
+
+
+
+Agora precisamos garantir que o RStudio irá se recordar do seu token e suas credenciais. Para isso, utilizamos o código a seguir:
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+gitcreds::gitcreds_set()
+```
+
+Em seguida, cole o código obitido anteriormente.
+
+## 12.5 Testando
+
+Tecnicamente, agora está tudo configurado. Vamos agora testar se está funcionamento adequadamente. Para essa averiguação, criaremos um repositório no GitHub, faremos o clone do mesmo para o computador local, iremos gerar alterações locais, salvar e “commitar”, e, por fim, enviar as alterações locais para o repositório remoto (“push”).
+
+### 12.5.1 Criar um repositório no GitHub
+
+A seguir estão as etapas para criar um novo repositório no GitHub:
+
+1. Acesse o site do GitHub e verifique se você já fez o login na sua conta.
+
+2. Próximo à seção “Repositories”, clique no botão verde “New”.
+
+3. Na nova página, preencha o nome do repositório (CE302) e adicione uma breve descrição, se desejar.
+
+4. Marque as opções “Public” (público) e “Add a README file” (adicionar um arquivo README).
+
+5. Por fim, clique em “Create repository”.
+
+Após criar o repositório, você será direcionado para a página do mesmo no GitHub. Agora, clique no botão verde escrito “Code” e copie a URL que aparece na opção “HTTPS” (recomendado).
+
+Essas etapas permitirão que você crie um novo repositório no GitHub e obtenha a URL necessária para interagir com ele através de comandos Git.
+
+###12.5.2 Clonar repositório pelo RStudio
+
+Existem duas maneiras de clonar o repositório no RStudio, ambas criam um novo projeto local contendo o repositório do GitHub desejado:
+
+1. Via Menu:
+  * Navegue para File > New Project > Version Control > Git.
+  * Cole a URL do GitHub em “Repository URL”.
+  * Mantenha o campo “Project directory name” inalterado e escolha um local (pasta) onde o projeto será criado.
+  * Marque a opção “Open in new session”.
+  * Clique em “Create Project”.
+
+2. Via Console usando o pacote usethis:
+  * Utilize a função `create_from_github` do pacote `usethis`.
+  * Informe o nome de usuário (que criou o repositório) e o nome do repositório.
+  * Exemplo: `usethis::create_from_github("nome_do_usuario/nome_do_repositorio")`.
+    
+Após clonar o repositório, você estará trabalhando em um novo projeto do RStudio que contém o repositório do GitHub. No painel “Files” do RStudio, procure pelo arquivo “README.md” e abra-o para visualizá-lo diretamente no RStudio.
+
+### 12.5.3 Fazer alterações locais, salvar, commitar
+
+Para adicionar uma linha com uma frase informativa ao arquivo README.md e salvar essas alterações, siga os passos abaixo para realizar o commit no seu repositório local:
+
+1. Clique na aba “Git” do RStudio.
+
+2. Em seguida, clique no botão “Commit”.
+
+3. Na coluna “Staged”, marque a caixinha ao lado de README.md para incluir o arquivo no commit.
+
+4. No campo “Commit message”, digite uma mensagem informativa que descreva as alterações no código.
+
+5. Clique no botão “Commit”, aguarde a mensagem de sucesso e depois clique em “Close”.
+
+Caso existam outros arquivos no repositório criados automaticamente pelo RStudio, não é necessário fazer alterações neles. Apenas o arquivo README.md, contendo a nova linha com sua frase criativa, será incluído no commit.
+
+### 12.5.4 Enviar alterações (`push`) para o GitHub
+
+Para enviar suas alterações realizadas no repositório local para o repositório remoto (GitHub), siga o passo abaixo:
+
+1. Clique no botão verde “Push”.
+Caso todas as etapas e configurações tenham sido executadas corretamente, você não será solicitado a digitar o token e suas alterações locais serão enviadas para a página do repositório no GitHub (recomendo atualizar a página para verificar).
+
+Se você chegou até aqui, a configuração do RStudio com o Git e GitHub está concluída com sucesso! Agora você pode realizar alterações no seu projeto local, fazer commits e enviar essas alterações para o repositório remoto no GitHub, mantendo seu projeto sempre atualizado.
+
+

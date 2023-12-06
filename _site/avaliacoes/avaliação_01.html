@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Prova 01</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+<ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="../01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../02_basicR.html" rel="" target="">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../06_loopings.html" rel="" target="">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">
+<li>
+    <a class="dropdown-item" href="../10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">
+<li>
+    <a class="dropdown-item" href="../listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">
+<li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">
+<li>
+    <a class="dropdown-item" href="../modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">
+<li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+</li>
+</ul>
+<div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto"><nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-as-duas-matrizes-fornecidas." id="toc-para-esse-exercício-você-deverá-utilizar-as-duas-matrizes-fornecidas." class="nav-link active" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-as-duas-matrizes-fornecidas.">1. Para esse exercício você deverá utilizar as duas matrizes fornecidas.</a></li>
+  <li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-o-banco-de-dados-chocolate.csv.gz." id="toc-para-esse-exercício-você-deverá-utilizar-o-banco-de-dados-chocolate.csv.gz." class="nav-link" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-o-banco-de-dados-chocolate.csv.gz.">2. Para esse exercício você deverá utilizar o banco de dados <code>chocolate.csv.gz</code>.</a></li>
+  <li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome." id="toc-para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome." class="nav-link" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome.">3. Para esse exercício você deverá utilizar os banco de dados <code>Art.csv.gz</code> e <code>Art_Moma.csv.gz</code>. Desconsidere artistas sem nacionalidade e/ou sem nome.</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/avaliacoes/avaliação_01.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/avaliacoes/avaliação_01.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="avaliação_01.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="avaliação_01.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Prova 01</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header><section id="para-esse-exercício-você-deverá-utilizar-as-duas-matrizes-fornecidas." class="level2"><h2 class="anchored" data-anchor-id="para-esse-exercício-você-deverá-utilizar-as-duas-matrizes-fornecidas.">1. Para esse exercício você deverá utilizar as duas matrizes fornecidas.</h2>
+<ul>
+<li>Considere a matriz A dada por:</li>
+</ul>
+<table class="table">
+<thead><tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>28</td>
+<td>32</td>
+<td>8</td>
+<td>9</td>
+<td>49</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>21</td>
+<td>35</td>
+<td>28</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>47</td>
+<td>43</td>
+<td>15</td>
+<td>34</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>48</td>
+<td>42</td>
+<td>19</td>
+<td>32</td>
+<td>26</td>
+</tr>
+<tr class="odd">
+<td>45</td>
+<td>44</td>
+<td>39</td>
+<td>50</td>
+<td>26</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>e a matriz B dada por:</li>
+</ul>
+<table class="table">
+<thead><tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>26</td>
+<td>3</td>
+<td>8</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>35</td>
+<td>12</td>
+<td>19</td>
+<td>27</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>27</td>
+<td>24</td>
+<td>12</td>
+<td>17</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>31</td>
+<td>36</td>
+<td>40</td>
+<td>35</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>24</td>
+<td>43</td>
+<td>31</td>
+<td>21</td>
+<td>39</td>
+</tr>
+</tbody>
+</table>
+<p>Considere: <span class="math display">\[C = (A * B^T)^{-1}\]</span> e <span class="math display">\[P = B * (B^T * B)*B^T\]</span> a) Considere a matriz de projeção <span class="math inline">\(P\)</span>. A soma de seus autovetores é dada por?</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Defina as matrizes A e B</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">32</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">49</span>,</span>
+<span>              <span class="fl">7</span>, <span class="fl">21</span>, <span class="fl">35</span>, <span class="fl">28</span>, <span class="fl">10</span>,</span>
+<span>              <span class="fl">47</span>, <span class="fl">43</span>, <span class="fl">15</span>, <span class="fl">34</span>, <span class="fl">2</span>,</span>
+<span>              <span class="fl">48</span>, <span class="fl">42</span>, <span class="fl">19</span>, <span class="fl">32</span>, <span class="fl">26</span>,</span>
+<span>              <span class="fl">45</span>, <span class="fl">44</span>, <span class="fl">39</span>, <span class="fl">50</span>, <span class="fl">26</span><span class="op">)</span>,</span>
+<span>            nrow <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>            byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">26</span>, <span class="fl">3</span>, <span class="fl">8</span>, <span class="fl">30</span>,</span>
+<span>              <span class="fl">35</span>, <span class="fl">12</span>, <span class="fl">19</span>, <span class="fl">27</span>, <span class="fl">27</span>,</span>
+<span>              <span class="fl">27</span>, <span class="fl">24</span>, <span class="fl">12</span>, <span class="fl">17</span>, <span class="fl">29</span>,</span>
+<span>              <span class="fl">31</span>, <span class="fl">36</span>, <span class="fl">40</span>, <span class="fl">35</span>, <span class="fl">8</span>,</span>
+<span>              <span class="fl">24</span>, <span class="fl">43</span>, <span class="fl">31</span>, <span class="fl">21</span>, <span class="fl">39</span><span class="op">)</span>,</span>
+<span>            nrow <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>            byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calcule os autovetores para cada matriz</span></span>
+<span><span class="va">eigen_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span></span>
+<span><span class="va">eigen_B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span></span>
+<span></span>
+<span><span class="co"># Some os autovetores</span></span>
+<span><span class="va">soma_autovetores</span> <span class="op">&lt;-</span> <span class="va">eigen_A</span> <span class="op">+</span> <span class="va">eigen_B</span></span>
+<span></span>
+<span><span class="co"># Calculando P</span></span>
+<span><span class="va">P</span> <span class="op">&lt;-</span> <span class="va">B</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculando os autovetores de P</span></span>
+<span><span class="va">eigen_P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">P</span><span class="op">)</span><span class="op">$</span><span class="va">vectors</span></span>
+<span></span>
+<span><span class="co"># Calculando a soma dos autovetores de P</span></span>
+<span><span class="va">soma_autovetores_P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colSums</a></span><span class="op">(</span><span class="va">eigen_P</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo a soma dos autovetores de P</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">soma_autovetores_P</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2.1633934 -0.3386760  0.1557935  0.4236154 -0.0361385</code></pre>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Arredondando para 4 casas decimais para facilitar a comparação</span></span>
+<span><span class="va">soma_autovetores_P_arredondada</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">soma_autovetores_P</span><span class="op">)</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">soma_autovetores_P_arredondada</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.9588</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>A soma dos valores absolutos da diagonal da matriz C é 0,0722.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculando C</span></span>
+<span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculando a soma dos valores absolutos da diagonal de C</span></span>
+<span><span class="va">soma_diagonal_C</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">C</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo a soma</span></span>
+<span><span class="va">soma_diagonal_C</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.07224898</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li>A soma de uma matriz triangular inferior para a matriz <span class="math inline">\(A\)</span> é 233.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Definindo a matriz A</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">28</span>, <span class="fl">32</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">49</span>,</span>
+<span>              <span class="fl">7</span>, <span class="fl">21</span>, <span class="fl">35</span>, <span class="fl">28</span>, <span class="fl">10</span>,</span>
+<span>              <span class="fl">47</span>, <span class="fl">43</span>, <span class="fl">15</span>, <span class="fl">34</span>, <span class="fl">2</span>,</span>
+<span>              <span class="fl">48</span>, <span class="fl">42</span>, <span class="fl">19</span>, <span class="fl">32</span>, <span class="fl">26</span>,</span>
+<span>              <span class="fl">45</span>, <span class="fl">44</span>, <span class="fl">39</span>, <span class="fl">50</span>, <span class="fl">26</span><span class="op">)</span>,</span>
+<span>            nrow <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>            byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculando a soma dos elementos da matriz triangular inferior</span></span>
+<span><span class="va">soma_triang_inferior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/row.html">row</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/col.html">col</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo a soma</span></span>
+<span><span class="va">soma_triang_inferior</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 384</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li>O <span class="math inline">\(log10\)</span> do valor absoluto do determinante de <span class="math inline">\(A\)</span> é 6,335. O <span class="math inline">\(log10\)</span> do valor absoluto do determinante de B é 6,7168. O <span class="math inline">\(log10\)</span> do valor absoluto do determinante da matriz resultante do produto matricial entre <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span> é 13,0518.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculando o log10 do valor absoluto do determinante de A</span></span>
+<span><span class="va">log_det_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/det.html">det</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo o resultado</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">log_det_A</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.335031</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculando o log10 do valor absoluto do determinante de B</span></span>
+<span><span class="va">log_det_B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/det.html">det</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo o resultado</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">log_det_B</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.716753</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculando o determinante da matriz resultante do produto matricial entre A e B</span></span>
+<span><span class="va">det_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/det.html">det</a></span><span class="op">(</span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">B</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculando o log10 do valor absoluto do determinante de AB</span></span>
+<span><span class="va">log_det_AB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">det_AB</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo o resultado</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">log_det_AB</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13.05178</code></pre>
+</div>
+</div>
+<ol start="5" type="a">
+<li>O maior elemento da diagonal do inverso da matriz resultante do produto matricial entre <span class="math inline">\(A\)</span> e o transposto de <span class="math inline">\(B\)</span> é 0,026.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Calculando o produto matricial entre A e o transposto de B</span></span>
+<span><span class="va">ABt</span> <span class="op">&lt;-</span> <span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calculando o inverso da matriz resultante</span></span>
+<span><span class="va">inv_ABt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">ABt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Obtendo a diagonal da matriz inversa</span></span>
+<span><span class="va">diagonal_inv_ABt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html">diag</a></span><span class="op">(</span><span class="va">inv_ABt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Encontrando o maior elemento da diagonal</span></span>
+<span><span class="va">maior_elemento_diagonal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">diagonal_inv_ABt</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibindo o resultado</span></span>
+<span><span class="va">maior_elemento_diagonal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.01596027</code></pre>
+</div>
+</div>
+</section><section id="para-esse-exercício-você-deverá-utilizar-o-banco-de-dados-chocolate.csv.gz." class="level2"><h2 class="anchored" data-anchor-id="para-esse-exercício-você-deverá-utilizar-o-banco-de-dados-chocolate.csv.gz.">2. Para esse exercício você deverá utilizar o banco de dados <code>chocolate.csv.gz</code>.</h2>
+<p>O dicionário das variáveis encontra-se disponível abaixo. |Variável| Descrição| |–|–| |local_compania| Região do Fabricante| |ano| Ano da Revisão| |origem_cacau| País de Origem dos Grãos de Cacau| |cocoa_percent| Percentagem de Cacau (% chocolate)| |ingredientes| Ingredientes| |caracteristicas| Características mais memoráveis daquele chocolate|</p>
+<p><strong>Lista de ingredientes</strong>: “#”: representa o número de ingredientes no chocolate; B: Grãos, S: Açúcar, S*: Adoçante diferente de açúcar de cana branco ou beterraba, C: Manteiga de Cacau, V: Baunilha, L: Lecitina, Sa: Sal</p>
+<p>Assinale todas as alternativas incorreta(s).</p>
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: data.table</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: dplyr</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:data.table':
+
+    between, first, last</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Carregando pacotes exigidos: tidyr</code></pre>
+</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chocolate</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./avaliação_01-datasets/chocolate.csv.gz"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">chocolate</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,443
+Columns: 7
+$ local_compania    &lt;chr&gt; "U.S.A.", "U.S.A.", "U.S.A.", "U.S.A.", "U.S.A.", "U…
+$ ano               &lt;int&gt; 2019, 2019, 2019, 2021, 2021, 2021, 2021, 2012, 2012…
+$ origem_cacau      &lt;chr&gt; "Tanzania", "Dominican Republic", "Madagascar", "Fij…
+$ ingredientes      &lt;chr&gt; "3- B,S,C", "3- B,S,C", "3- B,S,C", "3- B,S,C", "3- …
+$ caracteristicas   &lt;chr&gt; "rich cocoa, fatty, bready", "cocoa, vegetal, savory…
+$ percentagem_cacau &lt;chr&gt; "76%", "76%", "76%", "68%", "72%", "80%", "68%", "70…
+$ ID                &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…</code></pre>
+</div>
+</div>
+<ol type="a">
+<li>Existem 2443 países que produzem chocolate.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">num_paises</span> <span class="op">&lt;-</span> <span class="va">chocolate</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">origem_cacau</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir o número de países</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">num_paises</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 62</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>Existem 104 chocolates com 4 ingredientes que são descritos por 2 características.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">chocolate</span><span class="op">$</span><span class="va">qtdade_caracteristicas</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lengths.html">lengths</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">chocolate</span><span class="op">$</span><span class="va">caracteristicas</span>, <span class="st">","</span><span class="op">)</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="va">q2</span> <span class="op">&lt;-</span> <span class="va">chocolate</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">ingredientes</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="st">"4"</span>,</span>
+<span>         <span class="va">qtdade_caracteristicas</span> <span class="op">==</span> <span class="st">"2"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Contar o número de chocolates resultantes</span></span>
+<span><span class="va">num_chocolates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">q2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir o número de chocolates</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">num_chocolates</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 104</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li>A frequência absoluta para chocolates que contenham 5 ingredientes é 750.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Filtrar chocolates que contenham 5 ingredientes</span></span>
+<span><span class="va">chocolates_5_ingredientes</span> <span class="op">&lt;-</span> <span class="va">chocolate</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">ingredientes</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">==</span> <span class="st">"5"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calcular a frequência absoluta</span></span>
+<span><span class="va">frequencia_absoluta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">chocolates_5_ingredientes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir a frequência absoluta</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">frequencia_absoluta</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 191</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li>As 8 caracterististicas mais marcantes dos chocolates são sweet, nutty, cocoa, roasty, creamy, earthy, sandy e fatty e juntas correspondem a 1663 descrições dos chocolates.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Criar um novo dataframe com as características separadas em linhas</span></span>
+<span><span class="va">caracteristicas_chocolate</span> <span class="op">&lt;-</span> <span class="va">chocolate</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows</a></span><span class="op">(</span><span class="va">caracteristicas</span>, sep <span class="op">=</span> <span class="st">","</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">caracteristicas</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>frequencia <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">frequencia</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">caracteristicas_chocolate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,202 × 2
+   caracteristicas frequencia
+   &lt;chr&gt;                &lt;int&gt;
+ 1 " cocoa"               206
+ 2 " sweet"               175
+ 3 " nutty"               173
+ 4 "creamy"               161
+ 5 " roasty"              160
+ 6 " earthy"              141
+ 7 "sandy"                139
+ 8 " sour"                122
+ 9 " floral"               91
+10 "intense"               88
+# ℹ 1,192 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Selecionar apenas as características desejadas</span></span>
+<span><span class="va">palavras_chave</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sweet"</span>, <span class="st">"nutty"</span>, <span class="st">"cocoa"</span>, <span class="st">"roasty"</span>, <span class="st">"creamy"</span>, <span class="st">"earthy"</span>, <span class="st">"sandy"</span>, <span class="st">"fatty"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Criar uma expressão regular para corresponder a variações nas palavras-chave</span></span>
+<span><span class="va">padrao_regex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"\\b"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">palavras_chave</span>, collapse <span class="op">=</span> <span class="st">"|"</span><span class="op">)</span>, <span class="st">"\\b"</span>, ignore.case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filtrar as características desejadas e somar as frequências</span></span>
+<span><span class="va">q2b</span> <span class="op">&lt;-</span> <span class="va">caracteristicas_chocolate</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="va">padrao_regex</span>, <span class="va">caracteristicas</span><span class="op">)</span><span class="op">)</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">caracteristicas</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir a soma das frequências</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">q2b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 120 × 2
+# Groups:   caracteristicas [120]
+   caracteristicas frequencia
+   &lt;chr&gt;                &lt;int&gt;
+ 1 " cocoa"               206
+ 2 " sweet"               175
+ 3 " nutty"               173
+ 4 "creamy"               161
+ 5 " roasty"              160
+ 6 " earthy"              141
+ 7 "sandy"                139
+ 8 "sweet"                 85
+ 9 "nutty"                 83
+10 "roasty"                52
+# ℹ 110 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">q2b</span><span class="op">$</span><span class="va">frequencia</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1748</code></pre>
+</div>
+</div>
+<ol start="5" type="a">
+<li>Existem 81 chocolates que incluem o ingrediente <em>Adoçante</em> em sua composição.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Criar um novo dataframe com as características separadas em linhas</span></span>
+<span><span class="va">ingredientes_chocolate</span> <span class="op">&lt;-</span> <span class="va">chocolate</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows</a></span><span class="op">(</span><span class="va">ingredientes</span>, sep <span class="op">=</span> <span class="st">","</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/separate_rows.html">separate_rows</a></span><span class="op">(</span><span class="va">ingredientes</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">ingredientes</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>frequencia <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">frequencia</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">ingredientes_chocolate</span><span class="op">$</span><span class="va">frequencia</span><span class="op">[</span><span class="va">ingredientes_chocolate</span><span class="op">$</span><span class="va">ingredientes</span> <span class="op">==</span> <span class="st">"S*"</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 76</code></pre>
+</div>
+</div>
+</section><section id="para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome." class="level2"><h2 class="anchored" data-anchor-id="para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome.">3. Para esse exercício você deverá utilizar os banco de dados <code>Art.csv.gz</code> e <code>Art_Moma.csv.gz</code>. Desconsidere artistas sem nacionalidade e/ou sem nome.</h2>
+<p>O dicionário das variáveis encontra-se disponível abaixo.</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead><tr class="header">
+<th>variável</th>
+<th>descrição</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>artist_name</td>
+<td>O nome de cada artista</td>
+</tr>
+<tr class="even">
+<td>edition_number</td>
+<td>O número da edição do livro.</td>
+</tr>
+<tr class="odd">
+<td>year</td>
+<td>O ano de publicação de uma determinada edição do livro</td>
+</tr>
+<tr class="even">
+<td>artist_nationality</td>
+<td>A nacionalidade de um artista.</td>
+</tr>
+<tr class="odd">
+<td>artist_nationality_other</td>
+<td>A nacionalidade do artista</td>
+</tr>
+<tr class="even">
+<td>artist_gender</td>
+<td>O gênero do artista</td>
+</tr>
+<tr class="odd">
+<td>vartist_race</td>
+<td>A raça do artista</td>
+</tr>
+<tr class="even">
+<td>artist_ethnicity</td>
+<td>A etnia do artista</td>
+</tr>
+<tr class="odd">
+<td>book</td>
+<td>Qual livro, “Janson” ou “Gardner”</td>
+</tr>
+<tr class="even">
+<td>space_ratio_per_page_total</td>
+<td>A área em centímetros quadrados do texto e da figura de um determinado artista</td>
+</tr>
+<tr class="odd">
+<td>artist_unique_id</td>
+<td>O número de identificação exclusivo atribuído aos artistas</td>
+</tr>
+<tr class="even">
+<td>moma_count_to_year</td>
+<td>O número total de exposições já realizadas pelo Museu de Arte Moderna (MoMA)</td>
+</tr>
+<tr class="odd">
+<td>whitney_count_to_year</td>
+<td>O número de exposições realizadas pelo The Whitney</td>
+</tr>
+<tr class="even">
+<td>artist_race_nwi</td>
+<td>O indicador de raça não branca para a raça do artista</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">art_moma</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./avaliação_01-datasets/Art_Moma.csv.gz"</span><span class="op">)</span></span>
+<span><span class="va">art</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./avaliação_01-datasets/Art.csv.gz"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">art_moma</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3,162
+Columns: 7
+$ edition_number             &lt;dbl&gt; 9, 10, 11, 12, 13, 14, 15, 16, 14, 15, 16, …
+$ year                       &lt;int&gt; 1991, 1996, 2001, 2005, 2009, 2013, 2016, 2…
+$ book                       &lt;chr&gt; "Gardner", "Gardner", "Gardner", "Gardner",…
+$ space_ratio_per_page_total &lt;dbl&gt; 0.3533658, 0.3739470, 0.3032593, 0.3770489,…
+$ moma_count_to_year         &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ whitney_count_to_year      &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…
+$ artist_unique_id           &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 6, 6, 6, 6…</code></pre>
+</div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">art</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 413
+Columns: 8
+$ artist_name              &lt;chr&gt; "Aaron Douglas", "Adélaïde Labille-Guiard", "…
+$ artist_nationality       &lt;chr&gt; "American", "French", "French", "German-Ameri…
+$ artist_nationality_other &lt;chr&gt; "American", "French", "French", "Other", "Ame…
+$ artist_gender            &lt;chr&gt; "Male", "Female", "Male", "Male", "Male", "Ma…
+$ artist_race              &lt;chr&gt; "Black or African American", "White", "White"…
+$ artist_ethnicity         &lt;chr&gt; "Not Hispanic or Latino origin", "Not Hispani…
+$ artist_unique_id         &lt;int&gt; 2, 4, 6, 7, 8, 12, 14, 15, 16, 17, 18, 19, 20…
+$ artist_race_nwi          &lt;chr&gt; "Non-White", "White", "White", "White", "Whit…</code></pre>
+</div>
+</div>
+<p>Assinale todas as alternativas <strong>correta(s)</strong>. a) Os 3 artista(s) com mais exposições no The Whitney classificados em ordem decrescente de exposições são: Edward Hopper, Georgia O’Keeffe e Stuart Davis.</p>
+<div class="cell">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">art</span>, <span class="va">art_moma</span>,</span>
+<span>                  by <span class="op">=</span> <span class="st">"artist_unique_id"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">artist_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_whitney_count_to_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">whitney_count_to_year</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">sum_whitney_count_to_year</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">q3a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 413 × 2
+   artist_name       sum_whitney_count_to_year
+   &lt;chr&gt;                                 &lt;int&gt;
+ 1 Edward Hopper                           529
+ 2 Georgia O'Keeffe                        352
+ 3 Stuart Davis                            339
+ 4 Willem de Kooning                       333
+ 5 George Grosz                            332
+ 6 Ellsworth Kelly                         276
+ 7 Jacob Lawrence                          248
+ 8 Jasper Johns                            235
+ 9 Jackson Pollock                         203
+10 Roy Lichtenstein                        200
+# ℹ 403 more rows</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>Do total de artistas, 152 são Swiss, Mexican ou Japanese.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">art</span>, <span class="va">art_moma</span>,</span>
+<span>                  by <span class="op">=</span> <span class="st">"artist_unique_id"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">artist_nationality</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>frequencia <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">q3b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 52 × 2
+   artist_nationality frequencia
+   &lt;chr&gt;                   &lt;int&gt;
+ 1 American                  908
+ 2 Argentine                   1
+ 3 Armenian-American          10
+ 4 Australian                  7
+ 5 Austrian                   36
+ 6 Austrian-American           5
+ 7 Belgian                    30
+ 8 Brazilian                   1
+ 9 British                   317
+10 Canadian                   14
+# ℹ 42 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">palavras_chave</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Swiss"</span>, <span class="st">"Mexican"</span>, <span class="st">"Japanese"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Filtrar as características desejadas e somar as frequências</span></span>
+<span><span class="va">q3b</span> <span class="op">&lt;-</span> <span class="va">q3b</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">artist_nationality</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">palavras_chave</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir a soma das frequências</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">q3b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  artist_nationality frequencia
+  &lt;chr&gt;                   &lt;int&gt;
+1 Japanese                   56
+2 Mexican                    52
+3 Swiss                      44</code></pre>
+</div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">q3b</span><span class="op">$</span><span class="va">frequencia</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 152</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li>Apenas 6 artista(s) com a nacionalidade Swiss tiveram entre 0 e 1 exposições no The Whitney.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">art</span>, <span class="va">art_moma</span>,</span>
+<span>                  by <span class="op">=</span> <span class="st">"artist_unique_id"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">artist_name</span>, <span class="va">artist_nationality</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>sum_whitney_count_to_year <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">whitney_count_to_year</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'artist_name'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 413 × 3
+# Groups:   artist_name [413]
+   artist_name                artist_nationality sum_whitney_count_to_year
+   &lt;chr&gt;                      &lt;chr&gt;                                  &lt;int&gt;
+ 1 A. R. Penck                German                                     0
+ 2 Aaron Douglas              American                                   0
+ 3 Aaron Siskind              American                                   0
+ 4 Adolph Gottlieb            American                                  46
+ 5 Adolphe William Bouguereau French                                     0
+ 6 Adélaïde Labille-Guiard    French                                     0
+ 7 Albert Bierstadt           German-American                            0
+ 8 Albert Pinkham Ryder       American                                   0
+ 9 Albert Renger-Patzsch      German                                     0
+10 Albert Sands Southworth    American                                   0
+# ℹ 403 more rows</code></pre>
+</div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">palavras_chave</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Swiss"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="co"># Filtrar as características desejadas e somar as frequências</span></span>
+<span><span class="va">q3c</span> <span class="op">&lt;-</span> <span class="va">q3c</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">artist_nationality</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">palavras_chave</span> <span class="op">&amp;</span></span>
+<span>           <span class="va">sum_whitney_count_to_year</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir a soma das frequências</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">q3c</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+# Groups:   artist_name [5]
+  artist_name           artist_nationality sum_whitney_count_to_year
+  &lt;chr&gt;                 &lt;chr&gt;                                  &lt;int&gt;
+1 Angelica Kauffmann    Swiss                                      0
+2 Arnold Böcklin        Swiss                                      0
+3 Friedrich von Martens Swiss                                      0
+4 Henry Fuseli          Swiss                                      0
+5 Jean Tinguely         Swiss                                      0</code></pre>
+</div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">q3c</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li>A diferença entre a média de páginas para artistas Brancos e Não Brancos no ano de 2007 é -0,24.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">art</span>, <span class="va">art_moma</span>,</span>
+<span>                  by <span class="op">=</span> <span class="st">"artist_unique_id"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># Filtrar por artist_race == "white" e calcular a média</span></span>
+<span><span class="va">media_white</span> <span class="op">&lt;-</span> <span class="va">q3d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">artist_race_nwi</span> <span class="op">==</span> <span class="st">"White"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>media_space_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">space_ratio_per_page_total</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Filtrar por artist_race diferente de "white" e calcular a média</span></span>
+<span><span class="va">media_nao_white</span> <span class="op">&lt;-</span> <span class="va">q3d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">artist_race_nwi</span> <span class="op">!=</span> <span class="st">"White"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>media_space_ratio <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">space_ratio_per_page_total</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Calcular a diferença</span></span>
+<span><span class="va">diferenca</span> <span class="op">&lt;-</span> <span class="va">media_white</span><span class="op">$</span><span class="va">media_space_ratio</span> <span class="op">-</span> <span class="va">media_nao_white</span><span class="op">$</span><span class="va">media_space_ratio</span></span>
+<span></span>
+<span><span class="co"># Exibir o resultado</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">diferenca</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1395619</code></pre>
+</div>
+</div>
+<ol start="5" type="a">
+<li>Dos artista(s) que expuseram no The Whitney, apenas 164 aparecem nos livros ‘Gardner’ e ‘Janson’.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">art</span>, <span class="va">art_moma</span>,</span>
+<span>                  by <span class="op">=</span> <span class="st">"artist_unique_id"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">q3e</span><span class="op">$</span><span class="va">book</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Gardner" "Janson" </code></pre>
+</div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q3e</span> <span class="op">&lt;-</span> <span class="va">q3e</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">whitney_count_to_year</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">artist_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>frequencia <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">q3e</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 101</code></pre>
+</div>
+</div>
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,195 @@
+---
+always_allow_html: true
+title: "Aula 04"
+---
+
+```{r, error=TRUE}
+
+x = c(1, 2, 3, 4)
+y = c(1.2, 1.5, 2.6)
+x
+y
+z = c("carro", "caminhão", "bicicleta")
+z
+class(x)
+class(y)
+class(z)
+
+w = c(x, z)
+w
+class(w)
+
+x + 2
+x + y
+length(x)
+length(y)
+
+y
+c(1.2, 1.5, 2.6, 1.2) + x
+x + y
+
+
+idades = c(12, 14, 15, 18, 20, 30)
+idades
+idades > 18
+idades[idades > 18]
+
+## Operadores lógicos 
+## & (AND)
+## | (OR)
+idades[idades > 18 & idades < 30]
+idades[idades < 18 | idades > 20]
+idades < 18 | idades > 20
+
+idades[(idades < 18 | idades > 20) | (idades == 15)]
+
+## Informaçoes faltantes
+NA
+mean(c(1,2,3, NA), na.rm = T)
+min(c(1,2,NA), na.rm = TRUE)
+
+NaN # Not a Number
+0/0
+sqrt(-1)
+
+y = c(1:10, NA, NA)
+sum(is.na(y))
+na.omit(y)
+na.exclude(y)
+
+
+y[is.na(y)] <- 0 
+y
+
+
+names(idades)
+length(idades)
+names(idades) <- c("Ana", "Maria", 
+                   "João", "Pedro", 
+                   "Leo", "Andressa")
+names(idades)
+idades
+
+idades["Ana"]
+idades[1]
+idades[c("Ana", "João")]
+
+## Matrizes
+
+vetor_a = c(1:10)
+vetor_b = c(21:30)
+
+matriz_a = cbind(vetor_a, vetor_b)
+matriz_b = rbind(vetor_a, vetor_b)
+class(matriz_a)
+class(matriz_b)
+
+matriz_c = matrix(c(1:9), 
+       ncol = 3, 
+       byrow = TRUE)
+matriz_c
+
+matriz_d = matrix(c(1:9), 
+                  ncol = 3, 
+                  byrow = FALSE)
+matriz_d
+class(matriz_d)
+
+
+dim(matriz_a)
+dim(matriz_b)
+length(matriz_a)
+dim(matriz_c)
+
+
+matriz_d[2,2]
+matriz_c[1,3]
+
+matriz_d[,3]
+matriz_b[1,]
+######
+which(matriz_c > 5)
+matriz_c[which(matriz_c > 5)]
+
+matriz_c[which(matriz_c %% 2 != 0)]
+matriz_c[which(matriz_c %% 2 != 0)]
+matriz_c[which(matriz_c %% 2 == 0)]
+
+
+matriz_c[,1][which(matriz_c[,1] %% 2 == 0)]
+matriz_c[1, which(matriz_c[1, ] %% 2 == 0)]
+
+matriz_c[-2, ]
+matriz_c[, -2]
+
+matriz_c[-1, -2]
+
+
+dim(matriz_c)
+dim(matriz_d)
+
+matriz_c + matriz_d
+matriz_c - matriz_d
+
+rowSums(matriz_c)
+colSums(matriz_d)
+
+colMeans(matriz_c)
+rowMeans(matriz_c)
+
+matriz_c * 5
+matriz_c ^ 2
+
+matriz_c * matriz_d
+matriz_c %*% matriz_d
+
+t(matriz_c)
+det(matriz_c)
+X = matrix(c(1,20,30, 
+             20, 40, -60, 
+             10, 6, 5 ), 
+           ncol = 3, byrow = T)
+solve(X)
+det(X)
+
+X[diag(X)] <- 0
+X
+
+eigen(matriz_c)
+
+# A^T B
+
+crossprod(matriz_c, matriz_d)
+
+# A B^T
+tcrossprod(matriz_c, matriz_d)
+
+### Produto vetorial
+matriz_c * c(1,2,3)
+
+rownames(matriz_c)
+rownames(matriz_c) <- c("a", "b", "c")
+matriz_c
+colnames(matriz_c)
+colnames(matriz_c) <- c("x", "y", "z")
+matriz_c
+
+matriz_c["a",]
+matriz_c[, "z"]
+matriz_c["a", "z"]
+matriz_upper <- matriz_c
+matriz_upper[upper.tri(matriz_upper, diag = T)] <- 99
+matriz_upper
+
+matriz_c[lower.tri(matriz_c, diag = T)]
+
+
+## Array
+# Criando um array 2x3x4
+arr <- array(1:24, dim = c(2, 3, 4))
+arr
+
+arr[1,1,1]
+arr[1,1,]
+arr[,,1]
+```

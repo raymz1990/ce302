@@ -1,0 +1,398 @@
+---
+always_allow_html: true
+title: "Prova 01 "
+---
+
+
+## 1. Para esse exercício você deverá utilizar as duas matrizes fornecidas.
+* Considere a matriz A dada por:
+
+|A |B |C |D |E |
+|--|--|--|--|--|
+|28|32|8 |9 |49|
+|7 |21|35|28|10|
+|47|43|15|34|2 |
+|48|42|19|32|26|
+|45|44|39|50|26|
+
+* e a matriz B dada por:
+
+|A |B |C |D |E |
+|--|--|--|--|--|
+|0 |26|3 |8 |30|
+|35|12|19|27|27|
+|27|24|12|17|29|
+|31|36|40|35|8 |
+|24|43|31|21|39|
+
+Considere:
+$$C = (A * B^T)^{-1}$$
+e
+$$P = B * (B^T * B)*B^T$$
+a) Considere a matriz de projeção $P$. A soma de seus autovetores é dada por?
+
+```{r}
+# Defina as matrizes A e B
+A <- matrix(c(28, 32, 8, 9, 49,
+              7, 21, 35, 28, 10,
+              47, 43, 15, 34, 2,
+              48, 42, 19, 32, 26,
+              45, 44, 39, 50, 26),
+            nrow = 5,
+            byrow = TRUE)
+
+B <- matrix(c(0, 26, 3, 8, 30,
+              35, 12, 19, 27, 27,
+              27, 24, 12, 17, 29,
+              31, 36, 40, 35, 8,
+              24, 43, 31, 21, 39),
+            nrow = 5,
+            byrow = TRUE)
+
+# Calcule os autovetores para cada matriz
+eigen_A <- eigen(A)$vectors
+eigen_B <- eigen(B)$vectors
+
+# Some os autovetores
+soma_autovetores <- eigen_A + eigen_B
+
+# Calculando P
+P <- B %*% (t(B) %*% B) %*% t(B)
+
+# Calculando os autovetores de P
+eigen_P <- eigen(P)$vectors
+
+# Calculando a soma dos autovetores de P
+soma_autovetores_P <- colSums(eigen_P)
+
+# Exibindo a soma dos autovetores de P
+print(soma_autovetores_P)
+
+# Arredondando para 4 casas decimais para facilitar a comparação
+soma_autovetores_P_arredondada <- round(sum(soma_autovetores_P), 4)
+
+soma_autovetores_P_arredondada
+```
+
+b) A soma dos valores absolutos da diagonal da matriz C é 0,0722.
+```{r}
+# Calculando C
+C <- solve(A %*% t(B))
+
+# Calculando a soma dos valores absolutos da diagonal de C
+soma_diagonal_C <- sum(abs(diag(C)))
+
+# Exibindo a soma
+soma_diagonal_C
+
+```
+
+c) A soma de uma matriz triangular inferior para a matriz $A$ é 233.
+```{r}
+# Definindo a matriz A
+A <- matrix(c(28, 32, 8, 9, 49,
+              7, 21, 35, 28, 10,
+              47, 43, 15, 34, 2,
+              48, 42, 19, 32, 26,
+              45, 44, 39, 50, 26),
+            nrow = 5,
+            byrow = TRUE)
+
+# Calculando a soma dos elementos da matriz triangular inferior
+soma_triang_inferior <- sum(A[row(A) > col(A)])
+
+# Exibindo a soma
+soma_triang_inferior
+
+```
+
+d) O $log10$ do valor absoluto do determinante de $A$ é 6,335. O $log10$ do valor absoluto do determinante de B é 6,7168. O $log10$ do valor absoluto do determinante da matriz resultante do produto matricial entre $A$ e $B$ é 13,0518.
+```{r}
+# Calculando o log10 do valor absoluto do determinante de A
+log_det_A <- log10(abs(det(A)))
+
+# Exibindo o resultado
+print(log_det_A)
+
+# Calculando o log10 do valor absoluto do determinante de B
+log_det_B <- log10(abs(det(B)))
+
+# Exibindo o resultado
+print(log_det_B)
+
+# Calculando o determinante da matriz resultante do produto matricial entre A e B
+det_AB <- det(A %*% B)
+
+# Calculando o log10 do valor absoluto do determinante de AB
+log_det_AB <- log10(abs(det_AB))
+
+# Exibindo o resultado
+print(log_det_AB)
+
+```
+
+e) O maior elemento da diagonal do inverso da matriz resultante do produto matricial entre $A$ e o transposto de $B$ é 0,026.
+```{r}
+# Calculando o produto matricial entre A e o transposto de B
+ABt <- A %*% t(B)
+
+# Calculando o inverso da matriz resultante
+inv_ABt <- solve(ABt)
+
+# Obtendo a diagonal da matriz inversa
+diagonal_inv_ABt <- diag(inv_ABt)
+
+# Encontrando o maior elemento da diagonal
+maior_elemento_diagonal <- max(diagonal_inv_ABt)
+
+# Exibindo o resultado
+maior_elemento_diagonal
+
+```
+
+## 2. Para esse exercício você deverá utilizar o banco de dados `chocolate.csv.gz`.
+O dicionário das variáveis encontra-se disponível abaixo.
+|Variável| Descrição|
+|--|--|
+|local_compania| Região do Fabricante|
+|ano| Ano da Revisão|
+|origem_cacau| País de Origem dos Grãos de Cacau|
+|cocoa_percent| Percentagem de Cacau (% chocolate)|
+|ingredientes| Ingredientes|
+|caracteristicas| Características mais memoráveis daquele chocolate|
+
+**Lista de ingredientes**: “#”: representa o número de ingredientes no chocolate; B: Grãos, S: Açúcar, S*: Adoçante diferente de açúcar de cana branco ou beterraba, C: Manteiga de Cacau, V: Baunilha, L: Lecitina, Sa: Sal
+
+Assinale todas as alternativas incorreta(s).
+
+```{r}
+require(data.table)
+require(dplyr)
+require(tidyr)
+
+chocolate = fread("./avaliação_01-datasets/chocolate.csv.gz")
+
+glimpse(chocolate)
+```
+
+
+a) Existem 2443 países que produzem chocolate.
+```{r}
+num_paises <- chocolate %>%
+  select(origem_cacau) %>%
+  distinct() %>%
+  nrow()
+
+# Exibir o número de países
+print(num_paises)
+```
+
+b) Existem 104 chocolates com 4 ingredientes que são descritos por 2 características.
+```{r}
+chocolate$qtdade_caracteristicas <- lengths(strsplit(chocolate$caracteristicas, ","))
+  
+q2 <- chocolate %>%
+  filter(substr(ingredientes, 1, 1) == "4",
+         qtdade_caracteristicas == "2")
+
+# Contar o número de chocolates resultantes
+num_chocolates <- nrow(q2)
+
+# Exibir o número de chocolates
+print(num_chocolates)
+
+```
+
+
+c) A frequência absoluta para chocolates que contenham 5 ingredientes é 750.
+```{r}
+# Filtrar chocolates que contenham 5 ingredientes
+chocolates_5_ingredientes <- chocolate %>%
+  filter(substr(ingredientes, 1, 1) == "5")
+
+# Calcular a frequência absoluta
+frequencia_absoluta <- nrow(chocolates_5_ingredientes)
+
+# Exibir a frequência absoluta
+print(frequencia_absoluta)
+
+```
+
+d) As 8 caracterististicas mais marcantes dos chocolates são sweet, nutty, cocoa, roasty, creamy, earthy, sandy e fatty e juntas correspondem a 1663 descrições dos chocolates.
+```{r}
+# Criar um novo dataframe com as características separadas em linhas
+caracteristicas_chocolate <- chocolate %>%
+  separate_rows(caracteristicas, sep = ",") %>%
+  group_by(caracteristicas) %>%
+  summarise(frequencia = n()) %>%
+  arrange(desc(frequencia))
+
+caracteristicas_chocolate
+
+```
+
+```{r}
+# Selecionar apenas as características desejadas
+palavras_chave <- c("sweet", "nutty", "cocoa", "roasty", "creamy", "earthy", "sandy", "fatty")
+
+# Criar uma expressão regular para corresponder a variações nas palavras-chave
+padrao_regex <- paste0("\\b", paste(palavras_chave, collapse = "|"), "\\b", ignore.case = TRUE)
+
+# Filtrar as características desejadas e somar as frequências
+q2b <- caracteristicas_chocolate %>%
+  filter(grepl(padrao_regex, caracteristicas))  %>%
+  group_by(caracteristicas)
+
+# Exibir a soma das frequências
+print(q2b)
+
+sum(q2b$frequencia)
+```
+
+e) Existem 81 chocolates que incluem o ingrediente *Adoçante* em sua composição.
+
+```{r}
+# Criar um novo dataframe com as características separadas em linhas
+ingredientes_chocolate <- chocolate %>%
+  separate_rows(ingredientes, sep = ",") %>%
+  separate_rows(ingredientes, sep = "-") %>%
+  group_by(ingredientes) %>%
+  summarise(frequencia = n()) %>%
+  arrange(desc(frequencia))
+
+sum(ingredientes_chocolate$frequencia[ingredientes_chocolate$ingredientes == "S*"])
+```
+
+## 3. Para esse exercício você deverá utilizar os banco de dados `Art.csv.gz` e `Art_Moma.csv.gz`. Desconsidere artistas sem nacionalidade e/ou sem nome.
+O dicionário das variáveis encontra-se disponível abaixo.
+
+|variável| descrição|
+|--|--|
+|artist_name| O nome de cada artista|
+|edition_number| O número da edição do livro.|
+|year| O ano de publicação de uma determinada edição do livro|
+|artist_nationality| A nacionalidade de um artista.|
+|artist_nationality_other| A nacionalidade do artista|
+|artist_gender| O gênero do artista|
+|vartist_race| A raça do artista|
+|artist_ethnicity| A etnia do artista|
+|book| Qual livro, “Janson” ou “Gardner”|
+|space_ratio_per_page_total| A área em centímetros quadrados do texto e da figura de um determinado artista|
+|artist_unique_id| O número de identificação exclusivo atribuído aos artistas|
+|moma_count_to_year| O número total de exposições já realizadas pelo Museu de Arte Moderna (MoMA)|
+|whitney_count_to_year| O número de exposições realizadas pelo The Whitney|
+|artist_race_nwi| O indicador de raça não branca para a raça do artista|
+
+```{r}
+require(data.table)
+require(dplyr)
+require(tidyr)
+
+art_moma = fread("./avaliação_01-datasets/Art_Moma.csv.gz")
+art = fread("./avaliação_01-datasets/Art.csv.gz")
+
+
+glimpse(art_moma)
+glimpse(art)
+```
+
+Assinale todas as alternativas **correta(s)**.
+a) Os 3 artista(s) com mais exposições no The Whitney classificados em ordem decrescente de exposições são: Edward Hopper, Georgia O’Keeffe e Stuart Davis.
+```{r}
+q3a <- inner_join(art, art_moma,
+                  by = "artist_unique_id") %>%
+  group_by(artist_name) %>%
+  summarise(sum_whitney_count_to_year = sum(whitney_count_to_year)) %>%
+  arrange(desc(sum_whitney_count_to_year))
+
+q3a
+```
+
+b) Do total de artistas, 152 são Swiss, Mexican ou Japanese.
+```{r}
+q3b <- inner_join(art, art_moma,
+                  by = "artist_unique_id") %>%
+  group_by(artist_nationality) %>%
+  summarise(frequencia = n()) 
+
+q3b
+
+
+palavras_chave <- c("Swiss", "Mexican", "Japanese")
+
+
+# Filtrar as características desejadas e somar as frequências
+q3b <- q3b %>%
+  filter(artist_nationality %in% palavras_chave)
+
+# Exibir a soma das frequências
+print(q3b)
+
+sum(q3b$frequencia)
+```
+
+
+c) Apenas 6 artista(s) com a nacionalidade Swiss tiveram entre 0 e 1 exposições no The Whitney.
+```{r}
+q3c <- inner_join(art, art_moma,
+                  by = "artist_unique_id") %>%
+  group_by(artist_name, artist_nationality) %>%
+  summarise(sum_whitney_count_to_year = sum(whitney_count_to_year))
+
+q3c
+
+
+palavras_chave <- c("Swiss")
+
+
+# Filtrar as características desejadas e somar as frequências
+q3c <- q3c %>%
+  filter(artist_nationality %in% palavras_chave &
+           sum_whitney_count_to_year <= 1)
+
+# Exibir a soma das frequências
+print(q3c)
+
+nrow(q3c)
+```
+
+d) A diferença entre a média de páginas para artistas Brancos e Não Brancos no ano de 2007 é -0,24.
+```{r}
+q3d <- inner_join(art, art_moma,
+                  by = "artist_unique_id") 
+
+# Filtrar por artist_race == "white" e calcular a média
+media_white <- q3d %>%
+  filter(artist_race_nwi == "White") %>%
+  summarise(media_space_ratio = mean(space_ratio_per_page_total))
+
+# Filtrar por artist_race diferente de "white" e calcular a média
+media_nao_white <- q3d %>%
+  filter(artist_race_nwi != "White") %>%
+  summarise(media_space_ratio = mean(space_ratio_per_page_total))
+
+# Calcular a diferença
+diferenca <- media_white$media_space_ratio - media_nao_white$media_space_ratio
+
+# Exibir o resultado
+print(diferenca)
+```
+
+
+e) Dos artista(s) que expuseram no The Whitney, apenas 164 aparecem nos livros ‘Gardner’
+e ‘Janson’.
+```{r}
+q3e <- inner_join(art, art_moma,
+                  by = "artist_unique_id") 
+
+unique(q3e$book)
+
+q3e <- q3e %>%
+  filter(whitney_count_to_year > 0) %>%
+  group_by(artist_name) %>%
+  summarise(frequencia = n())
+
+nrow(q3e)
+```
+
+

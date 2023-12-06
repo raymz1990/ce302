@@ -1,0 +1,227 @@
+---
+always_allow_html: true
+title: "Aula 03"
+---
+
+```{r, error=TRUE}
+x <- c(1, 2, 3)
+y <- seq(1:3)
+x
+y
+
+x == y
+all(x == y)
+any(x == y)
+
+z <- c(3, 4, 5)
+x
+all( x == z)
+any(x == z)
+x
+z
+w <- c(3, 6, 7)
+any(w == z)
+w == z
+w[2]
+w
+w[w == z]
+y[y %in% z]
+
+vetor_de_repeticao = rep(x, 3)
+vetor_de_repeticao
+###############
+
+seq1 = seq(from = 10, to = 200, by = 20)
+seq2 = seq1[1:5]
+seq1
+seq2
+
+seq1 + 10
+seq1 / 10
+seq1 * 2
+
+seq1 + seq2
+
+
+seq3 = seq1[6:10]
+length(seq3)
+length(seq2)
+
+seq3 + seq2 
+seq3 / seq2 
+seq3 * seq2 
+seq3 ^ seq2 
+
+#### 
+## Operadores relacionais
+
+seq1 == seq2
+seq3 == seq2 
+seq3 != seq2 
+seq3 > seq2
+seq3 < seq2
+seq3 <= seq2
+
+seq3 > 3
+seq3 == 150
+
+
+seq3 > 150
+seq3[seq3 > 150]
+
+invisible(seq4 <- seq3[seq3 > 150])
+print(seq4, seq4)
+print(seq4, seq4)
+seq4
+
+paste("Hello World")
+
+paste("Hello World", seq4, "!", sep = "Oi")
+
+paste("Hello World", seq4, "!", sep = "")
+paste0("Hello World", seq4, "!")
+
+
+length(paste(seq4))
+paste(seq4, sep = ",")
+paste(seq4, collapse = ", ")
+
+# Ordem de Execução
+a <- 2
+a + 1
+## Funções matemáticas
+sum(seq1)
+diff(seq1)
+
+
+vetor_frutas <- c("banana", "maca", "laranja") 
+sum(vetor_frutas)
+
+mean(seq1)
+median(seq1)
+median(vetor_frutas)
+
+
+vetor_frutas[4] <- "pera"
+median(vetor_frutas)
+
+max(seq1)
+max(vetor_frutas)
+
+min(seq1)
+min(vetor_frutas)
+
+sqrt(seq1)
+
+vetor_1 <- c(10, 50, 20, 2, 10, 15)
+unique(vetor_1)
+sort(vetor_1)
+
+sort(unique(vetor_1))
+
+vetor_character <- c("gato", " gato", 
+                     "cachorro", "cachorro", 
+                     "dinossauro", "arara",
+                     "periquito ", 
+                     "dinossauro", 
+                     "bicho  preguiça")
+length(vetor_character)
+unique(vetor_character)
+gsub(pattern = "^ ", 
+     replacement = "", 
+     x = vetor_character)
+
+vetor_character = gsub(pattern = " $", 
+     replacement = "", 
+     x = vetor_character)
+
+gsub(pattern = "^ ", 
+     replacement = "", 
+     x = vetor_character)
+
+
+vetor_character = gsub(pattern = "^\\s+", 
+     replacement = "", 
+     x = vetor_character)
+
+
+vetor_character = gsub(pattern = "\\s+", 
+     replacement = " ", 
+     x = vetor_character)
+
+
+gsub(pattern = "a|i", 
+     replacement = "---", 
+     x = vetor_character)
+
+unique(vetor_character)
+table(vetor_character)
+
+rev(vetor_character)
+
+rev(sort(vetor_character))
+
+#####
+plot(seq2, seq3, 
+     pch = 16, 
+     col = "red", 
+     las = 1, 
+     xlab = "Sequencia 2", 
+     ylab = "Sequencia 3")
+
+plot(seq2, log10(seq3), 
+     pch = 16, 
+     col = "red", 
+     las = 1, 
+     xlab = "Sequencia 2", 
+     ylab = "Sequencia 3")
+
+hist(seq1, 
+     col = "tomato", las = 1)
+
+boxplot(seq1, las = 1, col = "purple")
+
+boxplot(seq1, col = "purple", las = 1)
+
+
+#####
+x = -10
+abs(x)
+
+y = 8.6754
+y
+round(y, digits = 2)
+ceiling(y)
+floor(y)
+
+
+ceiling(7.1)
+floor(6.9)
+
+cos(2*pi)
+sin(2*pi)
+tan(pi)
+exp(12)
+log10(123)
+log(31)
+prod(vetor_1)
+prod(seq4)
+seq4
+170*190
+
+#####
+## String
+#####
+toupper(vetor_character)
+tolower(vetor_character)
+
+
+read.csv("")
+readxl::read_excel("")
+
+
+data()
+data("iris")
+summary(iris)
+head(iris)
+```

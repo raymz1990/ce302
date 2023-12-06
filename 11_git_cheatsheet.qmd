@@ -1,0 +1,70 @@
+---
+always_allow_html: true
+title: "11  Git Cheat-Sheet"
+---
+
+## 11.1 Configuração Inicial
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git config --global user.name "Seu Nome"    # Configura o nome do usuário globalmente
+- git config --global user.email "seu@email.com"    # Configura o email globalmente
+```
+
+## 11.2 Iniciar um Repositório
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git init    # Inicializa um novo repositório Git
+```
+
+## 11.3 Clonar um Repositório
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git clone URL_DO_REPOSITORIO    # Cria uma cópia local de um repositório remoto
+```
+
+## 11.4 Realizando Alterações
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git status    # Exibe o status do repositório (arquivos modificados, adicionados etc.)
+- git add nome-do-arquivo    # Adiciona um arquivo específico para ser incluído no próximo commit
+- git add .    # Adiciona todos os arquivos modificados para serem incluídos no próximo commit
+- git commit -m "mensagem do commit"    # Registra as alterações adicionadas como uma nova versão
+```
+
+## 11.5 Visualizando o Histórico
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git log    # Mostra o histórico de commits
+```
+
+## 11.6 Trabalhando com Branches
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git branch    # Lista todos os branches
+- git branch nome-do-branch    # Cria um novo branch
+- git checkout nome-do-branch    # Alterna para um branch específico
+- git checkout -b nome-do-branch    # Cria e alterna para um novo branch
+- git merge nome-do-branch    # Mescla as alterações de um branch ao branch atual
+```
+
+#11.7 Colaborando com o Repositório Remoto
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git pull origin nome-do-branch    # Puxa as alterações do repositório remoto para o branch local
+- git push origin nome-do-branch    # Envia as alterações do branch local para o repositório remoto
+```
+
+## 11.8 Resolução de Conflitos
+
+* Durante o merge, o Git pode identificar conflitos que precisam ser resolvidos manualmente.
+
+## 11.9 Outros Comandos Úteis
+
+```{r, eval=FALSE, message=FALSE, error=TRUE}
+- git remote    # Exibe informações sobre os repositórios remotos conectados
+- git fetch    # Busca as alterações do repositório remoto, mas não as mescla automaticamente
+- git rm nome-do-arquivo    # Remove um arquivo do repositório e prepara para ser removido do controle de versão
+- git diff    # Mostra as diferenças entre o código no diretório de trabalho e as alterações confirmadas
+- git push --tags    # Envia as tags para o repositório remoto
+```
+

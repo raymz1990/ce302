@@ -1,0 +1,16 @@
+{
+  "hash": "ce2f3b0d416b003db18f01b362a939a3",
+  "result": {
+    "markdown": "---\ntitle: \"Seu Título Aqui\"\nsubtitle: \"Seu Subtítulo Aqui\"\nauthor: \"Seu Nome aqui\"\ndate: 10/10/2023\ndate-format: long \nlang: pt\n\nfig-align: center\nfig-width: 10\nfig-height: 12\n\ntoc: true\ntoc-depth: 3\ntoc-title: \"Agenda\"\n\nformat: revealjs\n---\n\n\n# Rode esses slides com o botão \"Render\"\n> Teste, gradativamente, os códigos do capítulo 8. \n\n\n## Lista\n\nPara criar um slide com conteúdo basta utilizarmos um título de nível 2\n\n- Podemos incluir itens de uma lista\n- Mais um item\n\n## Slide com Código\n- Podemos incluir um código no slide. \n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nrequire(ggplot2)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nCarregando pacotes exigidos: ggplot2\n```\n:::\n\n```{.r .cell-code}\nrequire(palmerpenguins)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nCarregando pacotes exigidos: palmerpenguins\n```\n:::\n\n```{.r .cell-code}\nrequire(magrittr)\n```\n\n::: {.cell-output .cell-output-stderr}\n```\nCarregando pacotes exigidos: magrittr\n```\n:::\n:::\n\n\n\n## Citação\n> _Not all those who wander are lost._\n(J. R. R. Tolkein)\n\n# Novo título\n\n## Figura\n\n- Para alterar as dimensões de uma figura incluimos no chunck:\n\n``` r\n#| fig-width: 20 # comprimento\n#| fig-height: 12 # altura\n#| fig-align: \"center\"\n```\n\n\n\n::: {.cell layout-align=\"center\"}\n::: {.cell-output .cell-output-stderr}\n```\nWarning: Removed 2 rows containing non-finite values (`stat_ydensity()`).\n```\n:::\n\n::: {.cell-output-display}\n![](01_exemplo_slide_files/figure-html/unnamed-chunk-2-1.png){fig-align='center' width=1920}\n:::\n:::\n\n\n\n## Tabela\n\n- Para incluir uma tabela precisamos alterar o tipo do resultado para 'asis' e pedir para a tabela ser formatada como uma tabela markdown. Fazemos isso com a função `kable`, do pacote `knitr`.  \n\n\n\n\n```{.r .cell-code}\npalmerpenguins::penguins %>% \n  dplyr::group_by(species) %>% \n  dplyr::summarise(n = dplyr::n()) %>% \n  knitr::kable(col.names = c(\"Species\", \"Total\") )\n```\n\n::: {.cell-output-display}\n|Species   | Total|\n|:---------|-----:|\n|Adelie    |   152|\n|Chinstrap |    68|\n|Gentoo    |   124|\n:::\n\n\n\n## Aprofundamento\n- Para saber mais sobre personalização de slides\n    - [Quarto](https://quarto.org/docs/presentations/)\n    - [RevealJS](https://revealjs.com/)\n- Para criar seu próprio tema é necessário saber um pouco de CSS. Aprenda CSS jogando:\n    - [Froggy](https://flexboxfroggy.com/)\n    - [CSSBattle](https://cssbattle.dev/)\n    - [Grid Garden](https://cssgridgarden.com/)\n    - [CSS Diner](https://flukeout.github.io/)",
+    "supporting": [
+      "01_exemplo_slide_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

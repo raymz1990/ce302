@@ -1,0 +1,158 @@
+---
+# title: "CE302 - Elementos de Programação para Estatística"
+# date: 2023-07-31
+# author:
+#   - name: Prof. Deisy Morselli Gysi, Ph.D.
+#     id: Gysi
+#     email: raymundo.eduardo@ufpr.br
+#     affiliation: 
+#       - name: Universidade Federal do Paraná
+#         city: Curitiba
+#         state: PR
+#         url: https://raymz1990.github.io/
+# 
+# 
+# lang: pt
+# bibliography: refs.bib
+# csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+# code-fold: true
+# code-line-numbers: true
+# execute: 
+#   warning: false
+#   error: false
+# format: 
+#   html: default
+#   pdf: default
+---
+
+# Informações Úteis
+
+## Horário e Local
+
+* Segundas-feiras das 20h45 às 22h30
+* Quintas-feiras das 19h00 às 20h30
+
+Sala: DINF - Laboratórios 1/2
+
+## Conteúdo Programático
+
+## [Capítulo 1](!01_markdown_git.qmd) - Documentação, Organização de códigos e Sistemas de versionamento
+
+* Uso do Markdown para criar documentação clara e formatada.
+* Elaboração de arquivos README para guiar os usuários sobre a utilização do código.
+* Introdução ao GitHub para versionamento de projetos.
+
+## [Capítulo 2](!02_basicR.html)- Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos
+* Conceitos Básicos de R
+  * Apresentação do ambiente de programação R.
+  * Exploração do CRAN e repositórios de pacotes.
+  * Instalação e configuração do R e de softwares relacionados.
+  * Utilização de mecanismos de ajuda e documentação oficial.
+  * Manipulação de expressões e diferenciação de letras maiúsculas e minúsculas.
+  * Compreensão de palavras reservadas e execução, recuperação e correção de comandos.
+  * Uso de operadores aritméticos e relacionais.
+  * Ordens de execução e comandos de atribuição.
+  * Familiarização com funções básicas do R.
+
+* Importação e Exportação de Dados e Objetos
+  * Informações sobre diretórios e arquivos em R.
+  * Funções para importação e exportação de dados e objetos.
+  * Exploração de conjuntos de dados integrados e edição dos mesmos.
+
+## [Capítulo 3](!03_objetcs.html) - Objetos em R
+* Vetores
+  * Criação de vetores e manipulação de suas propriedades.
+  * Realização de operações aritméticas vetoriais.
+  * Aplicação da regra da reciclagem para operações entre vetores de tamanhos diferentes.
+  * Exploração de vetores lógicos e tratamento de informações faltantes.
+  * Trabalho com vetores de caracteres e índices.
+  * Uso de vetores mistos.
+
+* Matrizes e Arrays
+  * Criação e manipulação de matrizes em R.
+  * Utilização de funções para operações com matrizes.
+  * Realização de operações matriciais, como multiplicação e transposição.
+  * Resolução de equações lineares com matrizes.
+  * Decomposição espectral, em valores singulares e QR de matrizes.
+  * Criação e operações com arrays.
+
+* Listas e Data Frames
+  * Criação, alimentação e modificação de listas.
+  * Concatenação e aninhamento de listas.
+  * Introdução à criação de Data Frames.
+  * Utilização de funções para manipulação de Data Frames.
+
+## [Capítulo 4](!04_data_transf.html) - Transformação de dados
+* Operadores lógicos
+* Criação de variáveis
+* Tipos de `join`
+* Seleção de colunas
+* Filtro de observações
+* Ordenação de observações
+* Tipos de formato de dados
+  * Formatos Wide e Long e conversão de formatos
+
+* Sumarização de dados
+
+## [Capítulo 5](!05_loop.html)- Funções e Expressões
+* Criação e definição de funções em R.
+* Definição de operadores binários personalizados.
+* Uso de argumentos e atribuição de padrões em funções.
+* Trabalho com funções aninhadas e recursivas.
+
+## [Capítulo 6](!06_functions.html) - Loopings e Execução Condicional
+* Utilização de expressões agrupadas.
+* Declarações de controle em R.
+* Implementação de estruturas condicionais e laços de repetição.
+* Exploração de loopings implícitos.
+
+## [Capítulo 7](!08_communicate.html) - Procedimentos Gráficos
+* Criação e personalização de gráficos em R.
+* Utilização de argumentos e parâmetros gráficos.
+* Apresentação de dados univariados e multivariados através de gráficos.
+* Interação com interfaces gráficas e configurações gráficas temporárias e permanentes.
+* Exploração de elementos gráficos, eixos, escalas e margens.
+* Trabalho em ambiente com vários gráficos e criação de gráficos dinâmicos.
+* Exportação de gráficos em diversos formatos.
+
+## [Capítulo 8](!08_communicate.html) - Comunicação
+* Introdução aos relatórios dinâmicos com R Markdown e Quarto.
+* Introdução à apresentações de slides utilizando Quato e RevealJS.
+* Visão geral de aplicações web com R Shiny.
+
+## Procedimentos Avaliativos
+
+### Prova 01
+* ~~**Data: 21/09**, Quinta-feira, às 19:00.~~
+* **Data: 28/09**, Quinta-feira, às 19:00.
+* **Conteúdo**: Capítulos 1 a 4.
+* Segunda chamada deverá ser solicitada através do email dest@ufpr.br até o dia **05/10/2023** munido de comprovação, de acordo com o Artigo 106, Seção V da [Resolução 37/97](http://www.soc.ufpr.br/portal/wp-content/uploads/2016/07/Res-37-97-CEPE-Atividades-Acad%C3%AAmicas.pdf).
+
+### Prova 02
+* **Data: 16/11**, Quinta-feira, às 19:00.
+* **Conteúdo**: Capítulos 5 a 8.
+* Segunda chamada deverá ser solicitada através do email dest@ufpr.br até o dia **23/11/2023** munido de comprovação, de acordo com o Artigo 106, Seção V da [Resolução 37/97](http://www.soc.ufpr.br/portal/wp-content/uploads/2016/07/Res-37-97-CEPE-Atividades-Acad%C3%AAmicas.pdf).
+
+## [Capítulo 9](!09_trab.html) - Trabalho Final
+* **Data: 19/11**, Domingo até 23:59.
+* O trabalho será realizado de forma individual, sobre um tópico a ser **sorteado** após a realização da primeira prova.
+* O trabalho deverá ser entregue através de um link para repositório no GitHub, deverá incluir um README e um relatório dinâmico com as análises.
+
+### Prova Final
+* **Data: 07/12**, Quinta-feira, no período 19:00 - 20:30.
+* **Conteúdo**: Capítulos 1 a 8.
+* Segunda chamada deverá ser solicitada através do email dest@ufpr.br até o dia **13/12/2023** munido de comprovação, de acordo com o Artigo 106, Seção V da [Resolução 37/97](http://www.soc.ufpr.br/portal/wp-content/uploads/2016/07/Res-37-97-CEPE-Atividades-Acad%C3%AAmicas.pdf).
+
+## Bibliografia Básica
+1. Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for data science. ” O’Reilly Media, Inc.”, 2023 [Versão Online](https://r4ds.had.co.nz/)
+2. Wickham, Hadley. Advanced r. CRC press, 2019. [Versão Online](https://adv-r.hadley.nz/)
+3. Davies, T. M. The book of R: A first course in programming and statistics. No Starch Press, 2016.
+
+## Cheat-Sheets
+* [Markdown](https://gysi.quarto.pub/ce302/cheatsheet/md_cheatsheet.html)
+* [Git / GitHub](https://gysi.quarto.pub/ce302/cheatsheet/git_cheatsheet.html)
+* [Git & RStudio](https://gysi.quarto.pub/ce302/cheatsheet/gitR_cheatsheet.html)
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
