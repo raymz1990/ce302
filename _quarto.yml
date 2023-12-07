@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
 #  title: CE302 - Elementos de Programação para Estatística
@@ -94,11 +95,11 @@ website:
           - text: Prova 02
             href: avaliacoes\avaliação_02.qmd
 
-#  sidebar:
-#    - title: "Home"
-#      style: "docked"
-#      search: false  
-#      contents: auto
+  sidebar:
+    - title: "Home"
+      style: "docked"
+      search: false  
+      contents: auto
 
       
   

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Prof.&nbsp;Deisy Morselli Gysi, Ph.D.">
 
-<title>CE302 - Elementos de Programação para Estatística</title>
+<title>index</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,13 +24,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01_markdown_git.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -44,11 +41,11 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -67,196 +64,534 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./01_markdown_git.html" rel="" target="">
+ <span class="menu-text">Documentação</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./02_basicR.html" rel="" target="">
+ <span class="menu-text">Ambiente R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03_objects.html" rel="" target="">
+ <span class="menu-text">Objetos em R</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04_transfomacao-de-dados.html" rel="" target="">
+ <span class="menu-text">Transformação de Dados</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./05_funcoes.html" rel="" target="">
+ <span class="menu-text">Funções</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06_loopings.html" rel="" target="">
+ <span class="menu-text">Loopings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./07_graphics.html" rel="" target="">
+ <span class="menu-text">Gráficos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./08_comunicacao.html" rel="" target="">
+ <span class="menu-text">Comunicação</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cheat-sheet" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Cheat Sheet</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-cheat-sheet">    
+        <li>
+    <a class="dropdown-item" href="./10_markdown_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Markdown Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./11_git_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git Cheat Sheet</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./12_git_rstudio_cheatsheet.html" rel="" target="">
+ <span class="dropdown-text">Git RStudio Cheat Sheet</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-listas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Listas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-listas">    
+        <li>
+    <a class="dropdown-item" href="./listas/Lista1.html" rel="" target="">
+ <span class="dropdown-text">Lista 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista2.html" rel="" target="">
+ <span class="dropdown-text">Lista 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista3.html" rel="" target="">
+ <span class="dropdown-text">Lista 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista4.html" rel="" target="">
+ <span class="dropdown-text">Lista 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./listas/Lista5.html" rel="" target="">
+ <span class="dropdown-text">Lista 05</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scripts-aulas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Scripts Aulas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scripts-aulas">    
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_02.html" rel="" target="">
+ <span class="dropdown-text">Aula 02</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_03.html" rel="" target="">
+ <span class="dropdown-text">Aula 03</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_04.html" rel="" target="">
+ <span class="dropdown-text">Aula 04</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_05.html" rel="" target="">
+ <span class="dropdown-text">Aula 05</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_07.html" rel="" target="">
+ <span class="dropdown-text">Aula 07</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_08.html" rel="" target="">
+ <span class="dropdown-text">Aula 08</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_09.html" rel="" target="">
+ <span class="dropdown-text">Aula 09</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_10.html" rel="" target="">
+ <span class="dropdown-text">Aula 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./scripts_aulas/Aula_11.html" rel="" target="">
+ <span class="dropdown-text">Aula 11</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelos" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Modelos</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-modelos">    
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/01_exemplo_slide.html" rel="" target="">
+ <span class="dropdown-text">Modelo Slide</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/02_exemplo_relatorio.html" rel="" target="">
+ <span class="dropdown-text">Modelo Relatório</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/03_exemplo_referencia.html" rel="" target="">
+ <span class="dropdown-text">Modelo Referência Bibliográfica</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/04_exemplo_shiny.html" rel="" target="">
+ <span class="dropdown-text">Modelo Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/05_exemplo_shiny_dash.html" rel="" target="">
+ <span class="dropdown-text">Modelo Dashboard Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./modelos_relatorios/06_exemplo_scss.html" rel="" target="">
+ <span class="dropdown-text">Modelo SCSS</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-provas" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Provas</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-provas">    
+        <li>
+    <a class="dropdown-item" href="./avaliacoes/avaliação_01.html" rel="" target="">
+ <span class="dropdown-text">Prova 01</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./avaliacoes/avaliação_02.html" rel="" target="">
+ <span class="dropdown-text">Prova 02</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Informações Úteis</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">CE302 - Elementos de Programação para Estatística</a> 
-        <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/RVerse-Tutorials/QmdReport" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./CE302---Elementos-de-Programação-para-Estatística.pdf">
-              <i class="bi bi-bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./CE302---Elementos-de-Programação-para-Estatística.docx">
-              <i class="bi bi-bi-file-word pe-1"></i>
-            Download Docx
-            </a>
-          </li>
-      </ul>
-    </div>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Informações Úteis</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./01_markdown_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Documentação, Organização de códigos e Sistemas de versionamento</span></span></a>
+ <span class="menu-text">1 Documentação, Organização de códigos e Sistemas de versionamento</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02_basicR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">2 Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</span></span></a>
+ <span class="menu-text">2 Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_objetcs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">3 Objetos em R</span></span></a>
+  <a href="./03_objects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Objetos em R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04_transfomacao-de-dados.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">4 Transformação de dados</span></span></a>
+ <span class="menu-text">4 Transformação de dados</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05_funcoes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">5 Funções e Expressões</span></span></a>
+ <span class="menu-text">5 Funções e Expressões</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06_loopings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">6 Estruturas de Repetição: <em>Loopings</em></span></span></a>
+ <span class="menu-text">6 Estruturas de Repetição: <em>Loopings</em></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7 Procedimentos Gráficos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_comunicacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8 Comunicação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10_markdown_cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 Markdown Cheat Sheet</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_git_cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 Git Cheat-Sheet</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_git_rstudio_cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 Git &amp; RStudio Cheat-Sheet</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Avaliacoes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./avaliacoes/avaliação_01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prova 01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./avaliacoes/avaliação_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prova 02</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Listas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listas/Lista1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lista 01</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listas/Lista2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lista 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listas/Lista3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lista 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listas/Lista4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lista 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./listas/Lista5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Questão 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Modelos Relatorios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelos_relatorios/01_exemplo_slide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seu Título Aqui</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelos_relatorios/02_exemplo_relatorio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Seu Título Aqui</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelos_relatorios/03_exemplo_referencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03 Exemplo Referencia</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelos_relatorios/04_exemplo_shiny.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Movies Explorer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelos_relatorios/05_exemplo_shiny_dash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Movies Explorer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./modelos_relatorios/06_exemplo_scss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06 Exemplo Scss</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Scripts Aulas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 02</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 03</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 04</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 05</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 07</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 08</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 09</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts_aulas/Aula_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aula 11</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#informações-úteis" id="toc-informações-úteis" class="nav-link active" data-scroll-target="#informações-úteis">Informações Úteis</a>
+  <ul class="collapse">
+  <li><a href="#horário-e-local" id="toc-horário-e-local" class="nav-link" data-scroll-target="#horário-e-local">Horário e Local</a></li>
+  <li><a href="#conteúdo-programático" id="toc-conteúdo-programático" class="nav-link" data-scroll-target="#conteúdo-programático">Conteúdo Programático</a></li>
+  <li><a href="#capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento" id="toc-capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento" class="nav-link" data-scroll-target="#capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento">Capítulo 1 - Documentação, Organização de códigos e Sistemas de versionamento</a></li>
+  <li><a href="#capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos" id="toc-capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos" class="nav-link" data-scroll-target="#capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos">Capítulo 2- Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</a></li>
+  <li><a href="#capítulo-3---objetos-em-r" id="toc-capítulo-3---objetos-em-r" class="nav-link" data-scroll-target="#capítulo-3---objetos-em-r">Capítulo 3 - Objetos em R</a></li>
+  <li><a href="#capítulo-4---transformação-de-dados" id="toc-capítulo-4---transformação-de-dados" class="nav-link" data-scroll-target="#capítulo-4---transformação-de-dados">Capítulo 4 - Transformação de dados</a></li>
+  <li><a href="#capítulo-5--funções-e-expressões" id="toc-capítulo-5--funções-e-expressões" class="nav-link" data-scroll-target="#capítulo-5--funções-e-expressões">Capítulo 5- Funções e Expressões</a></li>
+  <li><a href="#capítulo-6---loopings-e-execução-condicional" id="toc-capítulo-6---loopings-e-execução-condicional" class="nav-link" data-scroll-target="#capítulo-6---loopings-e-execução-condicional">Capítulo 6 - Loopings e Execução Condicional</a></li>
+  <li><a href="#capítulo-7---procedimentos-gráficos" id="toc-capítulo-7---procedimentos-gráficos" class="nav-link" data-scroll-target="#capítulo-7---procedimentos-gráficos">Capítulo 7 - Procedimentos Gráficos</a></li>
+  <li><a href="#capítulo-8---comunicação" id="toc-capítulo-8---comunicação" class="nav-link" data-scroll-target="#capítulo-8---comunicação">Capítulo 8 - Comunicação</a></li>
+  <li><a href="#procedimentos-avaliativos" id="toc-procedimentos-avaliativos" class="nav-link" data-scroll-target="#procedimentos-avaliativos">Procedimentos Avaliativos</a>
+  <ul class="collapse">
+  <li><a href="#prova-01" id="toc-prova-01" class="nav-link" data-scroll-target="#prova-01">Prova 01</a></li>
+  <li><a href="#prova-02" id="toc-prova-02" class="nav-link" data-scroll-target="#prova-02">Prova 02</a></li>
+  </ul></li>
+  <li><a href="#capítulo-9---trabalho-final" id="toc-capítulo-9---trabalho-final" class="nav-link" data-scroll-target="#capítulo-9---trabalho-final">Capítulo 9 - Trabalho Final</a>
+  <ul class="collapse">
+  <li><a href="#prova-final" id="toc-prova-final" class="nav-link" data-scroll-target="#prova-final">Prova Final</a></li>
+  </ul></li>
+  <li><a href="#bibliografia-básica" id="toc-bibliografia-básica" class="nav-link" data-scroll-target="#bibliografia-básica">Bibliografia Básica</a></li>
+  <li><a href="#cheat-sheets" id="toc-cheat-sheets" class="nav-link" data-scroll-target="#cheat-sheets">Cheat-Sheets</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/index.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#informações-úteis" id="toc-informações-úteis" class="nav-link active" data-scroll-target="#informações-úteis"><span class="header-section-number">1</span> Informações Úteis</a>
-  <ul class="collapse">
-  <li><a href="#horário-e-local" id="toc-horário-e-local" class="nav-link" data-scroll-target="#horário-e-local"><span class="header-section-number">1.1</span> Horário e Local</a></li>
-  <li><a href="#conteúdo-programático" id="toc-conteúdo-programático" class="nav-link" data-scroll-target="#conteúdo-programático"><span class="header-section-number">1.2</span> Conteúdo Programático</a></li>
-  <li><a href="#capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento" id="toc-capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento" class="nav-link" data-scroll-target="#capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento"><span class="header-section-number">1.3</span> Capítulo 1 - Documentação, Organização de códigos e Sistemas de versionamento</a></li>
-  <li><a href="#capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos" id="toc-capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos" class="nav-link" data-scroll-target="#capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos"><span class="header-section-number">1.4</span> Capítulo 2- Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</a></li>
-  <li><a href="#capítulo-3---objetos-em-r" id="toc-capítulo-3---objetos-em-r" class="nav-link" data-scroll-target="#capítulo-3---objetos-em-r"><span class="header-section-number">1.5</span> Capítulo 3 - Objetos em R</a></li>
-  <li><a href="#capítulo-4---transformação-de-dados" id="toc-capítulo-4---transformação-de-dados" class="nav-link" data-scroll-target="#capítulo-4---transformação-de-dados"><span class="header-section-number">1.6</span> Capítulo 4 - Transformação de dados</a></li>
-  <li><a href="#capítulo-5--funções-e-expressões" id="toc-capítulo-5--funções-e-expressões" class="nav-link" data-scroll-target="#capítulo-5--funções-e-expressões"><span class="header-section-number">1.7</span> Capítulo 5- Funções e Expressões</a></li>
-  <li><a href="#capítulo-6---loopings-e-execução-condicional" id="toc-capítulo-6---loopings-e-execução-condicional" class="nav-link" data-scroll-target="#capítulo-6---loopings-e-execução-condicional"><span class="header-section-number">1.8</span> Capítulo 6 - Loopings e Execução Condicional</a></li>
-  <li><a href="#capítulo-7---procedimentos-gráficos" id="toc-capítulo-7---procedimentos-gráficos" class="nav-link" data-scroll-target="#capítulo-7---procedimentos-gráficos"><span class="header-section-number">1.9</span> Capítulo 7 - Procedimentos Gráficos</a></li>
-  <li><a href="#capítulo-8---comunicação" id="toc-capítulo-8---comunicação" class="nav-link" data-scroll-target="#capítulo-8---comunicação"><span class="header-section-number">1.10</span> Capítulo 8 - Comunicação</a></li>
-  <li><a href="#procedimentos-avaliativos" id="toc-procedimentos-avaliativos" class="nav-link" data-scroll-target="#procedimentos-avaliativos"><span class="header-section-number">1.11</span> Procedimentos Avaliativos</a>
-  <ul class="collapse">
-  <li><a href="#prova-01" id="toc-prova-01" class="nav-link" data-scroll-target="#prova-01"><span class="header-section-number">1.11.1</span> Prova 01</a></li>
-  <li><a href="#prova-02" id="toc-prova-02" class="nav-link" data-scroll-target="#prova-02"><span class="header-section-number">1.11.2</span> Prova 02</a></li>
-  </ul></li>
-  <li><a href="#capítulo-9---trabalho-final" id="toc-capítulo-9---trabalho-final" class="nav-link" data-scroll-target="#capítulo-9---trabalho-final"><span class="header-section-number">1.12</span> Capítulo 9 - Trabalho Final</a>
-  <ul class="collapse">
-  <li><a href="#prova-final" id="toc-prova-final" class="nav-link" data-scroll-target="#prova-final"><span class="header-section-number">1.12.1</span> Prova Final</a></li>
-  </ul></li>
-  <li><a href="#bibliografia-básica" id="toc-bibliografia-básica" class="nav-link" data-scroll-target="#bibliografia-básica"><span class="header-section-number">1.13</span> Bibliografia Básica</a></li>
-  <li><a href="#cheat-sheets" id="toc-cheat-sheets" class="nav-link" data-scroll-target="#cheat-sheets"><span class="header-section-number">1.14</span> Cheat-Sheets</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/index.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/index.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">CE302 - Elementos de Programação para Estatística</h1>
-</div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Prof.&nbsp;Deisy Morselli Gysi, Ph.D. </p>
-  </div>
-    <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Universidade Federal do Paraná
-          </p>
-      </div>
-    </div>
-
-<div class="quarto-title-meta">
-
-      
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="informações-úteis" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Informações Úteis</h1>
-<section id="horário-e-local" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="horário-e-local"><span class="header-section-number">1.1</span> Horário e Local</h2>
+<section id="informações-úteis" class="level1">
+<h1>Informações Úteis</h1>
+<section id="horário-e-local" class="level2">
+<h2 class="anchored" data-anchor-id="horário-e-local">Horário e Local</h2>
 <ul>
 <li>Segundas-feiras das 20h45 às 22h30</li>
 <li>Quintas-feiras das 19h00 às 20h30</li>
 </ul>
 <p>Sala: DINF - Laboratórios 1/2</p>
 </section>
-<section id="conteúdo-programático" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="conteúdo-programático"><span class="header-section-number">1.2</span> Conteúdo Programático</h2>
+<section id="conteúdo-programático" class="level2">
+<h2 class="anchored" data-anchor-id="conteúdo-programático">Conteúdo Programático</h2>
 </section>
-<section id="capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento"><span class="header-section-number">1.3</span> <a href="!01_markdown_git.html">Capítulo 1</a> - Documentação, Organização de códigos e Sistemas de versionamento</h2>
+<section id="capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-1---documentação-organização-de-códigos-e-sistemas-de-versionamento"><a href="!01_markdown_git.qmd">Capítulo 1</a> - Documentação, Organização de códigos e Sistemas de versionamento</h2>
 <ul>
 <li>Uso do Markdown para criar documentação clara e formatada.</li>
 <li>Elaboração de arquivos README para guiar os usuários sobre a utilização do código.</li>
 <li>Introdução ao GitHub para versionamento de projetos.</li>
 </ul>
 </section>
-<section id="capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos"><span class="header-section-number">1.4</span> <a href="!02_basicR.html">Capítulo 2</a>- Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</h2>
+<section id="capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-2--conceitos-básicos-do-ambiente-r-e-importação-e-exportação-de-dados-e-objetos"><a href="!02_basicR.html">Capítulo 2</a>- Conceitos Básicos do Ambiente R e Importação e Exportação de Dados e Objetos</h2>
 <ul>
 <li>Conceitos Básicos de R
 <ul>
@@ -278,8 +613,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="capítulo-3---objetos-em-r" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="capítulo-3---objetos-em-r"><span class="header-section-number">1.5</span> <a href="!03_objetcs.html">Capítulo 3</a> - Objetos em R</h2>
+<section id="capítulo-3---objetos-em-r" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-3---objetos-em-r"><a href="!03_objetcs.html">Capítulo 3</a> - Objetos em R</h2>
 <ul>
 <li>Vetores
 <ul>
@@ -308,8 +643,8 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="capítulo-4---transformação-de-dados" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="capítulo-4---transformação-de-dados"><span class="header-section-number">1.6</span> <a href="!04_data_transf.html">Capítulo 4</a> - Transformação de dados</h2>
+<section id="capítulo-4---transformação-de-dados" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-4---transformação-de-dados"><a href="!04_data_transf.html">Capítulo 4</a> - Transformação de dados</h2>
 <ul>
 <li>Operadores lógicos</li>
 <li>Criação de variáveis</li>
@@ -324,8 +659,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Sumarização de dados</li>
 </ul>
 </section>
-<section id="capítulo-5--funções-e-expressões" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="capítulo-5--funções-e-expressões"><span class="header-section-number">1.7</span> <a href="!05_loop.html">Capítulo 5</a>- Funções e Expressões</h2>
+<section id="capítulo-5--funções-e-expressões" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-5--funções-e-expressões"><a href="!05_loop.html">Capítulo 5</a>- Funções e Expressões</h2>
 <ul>
 <li>Criação e definição de funções em R.</li>
 <li>Definição de operadores binários personalizados.</li>
@@ -333,8 +668,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Trabalho com funções aninhadas e recursivas.</li>
 </ul>
 </section>
-<section id="capítulo-6---loopings-e-execução-condicional" class="level2" data-number="1.8">
-<h2 data-number="1.8" class="anchored" data-anchor-id="capítulo-6---loopings-e-execução-condicional"><span class="header-section-number">1.8</span> <a href="!06_functions.html">Capítulo 6</a> - Loopings e Execução Condicional</h2>
+<section id="capítulo-6---loopings-e-execução-condicional" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-6---loopings-e-execução-condicional"><a href="!06_functions.html">Capítulo 6</a> - Loopings e Execução Condicional</h2>
 <ul>
 <li>Utilização de expressões agrupadas.</li>
 <li>Declarações de controle em R.</li>
@@ -342,8 +677,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Exploração de loopings implícitos.</li>
 </ul>
 </section>
-<section id="capítulo-7---procedimentos-gráficos" class="level2" data-number="1.9">
-<h2 data-number="1.9" class="anchored" data-anchor-id="capítulo-7---procedimentos-gráficos"><span class="header-section-number">1.9</span> <a href="!08_communicate.html">Capítulo 7</a> - Procedimentos Gráficos</h2>
+<section id="capítulo-7---procedimentos-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-7---procedimentos-gráficos"><a href="!08_communicate.html">Capítulo 7</a> - Procedimentos Gráficos</h2>
 <ul>
 <li>Criação e personalização de gráficos em R.</li>
 <li>Utilização de argumentos e parâmetros gráficos.</li>
@@ -354,18 +689,18 @@ ul.task-list li input[type="checkbox"] {
 <li>Exportação de gráficos em diversos formatos.</li>
 </ul>
 </section>
-<section id="capítulo-8---comunicação" class="level2" data-number="1.10">
-<h2 data-number="1.10" class="anchored" data-anchor-id="capítulo-8---comunicação"><span class="header-section-number">1.10</span> <a href="!08_communicate.html">Capítulo 8</a> - Comunicação</h2>
+<section id="capítulo-8---comunicação" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-8---comunicação"><a href="!08_communicate.html">Capítulo 8</a> - Comunicação</h2>
 <ul>
 <li>Introdução aos relatórios dinâmicos com R Markdown e Quarto.</li>
 <li>Introdução à apresentações de slides utilizando Quato e RevealJS.</li>
 <li>Visão geral de aplicações web com R Shiny.</li>
 </ul>
 </section>
-<section id="procedimentos-avaliativos" class="level2" data-number="1.11">
-<h2 data-number="1.11" class="anchored" data-anchor-id="procedimentos-avaliativos"><span class="header-section-number">1.11</span> Procedimentos Avaliativos</h2>
-<section id="prova-01" class="level3" data-number="1.11.1">
-<h3 data-number="1.11.1" class="anchored" data-anchor-id="prova-01"><span class="header-section-number">1.11.1</span> Prova 01</h3>
+<section id="procedimentos-avaliativos" class="level2">
+<h2 class="anchored" data-anchor-id="procedimentos-avaliativos">Procedimentos Avaliativos</h2>
+<section id="prova-01" class="level3">
+<h3 class="anchored" data-anchor-id="prova-01">Prova 01</h3>
 <ul>
 <li><del><strong>Data: 21/09</strong>, Quinta-feira, às 19:00.</del></li>
 <li><strong>Data: 28/09</strong>, Quinta-feira, às 19:00.</li>
@@ -373,8 +708,8 @@ ul.task-list li input[type="checkbox"] {
 <li>Segunda chamada deverá ser solicitada através do email dest@ufpr.br até o dia <strong>05/10/2023</strong> munido de comprovação, de acordo com o Artigo 106, Seção V da <a href="http://www.soc.ufpr.br/portal/wp-content/uploads/2016/07/Res-37-97-CEPE-Atividades-Acad%C3%AAmicas.pdf">Resolução 37/97</a>.</li>
 </ul>
 </section>
-<section id="prova-02" class="level3" data-number="1.11.2">
-<h3 data-number="1.11.2" class="anchored" data-anchor-id="prova-02"><span class="header-section-number">1.11.2</span> Prova 02</h3>
+<section id="prova-02" class="level3">
+<h3 class="anchored" data-anchor-id="prova-02">Prova 02</h3>
 <ul>
 <li><strong>Data: 16/11</strong>, Quinta-feira, às 19:00.</li>
 <li><strong>Conteúdo</strong>: Capítulos 5 a 8.</li>
@@ -382,15 +717,15 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="capítulo-9---trabalho-final" class="level2" data-number="1.12">
-<h2 data-number="1.12" class="anchored" data-anchor-id="capítulo-9---trabalho-final"><span class="header-section-number">1.12</span> <a href="!09_trab.html">Capítulo 9</a> - Trabalho Final</h2>
+<section id="capítulo-9---trabalho-final" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-9---trabalho-final"><a href="!09_trab.html">Capítulo 9</a> - Trabalho Final</h2>
 <ul>
 <li><strong>Data: 19/11</strong>, Domingo até 23:59.</li>
 <li>O trabalho será realizado de forma individual, sobre um tópico a ser <strong>sorteado</strong> após a realização da primeira prova.</li>
 <li>O trabalho deverá ser entregue através de um link para repositório no GitHub, deverá incluir um README e um relatório dinâmico com as análises.</li>
 </ul>
-<section id="prova-final" class="level3" data-number="1.12.1">
-<h3 data-number="1.12.1" class="anchored" data-anchor-id="prova-final"><span class="header-section-number">1.12.1</span> Prova Final</h3>
+<section id="prova-final" class="level3">
+<h3 class="anchored" data-anchor-id="prova-final">Prova Final</h3>
 <ul>
 <li><strong>Data: 07/12</strong>, Quinta-feira, no período 19:00 - 20:30.</li>
 <li><strong>Conteúdo</strong>: Capítulos 1 a 8.</li>
@@ -398,16 +733,16 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="bibliografia-básica" class="level2" data-number="1.13">
-<h2 data-number="1.13" class="anchored" data-anchor-id="bibliografia-básica"><span class="header-section-number">1.13</span> Bibliografia Básica</h2>
+<section id="bibliografia-básica" class="level2">
+<h2 class="anchored" data-anchor-id="bibliografia-básica">Bibliografia Básica</h2>
 <ol type="1">
 <li>Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. R for data science. ” O’Reilly Media, Inc.”, 2023 <a href="https://r4ds.had.co.nz/">Versão Online</a></li>
 <li>Wickham, Hadley. Advanced r. CRC press, 2019. <a href="https://adv-r.hadley.nz/">Versão Online</a></li>
 <li>Davies, T. M. The book of R: A first course in programming and statistics. No Starch Press, 2016.</li>
 </ol>
 </section>
-<section id="cheat-sheets" class="level2" data-number="1.14">
-<h2 data-number="1.14" class="anchored" data-anchor-id="cheat-sheets"><span class="header-section-number">1.14</span> Cheat-Sheets</h2>
+<section id="cheat-sheets" class="level2">
+<h2 class="anchored" data-anchor-id="cheat-sheets">Cheat-Sheets</h2>
 <ul>
 <li><a href="https://gysi.quarto.pub/ce302/cheatsheet/md_cheatsheet.html">Markdown</a></li>
 <li><a href="https://gysi.quarto.pub/ce302/cheatsheet/git_cheatsheet.html">Git / GitHub</a></li>
@@ -418,7 +753,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -767,15 +1102,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./01_markdown_git.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Documentação, Organização de códigos e Sistemas de versionamento</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
