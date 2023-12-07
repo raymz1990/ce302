@@ -396,3 +396,124 @@ nrow(q3e)
 ```
 
 
+## 4. Para esse exercício você deverá utilizar os banco de dados refugiados_pais.csv.gz e refugiados.csv.gz. Considere apenas observações completas.
+Assinale todas as alternativas **correta(s)**.
+```{r}
+require(data.table)
+require(dplyr)
+require(tidyr)
+
+refugiados_pais= fread("./avaliação_01-datasets/refugiados_pais.csv.gz")
+refugiados = fread("./avaliação_01-datasets/refugiados.csv.gz")
+
+
+glimpse(refugiados_pais)
+glimpse(refugiados)
+
+# Realizar o left join
+tb4 <- refugiados %>%
+  left_join(refugiados_pais, by = c("id_origem" = "id")) %>%
+  left_join(refugiados_pais, by = c("id_destino" = "id"), suffix = c("_origem", "_destino"))
+
+# Exibir a planilha
+print(tb4)
+
+```
+
+(a) A matriz de migração [origem, destino] intercontinental do ano 2006 é dada por:
+|Região  |Africa |Americas|Asia   |Europe|Oceania|
+|--------|-------|--------|-------|------|-------|
+|Africa  |2507581|262745  |98175  |250070|37124  |
+|Americas|0      |150149  |0      |14850 |174    |
+|Asia    |76780  |308706  |4411284|664075|42704  |
+|Europe  |94     |306672  |7816   |454237|3423   |
+|Oceania |0      |1679    |0      |92    |59     |
+
+```{r}
+# Filtrar para o ano de 2006
+tb4_2006 <- tb4 %>% filter(ano == 2006)
+
+# Criar a matriz de migração [origem, destino]
+matriz_migracao_2006 <- tb4_2006 %>%
+  group_by(regiao_origem, regiao_destino) %>%
+  summarise(total_migrantes = sum(refugiados)) %>%
+  pivot_wider(names_from = regiao_destino, values_from = total_migrantes, values_fill = 0)
+
+# Exibir a matriz de migração no formato desejado
+print(matriz_migracao_2006)
+```
+
+(b) A partir de 1972 houveram 172075 refugiados partindo do país: Afghanistan para o país: Canada, e 219920 refugiados partindo do país: Pakistan para o país: Canada.
+```{r}
+# Especificar o nome_origem, nome_destino e ano desejados
+ano_desejado <- 1972
+
+q4b <- tb4 %>%
+  group_by(nome_origem, nome_destino, ano) %>%
+  summarise(refugiados = sum(refugiados), .groups = "drop") 
+
+resultado <- q4b %>%
+  filter(ano >= ano_desejado) %>%
+  group_by(nome_origem, nome_destino) %>%
+  summarise(total_refugiados = sum(refugiados))
+
+refugiados_af_can <- resultado %>%
+  filter(nome_origem == "Afghanistan", nome_destino == "Canada")
+print(refugiados_af_can)
+
+refugiados_paq_can <- resultado %>%
+  filter(nome_origem == "Pakistan", nome_destino == "Canada")
+print(refugiados_paq_can)
+```
+
+(c) Os 5 países que mais enviaram refugiados no ano de 1965 pertencem às subregiões Sub-Saharan Africa e Southern Europe.
+```{r}
+ano_c <- 1965
+
+q4c <- tb4 %>%
+  group_by(nome_origem, subregiao_origem, ano) %>%
+  summarise(refugiados = sum(refugiados), .groups = "drop") 
+
+q4c <- q4c %>%
+  filter(ano == ano_c) %>%
+  group_by(nome_origem, subregiao_origem) %>%
+  summarise(total_refugiados = sum(refugiados)) %>%
+  arrange(desc(total_refugiados))
+
+q4c
+```
+
+(d) Os 6 países que mais receberam refugiados a partir de 1982 receberam juntos 19523 refugiados.
+```{r}
+ano_d <- 1982
+
+q4d <- tb4 %>%
+  group_by(nome_destino, ano) %>%
+  summarise(refugiados = sum(refugiados), .groups = "drop") %>%
+  na.omit()
+
+q4d <- q4d %>%
+  filter(ano >= ano_d) %>%
+  group_by(nome_destino) %>%
+  summarise(total_refugiados = sum(refugiados)) %>%
+  arrange(desc(total_refugiados))
+
+q4d
+```
+
+(e) Existem 27 países que receberam pelo menos 5382652 refugiados.
+```{r}
+n_refugiados <- 5382652
+
+q4e<- tb4 %>%
+  group_by(nome_destino) %>%
+  summarise(refugiados = sum(refugiados), .groups = "drop") %>%
+  na.omit()
+
+q4e <- q4e %>%
+  filter(refugiados >= n_refugiados) %>%
+  arrange(desc(refugiados))
+
+cat('Existem', nrow(q4e), 'países que receberam pelo menos', n_refugiados, 'refugiados.\n')
+
+```

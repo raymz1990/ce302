@@ -92,7 +92,7 @@ website:
           - text: Prova 01
             href: avaliacoes\avaliação_01.qmd
           - text: Prova 02
-            href: avaliacoes\avaliação_01.qmd
+            href: avaliacoes\avaliação_02.qmd
 
 #  sidebar:
 #    - title: "Home"

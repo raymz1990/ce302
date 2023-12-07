@@ -1,0 +1,650 @@
+---
+always_allow_html: true
+title: "Prova 02"
+---
+
+
+## 1. A variância amostral ($S²$), o desvio médio absoluto ($DMA$) e o segundo coeficiente de assimetria de Pearson ($AS~2$) são medidas definidas, respectivamente, por
+\[ S^2 = \frac{1}{n - 1} \sum_{i=1}^{n} (x_i - \bar{x})^2 \], \[DMA = \frac{1}{n-1} \sum_{i=1}^{n} |x_i - \bar{x}|\] e \[AS2 = 3. \frac{\bar{x}-Md}{S}\], 
+em que \[\bar{x}\] é a média amostral, $Md$ é a mediana e $|a|$ corresponde ao módulo de $a$.
+
+Implemente uma função em R que retorne uma lista com o S2, o DMA e o AS2 de uma variável quantitativa qualquer. 
+```{r}
+medidas_descritivas <- function(x) {
+  # Calcular a média amostral
+  media <- mean(x)
+  
+  # Calcular a mediana
+  mediana <- median(x)
+  
+  # Calcular o tamanho da amostra
+  n <- length(x)
+  
+  # Calcular a variância amostral (S^2)
+  variancia <- sum((x - media)^2) / (n - 1)
+  
+  # Calcular o desvio médio absoluto (DMA)
+  dma <- sum(abs(x - media)) / (n - 1)
+  
+  # Calcular o segundo coeficiente de assimetria de Pearson (AS2)
+  as2 <- 3 * (media - mediana) / sqrt(variancia)
+  
+  # Retornar uma lista com as medidas descritivas
+  lista_medidas <- list(S2 = variancia, DMA = dma, AS2 = as2)
+  
+  return(lista_medidas)
+}
+
+# Exemplo de uso
+dados <- c(10, 15, 18, 20, 25)
+resultado <- medidas_descritivas(dados)
+print(resultado)
+
+```
+
+Na sequência, assinale todas as alternativas correta(s), considerando o banco de dados `airquality` disponível no R.
+(a) A S2 da variável Ozone é 823,31.
+```{r}
+# Carregar o conjunto de dados airquality (se ainda não foi carregado)
+data(airquality)
+
+# Selecionar a variável de interesse (por exemplo, "Ozone")
+variavel <- airquality$Ozone
+
+# Calcular a variância amostral usando a função var()
+variancia <- var(variavel, na.rm = TRUE)
+
+
+
+calcular_variancia_amostral <- function(variavel) {
+  media <- mean(variavel, na.rm = TRUE)
+  variancia <- sum((variavel - media)^2) / (length(variavel) - 1)
+  return(variancia)
+}
+
+
+variancia_ozone <- calcular_variancia_amostral(airquality$Ozone)
+cat('resultado 1: ', variancia)
+cat('resultado 2: ', variancia)
+
+
+```
+
+(b) Considerando apenas o nível 8 da variável Month, o DMA da variável Wind é 2,75.
+```{r}
+# Carregar o conjunto de dados airquality (se ainda não foi carregado)
+data(airquality)
+
+# Filtrar o conjunto de dados para Month igual a 8
+dados_nivel_8 <- subset(airquality, Month == 8)
+
+# Calcular o DMA da variável "Wind" para o nível 8 de "Month"
+calcular_dma_wind <- function(variavel) {
+  media <- mean(variavel, na.rm = TRUE)
+  dma <- sum(abs(variavel - media)) / length(variavel)
+  return(dma)
+}
+
+# Exemplo de uso para o nível 8 de "Month" na variável "Wind"
+dma_wind_nivel_8 <- calcular_dma_wind(dados_nivel_8$Wind)
+round(dma_wind_nivel_8,2)
+
+```
+
+(c) Para todas as variáveis do banco airquality a variância amostral é maior do que o desvio médio absoluto.
+```{r}
+# Carregar o conjunto de dados airquality (se ainda não foi carregado)
+data(airquality)
+
+# Função para calcular o desvio médio absoluto (DMA)
+calcular_dma <- function(variavel) {
+  media <- mean(variavel, na.rm = TRUE)
+  dma <- sum(abs(variavel - media), na.rm = TRUE) / length(variavel)
+  return(dma)
+}
+
+# Data frame para armazenar os resultados
+resultados <- data.frame(
+  Variavel = character(), 
+  Variancia = double(), 
+  DMA = double(), 
+  stringsAsFactors = FALSE
+)
+
+# Preencher o data frame com os resultados para cada variável
+for (coluna in names(airquality)) {
+  variavel <- airquality[[coluna]]
+  variancia <- var(variavel, na.rm = TRUE)
+  dma <- calcular_dma(variavel)
+  
+  resultados <- rbind(resultados, data.frame(Variavel = coluna, Variancia = variancia, DMA = dma))
+}
+
+# Exibir os resultados
+print(resultados)
+
+
+
+```
+
+(d) O DMA da variável Ozone é 812,62.
+```{r}
+# Função para calcular o desvio médio absoluto (DMA) com tratamento de valores ausentes
+calcular_dma <- function(variavel) {
+  media <- mean(variavel, na.rm = TRUE)
+  dma <- sum(abs(variavel - media), na.rm = TRUE) / length(variavel)
+  return(dma)
+}
+
+# Exemplo de uso para a variável "Ozone"
+variavel_ozone <- airquality$Ozone
+dma_ozone <- calcular_dma(variavel_ozone)
+
+# Exibir o resultado
+print(dma_ozone)
+```
+
+(e) No nível 8 da variável Month, o AS2 da variável Wind é 0,18.
+```{r}
+# Carregar o conjunto de dados airquality (se ainda não foi carregado)
+data(airquality)
+
+# Filtrar o conjunto de dados para Month igual a 8
+dados_nivel_8 <- subset(airquality, Month == 8)
+
+# Função para calcular o segundo coeficiente de assimetria de Pearson (AS2)
+calcular_as2_wind <- function(variavel) {
+  media <- mean(variavel, na.rm = TRUE)
+  mediana <- median(variavel, na.rm = TRUE)
+  desvio_padrao <- sd(variavel, na.rm = TRUE)
+  
+  as2 <- 3 * (media - mediana) / desvio_padrao
+  return(as2)
+}
+
+# Exemplo de uso para o nível 8 de "Month" na variável "Wind"
+variavel_wind_nivel_8 <- dados_nivel_8$Wind
+as2_wind_nivel_8 <- calcular_as2_wind(variavel_wind_nivel_8)
+
+# Exibir o resultado
+round(as2_wind_nivel_8,2)
+
+```
+
+## 2. Considere uma matriz m×m, em que m é um inteiro positivo. Implemente uma função em R que realize a varredura de uma matriz e execute uma operação específica que depende do valor encontrado na matriz, conforme as seguintes regras:
+• Se o valor for um número primo, multiplique-o por 8.
+• Se o valor for um quadrado perfeito, subtraia 19. Caso o resultado obtido for negativo, eleve a 7a potência.
+• Se o valor for negativo na matriz original, calcule a raiz 3a de seu módulo.
+• Para todos os outros valores, não faça nada.
+
+A função a ser criada deve retornar a matriz transformada. Considere:
+* Matriz A:
+|A |B |C  |D |
+|--|--|---|--|
+|3 |-3|6  |-8|
+|1 |2 |-10|-7|
+|8 |-2|-9 |-4|
+|10|-5|-1 |7 |
+
+* Matriz B:
+|A  |B  |C  |D  |
+|---|---|---|---|
+|-1 |8  |13 |-16|
+|0  |16 |18 | -6|
+|-18|-15| -2|-11|
+|11 |-12|-13| 3 |
+|-4 | 5 |-19| 17|
+
+* Matriz C:
+|A  |B  |C  |D |
+|---|---|---|--|
+|-22|14 |21 |19|
+|23 |-20|-17|17|
+|-7 |-11|-23|28|
+|24 |-14|-5 |8 |
+
+Considerando o contexto proposto, assinale todas as alternativas **incorreta(s)**.
+```{r}
+# Função para verificar se um número é primo
+is_primo <- function(n) {
+  if (n <= 1) return(FALSE)
+  for (i in 2:(n-1)) {
+    if (n %% i == 0) return(FALSE)
+  }
+  return(TRUE)
+}
+
+# Função para realizar a varredura da matriz
+varredura_matriz <- function(matriz) {
+  n_linhas <- nrow(matriz)
+  n_colunas <- ncol(matriz)
+  
+  # Criar uma matriz vazia para armazenar os resultados
+  resultado <- matrix(0, nrow = n_linhas, ncol = n_colunas)
+  
+  # Iterar sobre cada elemento da matriz
+  for (i in 1:n_linhas) {
+    for (j in 1:n_colunas) {
+      valor <- matriz[i, j]
+      
+      # Regras de transformação
+      if (is_primo(valor)) {
+        resultado[i, j] <- valor * 8              
+        # Se o valor for primo, multiplique por 8
+      } else if (valor >= 0 && sqrt(valor) %% 1 == 0) {
+        resultado[i, j] <- ifelse((valor - 19) < 0, abs(valor - 19) ^ 7, valor - 19)
+        # Se o valor for um quadrado perfeito, subtraia 19. 
+        # Caso o resultado obtido for negativo, eleve à 7ª potência.
+      } else if (valor < 0) {
+        resultado[i, j] <- sign(valor) * abs(valor)^(1/3)
+        # Se o valor for negativo, calcule a raiz cúbica do módulo.
+      } else {
+        resultado[i, j] <- valor
+        # Para outros valores, não faça nada.
+      }
+    }
+  }
+  
+  return(resultado)
+}
+
+# Exemplo de uso com as matrizes fornecidas (A, B, C)
+matriz_A <- matrix(c(3, -3, 6, -8, 
+                     1, 2, -10, -7,
+                     8, -2, -9, -4, 
+                     10, -5, -1, 7), 
+                   nrow = 4, 
+                   byrow = TRUE)
+matriz_B <- matrix(c(-1, 8, 13, -16, 
+                     0, 16, 18, -6,
+                     -18, -15, -2, -11,
+                     11, -12, -13, 3, 
+                     -4, 5, -19, 17),
+                   nrow = 4,
+                   byrow = TRUE)  # Corrigido para 4 linhas
+matriz_C <- matrix(c(-22, 14, 21, 19,
+                     23, -20, -17, 17,
+                     -7, -11, -23, 28, 
+                     24, -14, -5, 8), 
+                   nrow = 4, 
+                   byrow = TRUE)
+
+# Aplicar a função às matrizes
+resultado_A <- varredura_matriz(matriz_A)
+resultado_B <- varredura_matriz(matriz_B)
+resultado_C <- varredura_matriz(matriz_C)
+
+# Exibir os resultados
+print("Matriz A:")
+print(resultado_A)
+
+print("Matriz B:")
+print(resultado_B)
+
+print("Matriz C:")
+print(resultado_C)
+
+```
+
+
+(a) A matriz A tem 2 números primos.
+```{r}
+# Função para verificar se um número é primo
+is_primo <- function(n) {
+  if (n <= 1) return(FALSE)
+  for (i in 2:(n-1)) {
+    if (n %% i == 0) return(FALSE)
+  }
+  return(TRUE)
+}
+
+# Função para realizar a varredura da matriz
+varredura_matriz <- function(matriz) {
+  n_linhas <- nrow(matriz)
+  n_colunas <- ncol(matriz)
+  
+  # Criar uma matriz vazia para armazenar os resultados
+  resultado <- matrix(0, nrow = n_linhas, ncol = n_colunas)
+  
+  # Contador de números primos
+  contador_primos <- 0
+  
+  # Iterar sobre cada elemento da matriz
+  for (i in 1:n_linhas) {
+    for (j in 1:n_colunas) {
+      valor <- matriz[i, j]
+      
+      # Regras de transformação
+      if (is_primo(valor)) {
+        resultado[i, j] <- valor * 8
+        contador_primos <- contador_primos + 1
+      } else if (valor >= 0 && sqrt(valor) %% 1 == 0) {
+        resultado[i, j] <- ifelse((valor - 19) < 0, abs(valor - 19) ^ 7, valor - 19)
+      } else if (valor < 0) {
+        resultado[i, j] <- sign(valor) * abs(valor)^(1/3)
+      } else {
+        resultado[i, j] <- valor
+      }
+    }
+  }
+  
+  return(list(matriz_transformada = resultado, primos_contados = contador_primos))
+}
+
+# Aplicar a função à matriz A
+resultado_A <- varredura_matriz(matriz_A)
+
+# Exibir a matriz transformada e o número de primos
+print("Matriz A Transformada:")
+print(resultado_A$matriz_transformada)
+
+cat("Número de Números Primos na Matriz A:", resultado_A$primos_contados)
+
+```
+
+```{r}
+# Função para verificar se um número é primo
+is_primo <- function(n) {
+  if (n <= 1) return(FALSE)
+  for (i in 2:(n-1)) {
+    if (n %% i == 0) return(FALSE)
+  }
+  return(TRUE)
+}
+
+# Função para contar e listar números primos em uma matriz
+listar_primos <- function(matriz) {
+  n_linhas <- nrow(matriz)
+  n_colunas <- ncol(matriz)
+  
+  # Inicializar contador de primos e vetor para armazenar os primos
+  contador_primos <- 0
+  primos <- c()
+  
+  # Iterar sobre cada elemento da matriz
+  for (i in 1:n_linhas) {
+    for (j in 1:n_colunas) {
+      valor <- matriz[i, j]
+      
+      # Verificar se o valor é primo
+      if (is_primo(valor)) {
+        contador_primos <- contador_primos + 1
+        primos <- c(primos, valor)
+      }
+    }
+  }
+  
+  return(list(contador_primos = contador_primos, primos = primos))
+}
+
+# Contar e listar números primos na matriz A
+resultado_primos_A <- listar_primos(matriz_A)
+
+# Exibir o resultado
+print("Números Primos na Matriz A:")
+print(resultado_primos_A$primos)
+
+cat("Número de Números Primos na Matriz A:", resultado_primos_A$contador_primos)
+```
+
+
+(b) A soma dos elementos da diagonal principal da matriz B transformada é -2162.
+```{r}
+# Função para verificar se um número é primo
+is_primo <- function(n) {
+  if (n <= 1) return(FALSE)
+  for (i in 2:(n-1)) {
+    if (n %% i == 0) return(FALSE)
+  }
+  return(TRUE)
+}
+
+# Função para realizar a varredura da matriz
+varredura_matriz <- function(matriz) {
+  n_linhas <- nrow(matriz)
+  n_colunas <- ncol(matriz)
+  
+  # Criar uma matriz vazia para armazenar os resultados
+  resultado <- matrix(0, nrow = n_linhas, ncol = n_colunas)
+  
+  # Contador de números primos
+  contador_primos <- 0
+  
+  # Iterar sobre cada elemento da matriz
+  for (i in 1:n_linhas) {
+    for (j in 1:n_colunas) {
+      valor <- matriz[i, j]
+      
+      # Regras de transformação
+      if (is_primo(valor)) {
+        resultado[i, j] <- valor * 8
+        contador_primos <- contador_primos + 1
+      } else if (valor >= 0 && sqrt(valor) %% 1 == 0) {
+        resultado[i, j] <- ifelse((valor - 19) < 0, abs(valor - 19) ^ 7, valor - 19)
+      } else if (valor < 0) {
+        resultado[i, j] <- sign(valor) * abs(valor)^(1/3)
+      } else {
+        resultado[i, j] <- valor
+      }
+    }
+  }
+  
+  return(list(matriz_transformada = resultado, primos_contados = contador_primos))
+}
+
+matriz_B <- matrix(c(-1, 8, 13, -16,
+                     0, 16, 18, -6,
+                     -18, -15, -2, -11,
+                     11, -12, -13, 3,
+                     -4, 5, -19, 17), nrow = 5, byrow = TRUE)
+
+# Aplicar a função à matriz B
+resultado_B <- varredura_matriz(matriz_B)
+
+# Exibir a matriz transformada
+print("Matriz B Transformada:")
+print(resultado_B$matriz_transformada)
+
+# Calcular a soma dos elementos da diagonal principal da matriz B transformada
+soma_diagonal_B_transformada <- sum(diag(resultado_B$matriz_transformada))
+cat("Soma da Diagonal Principal da Matriz B Transformada:", round(soma_diagonal_B_transformada, 0))
+
+```
+
+
+(c) A matriz C transformada é dada por:
+|A     |B    |C    |D  |
+|------|-----|-----|---|
+|7,33  |14,00|21,00|152|
+|184,00|6,67 |5,67 |136|
+|2,33  |3,67 |7,67 |28 |
+|24,00 |4,67 |1,67 |8  |
+
+```{r}
+print("Matriz C:")
+print(resultado_C)
+```
+
+(d) O maior elemento, em módulo, da matriz C transformada é 184.
+```{r}
+# Aplicar a função à matriz C
+resultado_C <- varredura_matriz(matriz_C)
+
+# Calcular o maior elemento em módulo da matriz C transformada
+maior_C<- max(abs(resultado_C$matriz_transformada))
+cat("Maior Elemento em Módulo da Matriz C Transformada:", maior_C)
+```
+
+
+(e) A soma dos elementos da coluna 2 da matriz B transformada é -2130.
+```{r}
+# Aplicar a função à matriz B
+resultado_B <- varredura_matriz(matriz_B)
+
+# Calcular a soma dos elementos da coluna 2 da matriz B transformada
+soma_col2_B <- sum(resultado_B$matriz_transformada[, 2])
+cat("Soma dos Elementos da Coluna 2 da Matriz B Transformada:", round(soma_col2_B,0))
+```
+
+## 3. Dra. Astrogilda, uma renomada astróloga e perita em numerologia dedicou anos de estudo e pesquisa para desenvolver um método inovador para calcular a numerologia de um indivíduo de maneira precisa e personalizada. Seu objetivo é proporcionar uma
+experiência única aos seus clientes, oferecendo insights profundos e perspicazes sobre a vida.
+Com uma abordagem única e diferenciada, Dra. Astrogilda decidiu não apenas aprimorar suas habilidades como numeróloga, mas também compartilhar seus conhecimentos valiosos com aqueles que buscam compreender melhor os aspectos ocultos de suas vidas. Ela
+oferece duas distintas modalidades de numerologia:
+• Numerologia Individual (Ni): O número para um indivíduo é calculado da seguinte forma:
+$$Ni = Nb(X^4 + 7 · X + 2)$$
+• Numerologia para Casal (Nc): O número para um casal é determinado da seguinte forma:
+$$Nc = Nb(X^2 + Y^7)$$
+Nestas formulações, X e Y representam os números base dos indivíduos 1 e 2, respectivamente, e são dados por
+$$X = Nb(d1) e Y = Nb(d2)$$
+sendo d1 e d2 as datas de nascimento dos indivíduos 1 e 2, respectivamente. Como exemplo, suponha que o indivíduo 1 tenha nascido em 29/12/1999. Então, seu número base é dado por 
+$$Nb(29121999) = 2 + 9 + 1 + 2 + 1 + 9 + 9 + 9 = 42 = 4 + 2 = 6$$
+Implemente uma função em R que seja capaz de calcular a numerologia utilizando os dois métodos apresentados (individual e casal). Para os aniversários dos indivíduos, considere os dados em Astrologia_Individuo.txt e, para dados de casais, considere os dados em Astrologia_Casal.txt. Esses bancos de dados estão disponíveis no Moodle.
+
+```{r, comment = FALSE, message = FALSE}
+# Carregar dados de aniversários dos indivíduos
+dados_individuo <- read.table("./avaliação_02-datasets/Astrologia_Individuo.txt", header = FALSE, col.names = c("Data_Nascimento"))
+
+# Carregar dados de aniversários dos casais
+dados_casal <- read.table("./avaliação_02-datasets/Astrologia_Casal.txt", header = FALSE, col.names = c("Data_Nascimento_1", "Data_Nascimento_2"))
+
+# Função para extrair apenas os números de uma data de nascimento
+extrair_numeros_data <- function(data_nascimento) {
+  numeros <- as.numeric(strsplit(as.character(data_nascimento), "")[[1]])
+  return(sum(numeros, na.rm = TRUE))
+}
+
+# Função para somar os dígitos individualmente
+somar_digitos <- function(numero) {
+  digitos <- as.numeric(strsplit(as.character(numero), "")[[1]])
+  return(sum(digitos, na.rm = TRUE))
+}
+
+# Função para calcular o número base a partir de uma soma de números
+calcular_numero_base <- function(soma_numeros) {
+  while (soma_numeros >= 10) {
+    soma_numeros <- sum(as.numeric(strsplit(as.character(soma_numeros), "")[[1]]))
+  }
+  return(soma_numeros)
+}
+
+# Função para calcular a numerologia individual
+numerologia_individual <- function(data_nascimento) {
+  soma_numeros <- extrair_numeros_data(data_nascimento)
+  numero_base <- calcular_numero_base(soma_numeros)
+  Ni <- calcular_numero_base(numero_base^4 + 7 * numero_base + 2)
+  return(Ni)
+}
+
+# Função para calcular a numerologia de casal
+numerologia_casal <- function(data_nascimento_1, data_nascimento_2) {
+  soma_numeros_1 <- extrair_numeros_data(data_nascimento_1)
+  soma_numeros_2 <- extrair_numeros_data(data_nascimento_2)
+  numero_base_1 <- calcular_numero_base(soma_numeros_1)
+  numero_base_2 <- calcular_numero_base(soma_numeros_2)
+  Nc <- calcular_numero_base(numero_base_1^2 + numero_base_2^7)
+  return(Nc)
+}
+
+# Aplicar a função aos dados dos indivíduos
+dados_individuo$Numeros_Data <- sapply(dados_individuo$Data_Nascimento, extrair_numeros_data)
+dados_individuo$Soma_Numeros <- sapply(dados_individuo$Numeros_Data, somar_digitos)
+dados_individuo$Numerologia_Individual <- sapply(dados_individuo$Data_Nascimento, numerologia_individual)
+
+# Aplicar a função aos dados dos casais
+dados_casal$Numeros_Data_1 <- sapply(dados_casal$Data_Nascimento_1, extrair_numeros_data)
+dados_casal$Numeros_Data_2 <- sapply(dados_casal$Data_Nascimento_2, extrair_numeros_data)
+dados_casal$Soma_Numeros_1 <- sapply(dados_casal$Numeros_Data_1, somar_digitos)
+dados_casal$Soma_Numeros_2 <- sapply(dados_casal$Numeros_Data_2, somar_digitos)
+dados_casal$Numerologia_Casal <- mapply(numerologia_casal, dados_casal$Data_Nascimento_1, dados_casal$Data_Nascimento_2)
+
+```
+
+
+
+Considerando o contexto proposto, assinale todas as alternativas correta(s).
+
+(a) Existem 97 casais com Número Base 6, e 233 casais com essa Numerologia para Casal.
+```{r}
+q3a1 <- sum(dados_casal$Soma_Numeros_1 == 6, na.rm = TRUE)
+q3a2 <- sum(dados_casal$Soma_Numeros_2 == 6, na.rm = TRUE)
+
+
+
+# Contar casais com Número Base 6 na Numerologia para Casal
+casais_numero_base_6 <- sum(dados_casal$Numerologia_Casal == 6, na.rm = TRUE)
+
+
+# Exibir o resultado
+cat("Existem ", q3a1 + q3a2, "casais com Número Base 6, e ", casais_numero_base_6, "casais com essa Numerologia para Casal.")
+
+```
+
+(b) A Numerologia do Indivíduo, de um indivíduo nascido em 13/10/2008 é 5.
+```{r}
+# Função para calcular a numerologia do indivíduo
+numerologia_do_individuo <- function(data_nascimento) {
+  soma_numeros <- extrair_numeros_data(data_nascimento)
+  numero_base <- calcular_numero_base(soma_numeros)
+  Ni <- calcular_numero_base(numero_base^4 + 7 * numero_base + 2)
+  return(Ni)
+}
+
+# Calcular a numerologia do indivíduo
+numerologia_individual_exemplo <- numerologia_do_individuo("13/10/2008")
+
+# Exibir o resultado
+cat("Numerologia do Indivíduo:", numerologia_individual_exemplo, "\n")
+
+```
+
+
+(c) Um indivíduo nascido em 1/9/1993 apresenta Número Base igual à 5.
+```{r}
+# Função para calcular a numerologia do indivíduo
+numerologia_do_individuo <- function(data_nascimento) {
+  soma_numeros <- extrair_numeros_data(data_nascimento)
+  numero_base <- calcular_numero_base(soma_numeros)
+  Ni <- calcular_numero_base(numero_base^4 + 7 * numero_base + 2)
+  return(Ni)
+}
+
+# Calcular a numerologia do indivíduo
+numerologia_individual_exemplo <- numerologia_do_individuo("1/9/1993")
+
+# Exibir o resultado
+cat("Numerologia do Indivíduo:", numerologia_individual_exemplo, "\n")
+```
+
+
+(d) Existem 122 indivíduos com o Número Base 7, e 89 indivíduos com essa Numerologia Individual.
+```{r}
+q3d <- sum(dados_individuo$Soma_Numeros == 7, na.rm = TRUE)
+
+# Contar casais com Número Base 6 na Numerologia para Casal
+q3d2 <- sum(dados_individuo$Numerologia_Individual == 7, na.rm = TRUE)
+
+
+# Exibir o resultado
+cat("Existem ", q3d, "indivíduos com o Número Base 7, e ", q3d2, "indivíduos com essa Numerologia Individual.")
+```
+
+(e) O Número para Casal, com indivíduos nascidos em 31/7/2010 e 23/12/1998 é 13
+```{r}
+# Função para calcular a numerologia do casal
+numerologia_do_casal <- function(data_nascimento_1, data_nascimento_2) {
+  soma_numeros_1 <- extrair_numeros_data(data_nascimento_1)
+  soma_numeros_2 <- extrair_numeros_data(data_nascimento_2)
+  numero_base_1 <- calcular_numero_base(soma_numeros_1)
+  numero_base_2 <- calcular_numero_base(soma_numeros_2)
+  Nc <- calcular_numero_base(numero_base_1^2 + numero_base_2^7)
+  return(Nc)
+}
+
+# Calcular a numerologia do casal
+numerologia_casal_exemplo <- numerologia_do_casal("31/7/2010", "23/12/1998")
+
+# Exibir o resultado
+cat("Numerologia do Casal:", numerologia_casal_exemplo, "\n")
+
+```
+

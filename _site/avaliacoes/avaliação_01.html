@@ -287,6 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-as-duas-matrizes-fornecidas." id="toc-para-esse-exercício-você-deverá-utilizar-as-duas-matrizes-fornecidas." class="nav-link active" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-as-duas-matrizes-fornecidas.">1. Para esse exercício você deverá utilizar as duas matrizes fornecidas.</a></li>
   <li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-o-banco-de-dados-chocolate.csv.gz." id="toc-para-esse-exercício-você-deverá-utilizar-o-banco-de-dados-chocolate.csv.gz." class="nav-link" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-o-banco-de-dados-chocolate.csv.gz.">2. Para esse exercício você deverá utilizar o banco de dados <code>chocolate.csv.gz</code>.</a></li>
   <li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome." id="toc-para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome." class="nav-link" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-os-banco-de-dados-art.csv.gz-e-art_moma.csv.gz.-desconsidere-artistas-sem-nacionalidade-eou-sem-nome.">3. Para esse exercício você deverá utilizar os banco de dados <code>Art.csv.gz</code> e <code>Art_Moma.csv.gz</code>. Desconsidere artistas sem nacionalidade e/ou sem nome.</a></li>
+  <li><a href="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-os-banco-de-dados-refugiados_pais.csv.gz-e-refugiados.csv.gz.-considere-apenas-observa%C3%A7%C3%B5es-completas." id="toc-para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-refugiados_pais.csv.gz-e-refugiados.csv.gz.-considere-apenas-observações-completas." class="nav-link" data-scroll-target="#para-esse-exerc%C3%ADcio-voc%C3%AA-dever%C3%A1-utilizar-os-banco-de-dados-refugiados_pais.csv.gz-e-refugiados.csv.gz.-considere-apenas-observa%C3%A7%C3%B5es-completas.">4. Para esse exercício você deverá utilizar os banco de dados refugiados_pais.csv.gz e refugiados.csv.gz. Considere apenas observações completas.</a></li>
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/RVerse-Tutorials/QmdReport/edit/main/avaliacoes/avaliação_01.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/blob/main/avaliacoes/avaliação_01.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/RVerse-Tutorials/QmdReport/issues/new" class="toc-action">Report an issue</a></p></div></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="avaliação_01.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="avaliação_01.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </nav><div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
@@ -1010,6 +1011,249 @@ $ artist_race_nwi          &lt;chr&gt; "Non-White", "White", "White", "White", "
 <span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">q3e</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 101</code></pre>
+</div>
+</div>
+</section><section id="para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-refugiados_pais.csv.gz-e-refugiados.csv.gz.-considere-apenas-observações-completas." class="level2"><h2 class="anchored" data-anchor-id="para-esse-exercício-você-deverá-utilizar-os-banco-de-dados-refugiados_pais.csv.gz-e-refugiados.csv.gz.-considere-apenas-observações-completas.">4. Para esse exercício você deverá utilizar os banco de dados refugiados_pais.csv.gz e refugiados.csv.gz. Considere apenas observações completas.</h2>
+<p>Assinale todas as alternativas <strong>correta(s)</strong>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com">data.table</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">refugiados_pais</span><span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./avaliação_01-datasets/refugiados_pais.csv.gz"</span><span class="op">)</span></span>
+<span><span class="va">refugiados</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/fread.html">fread</a></span><span class="op">(</span><span class="st">"./avaliação_01-datasets/refugiados.csv.gz"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">refugiados_pais</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 230
+Columns: 4
+$ id        &lt;chr&gt; "AFG", "ALB", "DZA", "AND", "AGO", "AIA", "ATG", "ARG", "ARM…
+$ nome      &lt;chr&gt; "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "A…
+$ regiao    &lt;chr&gt; "Asia", "Europe", "Africa", "Europe", "Africa", "Americas", …
+$ subregiao &lt;chr&gt; "Southern Asia", "Southern Europe", "Northern Africa", "Sout…</code></pre>
+</div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 120,338
+Columns: 4
+$ ano        &lt;int&gt; 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951, 1951,…
+$ id_origem  &lt;chr&gt; "UNK", "UNK", "UNK", "UNK", "UNK", "UNK", "UNK", "UNK", "UN…
+$ id_destino &lt;chr&gt; "AUS", "AUT", "BEL", "CAN", "DNK", "FRA", "GBR", "DEU", "GR…
+$ refugiados &lt;int&gt; 180000, 282000, 55000, 168511, 2000, 290000, 208000, 265000…</code></pre>
+</div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Realizar o left join</span></span>
+<span><span class="va">tb4</span> <span class="op">&lt;-</span> <span class="va">refugiados</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">refugiados_pais</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id_origem"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">refugiados_pais</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"id_destino"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span>, suffix <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"_origem"</span>, <span class="st">"_destino"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Exibir a planilha</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tb4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ano id_origem id_destino refugiados                        nome_origem
+     1: 1951       UNK        AUS     180000                               &lt;NA&gt;
+     2: 1951       UNK        AUT     282000                               &lt;NA&gt;
+     3: 1951       UNK        BEL      55000                               &lt;NA&gt;
+     4: 1951       UNK        CAN     168511                               &lt;NA&gt;
+     5: 1951       UNK        DNK       2000                               &lt;NA&gt;
+    ---                                                                        
+120334: 2022       VEN        ABW          0 Venezuela (Bolivarian Republic of)
+120335: 2022       ABW        ABW          0                              Aruba
+120336: 2022       VEN        CUW          0 Venezuela (Bolivarian Republic of)
+120337: 2022       CUW        CUW          0                            Curacao
+120338: 2022       VEN        SXM          0 Venezuela (Bolivarian Republic of)
+        regiao_origem                subregiao_origem              nome_destino
+     1:          &lt;NA&gt;                            &lt;NA&gt;                 Australia
+     2:          &lt;NA&gt;                            &lt;NA&gt;                   Austria
+     3:          &lt;NA&gt;                            &lt;NA&gt;                   Belgium
+     4:          &lt;NA&gt;                            &lt;NA&gt;                    Canada
+     5:          &lt;NA&gt;                            &lt;NA&gt;                   Denmark
+    ---                                                                        
+120334:      Americas Latin America and the Caribbean                     Aruba
+120335:      Americas Latin America and the Caribbean                     Aruba
+120336:      Americas Latin America and the Caribbean                   Curacao
+120337:      Americas Latin America and the Caribbean                   Curacao
+120338:      Americas Latin America and the Caribbean Sint Maarten (Dutch part)
+        regiao_destino               subregiao_destino
+     1:        Oceania       Australia and New Zealand
+     2:         Europe                  Western Europe
+     3:         Europe                  Western Europe
+     4:       Americas                Northern America
+     5:         Europe                 Northern Europe
+    ---                                               
+120334:       Americas Latin America and the Caribbean
+120335:       Americas Latin America and the Caribbean
+120336:       Americas Latin America and the Caribbean
+120337:       Americas Latin America and the Caribbean
+120338:       Americas Latin America and the Caribbean</code></pre>
+</div>
+</div>
+<ol type="a">
+<li>A matriz de migração [origem, destino] intercontinental do ano 2006 é dada por: |Região |Africa |Americas|Asia |Europe|Oceania| |——–|——-|——–|——-|——|——-| |Africa |2507581|262745 |98175 |250070|37124 | |Americas|0 |150149 |0 |14850 |174 | |Asia |76780 |308706 |4411284|664075|42704 | |Europe |94 |306672 |7816 |454237|3423 | |Oceania |0 |1679 |0 |92 |59 |</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Filtrar para o ano de 2006</span></span>
+<span><span class="va">tb4_2006</span> <span class="op">&lt;-</span> <span class="va">tb4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ano</span> <span class="op">==</span> <span class="fl">2006</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Criar a matriz de migração [origem, destino]</span></span>
+<span><span class="va">matriz_migracao_2006</span> <span class="op">&lt;-</span> <span class="va">tb4_2006</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">regiao_origem</span>, <span class="va">regiao_destino</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_migrantes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">regiao_destino</span>, values_from <span class="op">=</span> <span class="va">total_migrantes</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'regiao_origem'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Exibir a matriz de migração no formato desejado</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">matriz_migracao_2006</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+# Groups:   regiao_origem [6]
+  regiao_origem  Africa Americas    Asia Europe Oceania  `NA`
+  &lt;chr&gt;           &lt;int&gt;    &lt;int&gt;   &lt;int&gt;  &lt;int&gt;   &lt;int&gt; &lt;int&gt;
+1 Africa        2507581   262745   98175 250070   37124     0
+2 Americas            0   150149       0  14850     174     0
+3 Asia            76780   308706 4411284 664075   42704     0
+4 Europe             94   306672    7816 454237    3423     0
+5 Oceania             0     1679       0     92      59     0
+6 &lt;NA&gt;            22980     5748   20381 228763     518     0</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li>A partir de 1972 houveram 172075 refugiados partindo do país: Afghanistan para o país: Canada, e 219920 refugiados partindo do país: Pakistan para o país: Canada.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Especificar o nome_origem, nome_destino e ano desejados</span></span>
+<span><span class="va">ano_desejado</span> <span class="op">&lt;-</span> <span class="fl">1972</span></span>
+<span></span>
+<span><span class="va">q4b</span> <span class="op">&lt;-</span> <span class="va">tb4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_origem</span>, <span class="va">nome_destino</span>, <span class="va">ano</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">resultado</span> <span class="op">&lt;-</span> <span class="va">q4b</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ano</span> <span class="op">&gt;=</span> <span class="va">ano_desejado</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_origem</span>, <span class="va">nome_destino</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'nome_origem'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">refugiados_af_can</span> <span class="op">&lt;-</span> <span class="va">resultado</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nome_origem</span> <span class="op">==</span> <span class="st">"Afghanistan"</span>, <span class="va">nome_destino</span> <span class="op">==</span> <span class="st">"Canada"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">refugiados_af_can</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+# Groups:   nome_origem [1]
+  nome_origem nome_destino total_refugiados
+  &lt;chr&gt;       &lt;chr&gt;                   &lt;int&gt;
+1 Afghanistan Canada                 172022</code></pre>
+</div>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">refugiados_paq_can</span> <span class="op">&lt;-</span> <span class="va">resultado</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">nome_origem</span> <span class="op">==</span> <span class="st">"Pakistan"</span>, <span class="va">nome_destino</span> <span class="op">==</span> <span class="st">"Canada"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">refugiados_paq_can</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+# Groups:   nome_origem [1]
+  nome_origem nome_destino total_refugiados
+  &lt;chr&gt;       &lt;chr&gt;                   &lt;int&gt;
+1 Pakistan    Canada                 219988</code></pre>
+</div>
+</div>
+<ol start="3" type="a">
+<li>Os 5 países que mais enviaram refugiados no ano de 1965 pertencem às subregiões Sub-Saharan Africa e Southern Europe.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ano_c</span> <span class="op">&lt;-</span> <span class="fl">1965</span></span>
+<span></span>
+<span><span class="va">q4c</span> <span class="op">&lt;-</span> <span class="va">tb4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_origem</span>, <span class="va">subregiao_origem</span>, <span class="va">ano</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="va">q4c</span> <span class="op">&lt;-</span> <span class="va">q4c</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ano</span> <span class="op">==</span> <span class="va">ano_c</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_origem</span>, <span class="va">subregiao_origem</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_refugiados</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'nome_origem'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q4c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 3
+# Groups:   nome_origem [15]
+   nome_origem            subregiao_origem   total_refugiados
+   &lt;chr&gt;                  &lt;chr&gt;                         &lt;int&gt;
+ 1 &lt;NA&gt;                   &lt;NA&gt;                        1581335
+ 2 China                  Eastern Asia                1330000
+ 3 Angola                 Sub-Saharan Africa           220000
+ 4 Rwanda                 Sub-Saharan Africa           155900
+ 5 Sudan                  Northern Africa               81560
+ 6 Guinea-Bissau          Sub-Saharan Africa            50000
+ 7 Dem. Rep. of the Congo Sub-Saharan Africa            47000
+ 8 Greece                 Southern Europe               17690
+ 9 Mozambique             Sub-Saharan Africa            17000
+10 Viet Nam               South-eastern Asia            15000
+11 Ghana                  Sub-Saharan Africa             5000
+12 Albania                Southern Europe                4860
+13 Hungary                Eastern Europe                 3270
+14 Burundi                Sub-Saharan Africa             3000
+15 Congo                  Sub-Saharan Africa                0</code></pre>
+</div>
+</div>
+<ol start="4" type="a">
+<li>Os 6 países que mais receberam refugiados a partir de 1982 receberam juntos 19523 refugiados.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ano_d</span> <span class="op">&lt;-</span> <span class="fl">1982</span></span>
+<span></span>
+<span><span class="va">q4d</span> <span class="op">&lt;-</span> <span class="va">tb4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_destino</span>, <span class="va">ano</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">q4d</span> <span class="op">&lt;-</span> <span class="va">q4d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">ano</span> <span class="op">&gt;=</span> <span class="va">ano_d</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_destino</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>total_refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">total_refugiados</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">q4d</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 191 × 2
+   nome_destino             total_refugiados
+   &lt;chr&gt;                               &lt;int&gt;
+ 1 Pakistan                         75814675
+ 2 Iran (Islamic Rep. of)           72881894
+ 3 Germany                          32908138
+ 4 Türkiye                          29883329
+ 5 Sudan                            23165858
+ 6 United States of America         17905925
+ 7 Dem. Rep. of the Congo           16212832
+ 8 Uganda                           16166236
+ 9 Ethiopia                         15899126
+10 United Rep. of Tanzania          14793351
+# ℹ 181 more rows</code></pre>
+</div>
+</div>
+<ol start="5" type="a">
+<li>Existem 27 países que receberam pelo menos 5382652 refugiados.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">n_refugiados</span> <span class="op">&lt;-</span> <span class="fl">5382652</span></span>
+<span></span>
+<span><span class="va">q4e</span><span class="op">&lt;-</span> <span class="va">tb4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">nome_destino</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>refugiados <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span>, .groups <span class="op">=</span> <span class="st">"drop"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">q4e</span> <span class="op">&lt;-</span> <span class="va">q4e</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">refugiados</span> <span class="op">&gt;=</span> <span class="va">n_refugiados</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">refugiados</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">'Existem'</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">q4e</span><span class="op">)</span>, <span class="st">'países que receberam pelo menos'</span>, <span class="va">n_refugiados</span>, <span class="st">'refugiados.\n'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Existem 30 países que receberam pelo menos 5382652 refugiados.</code></pre>
 </div>
 </div>
 
